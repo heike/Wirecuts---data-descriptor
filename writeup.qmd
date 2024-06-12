@@ -1,11 +1,12 @@
 ---
 title: "Data Descriptor Title (110 character maximum, inc. spaces)"
 authors: 
-  - name: Yuhang Tom Lin
+  - name: Yuhang Lin
     affiliations:
       - ref: 1
       - ref: 2
-    email: ylin@iastate.edu
+    orcid: 0000-0002-3600-9889
+    email: yhlin@iastate.edu
     corresponding: true
   - name: Heike Hofmann
     affiliations:
@@ -25,7 +26,7 @@ affiliations:
     city: Ames
     state: IA
 abstract: |
- This is a manuscript template for Data Descriptor submissions to \emph{Scientific Data} (\href{http://www.nature.com/scientificdata}{http://www.nature.com/scientificdata}). The abstract must be no longer than 170 words, and should succinctly describe the study, the assay(s) performed, the resulting data, and the reuse potential, but should not make any claims regarding new scientific findings. No references are allowed in this section.
+ \textcolor{gray}{(maximum 170 words) This is a manuscript template for Data Descriptor submissions to \emph{Scientific Data} (\href{http://www.nature.com/scientificdata}{http://www.nature.com/scientificdata}). The abstract must be no longer than 170 words, and should succinctly describe the study, the assay(s) performed, the resulting data, and the reuse potential, but should not make any claims regarding new scientific findings. No references are allowed in this section.}
 number-sections: false
 format:
   pdf:
@@ -40,6 +41,8 @@ competing: |
  H.H. is a technical advisor to AFTE (Association of Firearms and Toolmarks Examiners), fellow of the ASA (American Statistical Association), and committee member of the ASA Forensic Science Committee. H.H. has testified as court witness on behalf of judge April Neubauer, NY State Supreme Court Criminal Term in New York City. 
 ---
 
+
+
 ```{r eval=FALSE, echo=FALSE}
 # re-run to update references
 # re-run to update citations
@@ -51,50 +54,178 @@ for (pt in ignore) {
 rbbt::bbt_write_bib(keys=keys, path='references.bib', overwrite = TRUE, library_id=rbbt::bbt_library_id('CSAFE'), translator = "bibtex")
 ```
 
-\noindent Please note: Abbreviations should be introduced at the first mention in the main text – no abbreviations lists or tables should be included. Structure of the main text is provided below.
+
+
+\noindent \textcolor{gray}{Please note: Abbreviations should be introduced at the first mention in the main text – no abbreviations lists or tables should be included. Structure of the main text is provided below.}
+
+
 
 \section*{Background \& Summary}
 
-(700 words maximum) An overview of the study design, the assay(s) performed, and the created data, including any background information needed to put this study in the context of previous work and the literature. The section should also briefly outline the broader goals that motivated the creation of this dataset and the potential reuse value. We also encourage authors to include a figure that provides a schematic overview of the study and assay(s) design. The Background \& Summary should not include subheadings. This section and the other main body sections of the manuscript should include citations to the literature as needed. 
+\textcolor{gray}{(unlimited length) An overview of the study design, the assay(s) performed, and the created data, including any background information needed to put this study in the context of previous work and the literature. The section should also briefly outline the broader goals that motivated the creation of this dataset and the potential reuse value. We also encourage authors to include a figure that provides a schematic overview of the study and assay(s) design. The Background \& Summary should not include subheadings. This section and the other main body sections of the manuscript should include citations to the literature as needed.}
+
+
 
 \section*{Methods}
 
-The Methods should include detailed text describing any steps or procedures used in producing the data, including full descriptions of the experimental design, data acquisition assays, and any computational processing (e.g. normalization, image feature extraction). See the detailed section in our submission guidelines for advice on writing a transparent and reproducible methods section. Related methods should be grouped under corresponding subheadings where possible, and methods should be described in enough detail to allow other researchers to interpret and repeat, if required, the full study. Specific data outputs should be explicitly referenced via data citation (see Data Records and Citing Data, below).
-
-Authors should cite previous descriptions of the methods under use, but ideally the method descriptions should be complete enough for others to understand and reproduce the methods and processing steps without referring to associated publications. There is no limit to the length of the Methods section. Subheadings should not be numbered.
-
-\subsection*{Subsection}
-
-Example text under a subsection. Bulleted lists may be used where appropriate, e.g.
-
 \begin{itemize}
-\item First item
-\item Second item
+  \item
+  any steps or procedures used in producing the data, experimental design: README for \href{https://github.com/heike/Wirecuts}{heike/Wirecuts}
+  
+  \item
+  Transparent Methods Checklist
+  \begin{itemize}
+    \item
+    Materials \& reagents:
+    Identify commercial suppliers of reagents, instrumentation or kits, when the source is critical to the outcome of the experiments.
+    Declare any restrictions on the availability of unique materials (more information here).
+    Provide catalogue or clone numbers for all antibodies (if available). For primary antibodies, provide proof of validation for the relevant species and applications.
+    
+    \item
+    Exclusion criteria: If any data or samples were excluded, explain the exclusion criteria and state in the methods whether the criteria were established before the study was conducted.
+    
+    \item
+    Randomization \& blinding: For any studies that involve assigning samples, animals or participants into different groups:
+    State clearly whether randomization methods were used. If randomization was not employed, this should be clearly stated.
+    State clearly whether blinding was employed during data collection. If blinding was not employed, this should be clearly stated.
+    
+    \item
+    Animal \& human studies (full journal policies here):
+    Experiments involving human participants must identify the committee approving the experiments, and include a statement confirming that informed consent was obtained from all participants.
+    Studies employing nonhuman animals should ensure that methods descriptions comply with the ARRIVE checklist.
+    
+    \item
+    Cell lines:
+    For each eukaryotic cell line used, state the source and whether the cell line has been authenticated or otherwise tested for integrity.
+    If any commonly misidentified cell lines were used (see ICLAC or NCBI Biosample), justify their use.
+    Report whether the cell lines were tested for mycoplasma contamination.
+    
+    \item
+    Chemistry \& materials science: Manuscripts describing chemical syntheses, or characterizing new chemicals or materials should refer to the guidance at Nature Chemistry.
+    
+    \end{itemize}
+    
 \end{itemize}
 
-\subsubsection*{Third-level section}
- 
-Topical subheadings are allowed.
+\textcolor{gray}{(unlimited length) The Methods should include detailed text describing any steps or procedures used in producing the data, including full descriptions of the experimental design, data acquisition assays, and any computational processing (e.g. normalization, image feature extraction). See the detailed section in our submission guidelines for advice on writing a transparent and reproducible methods section. Related methods should be grouped under corresponding subheadings where possible, and methods should be described in enough detail to allow other researchers to interpret and repeat, if required, the full study. Specific data outputs should be explicitly referenced via data citation (see Data Records and Citing Data, below).}
+
+\textcolor{gray}{Authors should cite previous descriptions of the methods under use, but ideally the method descriptions should be complete enough for others to understand and reproduce the methods and processing steps without referring to associated publications. There is no limit to the length of the Methods section. Subheadings should not be numbered.}
+
+\textcolor{gray}{Authors should review the transparent methods checklist below, and ensure that their manuscript complies with any relevant points. Authors are also encouraged to search FAIRsharing.org for community reporting standards that may be relevant to their specific data-type.}
+
+
+
+<!-- \subsection*{Subsection} -->
+
+<!-- Example text under a subsection. Bulleted lists may be used where appropriate, e.g. -->
+
+<!-- \begin{itemize} -->
+<!-- \item First item -->
+<!-- \item Second item -->
+<!-- \end{itemize} -->
+
+<!-- \subsubsection*{Third-level section} -->
+
+<!-- Topical subheadings are allowed. -->
+
+
 
 \section*{Data Records}
 
-The Data Records section should be used to explain each data record associated with this work, including the repository where this information is stored, and to provide an overview of the data files and their formats. Each external data record should be cited numerically in the text of this section, for example \cite{Hao:gidmaps:2014}, and included in the main reference list as described below. A data citation should also be placed in the subsection of the Methods containing the data-collection or analytical procedure(s) used to derive the corresponding record. Providing a direct link to the dataset may also be helpful to readers (\hyperlink{https://doi.org/10.6084/m9.figshare.853801}{https://doi.org/10.6084/m9.figshare.853801}).
+\begin{itemize}
+  \item
+  \href{https://iastate.figshare.com/}{ISU DataShare}
+\end{itemize}
 
-Tables should be used to support the data records, and should clearly indicate the samples and subjects (study inputs), their provenance, and the experimental manipulations performed on each (please see 'Tables' below). They should also specify the data output resulting from each data-collection or analytical step, should these form part of the archived record.
+\textcolor{gray}{(unlimited length) The Data Records section should be used to explain each data record associated with this work, including the repository where this information is stored, and to provide an overview of the data files and their formats. Each external data record should be cited numerically in the text of this section, for example \cite{Hao:gidmaps:2014}, and included in the main reference list as described below. A data citation should also be placed in the subsection of the Methods containing the data-collection or analytical procedure(s) used to derive the corresponding record. Providing a direct link to the dataset may also be helpful to readers (\hyperlink{https://doi.org/10.6084/m9.figshare.853801}{https://doi.org/10.6084/m9.figshare.853801}).}
+
+\textcolor{gray}{Tables should be used to support the data records, and should clearly indicate the samples and subjects (study inputs), their provenance, and the experimental manipulations performed on each (please see 'Tables' below). They should also specify the data output resulting from each data-collection or analytical step, should these form part of the archived record.}
+
+
 
 \section*{Technical Validation}
 
-This section presents any experiments or analyses that are needed to support the technical quality of the dataset. This section may be supported by figures and tables, as needed. This is a required section; authors must present information justifying the reliability of their data.
+\begin{itemize}
+  \item
+  Measurement of data quality?
+  
+  \begin{itemize}
+    \item
+    Numeric measurements / tests: ?
+    
+    \item
+    Visualizations: ?
+    
+    \item
+    Check with existing data: ?
+    
+    \item
+    Questionable / slur procedures:
+      
+      \begin{itemize}
+      \item
+      \href{https://www.nature.com/articles/s41597-024-03341-w?_gl=1*5ya8g2*_up*MQ..&gclid=EAIaIQobChMInOXO84DVhgMViewWBR3vWQJAEAAYASAAEgJICfD_BwE#Sec28}{AidData’s Geospatial Global Chinese Development Finance Dataset}: \textcolor{gray}{Second, all data collected is reviewed by at least two individuals. Although this is not a double-blind review procedure, the use of satellite imagery to verify project locations results in far less uncertainty when compared to previous approaches to geocoding where locations were selected entirely based on text descriptions.}
+      
+      \item
+      \href{https://www.nature.com/articles/s41597-024-03021-9?_gl=1*1u1zppx*_up*MQ..&gclid=EAIaIQobChMInOXO84DVhgMViewWBR3vWQJAEAAYASAAEgJICfD_BwE#Sec9}{A large open access dataset of brain metastasis 3D segmentations on MRI with clinical and imaging information}: \textcolor{gray}{A medical student (D.R.) double checked and adjusted the revised NIfTI segmentation masks and manually counted the number of lesions with contrast-enhancement, necrosis, and peritumoral edema for each patient.}
+      
+      \item
+      \href{https://www.nature.com/articles/s41597-024-03445-3?_gl=1*1ikco52*_up*MQ..&gclid=EAIaIQobChMInOXO84DVhgMViewWBR3vWQJAEAAYASAAEgJICfD_BwE#Sec11}{Time series of freshwater macroinvertebrate abundances and site characteristics of European streams and rivers}: \textcolor{gray}{Technical validation of the TREAM dataset was achieved through exclusion of time series data that did not match our inclusion criteria and data standardisation steps (outlined in Methods above). Any noted issues that did not adhere to the outlined standardisation within the datasets from the 41 independent projects included in this dataset were checked with data providers and corrected or removed when standardisation was not achievable (e.g., when collection methods changed over the course of the time series).}
+      
+      \item
+      \href{https://www.nature.com/articles/s41597-023-02684-0?_gl=1*1t69zgo*_up*MQ..&gclid=EAIaIQobChMInOXO84DVhgMViewWBR3vWQJAEAAYASAAEgJICfD_BwE#Sec12}{3D surgical instrument collection for computer vision and extended reality}: \textcolor{gray}{The main issue...Since we store our models in a standard format (STL), they are compatible with a large variety of visualisation and processing software.}
+      
+      \item
+      \href{https://www.nature.com/articles/s41597-024-03396-9?_gl=1*1ikco52*_up*MQ..&gclid=EAIaIQobChMInOXO84DVhgMViewWBR3vWQJAEAAYASAAEgJICfD_BwE#Sec4}{Three-dimensional reconstruction of high latitude bamboo coral via X-ray microfocus Computed Tomography
+}: \textcolor{gray}{Regular quality assurance inspections are carried out on the µ-CT scanner to verify its metrological and geometrical (alignments) accuracy for conducting the scans. The geometry of source to object and source to detector distances are verified whenever there is any significant physical interaction with the source such as re-alignment, change of filament, or source anode change. This calibration process involves scanning a specially designed phantom known as an ‘hourglass’36, which consists of three pairs of high-sphericity spheres. The sphere sizes are as follows: two spheres with a diameter of 3.000 mm, two spheres with a diameter of 6.000 mm, and two spheres with a diameter of 9.525 mm, and each sphere is kept in contact with its size-counterpart. By using this phantom, it becomes possible to accurately determine a known distance, specifically the centre-to-centre distance of the spheres, in a threshold-independent manner. If the measured distance deviates beyond the acceptable limits of metrological accuracy, the system’s calibration parameters are adjusted to ensure agreement between the measured distance and the actual distance.}
+      
+      \end{itemize}
+      
+    \end{itemize}
+  
+\end{itemize}
+
+\textcolor{gray}{(unlimited length) This section presents any experiments or analyses that are needed to support the technical quality of the dataset. This section may be supported by figures and tables, as needed. This is a required section; authors must present information justifying the reliability of their data.}
+
+
 
 \section*{Usage Notes}
 
-The Usage Notes should contain brief instructions to assist other researchers with reuse of the data. This may include discussion of software packages that are suitable for analysing the assay data files, suggested downstream processing steps (e.g. normalization, etc.), or tips for integrating or comparing the data records with other datasets. Authors are encouraged to provide code, programs or data-processing workflows if they may help others understand or use the data. Please see our code availability policy for advice on supplying custom code alongside Data Descriptor manuscripts.
+\begin{itemize}
+  \item
+  software packages that are suitable for analysing the assay data files:
+  \begin{itemize}
+    \item
+      \texttt{CRAN} \texttt{R} package: \texttt{x3ptools}
+      
+    \item
+      \texttt{Github} \texttt{R} package: \texttt{wire}
+    
+    \item
+      \texttt{GitHub} \texttt{R} shiny app: \texttt{wireShiny}
+  \end{itemize}
+  
+  \item
+  suggested downstream processing steps: scaling resolution by \texttt{x3p\_scale\_unit}?
+  
+  \item
+  tips for integrating or comparing the data records with other datasets: comparing with sheet datasets (if in another data descriptor)?
+  
+  \item
+  data-processing workflows: automatic / manual pipeline?
+\end{itemize}
 
-For studies involving privacy or safety controls on public access to the data, this section should describe in detail these controls, including how authors can apply to access the data, what criteria will be used to determine who may access the data, and any limitations on data use. 
+\textcolor{gray}{(unlimited length) The Usage Notes should contain brief instructions to assist other researchers with reuse of the data. This may include discussion of software packages that are suitable for analysing the assay data files, suggested downstream processing steps (e.g. normalization, etc.), or tips for integrating or comparing the data records with other datasets. Authors are encouraged to provide code, programs or data-processing workflows if they may help others understand or use the data. Please see our code availability policy for advice on supplying custom code alongside Data Descriptor manuscripts.}
+
+\textcolor{gray}{For studies involving privacy or safety controls on public access to the data, this section should describe in detail these controls, including how authors can apply to access the data, what criteria will be used to determine who may access the data, and any limitations on data use.} 
+
+
 
 \section*{Code availability}
 
-For all studies using custom code in the generation or processing of datasets, a statement must be included under the heading "Code availability", indicating whether and how the code can be accessed, including any restrictions to access. This section should also include information on the versions of any software used, if relevant, and any specific variables or parameters used to generate, test, or process the current dataset. 
+\textcolor{gray}{For all studies using custom code in the generation or processing of datasets, a statement must be included under the heading "Code availability", indicating whether and how the code can be accessed, including any restrictions to access. This section should also include information on the versions of any software used, if relevant, and any specific variables or parameters used to generate, test, or process the current dataset.}
+
+
 
 # End of Body
-Note that the bibliography style and the name of the bib-file are hard coded in the template file right now.
+\textcolor{red}{Note that the bibliography style and the name of the bib-file are hard coded in the template file right now.}

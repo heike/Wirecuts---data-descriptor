@@ -20,9 +20,9 @@ $for(affiliations)$
 \affil[$it.id$]{$it.name$, $it.department$, $it.city$, $it.state.literal$}
 $endfor$
 
-
-\affil[*]{corresponding author(s): Derek Author (corresponding.author@email.example)}
-
+$for(by-author)$
+\affil[*]{corresponding author(s): $it.name.literal$ ($it.email$) {\color{red} ????????it.corresponding returns nothing} }
+$endfor$
 
 \begin{abstract}
 $abstract$
