@@ -68,157 +68,67 @@ rbbt::bbt_write_bib(keys=keys, path='references.bib', overwrite = TRUE, library_
 
 \section*{Methods}
 
-\begin{itemize}
-  \item
-  Materials used in the study: Aluminum wire (16 Gauge/1.5 mm, anodized).
-  
-  \item
-  Why aluminum not lead as in the case: to create a best-case scenario where the most amount of information could be transferred from the tool to the substrate
-\end{itemize}
+In this study,
+aluminum wire was used to create an optimal scenario where the most amount of information could be transferred from the tool to the substrate,
+despite the wire in James Genrich’s case being made of lead.
+The aluminum wire used was 16 Gauge/1.5 mm, anodized.
 
-\subsection*{Cutting Aluminium Wires}
+To cut the wire,
+4-inch pieces were unspooled and cut using Kaiweets wire cutters,
+model KWS-105,
+as shown in Figure \ref{fig: kaiweet-label},
+for 1 blade location,
+either inner, middle, or outer,
+which gives us 1 replicate.
+Each piece was then cut into half to create 2-inch pieces for each side,
+AB and CD,
+with a sharpie line marking the cut ends,
+giving us 4 samples.
+Both AB and CD sides form tent structures,
+as shown in Figure \ref{fig: x3p_tent},
+and we can separate each side of the tent into 2 pieces,
+as shown in Figure \ref{fig: T1W},
+resulting in 8 scans.
+We repeated this process for all 3 locations along the blade and 5 wire cutters,
+with 2 replicates for each tool-edge-location combination,
+resulting in 120 scans.
+Each piece was labeled with the naming conventions,
+T(ool) 1/2/3/4/5 (Edge) A/B/C/D W(ire) - L(ocation) I(nner)/M(iddle)/O(uter) -  R(epetition) 1/2,
+with T1AW-LI-R1 being the piece cut by tool 1 on the A edge at the inner location for the first repetition.
 
-\begin{enumerate}
-  \item
-  Unspool a piece of aluminum wire approximately 4" long, then use a neutral cutting edge to cut the piece off the spool. Repeat 6 times per wirecutters needing to be tested, in our case, 5 wirecutters, resulting in 30 pieces of wire.
+A more detailed procedure,
+including standard scanning protocols for the confocal microscope in Figure \ref{fig: wire-microscope},
+can be found in the
+\href{https://github.com/heike/Wirecuts/blob/main/README.md}{README of the GitHub repository \texttt{heike/Wirecuts}} \textcolor{red}{(High-res pics needed in the README)}.
+The scanned surfaces are saved in a resolution of $0.645 \mu m \times 0.645 \mu m$ per square pixel in an \texttt{x3p} file format.
 
-<!-- <img width="1031" alt="Step 1 'wirecuts' Image" src="JPG-Images/Image-05.jpg"> -->
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.5\linewidth]{kaiweet-label.jpg}
+\caption{Legend (350 words max). Example legend text.}
+\label{fig: kaiweet-label}
+\end{figure}
 
-  \item
-  Take the newly cut piece of wire and cut directly in the middle of the piece, ideally making two 2" pieces of wire. It is important to track which end of the wire is the AB cut and which is the CD cut. Therefore, a sharpie line across the wire was made to indicate which end the cut would be on before cutting.
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.25\linewidth]{x3p_tent.png}
+\caption{Legend (350 words max). Example legend text.}
+\label{fig: x3p_tent}
+\end{figure}
 
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.5\linewidth]{T1W.pdf}
+\caption{Legend (350 words max). Example legend text.}
+\label{fig: T1W}
+\end{figure}
 
-<!-- <img width="1031" alt="Step 2 'Wirecuts' Image 1" src="JPG-Images/Image-06.jpg"> -->
-<!-- <img width="1031" alt="Step 2 'Wirecuts' Image 2" src="JPG-Images/Image-07.jpg"> -->
-<!-- <img width="1031" alt="Step 2 'Wirecuts' Image 3" src="JPG-Images/Image-10.jpg"> -->
-
-  \item
-  After cutting, take a small Ziploc bag, and label it with Test \#, Cut \#, Tool \#, Edge AB/CD, and Date. Then package the pieces of wire.
-<!-- <img width="1031" alt="Step 2 'Wirecuts' Image 1" src="JPG-Images/Image-11.jpg"> -->
-
-  \item
-  Repeat Step 2-3 for each piece of 4" long wire that has been cut.
-\end{enumerate}
-
-\subsection*{Scanning Aluminium Wires}
-
-\begin{enumerate}
-  \item
-  Remove a packaged piece of wire from the Ziploc bag.
-
-  \item
-  Secure the piece of wire on the confocal microscope stage using sticky tac. Ensure the wire is stable before scanning.
-<!-- <img width="1031" alt="Step 2 'Scanning Protocol' Image 1" src="JPG-Images/Image-16.jpg"> -->
-
-  \item
-  Under the 5x optic, begin by leveling the large edge of the cut. Turning the dial to the right or clockwise can reach the lowest point on the wire, while turning it to the left or counter-clockwise will lead to the highest point. The wire can be shifted left or right based on the perceived high or low point. Additionally, tilting the stage forward and backward can help level the wire. The levelness can be determined by observing how much of the cut is visible. Ideally, all pieces of the wire should be visible without any blurry spots. However, it is common to encounter variations in height throughout the scan, where certain areas consistently appear higher or lower than others.
-
-  \item
-  Take the overall photo of the cut under the 5x optic.
-
-  \item
-  Switch to the 20x optic and adjust the number of cells needed for scanning accordingly. Typically, four cells are sufficient to cover most scans. However, the number of cells needed may vary depending on the specific side of the scanned cut.
-<!-- <img width="1031" alt="Step 5 'Scanning Protocol' Image 1" src="JPG-Images/Image-17.jpg"> -->
-<!-- <img width="1031" alt="Step 5 'Scanning Protocol' Image 2" src="JPG-Images/Image-18.jpg"> -->
-
-  \item
-  Rotate the dial to the right or clockwise to locate the lowest point of the cut when using the 20x optic. Continue rotating slightly past that point, which may cause details in the scan to appear slightly fuzzy. For accuracy, all cells should be checked to confirm that the lowest point of the scan has been reached. It may also be necessary to rotate the dial to the left initially. This adjustment compensates for the possibility of the focus being set beyond the low point when switching to the 20x optic.
-<!-- <img width="1031" alt="Step 6 'Scanning Protocol' Image 1" src="JPG-Images/Image-19.jpg"> -->
-
-  \item
-  Plant the flag for the scan, indicating to the microscope that the scan will start from this specific location.
-<!-- <img width="1031" alt="Step 7 'Scanning Protocol' Image 1" src="JPG-Images/Image-20.jpg"> -->
-
-  \item
-  Rotate the dial to the left or counter-clockwise to locate the highest point of the cut. Continue rotating slightly past that point, which may cause details in the scan to appear slightly fuzzy. A closer Z-value to 0 in the left column indicates a better result. Typically, if this value exceeds 0.100, it indicates that the cut needs to be leveled further.
-
-  \item
-  After identifying and slightly passing the highest point, record the first three digits after the decimal point without leading 0s of the Z-value number into the Z-score box located in the right column of the interface. For example, if the Z-value displays '0.0581', '58' should be input into the Z-score box. Adjusting the Z-score communicates to the microscope the desired scanning distance.
-<!-- <img width="1031" alt="Step 9 'Scanning Protocol' Image 1" src="JPG-Images/Image-22.jpg"> -->
-
-  \item
-  Turn the dial to the right or clockwise to reset the Z-value to 0.
-<!-- <img width="1031" alt="Step 10 'Scanning Protocol' Image 1" src="JPG-Images/Image-23.jpg"> -->
-
-  \item
-  Adjust the light as necessary with the help of the auto light feature represented by a sun icon on the interface.
-<!-- <img width="1031" alt="Step 11 'Scanning Protocol' Image 1" src="JPG-Images/Image-24.jpg"> -->
-
-  \item
-  Click the green 'ACQUIRE' button.
-<!-- <img width="1031" alt="Step 12 'Scanning Protocol' Image 1" src="JPG-Images/Image-25.jpg"> -->
-
-  \item
-  Save the scan with the naming protocol: Wire Cutting Project - Scan \# - Cut \# - Aluminium Wire - (Large/Small) Edge - (Inner/Middle/Outer) Surface - Kaiweets Tool \#(1/2/3/4/5)  - Edge (A/B/C/D) - 20x - Light %.
-
-  \item
-  Repeat Step 1-13 for all the pieces of wire.
-\end{enumerate}
-
-\subsection*{Summary of Data Collection}
-
-\begin{itemize}
-  \item
-  60 = 5 × 2 × 2 × 3 samples
-  
-  \item
-  5 Kaiweets wire cutters - model KWS-105 (tools)
-
-  \item
-  2 wire cuts (replicates) for 2 sides of wire cutter (AB or CD)
-
-  \item
-  3 locations along the blade (inner, middle, outer)
-  
-  \item
-  120 = 60 × 2 samples
-  
-  \item
-  2 scans separating sides into cuts by each blade
-
-  \item
-  Scans are saved at a resolution of 0.645 𝜇𝑚× 0.645 𝜇𝑚 per square pixel in an x3p file format
-\end{itemize}
-
-------------------------------------------
-\begin{itemize}
-  \item
-  any steps or procedures used in producing the data, experimental design: README for \href{https://github.com/heike/Wirecuts}{heike/Wirecuts}
-  
-  \item
-  Transparent Methods Checklist
-  \begin{itemize}
-    \item
-    Materials \& reagents:
-    Identify commercial suppliers of reagents, instrumentation or kits, when the source is critical to the outcome of the experiments.
-    Declare any restrictions on the availability of unique materials (more information here).
-    Provide catalogue or clone numbers for all antibodies (if available). For primary antibodies, provide proof of validation for the relevant species and applications.
-    
-    \item
-    Exclusion criteria: If any data or samples were excluded, explain the exclusion criteria and state in the methods whether the criteria were established before the study was conducted.
-    
-    \item
-    Randomization \& blinding: For any studies that involve assigning samples, animals or participants into different groups:
-    State clearly whether randomization methods were used. If randomization was not employed, this should be clearly stated.
-    State clearly whether blinding was employed during data collection. If blinding was not employed, this should be clearly stated.
-    
-    \item
-    Animal \& human studies (full journal policies here):
-    Experiments involving human participants must identify the committee approving the experiments, and include a statement confirming that informed consent was obtained from all participants.
-    Studies employing nonhuman animals should ensure that methods descriptions comply with the ARRIVE checklist.
-    
-    \item
-    Cell lines:
-    For each eukaryotic cell line used, state the source and whether the cell line has been authenticated or otherwise tested for integrity.
-    If any commonly misidentified cell lines were used (see ICLAC or NCBI Biosample), justify their use.
-    Report whether the cell lines were tested for mycoplasma contamination.
-    
-    \item
-    Chemistry \& materials science: Manuscripts describing chemical syntheses, or characterizing new chemicals or materials should refer to the guidance at Nature Chemistry.
-    
-    \end{itemize}
-    
-\end{itemize}
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.5\linewidth]{wire-microscope.jpg}
+\caption{Legend (350 words max). Example legend text.}
+\label{fig: wire-microscope}
+\end{figure}
 
 \textcolor{gray}{(unlimited length) The Methods should include detailed text describing any steps or procedures used in producing the data, including full descriptions of the experimental design, data acquisition assays, and any computational processing (e.g. normalization, image feature extraction). See the detailed section in our submission guidelines for advice on writing a transparent and reproducible methods section. Related methods should be grouped under corresponding subheadings where possible, and methods should be described in enough detail to allow other researchers to interpret and repeat, if required, the full study. Specific data outputs should be explicitly referenced via data citation (see Data Records and Citing Data, below).}
 
@@ -226,6 +136,37 @@ rbbt::bbt_write_bib(keys=keys, path='references.bib', overwrite = TRUE, library_
 
 \textcolor{gray}{Authors should review the transparent methods checklist below, and ensure that their manuscript complies with any relevant points. Authors are also encouraged to search FAIRsharing.org for community reporting standards that may be relevant to their specific data-type.}
 
+Transparent Methods Checklist
+\begin{itemize}
+  \item
+  Materials \& reagents:
+  Identify commercial suppliers of reagents, instrumentation or kits, when the source is critical to the outcome of the experiments.
+  Declare any restrictions on the availability of unique materials (more information here).
+  Provide catalogue or clone numbers for all antibodies (if available). For primary antibodies, provide proof of validation for the relevant species and applications.
+  
+  \item
+  Exclusion criteria: If any data or samples were excluded, explain the exclusion criteria and state in the methods whether the criteria were established before the study was conducted.
+  
+  \item
+  Randomization \& blinding: For any studies that involve assigning samples, animals or participants into different groups:
+  State clearly whether randomization methods were used. If randomization was not employed, this should be clearly stated.
+  State clearly whether blinding was employed during data collection. If blinding was not employed, this should be clearly stated.
+  
+  \item
+  Animal \& human studies (full journal policies here):
+  Experiments involving human participants must identify the committee approving the experiments, and include a statement confirming that informed consent was obtained from all participants.
+  Studies employing nonhuman animals should ensure that methods descriptions comply with the ARRIVE checklist.
+  
+  \item
+  Cell lines:
+  For each eukaryotic cell line used, state the source and whether the cell line has been authenticated or otherwise tested for integrity.
+  If any commonly misidentified cell lines were used (see ICLAC or NCBI Biosample), justify their use.
+  Report whether the cell lines were tested for mycoplasma contamination.
+  
+  \item
+  Chemistry \& materials science: Manuscripts describing chemical syntheses, or characterizing new chemicals or materials should refer to the guidance at Nature Chemistry.
+  
+\end{itemize}
 
 
 <!-- \subsection*{Subsection} -->
@@ -245,10 +186,10 @@ rbbt::bbt_write_bib(keys=keys, path='references.bib', overwrite = TRUE, library_
 
 \section*{Data Records}
 
-\begin{itemize}
-  \item
-  \href{https://iastate.figshare.com/}{ISU DataShare}
-\end{itemize}
+The complete data set is available on the ISU DataShare repository at \href{https://iastate.figshare.com/}{https://iastate.figshare.com/},
+which is public and open access for every interested researcher.
+The data set consists of 120 scans in the \texttt{x3p} file format with the naming convention as described before.
+\textcolor{red}{Explain the x3p header info to some extent? x3ptools?}
 
 \textcolor{gray}{(unlimited length) The Data Records section should be used to explain each data record associated with this work, including the repository where this information is stored, and to provide an overview of the data files and their formats. Each external data record should be cited numerically in the text of this section, for example \cite{Hao:gidmaps:2014}, and included in the main reference list as described below. A data citation should also be placed in the subsection of the Methods containing the data-collection or analytical procedure(s) used to derive the corresponding record. Providing a direct link to the dataset may also be helpful to readers (\hyperlink{https://doi.org/10.6084/m9.figshare.853801}{https://doi.org/10.6084/m9.figshare.853801}).}
 
@@ -257,6 +198,46 @@ rbbt::bbt_write_bib(keys=keys, path='references.bib', overwrite = TRUE, library_
 
 
 \section*{Technical Validation}
+
+For the data collection process,
+two team members did the cutting and labeling together,
+then one person did the scanning and named according to the naming convention above. The scanning was done in a specific order to ensure consistency across all scans.
+The data was saved in a consistent format to ensure that they could be easily accessed and analyzed.
+A third person then checked the data to ensure that the data was consistent in naming and accurate.
+
+We also conduct numerical comparisons between 2 replicates made by the same side of the same tool at the same location.
+For example,
+we compare T1AW-LI-R1 to T1AW-LI-R2,
+T1BW-LI-R1 to T1BW-LI-R2,
+and so on,
+as shown in Figure \ref{fig: scans_pair}.
+The comparison is done by aligning the two scans and the cross-correlation function (CCF) between the two scans.
+\textcolor{red}{Explain the manual extraction in details? explain striations, profiles, signals, etc?}
+We know that signals from two replicates with the same tool-edge-location combination should yield similar signals,
+which results in high CCF values close to 1,
+and the values we got in Figure \ref{fig: signals_pair_alignment} achieve our expectation.
+For validation of all other pairs of scan replicates,
+see the detailed \href{https://heike.github.io/Wirecuts/data-descriptor/Technical_Validation.html}{report}.
+
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.8\linewidth]{scans_pair.png}
+\caption{Legend (350 words max). Example legend text.}
+\label{fig: scans_pair}
+\end{figure}
+
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.8\linewidth]{signals_pair_alignment.png}
+\caption{Legend (350 words max). Example legend text.}
+\label{fig: signals_pair_alignment}
+\end{figure}
+
+
+
+\textcolor{gray}{(unlimited length) This section presents any experiments or analyses that are needed to support the technical quality of the dataset. This section may be supported by figures and tables, as needed. This is a required section; authors must present information justifying the reliability of their data.}
 
 \begin{itemize}
   \item
@@ -298,35 +279,49 @@ rbbt::bbt_write_bib(keys=keys, path='references.bib', overwrite = TRUE, library_
   
 \end{itemize}
 
-\textcolor{gray}{(unlimited length) This section presents any experiments or analyses that are needed to support the technical quality of the dataset. This section may be supported by figures and tables, as needed. This is a required section; authors must present information justifying the reliability of their data.}
-
 
 
 \section*{Usage Notes}
 
-\begin{itemize}
-  \item
-  software packages that are suitable for analysing the assay data files:
-  \begin{itemize}
-    \item
-      \texttt{CRAN} \texttt{R} package: \texttt{x3ptools}
-      
-    \item
-      \texttt{Github} \texttt{R} package: \texttt{wire}
-    
-    \item
-      \texttt{GitHub} \texttt{R} shiny app: \texttt{wireShiny}
-  \end{itemize}
-  
-  \item
-  suggested downstream processing steps: scaling resolution by \texttt{x3p\_scale\_unit}?
-  
-  \item
-  tips for integrating or comparing the data records with other datasets: comparing with sheet datasets (if in another data descriptor)?
-  
-  \item
-  data-processing workflows: automatic / manual pipeline?
-\end{itemize}
+The data set can be easily accessed with the \texttt{CRAN} \texttt{R} package \texttt{x3ptools}.
+Further analysis can be conducted with the \texttt{GitHub} \texttt{R} package \texttt{wire} and the \texttt{GitHub} \texttt{R} shiny app \texttt{wireShiny}.
+We already conduct between-replicate comparisons in the technical validation section,
+and we can also conduct across-replicate comparisons to establish error rates threshold and produce other analysis plots.
+The resulting CCFs are shown in the boxplot in Figure \ref{fig: ccf_boxplot}.
+We can see that the CCF values for the same sources are close to 1,
+while the CCF values for different sources are much lower.
+This difference can be used to establish a threshold for CCF and help us draw conclusion about the similarity between wire cut scans,
+which can be used in real crime scenes.
+The density plot in Figure \ref{fig: ccf_density} shows the distribution of the CCF values.
+The overlapping points between the two distributions can be a rough threshold.
+The receiver operating characteristic (ROC) curve in Figure \ref{fig: ccf_ROC} shows the true positive rate against the false positive rate,
+gives us a true threshold of 0.589 to control the false positive rate (FPR) to be less than 0.05,
+and 0.658 to control the FPR to be less than 0.01.
+
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.8\linewidth]{ccf_boxplot.png}
+\caption{Legend (350 words max). Example legend text.}
+\label{fig: ccf_boxplot}
+\end{figure}
+
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.8\linewidth]{ccf_density.png}
+\caption{Legend (350 words max). Example legend text.}
+\label{fig: ccf_density}
+\end{figure}
+
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.5\linewidth]{ccf_ROC.png}
+\caption{Legend (350 words max). Example legend text.}
+\label{fig: ccf_ROC}
+\end{figure}
+
 
 \textcolor{gray}{(unlimited length) The Usage Notes should contain brief instructions to assist other researchers with reuse of the data. This may include discussion of software packages that are suitable for analysing the assay data files, suggested downstream processing steps (e.g. normalization, etc.), or tips for integrating or comparing the data records with other datasets. Authors are encouraged to provide code, programs or data-processing workflows if they may help others understand or use the data. Please see our code availability policy for advice on supplying custom code alongside Data Descriptor manuscripts.}
 
