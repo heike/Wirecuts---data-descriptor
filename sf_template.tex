@@ -5,6 +5,8 @@
 \graphicspath{{./img/}{./pictures/}{./images/}}
 \linenumbers
 
+\newcommand{\ifinstruction}{1} % 1 for instruction, 0 for no instruction
+
 %in the preamble
 %--------------------------------
 \usepackage{natbib}
@@ -56,6 +58,7 @@ A.A. conceived the experiment(s), A.A. and B.A. conducted the experiment(s), C.A
 $competing$
 
 % XXX Delete the section below later
+\ifnum \ifinstruction=1
 \section*{Figures \& Tables}
 
 
@@ -87,5 +90,6 @@ B & 10 & 0.01 \\
 \end{tabular}
 \caption{\label{tab:example}Legend (350 words max). Example legend text.}
 \end{table}
+\fi
 
 \end{document}

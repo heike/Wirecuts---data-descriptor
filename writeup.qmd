@@ -1,5 +1,5 @@
 ---
-title: "Data Descriptor Title (110 character maximum, inc. spaces)"
+title: "Three-dimensional data of wirecut surface scans under the confocal microscope (110 character maximum, inc. spaces)"
 authors: 
   - name: Yuhang Lin
     affiliations:
@@ -26,19 +26,33 @@ affiliations:
     city: Ames
     state: IA
 abstract: |
+ Wire cut data is important in forensic investigations but lacks a systematic way of analyzing the data.
+ We created a data set of 120 scans of aluminum wire cut in \texttt{x3p} format,
+ using 5 wire cutters and 3 locations along the 4 blades,
+ with 2 replicates for each combination.
+ A systematic pipeline with multiple analysis plots was developed to analyze the data and draw conclusions based on numerical measures.
+ 
+ \ifnum \ifinstruction=1
  \textcolor{gray}{(maximum 170 words) This is a manuscript template for Data Descriptor submissions to \emph{Scientific Data} (\href{http://www.nature.com/scientificdata}{http://www.nature.com/scientificdata}). The abstract must be no longer than 170 words, and should succinctly describe the study, the assay(s) performed, the resulting data, and the reuse potential, but should not make any claims regarding new scientific findings. No references are allowed in this section.}
+ \fi
 number-sections: false
 format:
   pdf:
     template: sf_template.tex
     keep-tex: true
 acknowledgements: |
+ \ifnum \ifinstruction=1
  Acknowledgements should be brief, and should not include thanks to anonymous referees and editors, or effusive comments. Grant or contribution numbers may be acknowledged.
+ \fi
 contributions: |
- Y.L. did all of the work, H.H. made him do the work. But seriously, this paper is the one where we need to cite everybody: Eden Amin, Curtis Mosher, Jeff Salyards.
+ \ifnum \ifinstruction=1
+ Y.L. did all of the work, H.H. made him do the work. But seriously, this paper is the one where we need to cite everybody: Eden Amin, Curtis Mosher, Jeff Salyards. Alicia?
+ \fi
 competing: |
+ \ifnum \ifinstruction=1
  The corresponding author is responsible for providing a \href{https://www.nature.com/sdata/policies/editorial-and-publishing-policies#competing}{competing interests statement} on behalf of all authors of the paper. This statement must be included in the submitted article file.
  H.H. is a technical advisor to AFTE (Association of Firearms and Toolmarks Examiners), fellow of the ASA (American Statistical Association), and committee member of the ASA Forensic Science Committee. H.H. has testified as court witness on behalf of judge April Neubauer, NY State Supreme Court Criminal Term in New York City. 
+ \fi
 ---
 
 
@@ -56,13 +70,28 @@ rbbt::bbt_write_bib(keys=keys, path='references.bib', overwrite = TRUE, library_
 
 
 
+\ifnum \ifinstruction=1
 \noindent \textcolor{gray}{Please note: Abbreviations should be introduced at the first mention in the main text – no abbreviations lists or tables should be included. Structure of the main text is provided below.}
+\fi
 
 
 
 \section*{Background \& Summary}
 
+Wire cut data is a type of forensic tool mark data used to identify the source of a wire cutter based on the striations left on the surface.
+In James Genrich’s case \textcolor{red}{(how to cite?)},
+the wire cut data played a crucial role in the criminal investigation.
+However,
+there is a lack of a standardized method to analyze it except for visual comparison.
+Here,
+we provide a data set of 120 scans of aluminum wire cut in \texttt{x3p} format,
+and we conduct a technical validation to introduce a systematic pipeline for analyzing these types of data based on numerical measures.
+We hope this pipeline developed using this data set can be further generalized and applied to real crime scenes to help investigators draw conclusions based on real wire cut data.
+
+
+\ifnum \ifinstruction=1
 \textcolor{gray}{(unlimited length) An overview of the study design, the assay(s) performed, and the created data, including any background information needed to put this study in the context of previous work and the literature. The section should also briefly outline the broader goals that motivated the creation of this dataset and the potential reuse value. We also encourage authors to include a figure that provides a schematic overview of the study and assay(s) design. The Background \& Summary should not include subheadings. This section and the other main body sections of the manuscript should include citations to the literature as needed.}
+\fi
 
 
 
@@ -73,10 +102,10 @@ aluminum wire was used to create an optimal scenario where the most amount of in
 despite the wire in James Genrich’s case being made of lead.
 The aluminum wire used was 16 Gauge/1.5 mm, anodized.
 
-To cut the wire,
+In order to cut the wire,
 4-inch pieces were unspooled and cut using Kaiweets wire cutters,
 model KWS-105,
-as shown in Figure \ref{fig: kaiweet-label},
+as shown in Figure \ref{fig: kaiweet-label-062524},
 for 1 blade location,
 either inner, middle, or outer,
 which gives us 1 replicate.
@@ -84,10 +113,11 @@ Each piece was then cut into half to create 2-inch pieces for each side,
 AB and CD,
 with a sharpie line marking the cut ends,
 giving us 4 samples.
-Both AB and CD sides form tent structures,
-as shown in Figure \ref{fig: x3p_tent},
-and we can separate each side of the tent into 2 pieces,
-as shown in Figure \ref{fig: T1W},
+Both AB and CD sides form tent structures on the tips of the wire,
+as shown in Figure \ref{fig: x3p_tent}
+\textcolor{red}{(need a different tent figure)},
+and we can separate each side of the tent into 2 pieces along the bending position,
+as shown in Figure \ref{fig: T1AW-LI-R2-4edges},
 resulting in 8 scans.
 We repeated this process for all 3 locations along the blade and 5 wire cutters,
 with 2 replicates for each tool-edge-location combination,
@@ -97,39 +127,45 @@ T(ool) 1/2/3/4/5 (Edge) A/B/C/D W(ire) - L(ocation) I(nner)/M(iddle)/O(uter) -  
 with T1AW-LI-R1 being the piece cut by tool 1 on the A edge at the inner location for the first repetition.
 
 A more detailed procedure,
-including standard scanning protocols for the confocal microscope in Figure \ref{fig: wire-microscope},
+including standard scanning protocols for the confocal microscope in Figure \ref{fig: wire-microscope-062524},
 can be found in the
 \href{https://github.com/heike/Wirecuts/blob/main/README.md}{README of the GitHub repository \texttt{heike/Wirecuts}} \textcolor{red}{(High-res pics needed in the README)}.
 The scanned surfaces are saved in a resolution of $0.645 \mu m \times 0.645 \mu m$ per square pixel in an \texttt{x3p} file format.
 
+
 \begin{figure}[ht]
 \centering
-\includegraphics[width=0.5\linewidth]{kaiweet-label.jpg}
-\caption{Legend (350 words max). Example legend text.}
-\label{fig: kaiweet-label}
+\includegraphics[width=0.5\linewidth]{kaiweet-label-062524.jpg}
+\caption{A Kaiweets wire cutter of model KWS-105 was used to cut the wire.}
+\label{fig: kaiweet-label-062524}
 \end{figure}
+
 
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.25\linewidth]{x3p_tent.png}
-\caption{Legend (350 words max). Example legend text.}
+\caption{A tent structure created by either blade AB or CD.}
 \label{fig: x3p_tent}
 \end{figure}
 
-\begin{figure}[ht]
-\centering
-\includegraphics[width=0.5\linewidth]{T1W.pdf}
-\caption{Legend (350 words max). Example legend text.}
-\label{fig: T1W}
-\end{figure}
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=0.5\linewidth]{wire-microscope.jpg}
-\caption{Legend (350 words max). Example legend text.}
-\label{fig: wire-microscope}
+\includegraphics[width=0.5\linewidth]{T1AW-LI-R2-4edges.png}
+\caption{After separating 2 tent structures by the connecting position, we obtained 4 samples - 1 sample from blade ABCD.}
+\label{fig: T1AW-LI-R2-4edges}
 \end{figure}
 
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.5\linewidth]{wire-microscope-062524.jpg}
+\caption{A confocal microscope was used to scan the wire surfaces.}
+\label{fig: wire-microscope-062524}
+\end{figure}
+
+
+\ifnum \ifinstruction=1
 \textcolor{gray}{(unlimited length) The Methods should include detailed text describing any steps or procedures used in producing the data, including full descriptions of the experimental design, data acquisition assays, and any computational processing (e.g. normalization, image feature extraction). See the detailed section in our submission guidelines for advice on writing a transparent and reproducible methods section. Related methods should be grouped under corresponding subheadings where possible, and methods should be described in enough detail to allow other researchers to interpret and repeat, if required, the full study. Specific data outputs should be explicitly referenced via data citation (see Data Records and Citing Data, below).}
 
 \textcolor{gray}{Authors should cite previous descriptions of the methods under use, but ideally the method descriptions should be complete enough for others to understand and reproduce the methods and processing steps without referring to associated publications. There is no limit to the length of the Methods section. Subheadings should not be numbered.}
@@ -167,6 +203,7 @@ Transparent Methods Checklist
   Chemistry \& materials science: Manuscripts describing chemical syntheses, or characterizing new chemicals or materials should refer to the guidance at Nature Chemistry.
   
 \end{itemize}
+\fi
 
 
 <!-- \subsection*{Subsection} -->
@@ -189,11 +226,14 @@ Transparent Methods Checklist
 The complete data set is available on the ISU DataShare repository at \href{https://iastate.figshare.com/}{https://iastate.figshare.com/},
 which is public and open access for every interested researcher.
 The data set consists of 120 scans in the \texttt{x3p} file format with the naming convention as described before.
-\textcolor{red}{Explain the x3p header info to some extent? x3ptools?}
+\textcolor{red}{(Explain the x3p header info?)}
 
+
+\ifnum \ifinstruction=1
 \textcolor{gray}{(unlimited length) The Data Records section should be used to explain each data record associated with this work, including the repository where this information is stored, and to provide an overview of the data files and their formats. Each external data record should be cited numerically in the text of this section, for example \cite{Hao:gidmaps:2014}, and included in the main reference list as described below. A data citation should also be placed in the subsection of the Methods containing the data-collection or analytical procedure(s) used to derive the corresponding record. Providing a direct link to the dataset may also be helpful to readers (\hyperlink{https://doi.org/10.6084/m9.figshare.853801}{https://doi.org/10.6084/m9.figshare.853801}).}
 
 \textcolor{gray}{Tables should be used to support the data records, and should clearly indicate the samples and subjects (study inputs), their provenance, and the experimental manipulations performed on each (please see 'Tables' below). They should also specify the data output resulting from each data-collection or analytical step, should these form part of the archived record.}
+\fi
 
 
 
@@ -202,41 +242,65 @@ The data set consists of 120 scans in the \texttt{x3p} file format with the nami
 For the data collection process,
 two team members did the cutting and labeling together,
 then one person did the scanning and named according to the naming convention above. The scanning was done in a specific order to ensure consistency across all scans.
-The data was saved in a consistent format to ensure that they could be easily accessed and analyzed.
+The data was saved in a consistent format to ensure they could be easily accessed and analyzed.
 A third person then checked the data to ensure that the data was consistent in naming and accurate.
 
 We also conduct numerical comparisons between 2 replicates made by the same side of the same tool at the same location.
 For example,
 we compare T1AW-LI-R1 to T1AW-LI-R2,
-T1BW-LI-R1 to T1BW-LI-R2,
-and so on,
-as shown in Figure \ref{fig: scans_pair}.
-The comparison is done by aligning the two scans and the cross-correlation function (CCF) between the two scans.
-\textcolor{red}{Explain the manual extraction in details? explain striations, profiles, signals, etc?}
-We know that signals from two replicates with the same tool-edge-location combination should yield similar signals,
-which results in high CCF values close to 1,
-and the values we got in Figure \ref{fig: signals_pair_alignment} achieve our expectation.
-For validation of all other pairs of scan replicates,
+T1CW-LI-R1 to T1CW-LI-R2,
+and so on.
+That is comparing each row in Figure \ref{fig: scans_pair}.
+The comparison is done by manually extracting signals from scans, aligning signals,
+and computing the cross-correlation function (CCF) values.
+
+In particular,
+we want to extract representative signals from each scan and use them for comparison later.
+To achieve this goal,
+we first need a profile of the scan,
+which is a sequence of values along a user-drawn line on the surface.
+The profile should capture most features of the scan,
+so we draw the line across the striations of the scan,
+which are formed by ups and downs of grooves,
+as shown in gray in Figure \ref{fig: T1AW-LI-R1-profiles}.
+With the profile extracted,
+we can then remove the overall trend,
+as it can overwhelm the signals.
+The signals are then extracted using locally estimated scatterplot smoothing (LOESS), and the extreme tail values are removed.
+
+We know that signals from two replicates with the same tool-edge-location combination should yield similar signals，
+as in the first and second column of Figure \ref{fig: signals_pair_alignment},
+which will give alignments of massive overlapping and high CCF values close to 1.
+The alignments and values we got in the rightmost column of Figure \ref{fig: signals_pair_alignment} fulfill our expectations.
+For validation of all other tools and locations of scan replicates,
 see the detailed \href{https://heike.github.io/Wirecuts/data-descriptor/Technical_Validation.html}{report}.
 
 
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.8\linewidth]{scans_pair.png}
-\caption{Legend (350 words max). Example legend text.}
+\caption{Scans from different sides of tool 1 at the inner location.}
 \label{fig: scans_pair}
 \end{figure}
 
 
 \begin{figure}[ht]
 \centering
+\includegraphics[width=0.5\linewidth]{T1AW-LI-R1-profiles.png}
+\caption{A profile in gray was drawn across the striations of the scan.}
+\label{fig: T1AW-LI-R1-profiles}
+\end{figure}
+
+
+\begin{figure}[ht]
+\centering
 \includegraphics[width=0.8\linewidth]{signals_pair_alignment.png}
-\caption{Legend (350 words max). Example legend text.}
+\caption{The first and second columns show the signals extracted from Figure \ref{fig: scans_pair}, and the third column shows the alignments and CCF values between pairs of signals.}
 \label{fig: signals_pair_alignment}
 \end{figure}
 
 
-
+\ifnum \ifinstruction=1
 \textcolor{gray}{(unlimited length) This section presents any experiments or analyses that are needed to support the technical quality of the dataset. This section may be supported by figures and tables, as needed. This is a required section; authors must present information justifying the reliability of their data.}
 
 \begin{itemize}
@@ -278,31 +342,60 @@ see the detailed \href{https://heike.github.io/Wirecuts/data-descriptor/Technica
     \end{itemize}
   
 \end{itemize}
+\fi
 
 
 
 \section*{Usage Notes}
 
 The data set can be easily accessed with the \texttt{CRAN} \texttt{R} package \texttt{x3ptools}.
-Further analysis can be conducted with the \texttt{GitHub} \texttt{R} package \texttt{wire} and the \texttt{GitHub} \texttt{R} shiny app \texttt{wireShiny}.
+Further analysis can be conducted with the \texttt{GitHub} \texttt{R} package \texttt{wire} and the \texttt{GitHub} \texttt{R} shiny app \texttt{wireShiny}
+\textcolor{red}{(citation)}.
 We already conduct between-replicate comparisons in the technical validation section,
 and we can also conduct across-replicate comparisons to establish error rates threshold and produce other analysis plots.
-The resulting CCFs are shown in the boxplot in Figure \ref{fig: ccf_boxplot}.
+
+Suppose we put the CCF values in a tilemap with different tool, location and edge combinations.
+In that case,
+we expect only the diagonal to have high CCF values,
+close to 1 and marked as orange in the tilemap,
+as the diagonal represents the same source,
+and the rest of the matrix to have low CCF values,
+close to 0 and marked as gray.
+In Figure \ref{fig: ccf_tilemap},
+the behavior is consistent with our expectation overall,
+except for some rare cases with tool 5 edge D,
+which is caused by
+\textcolor{red}{?????}.
+We also put the resulting CCFs in the boxplot,
+as in Figure \ref{fig: ccf_boxplot}.
 We can see that the CCF values for the same sources are close to 1,
-while the CCF values for different sources are much lower.
-This difference can be used to establish a threshold for CCF and help us draw conclusion about the similarity between wire cut scans,
+while the CCF values for different sources are much lower than expected.
+This difference can be used to establish a threshold for CCF and help us draw conclusions about the similarity between wire cut scans numerically,
 which can be used in real crime scenes.
-The density plot in Figure \ref{fig: ccf_density} shows the distribution of the CCF values.
-The overlapping points between the two distributions can be a rough threshold.
-The receiver operating characteristic (ROC) curve in Figure \ref{fig: ccf_ROC} shows the true positive rate against the false positive rate,
-gives us a true threshold of 0.589 to control the false positive rate (FPR) to be less than 0.05,
-and 0.658 to control the FPR to be less than 0.01.
+The density plot in Figure \ref{fig: ccf_density} shows the distribution of the CCF values with the same sources and different sources.
+The overlapping points between the tails of these two distributions can be a rough threshold.
+Furthermore,
+the receiver operating characteristic (ROC) curve in Figure \ref{fig: ccf_ROC} shows the sensitivity / true positive rate against the false positive rate (FPR) (1 - specificity).
+The curve is very close to the upper left corner,
+which is excellent for classification and drawing conclusion.
+It gives us a true threshold of 0.589 to control the FPR to be less than 0.05 with false negative rate (FNR) to be 0,
+\textcolor{red}{(false positive rate (FPR) / false discovery rate (FDR) -> define the H0 or call it false identification rate (FIR)???)},
+and 0.658 to control the FPR to be less than 0.01,
+with FNR to be 0.02.
+
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.8\linewidth]{ccf_tilemap.png}
+\caption{The tilemap shows signals from the same source have CCFs close to 1.}
+\label{fig: ccf_tilemap}
+\end{figure}
 
 
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.8\linewidth]{ccf_boxplot.png}
-\caption{Legend (350 words max). Example legend text.}
+\caption{The boxplot shows that signals from the same sources have higher CCfs than those from different sources.}
 \label{fig: ccf_boxplot}
 \end{figure}
 
@@ -310,7 +403,7 @@ and 0.658 to control the FPR to be less than 0.01.
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.8\linewidth]{ccf_density.png}
-\caption{Legend (350 words max). Example legend text.}
+\caption{The density plot shows tails of distributions overlap, which can be used as a rough threshold for drawing conclusions.}
 \label{fig: ccf_density}
 \end{figure}
 
@@ -318,22 +411,33 @@ and 0.658 to control the FPR to be less than 0.01.
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.5\linewidth]{ccf_ROC.png}
-\caption{Legend (350 words max). Example legend text.}
+\caption{The ROC curve is bending very close to the upper left corner, which means excellent in classification and drawing conclusions.}
 \label{fig: ccf_ROC}
 \end{figure}
 
 
+\ifnum \ifinstruction=1
 \textcolor{gray}{(unlimited length) The Usage Notes should contain brief instructions to assist other researchers with reuse of the data. This may include discussion of software packages that are suitable for analysing the assay data files, suggested downstream processing steps (e.g. normalization, etc.), or tips for integrating or comparing the data records with other datasets. Authors are encouraged to provide code, programs or data-processing workflows if they may help others understand or use the data. Please see our code availability policy for advice on supplying custom code alongside Data Descriptor manuscripts.}
 
 \textcolor{gray}{For studies involving privacy or safety controls on public access to the data, this section should describe in detail these controls, including how authors can apply to access the data, what criteria will be used to determine who may access the data, and any limitations on data use.} 
+\fi
 
 
 
 \section*{Code availability}
 
+The data set can be easily accessed with the \texttt{CRAN} \texttt{R} package \texttt{x3ptools}.
+Further analysis can be conducted with the \texttt{GitHub} \texttt{R} package \texttt{wire} and the \texttt{GitHub} \texttt{R} shiny app \texttt{wireShiny}
+\textcolor{red}{(citation)}
+\textcolor{red}{(again????)}.
+
+\ifnum \ifinstruction=1
 \textcolor{gray}{For all studies using custom code in the generation or processing of datasets, a statement must be included under the heading "Code availability", indicating whether and how the code can be accessed, including any restrictions to access. This section should also include information on the versions of any software used, if relevant, and any specific variables or parameters used to generate, test, or process the current dataset.}
+\fi
 
 
 
 # End of Body
-\textcolor{red}{Note that the bibliography style and the name of the bib-file are hard coded in the template file right now.}
+\textcolor{red}{(Note that the bibliography style and the name of the bib-file are hard coded in the template file right now.)}
+
+
