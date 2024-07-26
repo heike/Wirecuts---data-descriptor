@@ -79,8 +79,8 @@ rbbt::bbt_write_bib(keys=keys, path='references.bib', overwrite = TRUE, library_
 \section*{Background \& Summary}
 
 Wire cut data is a type of forensic tool mark data used to identify the source of a wire cutter based on the striations left on the surface.
-In James Genrich’s case \textcolor{red}{(how to cite?)},
-the wire cut data played a crucial role in the criminal investigation.
+There have been cases \textcolor{red}{(don't mention the name?)}
+where the wire cut data played a crucial role in the criminal investigation.
 However,
 there is a lack of a standardized method to analyze it except for visual comparison.
 Here,
@@ -99,13 +99,13 @@ We hope this pipeline developed using this data set can be further generalized a
 
 In this study,
 aluminum wire was used to create an optimal scenario where the most amount of information could be transferred from the tool to the substrate,
-despite the wire in James Genrich’s case being made of lead.
+despite the wire in some real cases being made of lead.
 The aluminum wire used was 16 Gauge/1.5 mm, anodized.
 
 In order to cut the wire,
 4-inch pieces were unspooled and cut using Kaiweets wire cutters,
 model KWS-105,
-as shown in Figure \ref{fig: kaiweet-label-062524},
+as shown in Figure \ref{fig: cut-tent-scan}(a),
 for 1 blade location,
 either inner, middle, or outer,
 which gives us 1 replicate.
@@ -113,11 +113,13 @@ Each piece was then cut into half to create 2-inch pieces for each side,
 AB and CD,
 with a sharpie line marking the cut ends,
 giving us 4 samples.
-Both AB and CD sides form tent structures on the tips of the wire,
-as shown in Figure \ref{fig: x3p_tent}
+Here,
+we are showing AB sides only in Figure \ref{fig: cut-tent-scan}(b)
 \textcolor{red}{(need a different tent figure)},
+and the CD sides are similar from the other side of the cut,
+with the back of A being C and the back of B being D.
+Both AB and CD sides form tent structures on the tips of the wire,
 and we can separate each side of the tent into 2 pieces along the bending position,
-as shown in Figure \ref{fig: T1AW-LI-R2-4edges},
 resulting in 8 scans.
 We repeated this process for all 3 locations along the blade and 5 wire cutters,
 with 2 replicates for each tool-edge-location combination,
@@ -127,7 +129,8 @@ T(ool) 1/2/3/4/5 (Edge) A/B/C/D W(ire) - L(ocation) I(nner)/M(iddle)/O(uter) -  
 with T1AW-LI-R1 being the piece cut by tool 1 on the A edge at the inner location for the first repetition.
 
 A more detailed procedure,
-including standard scanning protocols for the confocal microscope in Figure \ref{fig: wire-microscope-062524},
+including standard scanning protocols for the confocal microscope in Figure \ref{fig: cut-tent-scan}(c)
+\textcolor{red}{(need an extra pic of the very tip)},
 can be found in the
 \href{https://github.com/heike/Wirecuts/blob/main/README.md}{README of the GitHub repository \texttt{heike/Wirecuts}} \textcolor{red}{(High-res pics needed in the README)}.
 The scanned surfaces are saved in a resolution of $0.645 \mu m \times 0.645 \mu m$ per square pixel in an \texttt{x3p} file format.
@@ -135,33 +138,9 @@ The scanned surfaces are saved in a resolution of $0.645 \mu m \times 0.645 \mu 
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=0.5\linewidth]{kaiweet-label-062524.jpg}
-\caption{A Kaiweets wire cutter of model KWS-105 was used to cut the wire.}
-\label{fig: kaiweet-label-062524}
-\end{figure}
-
-
-\begin{figure}[ht]
-\centering
-\includegraphics[width=0.25\linewidth]{x3p_tent.png}
-\caption{A tent structure created by either blade AB or CD.}
-\label{fig: x3p_tent}
-\end{figure}
-
-
-\begin{figure}[ht]
-\centering
-\includegraphics[width=0.5\linewidth]{T1AW-LI-R2-4edges.png}
-\caption{After separating 2 tent structures by the connecting position, we obtained 4 samples - 1 sample from blade ABCD.}
-\label{fig: T1AW-LI-R2-4edges}
-\end{figure}
-
-
-\begin{figure}[ht]
-\centering
-\includegraphics[width=0.5\linewidth]{wire-microscope-062524.jpg}
-\caption{A confocal microscope was used to scan the wire surfaces.}
-\label{fig: wire-microscope-062524}
+\includegraphics[width=0.9\linewidth]{cut-tent-scan.png}
+\caption{(a) A Kaiweets wire cutter of model KWS-105 was used to cut the wire. (b) A tent structure created by blade AB. After separating 2 tent structures by the connecting position, we obtained 2 samples - 1 sample from blade A and B. (c) A confocal microscope was used to scan the wire surfaces.}
+\label{fig: cut-tent-scan}
 \end{figure}
 
 
@@ -251,27 +230,60 @@ we compare T1AW-LI-R1 to T1AW-LI-R2,
 T1CW-LI-R1 to T1CW-LI-R2,
 and so on.
 That is comparing each row in Figure \ref{fig: scans_pair}.
-The comparison is done by manually extracting signals from scans, aligning signals,
-and computing the cross-correlation function (CCF) values.
+The comparison is done by
+\begin{enumerate}
+  \item
+  manually extracting profiles from scans,
 
-In particular,
-we want to extract representative signals from each scan and use them for comparison later.
-To achieve this goal,
+  \item
+  obtaining the filtered signals from scans,
+  
+  \item
+  aligning signals and computing the cross-correlation function (CCF) values.
+\end{enumerate}
+
+
+\subsection*{Extract profiles}
+
+A representative function with the most information is considered as a signal for one scan,
+which can be used for comparison later.
+To obtain this function,
 we first need a profile of the scan,
 which is a sequence of values along a user-drawn line on the surface.
 The profile should capture most features of the scan,
-so we draw the line across the striations of the scan,
-which are formed by ups and downs of grooves,
-as shown in gray in Figure \ref{fig: T1AW-LI-R1-profiles}.
-With the profile extracted,
-we can then remove the overall trend,
-as it can overwhelm the signals.
-The signals are then extracted using locally estimated scatterplot smoothing (LOESS), and the extreme tail values are removed.
+and be orthogonal to the striation marks of the scan,
+which are formed by ups and downs of grooves.
+So,
+we draw the line across the wide region of the scan to maximize the feature captured,
+as shown in dark blue in Figure \ref{fig: T1AW-LI-R1-profiles-signals}(a).
+We can then investigate the values under this profile line.
+The profile function is along the line is plotted in Figure \ref{fig: T1AW-LI-R1-profiles-signals}(b).
 
+
+\subsection*{Filtered signals}
+
+With the profile extracted,
+we can then obtain the signal.
+Two Gaussian filters are applied to these resulting profiles.
+In particular,
+we first used a large low-pass filter with bandwidths of 400 microns to remove large trend,
+as it can overwhelm the signals,
+and then used a small high-pass filter of 40 microns to average across noise and remove spikes,
+as shown in Figure \ref{fig: T1AW-LI-R1-profiles-signals}(c).
+\textcolor{red}{(add reference: W. S. Cleveland, E. Grosse and W. M. Shyu (1992) Local regression models. Chapter 8 of Statistical Models in S eds J.M. Chambers and T.J. Hastie, Wadsworth \& Brooks/Cole.)}.
+Finally,
+the extreme tail values are removed.
+
+
+\subsection*{Align signals and compute the cross-correlation function (CCF) values}
+
+Signals extracted from different scans can be put together for comparison,
+and we maximize the overlapping region of the signals by aligning them.
 We know that signals from two replicates with the same tool-edge-location combination should yield similar signals，
 as in the first and second column of Figure \ref{fig: signals_pair_alignment},
 which will give alignments of massive overlapping and high CCF values close to 1.
 The alignments and values we got in the rightmost column of Figure \ref{fig: signals_pair_alignment} fulfill our expectations.
+
 For validation of all other tools and locations of scan replicates,
 see the detailed \href{https://heike.github.io/Wirecuts/data-descriptor/Technical_Validation.html}{report}.
 
@@ -286,11 +298,10 @@ see the detailed \href{https://heike.github.io/Wirecuts/data-descriptor/Technica
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=0.5\linewidth]{T1AW-LI-R1-profiles.png}
-\caption{A profile in gray was drawn across the striations of the scan.}
-\label{fig: T1AW-LI-R1-profiles}
+\includegraphics[width=0.9\linewidth]{T1AW-LI-R1-profiles-signals.png}
+\caption{(a) A profile line in dark blue was drawn across the striations of the scan. (b) The profile function extracted along the profile line in (a). (c) The raw signal in light blue is obtained by using the low-pass filter on the profile function in (b) and the filtered signal is obtained by using the high-pass filter on the raw signal.}
+\label{fig: T1AW-LI-R1-profiles-signals}
 \end{figure}
-
 
 \begin{figure}[ht]
 \centering
