@@ -25,6 +25,7 @@ affiliations:
     department: Iowa State University
     city: Ames
     state: IA
+
 abstract: |
  Wire cut data is important in forensic investigations but lacks a systematic way of analyzing the data.
  We created a data set of 120 scans of aluminum wire cut in \texttt{x3p} format,
@@ -69,7 +70,6 @@ rbbt::bbt_write_bib(keys=keys, path='references.bib', overwrite = TRUE, library_
 ```
 
 
-
 \ifnum \ifinstruction=1
 \noindent \textcolor{gray}{Please note: Abbreviations should be introduced at the first mention in the main text – no abbreviations lists or tables should be included. Structure of the main text is provided below.}
 \fi
@@ -78,9 +78,24 @@ rbbt::bbt_write_bib(keys=keys, path='references.bib', overwrite = TRUE, library_
 
 \section*{Background \& Summary}
 
+\hh{XXX This section needs a lot more detail - as per instructions, we need:}
+
+\hh{\bf overview of the study design}
+
+\hh{\bf overview of files created:}
+
+- x3p files from scans
+
+- derivatives from manual processing: profiles, signals
+
+- aligned signals
+
+\hh{\bf context of previous work and literature}
+
+\hh{\bf motivation for the creation of the dataset}
 Wire cut data is a type of forensic tool mark data used to identify the source of a wire cutter based on the striations left on the surface.
-There have been cases \textcolor{red}{(don't mention the name?)}
-where the wire cut data played a crucial role in the criminal investigation.
+There have been cases \textcolor{red}{(don't mention the name?)} \hh{XXX sounds good!}
+where the \hh{the evidence and testimony on} wire cut \hh{evidence} played a crucial role in the criminal investigation \hh{and conviction of a defendant}.
 However,
 there is a lack of a standardized method to analyze it except for visual comparison.
 Here,
@@ -97,9 +112,12 @@ We hope this pipeline developed using this data set can be further generalized a
 
 \section*{Methods}
 
+\hh{full descriptions of the experimental design, data acquisition assays, and any computational processing}
+
+
 In this study,
 aluminum wire was used to create an optimal scenario where the most amount of information could be transferred from the tool to the substrate,
-despite the wire in some real cases being made of lead.
+despite the wire in some real cases being made of lead. \hh{XXX emphasize the hardness/softness of the wire - it keeps marks, but is relatively easy to bend and non-toxic}
 The aluminum wire used was 16 Gauge/1.5 mm, anodized.
 
 In order to cut the wire,
@@ -128,6 +146,7 @@ Each piece was labeled with the naming conventions,
 T(ool) 1/2/3/4/5 (Edge) A/B/C/D W(ire) - L(ocation) I(nner)/M(iddle)/O(uter) -  R(epetition) 1/2,
 with T1AW-LI-R1 being the piece cut by tool 1 on the A edge at the inner location for the first repetition.
 
+\hh{no, we can't use the website as a place for more detailed procedures. This paper is the detailed procedure.}
 A more detailed procedure,
 including standard scanning protocols for the confocal microscope in Figure \ref{fig: cut-tent-scan}(c)
 \textcolor{red}{(need an extra pic of the very tip)},
@@ -135,6 +154,8 @@ can be found in the
 \href{https://github.com/heike/Wirecuts/blob/main/README.md}{README of the GitHub repository \texttt{heike/Wirecuts}} \textcolor{red}{(High-res pics needed in the README)}.
 The scanned surfaces are saved in a resolution of $0.645 \mu m \times 0.645 \mu m$ per square pixel in an \texttt{x3p} file format.
 
+
+\hh{XXX figure 1 - generally, zoom into these images - we do not want to have a hand in the image, nor a view of the crafting aluminum :)  - what are the exact rules on visuals in Scientific Data ? XXX}
 
 \begin{figure}[ht]
 \centering
@@ -224,6 +245,8 @@ then one person did the scanning and named according to the naming convention ab
 The data was saved in a consistent format to ensure they could be easily accessed and analyzed.
 A third person then checked the data to ensure that the data was consistent in naming and accurate.
 
+\hh{XXX that should go under computational processing. start XXX}
+
 We also conduct numerical comparisons between 2 replicates made by the same side of the same tool at the same location.
 For example,
 we compare T1AW-LI-R1 to T1AW-LI-R2,
@@ -284,8 +307,16 @@ as in the first and second column of Figure \ref{fig: signals_pair_alignment},
 which will give alignments of massive overlapping and high CCF values close to 1.
 The alignments and values we got in the rightmost column of Figure \ref{fig: signals_pair_alignment} fulfill our expectations.
 
+
+\hh{XXX that should go under computational processing. end XXX}
+
+\hh{again - the website is not the right place for the validation - instead, move parts from the website here. }
+
+\hh{For the validation of the scans and their processing we investigate the correlation scores of pair-wise aligned signals. For signals from scans of wires cut with a different tool, we would expect a low correlation score. Large scores between signals are indicative of being made by the same tool. 
+Show boxplots and roc curve. }
 For validation of all other tools and locations of scan replicates,
 see the detailed \href{https://heike.github.io/Wirecuts/data-descriptor/Technical_Validation.html}{report}.
+
 
 
 \begin{figure}[ht]
