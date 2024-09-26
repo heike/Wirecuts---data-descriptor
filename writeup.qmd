@@ -10,10 +10,10 @@ authors:
     corresponding: true
   - name: Heike Hofmann
     affiliations:
-      - ref: 1
       - ref: 2
+      - ref: 3
     orcid: 0000-0001-6216-5183
-    email: hofmann@iastate.edu
+    email: hhofmann4@unl.edu
 affiliations: 
   - id: 1
     name: Iowa State University
@@ -25,8 +25,14 @@ affiliations:
     department: Iowa State University
     city: Ames
     state: IA
+  - id: 3
+    name: University of Nebraska-Lincoln
+    department: Department of Statistics
+    city: Lincoln
+    state: NE
 
 abstract: |
+ \tom{Update later}
  Wire cut data is important in forensic investigations but lacks a systematic way of analyzing the data.
  We created a data set of 120 scans of aluminum wire cut in \texttt{x3p} format,
  using 5 wire cutters and 3 locations along the 4 blades,
@@ -78,24 +84,27 @@ rbbt::bbt_write_bib(keys=keys, path='references.bib', overwrite = TRUE, library_
 
 \section*{Background \& Summary}
 
+\tom{motivation, context, overview of the study design, overview of files created (x3ps and derivatives)}
+
 \hh{XXX This section needs a lot more detail - as per instructions, we need:}
 
-\hh{\bf overview of the study design}
+\hh{\bf overview of the study design: create dataset, manual alignment}
 
-\hh{\bf overview of files created:}
+\hh{\bf overview of files created (table?):}
 
-- x3p files from scans
+- x3p files from scans: format, explainations, link to sections
 
 - derivatives from manual processing: profiles, signals
 
 - aligned signals
 
+- meta csv
+
 \hh{\bf context of previous work and literature}
 
 \hh{\bf motivation for the creation of the dataset}
 Wire cut data is a type of forensic tool mark data used to identify the source of a wire cutter based on the striations left on the surface.
-There have been cases \textcolor{red}{(don't mention the name?)} \hh{XXX sounds good!}
-where the \hh{the evidence and testimony on} wire cut \hh{evidence} played a crucial role in the criminal investigation \hh{and conviction of a defendant}.
+There have been cases where the evidence and testimony on wire cut evidence played a crucial role in the criminal investigation and conviction of a defendant.
 However,
 there is a lack of a standardized method to analyze it except for visual comparison.
 Here,
@@ -111,6 +120,9 @@ We hope this pipeline developed using this data set can be further generalized a
 
 
 \section*{Methods}
+
+\tom{from cutting wires to how to alignment}
+
 
 \hh{full descriptions of the experimental design, data acquisition assays, and any computational processing}
 
@@ -133,7 +145,7 @@ with a sharpie line marking the cut ends,
 giving us 4 samples.
 Here,
 we are showing AB sides only in Figure \ref{fig: cut-tent-scan}(b)
-\textcolor{red}{(need a different tent figure)},
+\tom{(need a different tent figure)},
 and the CD sides are similar from the other side of the cut,
 with the back of A being C and the back of B being D.
 Both AB and CD sides form tent structures on the tips of the wire,
@@ -149,9 +161,9 @@ with T1AW-LI-R1 being the piece cut by tool 1 on the A edge at the inner locatio
 \hh{no, we can't use the website as a place for more detailed procedures. This paper is the detailed procedure.}
 A more detailed procedure,
 including standard scanning protocols for the confocal microscope in Figure \ref{fig: cut-tent-scan}(c)
-\textcolor{red}{(need an extra pic of the very tip)},
+\tom{(need an extra pic of the very tip)},
 can be found in the
-\href{https://github.com/heike/Wirecuts/blob/main/README.md}{README of the GitHub repository \texttt{heike/Wirecuts}} \textcolor{red}{(High-res pics needed in the README)}.
+\href{https://github.com/heike/Wirecuts/blob/main/README.md}{README of the GitHub repository \texttt{heike/Wirecuts}} \tom{(High-res pics needed in the README)}.
 The scanned surfaces are saved in a resolution of $0.645 \mu m \times 0.645 \mu m$ per square pixel in an \texttt{x3p} file format.
 
 
@@ -163,6 +175,69 @@ The scanned surfaces are saved in a resolution of $0.645 \mu m \times 0.645 \mu 
 \caption{(a) A Kaiweets wire cutter of model KWS-105 was used to cut the wire. (b) A tent structure created by blade AB. After separating 2 tent structures by the connecting position, we obtained 2 samples - 1 sample from blade A and B. (c) A confocal microscope was used to scan the wire surfaces.}
 \label{fig: cut-tent-scan}
 \end{figure}
+
+
+\tom{fix below}
+We also conduct numerical comparisons between 2 replicates made by the same side of the same tool at the same location.
+For example,
+we compare T1AW-LI-R1 to T1AW-LI-R2,
+T1CW-LI-R1 to T1CW-LI-R2,
+and so on.
+That is comparing each row in Figure \ref{fig: scans_pair}.
+The comparison is done by
+\begin{enumerate}
+  \item
+  manually extracting profiles from scans,
+
+  \item
+  obtaining the filtered signals from scans,
+  
+  \item
+  aligning signals and computing the cross-correlation function (CCF) values.
+\end{enumerate}
+
+
+\subsection*{Extract profiles}
+
+A representative function with the most information is considered as a signal for one scan,
+which can be used for comparison later.
+To obtain this function,
+we first need a profile of the scan,
+which is a sequence of values along a user-drawn line on the surface.
+The profile should capture most features of the scan,
+and be orthogonal to the striation marks of the scan,
+which are formed by ups and downs of grooves.
+So,
+we draw the line across the wide region of the scan to maximize the feature captured,
+as shown in dark blue in Figure \ref{fig: T1AW-LI-R1-profiles-signals}(a).
+We can then investigate the values under this profile line.
+The profile function is along the line is plotted in Figure \ref{fig: T1AW-LI-R1-profiles-signals}(b).
+
+
+\subsection*{Filtered signals}
+
+With the profile extracted,
+we can then obtain the signal.
+Two Gaussian filters are applied to these resulting profiles.
+In particular,
+we first used a large low-pass filter with bandwidths of 400 microns to remove large trend,
+as it can overwhelm the signals,
+and then used a small high-pass filter of 40 microns to average across noise and remove spikes,
+as shown in Figure \ref{fig: T1AW-LI-R1-profiles-signals}(c).
+\tom{@clevelandLocalRegressionModels1992 \cite{clevelandLocalRegressionModels1992}}
+\hh{(add reference: W. S. Cleveland, E. Grosse and W. M. Shyu (1992) Local regression models. Chapter 8 of Statistical Models in S eds J.M. Chambers and T.J. Hastie, Wadsworth \& Brooks/Cole.)}.
+Finally,
+the extreme tail values are removed.
+
+
+\subsection*{Align signals and compute the cross-correlation function (CCF) values}
+
+Signals extracted from different scans can be put together for comparison,
+and we maximize the overlapping region of the signals by aligning them.
+We know that signals from two replicates with the same tool-edge-location combination should yield similar signals，
+as in the first and second column of Figure \ref{fig: signals_pair_alignment},
+which will give alignments of massive overlapping and high CCF values close to 1.
+The alignments and values we got in the rightmost column of Figure \ref{fig: signals_pair_alignment} fulfill our expectations.
 
 
 \ifnum \ifinstruction=1
@@ -226,7 +301,7 @@ Transparent Methods Checklist
 The complete data set is available on the ISU DataShare repository at \href{https://iastate.figshare.com/}{https://iastate.figshare.com/},
 which is public and open access for every interested researcher.
 The data set consists of 120 scans in the \texttt{x3p} file format with the naming convention as described before.
-\textcolor{red}{(Explain the x3p header info?)}
+\tom{(Explain the x3p header info?)}
 
 
 \ifnum \ifinstruction=1
@@ -239,76 +314,15 @@ The data set consists of 120 scans in the \texttt{x3p} file format with the nami
 
 \section*{Technical Validation}
 
+\tom{a picture of alignment with ccf from different sources to show if different source, our evaluation returns small ccf, which matches what we thought.}
+
 For the data collection process,
 two team members did the cutting and labeling together,
 then one person did the scanning and named according to the naming convention above. The scanning was done in a specific order to ensure consistency across all scans.
 The data was saved in a consistent format to ensure they could be easily accessed and analyzed.
 A third person then checked the data to ensure that the data was consistent in naming and accurate.
 
-\hh{XXX that should go under computational processing. start XXX}
 
-We also conduct numerical comparisons between 2 replicates made by the same side of the same tool at the same location.
-For example,
-we compare T1AW-LI-R1 to T1AW-LI-R2,
-T1CW-LI-R1 to T1CW-LI-R2,
-and so on.
-That is comparing each row in Figure \ref{fig: scans_pair}.
-The comparison is done by
-\begin{enumerate}
-  \item
-  manually extracting profiles from scans,
-
-  \item
-  obtaining the filtered signals from scans,
-  
-  \item
-  aligning signals and computing the cross-correlation function (CCF) values.
-\end{enumerate}
-
-
-\subsection*{Extract profiles}
-
-A representative function with the most information is considered as a signal for one scan,
-which can be used for comparison later.
-To obtain this function,
-we first need a profile of the scan,
-which is a sequence of values along a user-drawn line on the surface.
-The profile should capture most features of the scan,
-and be orthogonal to the striation marks of the scan,
-which are formed by ups and downs of grooves.
-So,
-we draw the line across the wide region of the scan to maximize the feature captured,
-as shown in dark blue in Figure \ref{fig: T1AW-LI-R1-profiles-signals}(a).
-We can then investigate the values under this profile line.
-The profile function is along the line is plotted in Figure \ref{fig: T1AW-LI-R1-profiles-signals}(b).
-
-
-\subsection*{Filtered signals}
-
-With the profile extracted,
-we can then obtain the signal.
-Two Gaussian filters are applied to these resulting profiles.
-In particular,
-we first used a large low-pass filter with bandwidths of 400 microns to remove large trend,
-as it can overwhelm the signals,
-and then used a small high-pass filter of 40 microns to average across noise and remove spikes,
-as shown in Figure \ref{fig: T1AW-LI-R1-profiles-signals}(c).
-\textcolor{red}{(add reference: W. S. Cleveland, E. Grosse and W. M. Shyu (1992) Local regression models. Chapter 8 of Statistical Models in S eds J.M. Chambers and T.J. Hastie, Wadsworth \& Brooks/Cole.)}.
-Finally,
-the extreme tail values are removed.
-
-
-\subsection*{Align signals and compute the cross-correlation function (CCF) values}
-
-Signals extracted from different scans can be put together for comparison,
-and we maximize the overlapping region of the signals by aligning them.
-We know that signals from two replicates with the same tool-edge-location combination should yield similar signals，
-as in the first and second column of Figure \ref{fig: signals_pair_alignment},
-which will give alignments of massive overlapping and high CCF values close to 1.
-The alignments and values we got in the rightmost column of Figure \ref{fig: signals_pair_alignment} fulfill our expectations.
-
-
-\hh{XXX that should go under computational processing. end XXX}
 
 \hh{again - the website is not the right place for the validation - instead, move parts from the website here. }
 
@@ -395,7 +409,7 @@ see the detailed \href{https://heike.github.io/Wirecuts/data-descriptor/Technica
 \hh{Sample scripts in R for processing scans from x3p format to their signal are available from ... github. }
 
 Further analysis can be conducted with the \texttt{GitHub} \texttt{R} package \texttt{wire} and the \texttt{GitHub} \texttt{R} shiny app \texttt{wireShiny}
-\textcolor{red}{(citation)}.
+\tom{(citation?)}.
 We already conduct between-replicate comparisons in the technical validation section,
 and we can also conduct across-replicate comparisons to establish error rates threshold and produce other analysis plots.
 
@@ -410,7 +424,7 @@ In Figure \ref{fig: ccf_tilemap},
 the behavior is consistent with our expectation overall,
 except for some rare cases with tool 5 edge D,
 which is caused by
-\textcolor{red}{?????}.
+\tom{?????}.
 We also put the resulting CCFs in the boxplot,
 as in Figure \ref{fig: ccf_boxplot}.
 We can see that the CCF values for the same sources are close to 1,
@@ -424,7 +438,7 @@ the receiver operating characteristic (ROC) curve in Figure \ref{fig: ccf_ROC} s
 The curve is very close to the upper left corner,
 which is excellent for classification and drawing conclusion.
 It gives us a true threshold of 0.589 to control the FPR to be less than 0.05 with false negative rate (FNR) to be 0,
-\textcolor{red}{(false positive rate (FPR) / false discovery rate (FDR) -> define the H0 or call it false identification rate (FIR)???)},
+\tom{(false positive rate (FPR) / false discovery rate (FDR) -> define the H0 or call it false identification rate (FIR)???)},
 and 0.658 to control the FPR to be less than 0.01,
 with FNR to be 0.02.
 
@@ -471,10 +485,12 @@ with FNR to be 0.02.
 
 \section*{Code availability}
 
+\tom{table of code-manual?}
+
 The data set can be easily accessed with the \texttt{CRAN} \texttt{R} package \texttt{x3ptools}.
 Further analysis can be conducted with the \texttt{GitHub} \texttt{R} package \texttt{wire} and the \texttt{GitHub} \texttt{R} shiny app \texttt{wireShiny}
-\textcolor{red}{(citation)}
-\textcolor{red}{(again????)}.
+\tom{(citation)}
+\tom{(again????)}.
 
 \ifnum \ifinstruction=1
 \textcolor{gray}{For all studies using custom code in the generation or processing of datasets, a statement must be included under the heading "Code availability", indicating whether and how the code can be accessed, including any restrictions to access. This section should also include information on the versions of any software used, if relevant, and any specific variables or parameters used to generate, test, or process the current dataset.}
@@ -483,6 +499,6 @@ Further analysis can be conducted with the \texttt{GitHub} \texttt{R} package \t
 
 
 # End of Body
-\textcolor{red}{(Note that the bibliography style and the name of the bib-file are hard coded in the template file right now.)}
+\hh{(Note that the bibliography style and the name of the bib-file are hard coded in the template file right now.)}
 
 
