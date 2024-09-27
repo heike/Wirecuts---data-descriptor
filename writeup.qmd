@@ -84,8 +84,6 @@ rbbt::bbt_write_bib(keys=keys, path='references.bib', overwrite = TRUE, library_
 
 \section*{Background \& Summary}
 
-\tom{motivation, context, overview of the study design, overview of files created (x3ps and derivatives)}
-
 \hh{XXX This section needs a lot more detail - as per instructions, we need:}
 
 \hh{\bf overview of the study design: create dataset, manual alignment}
@@ -107,14 +105,46 @@ Wire cut data is a type of forensic tool mark data used to identify the source o
 There have been cases where the evidence and testimony on wire cut evidence played a crucial role in the criminal investigation and conviction of a defendant.
 However,
 there is a lack of a standardized method to analyze it except for visual comparison.
+\tom{...literature review and motivation...}
 Here,
-we provide a data set of 120 scans of aluminum wire cut in \texttt{x3p} format,
-and we conduct a technical validation to introduce a systematic pipeline for analyzing these types of data based on numerical measures.
-We hope this pipeline developed using this data set can be further generalized and applied to real crime scenes to help investigators draw conclusions based on real wire cut data.
-\tom{
-We first cut the wire and collect the data.
+we provide a data set of
+\begin{enumerate}
+  \item
+  120 scans of aluminum wire cut in 120 \texttt{x3p} files,
+  with names like \texttt{T1AW-LI-R1.x3p},
+  
+  \item
+  the metadata of the scans in 1 CSV file,
+  with name \texttt{meta.csv},
+  
+  \item
+  corresponding profiles extracted from the scans in 120 CSV file,
+  with names \texttt{profiles-T1AW-LI-R1.csv},
+  
+  \item
+  corresponding signals filtered from the profiles in 1 CSV file,
+  with name \texttt{wire-signatures-400-40.csv},
+  
+  \item
+  pictures of pairwise aligned signals from same sources,
+  with name \texttt{T1AW-LI-signal-aligned.png}
+  
+  \item
+  cross-correlation function (CCF) values of all pairwise aligned signals,
+  with name \texttt{wire\_pairwise\_ccf.csv},
+  
+  \item
+  \tom{...other pictures?}
+\end{enumerate}
+For the reproducibility of all our data and alignment results,
+we introduce in details in \nameref*{sec: cutting-wires} \tom{(cross-reference not working)} how we cut the wire and collect the 120 scans with 5 tools on 3 locations,
+in \nameref*{sec: extract-profiles} how we extract profiles from the scans,
+in \nameref*{sec: filtered-signals} how we filter signals from the profiles,
+in \nameref*{sec: align-signals} how we align signals from different scans,
+and optimize the alignment with the cross-correlation function (CCF) values.
 Then,
-we conduct numerical comparisons between 2 replicates by extracting profiles, filtering signals and aligning signals.}
+a technical validation was conducted to further compare signals from different sources also match our assumption.
+We hope this pipeline developed using this data set can be further generalized and applied to real crime scenes to help investigators draw conclusions based on real wire cut data.
 
 
 \ifnum \ifinstruction=1
@@ -123,7 +153,7 @@ we conduct numerical comparisons between 2 replicates by extracting profiles, fi
 
 
 
-\section*{Methods}
+\section*{Methods} \label{sec: methods}
 
 
 \hh{full descriptions of the experimental design, data acquisition assays, and any computational processing}
@@ -182,7 +212,7 @@ The scanned surfaces are saved in a resolution of $0.645 \mu m \times 0.645 \mu 
 \end{figure}
 
 
-\subsection*{Extract profiles}
+\subsection*{Extract profiles} \label{sec: extract-profiles}
 
 Numerical comparisons between 2 replicates cannot be done directly on the \texttt{x3p} files.
 We need to extract representative functions from the scans first.
@@ -201,7 +231,7 @@ We can then investigate the values under this profile line.
 The profile function is along the line is plotted in Figure \ref{fig: T1AW-LI-R1-profiles-signals}(b).
 
 
-\subsection*{Filtered signals}
+\subsection*{Filtered signals} \label{sec: filtered-signals}
 
 With the profile extracted,
 we can then obtain the signal.
@@ -217,7 +247,7 @@ Finally,
 the extreme tail values are removed.
 
 
-\subsection*{Align signals}
+\subsection*{Align signals} \label{sec: align-signals}
 
 Signals extracted from different scans can be put together for comparison,
 and we maximize the corss-correlation function (CCF) values between the signals to numerically find the best alignment.
@@ -288,7 +318,7 @@ Transparent Methods Checklist
 
 
 
-\section*{Data Records}
+\section*{Data Records} \label{sec: data-records}
 
 The complete data set is available on the ISU DataShare repository at \href{https://iastate.figshare.com/}{https://iastate.figshare.com/},
 which is public and open access for every interested researcher.
@@ -304,7 +334,7 @@ The data set consists of 120 scans in the \texttt{x3p} file format with the nami
 
 
 
-\section*{Technical Validation}
+\section*{Technical Validation} \label{sec: technical-validation}
 
 \tom{a picture of alignment with ccf from different sources to show if different source, our evaluation returns small ccf, which matches what we thought.}
 
@@ -394,7 +424,7 @@ see the detailed \href{https://heike.github.io/Wirecuts/data-descriptor/Technica
 
 
 
-\section*{Usage Notes}
+\section*{Usage Notes} \label{sec: usage-notes}
 
 \hh{The \texttt{R} package \texttt{x3ptools} (available from \texttt{CRAN}) supports working with files in  x3p format. }
 
@@ -475,7 +505,7 @@ with FNR to be 0.02.
 
 
 
-\section*{Code availability}
+\section*{Code availability} \label{sec: code-availability}
 
 \tom{table of code-manual?}
 
