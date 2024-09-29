@@ -11,8 +11,6 @@
 \usepackage{framed}
 
 \newcommand{\ifinstruction}{1} % 1 for instruction, 0 for no instruction
-% ref packages
-\usepackage{nameref}
 
 %in the preamble
 %--------------------------------
@@ -96,31 +94,33 @@ conviction of a defendant. However, there is a lack of a standardized
 method to analyze it except for visual comparison.
 \tom{...literature review and motivation...} Here, we provide a data set
 of
+\tom{a table here gt package (https://posit.co/blog/great-looking-tables-gt-0-2/), 3 columns: folder name, explaination, link to section}
 
 \begin{enumerate}
   \item
   120 scans of aluminum wire cut in 120 \texttt{x3p} files,
   with names like \texttt{T1AW-LI-R1.x3p},
+  \tom{no name here} raw
   
   \item
   the metadata of the scans in 1 CSV file,
-  with name \texttt{meta.csv},
+  with name \texttt{meta.csv}, raw
   
   \item
   corresponding profiles extracted from the scans in 120 CSV file,
-  with names \texttt{profiles-T1AW-LI-R1.csv},
+  with names \texttt{profiles-T1AW-LI-R1.csv}, manual derivatives
   
   \item
   corresponding signals filtered from the profiles in 1 CSV file,
-  with name \texttt{wire-signatures-400-40.csv},
+  with name \texttt{wire-signatures-400-40.csv}, process derivatives
   
   \item
   pictures of pairwise aligned signals from same sources,
-  with name \texttt{T1AW-LI-signal-aligned.png}
+  with name \texttt{T1AW-LI-signal-aligned.png}, process derivatives
   
   \item
   cross-correlation function (CCF) values of all pairwise aligned signals,
-  with name \texttt{wire\_pairwise\_ccf.csv},
+  with name \texttt{wire\_pairwise\_ccf.csv}, process derivatives
   
   \item
   \tom{...other pictures?}
@@ -186,6 +186,7 @@ file format.
 \hh{XXX figure 1 - generally, zoom into these images - we do not want to have a hand in the image, nor a view of the crafting aluminum :)  - what are the exact rules on visuals in Scientific Data ? XXX}
 \tom{hard to put the full requirements here, see \href{https://www.nature.com/sdata/publish/submission-guidelines\#figures}{https://www.nature.com/sdata/publish/submission-guidelines\#figures}}
 
+\tom{put into quarto layout with (a) (b) (c) on the top left, no tent, add blade C \& D}
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.9\linewidth]{cut-tent-scan.png}
@@ -458,7 +459,7 @@ and 0.658 to control the FPR to be less than 0.01, with FNR to be 0.02.
 
 \tom{table of code-manual?}
 
-\hh{no, we can't use the website as a place for more detailed procedures. This paper is the detailed procedure.}\tom{can we do it here?}
+\hh{no, we can't use the website as a place for more detailed procedures. This paper is the detailed procedure.}\tom{no more README, scanning procedures in another HTML}
 
 We put together the cutting and the standard scanning procedures
 mentioned in Section \ref{sec: cutting-wires}

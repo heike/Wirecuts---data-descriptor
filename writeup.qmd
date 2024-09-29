@@ -47,6 +47,7 @@ format:
   pdf:
     template: sf_template.tex
     keep-tex: true
+bibliography: "`r rbbt::bbt_write_bib('references.bib', ignore = stringr::str_subset(rbbt::bbt_detect_citations(), '(^fig-|^tbl-|^eq-|^sec-|^lst-|^thm-|^lem-|^cor-|^prp-|^cnj-|^def-|^exm-|^exr-)'), overwrite = TRUE, library_id=rbbt::bbt_library_id('CSAFE'), translator='bibtex')`"
 acknowledgements: |
  \ifnum \ifinstruction=1
  Acknowledgements should be brief, and should not include thanks to anonymous referees and editors, or effusive comments. Grant or contribution numbers may be acknowledged.
@@ -107,31 +108,32 @@ However,
 there is a lack of a standardized method to analyze it except for visual comparison.
 \tom{...literature review and motivation...}
 Here,
-we provide a data set of
+we provide a data set of \tom{a table here gt package (https://posit.co/blog/great-looking-tables-gt-0-2/), 3 columns: folder name, explaination, link to section}
 \begin{enumerate}
   \item
   120 scans of aluminum wire cut in 120 \texttt{x3p} files,
   with names like \texttt{T1AW-LI-R1.x3p},
+  \tom{no name here} raw
   
   \item
   the metadata of the scans in 1 CSV file,
-  with name \texttt{meta.csv},
+  with name \texttt{meta.csv}, raw
   
   \item
   corresponding profiles extracted from the scans in 120 CSV file,
-  with names \texttt{profiles-T1AW-LI-R1.csv},
+  with names \texttt{profiles-T1AW-LI-R1.csv}, manual derivatives
   
   \item
   corresponding signals filtered from the profiles in 1 CSV file,
-  with name \texttt{wire-signatures-400-40.csv},
+  with name \texttt{wire-signatures-400-40.csv}, process derivatives
   
   \item
   pictures of pairwise aligned signals from same sources,
-  with name \texttt{T1AW-LI-signal-aligned.png}
+  with name \texttt{T1AW-LI-signal-aligned.png}, process derivatives
   
   \item
   cross-correlation function (CCF) values of all pairwise aligned signals,
-  with name \texttt{wire\_pairwise\_ccf.csv},
+  with name \texttt{wire\_pairwise\_ccf.csv}, process derivatives
   
   \item
   \tom{...other pictures?}
@@ -204,6 +206,7 @@ The scanned surfaces are saved in a resolution of $0.645 \mu m \times 0.645 \mu 
 \tom{hard to put the full requirements here, see \href{https://www.nature.com/sdata/publish/submission-guidelines\#figures}{https://www.nature.com/sdata/publish/submission-guidelines\#figures}}
 
 
+\tom{put into quarto layout with (a) (b) (c) on the top left, no tent, add blade C \& D}
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.9\linewidth]{cut-tent-scan.png}
@@ -509,7 +512,7 @@ with FNR to be 0.02.
 
 \tom{table of code-manual?}
 
-\hh{no, we can't use the website as a place for more detailed procedures. This paper is the detailed procedure.}\tom{can we do it here?}
+\hh{no, we can't use the website as a place for more detailed procedures. This paper is the detailed procedure.}\tom{no more README, scanning procedures in another HTML}
 We put together the cutting and the standard scanning procedures mentioned in Section \ref{sec: cutting-wires} \tom{cross-ref not working} with more pictures for each step into a \href{https://github.com/heike/Wirecuts/blob/main/README.md}{README of the GitHub repository \texttt{heike/Wirecuts}} \tom{(High-res pics needed in the README)}. 
 
 The data set can be easily accessed with the \texttt{CRAN} \texttt{R} package \texttt{x3ptools}.
