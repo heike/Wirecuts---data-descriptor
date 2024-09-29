@@ -140,10 +140,10 @@ tibble(
 
 \tom{breakable table, cannot cross-reference inside table}
 For the reproducibility of all our data and alignment results,
-we introduce in details in \nameref*{sec: cutting-wires} \tom{(cross-reference not working)} how we cut the wire and collect the 120 scans with 5 tools on 3 locations,
-in \nameref*{sec: extract-profiles} how we extract profiles from the scans,
-in \nameref*{sec: filtered-signals} how we filter signals from the profiles,
-in \nameref*{sec: align-signals} how we align signals from different scans,
+we introduce in details in \nameref*{sec-cutting-wires} \tom{(cross-reference not working)} how we cut the wire and collect the 120 scans with 5 tools on 3 locations,
+in \nameref*{sec-extract-profiles} how we extract profiles from the scans,
+in \nameref*{sec-filtered-signals} how we filter signals from the profiles,
+in \nameref*{sec-align-signals} how we align signals from different scans,
 and optimize the alignment with the cross-correlation function (CCF) values.
 Then,
 a technical validation was conducted to further compare signals from different sources also match our assumption.
@@ -156,7 +156,7 @@ We hope this pipeline developed using this data set can be further generalized a
 
 
 
-\section*{Methods} \label{sec: methods}
+\section*{Methods} \label{sec-methods}
 
 
 \hh{full descriptions of the experimental design, data acquisition assays, and any computational processing}
@@ -168,13 +168,13 @@ despite the wire in some real cases being made of lead.
 The physical property of aluminium wire make it an excellent candidate for keeping marks while being relatively easy to bend and non-toxic.
 
 
-\subsection*{Cutting wires} \label{sec: cutting-wires}
+\subsection*{Cutting wires} \label{sec-cutting-wires}
 
 The aluminum wire used was 16 Gauge/1.5 mm, anodized.
 In order to cut the wire,
 4-inch pieces were unspooled and cut using Kaiweets wire cutters,
 model KWS-105,
-as shown in Figure \ref{fig: cut-tent-scan}(a),
+as shown in Figure \ref{fig-cut-tent-scan}(a),
 for 1 blade location,
 either inner, middle, or outer,
 which gives us 1 replicate.
@@ -183,7 +183,7 @@ AB and CD,
 with a sharpie line marking the cut ends,
 giving us 4 samples.
 Here,
-we are showing AB sides only in Figure \ref{fig: cut-tent-scan}(b)
+we are showing AB sides only in Figure \ref{fig-cut-tent-scan}(b)
 \tom{(need a different tent figure)},
 and the CD sides are similar from the other side of the cut,
 with the back of A being C and the back of B being D.
@@ -198,7 +198,7 @@ T(ool) 1/2/3/4/5 (Edge) A/B/C/D W(ire) - L(ocation) I(nner)/M(iddle)/O(uter) -  
 with T1AW-LI-R1 being the piece cut by tool 1 on the A edge at the inner location for the first repetition.
 Then,
 we can use the standard scanning protocols for the confocal microscope,
-shown in Figure \ref{fig: cut-tent-scan}(c) \tom{(need an extra pic of the very tip)},
+shown in Figure \ref{fig-cut-tent-scan}(c) \tom{(need an extra pic of the very tip)},
 to scan the wire tip surfaces.
 The scanned surfaces are saved in a resolution of $0.645 \mu m \times 0.645 \mu m$ per square pixel in an \texttt{x3p} file format.
 
@@ -212,11 +212,11 @@ The scanned surfaces are saved in a resolution of $0.645 \mu m \times 0.645 \mu 
 \centering
 \includegraphics[width=0.9\linewidth]{cut-tent-scan.png}
 \caption{(a) A Kaiweets wire cutter of model KWS-105 was used to cut the wire. (b) A tent structure created by blade AB. After separating 2 tent structures by the connecting position, we obtained 2 samples - 1 sample from blade A and B. (c) A confocal microscope was used to scan the wire surfaces.}
-\label{fig: cut-tent-scan}
+\label{fig-cut-tent-scan}
 \end{figure}
 
 
-\subsection*{Extract profiles} \label{sec: extract-profiles}
+\subsection*{Extract profiles} \label{sec-extract-profiles}
 
 Numerical comparisons between 2 replicates cannot be done directly on the \texttt{x3p} files.
 We need to extract representative functions from the scans first.
@@ -230,12 +230,12 @@ and be orthogonal to the striation marks of the scan,
 which are formed by ups and downs of grooves.
 So,
 we draw the line across the wide region of the scan to maximize the feature captured,
-as shown in dark blue in Figure \ref{fig: T1AW-LI-R1-profiles-signals}(a).
+as shown in dark blue in Figure \ref{fig-T1AW-LI-R1-profiles-signals}(a).
 We can then investigate the values under this profile line.
-The profile function is along the line is plotted in Figure \ref{fig: T1AW-LI-R1-profiles-signals}(b).
+The profile function is along the line is plotted in Figure \ref{fig-T1AW-LI-R1-profiles-signals}(b).
 
 
-\subsection*{Filtered signals} \label{sec: filtered-signals}
+\subsection*{Filtered signals} \label{sec-filtered-signals}
 
 With the profile extracted,
 we can then obtain the signal.
@@ -244,14 +244,14 @@ In particular,
 we first used a large low-pass filter with bandwidths of 400 microns to remove large trend,
 as it can overwhelm the signals,
 and then used a small high-pass filter of 40 microns to average across noise and remove spikes,
-as shown in Figure \ref{fig: T1AW-LI-R1-profiles-signals}(c).
+as shown in Figure \ref{fig-T1AW-LI-R1-profiles-signals}(c).
 \tom{@clevelandLocalRegressionModels1992 \cite{clevelandLocalRegressionModels1992}}
 \hh{(add reference: W. S. Cleveland, E. Grosse and W. M. Shyu (1992) Local regression models. Chapter 8 of Statistical Models in S eds J.M. Chambers and T.J. Hastie, Wadsworth \& Brooks/Cole.)}.
 Finally,
 the extreme tail values are removed.
 
 
-\subsection*{Align signals} \label{sec: align-signals}
+\subsection*{Align signals} \label{sec-align-signals}
 
 Signals extracted from different scans can be put together for comparison,
 and we maximize the corss-correlation function (CCF) values between the signals to numerically find the best alignment.
@@ -259,11 +259,11 @@ For example,
 we compare T1AW-LI-R1 to T1AW-LI-R2,
 T1CW-LI-R1 to T1CW-LI-R2,
 and so on.
-That is comparing each row in Figure \ref{fig: scans_pair}.
+That is comparing each row in Figure \ref{fig-scans-pair}.
 We know that signals from two replicates with the same tool-edge-location combination should yield similar signals，
-as in the first and second column of Figure \ref{fig: signals_pair_alignment},
+as in the first and second column of Figure \ref{fig-signals-pair-alignment},
 which will give alignments of massive overlapping and high CCF values close to 1.
-The alignments and values we got in the rightmost column of Figure \ref{fig: signals_pair_alignment} fulfill our expectations.
+The alignments and values we got in the rightmost column of Figure \ref{fig-signals-pair-alignment} fulfill our expectations.
 
 
 \ifnum \ifinstruction=1
@@ -322,7 +322,7 @@ Transparent Methods Checklist
 
 
 
-\section*{Data Records} \label{sec: data-records}
+\section*{Data Records} \label{sec-data-records}
 
 The complete data set is available on the ISU DataShare repository at \href{https://iastate.figshare.com/}{https://iastate.figshare.com/},
 which is public and open access for every interested researcher.
@@ -338,7 +338,7 @@ The data set consists of 120 scans in the \texttt{x3p} file format with the nami
 
 
 
-\section*{Technical Validation} \label{sec: technical-validation}
+\section*{Technical Validation} \label{sec-technical-validation}
 
 \tom{a picture of alignment with ccf from different sources to show if different source, our evaluation returns small ccf, which matches what we thought.}
 
@@ -362,7 +362,7 @@ see the detailed \href{https://heike.github.io/Wirecuts/data-descriptor/Technica
 \centering
 \includegraphics[width=0.9\linewidth]{T1AW-LI-R1-profiles-signals.png}
 \caption{(a) A profile line in dark blue was drawn across the striations of the scan. (b) The profile function extracted along the profile line in (a). (c) The raw signal in light blue is obtained by using the low-pass filter on the profile function in (b) and the filtered signal is obtained by using the high-pass filter on the raw signal.}
-\label{fig: T1AW-LI-R1-profiles-signals}
+\label{fig-T1AW-LI-R1-profiles-signals}
 \end{figure}
 
 
@@ -370,15 +370,15 @@ see the detailed \href{https://heike.github.io/Wirecuts/data-descriptor/Technica
 \centering
 \includegraphics[width=0.8\linewidth]{scans_pair.png}
 \caption{Scans from different sides of tool 1 at the inner location.}
-\label{fig: scans_pair}
+\label{fig-scans-pair}
 \end{figure}
 
 
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.8\linewidth]{signals_pair_alignment.png}
-\caption{The first and second columns show the signals extracted from Figure \ref{fig: scans_pair}, and the third column shows the alignments and CCF values between pairs of signals.}
-\label{fig: signals_pair_alignment}
+\caption{The first and second columns show the signals extracted from Figure \ref{fig-scans-pair}, and the third column shows the alignments and CCF values between pairs of signals.}
+\label{fig-signals-pair-alignment}
 \end{figure}
 
 
@@ -428,7 +428,7 @@ see the detailed \href{https://heike.github.io/Wirecuts/data-descriptor/Technica
 
 
 
-\section*{Usage Notes} \label{sec: usage-notes}
+\section*{Usage Notes} \label{sec-usage-notes}
 
 \hh{The \texttt{R} package \texttt{x3ptools} (available from \texttt{CRAN}) supports working with files in  x3p format. }
 
@@ -446,21 +446,21 @@ close to 1 and marked as orange in the tilemap,
 as the diagonal represents the same source,
 and the rest of the matrix to have low CCF values,
 close to 0 and marked as gray.
-In Figure \ref{fig: ccf_tilemap},
+In Figure \ref{fig-ccf-tilemap},
 the behavior is consistent with our expectation overall,
 except for some rare cases with tool 5 edge D,
 which is caused by
 \tom{?????}.
 We also put the resulting CCFs in the boxplot,
-as in Figure \ref{fig: ccf_boxplot}.
+as in Figure \ref{fig-ccf-boxplot}.
 We can see that the CCF values for the same sources are close to 1,
 while the CCF values for different sources are much lower than expected.
 This difference can be used to establish a threshold for CCF and help us draw conclusions about the similarity between wire cut scans numerically,
 which can be used in real crime scenes.
-The density plot in Figure \ref{fig: ccf_density} shows the distribution of the CCF values with the same sources and different sources.
+The density plot in Figure \ref{fig-ccf-density} shows the distribution of the CCF values with the same sources and different sources.
 The overlapping points between the tails of these two distributions can be a rough threshold.
 Furthermore,
-the receiver operating characteristic (ROC) curve in Figure \ref{fig: ccf_ROC} shows the sensitivity / true positive rate against the false positive rate (FPR) (1 - specificity).
+the receiver operating characteristic (ROC) curve in Figure \ref{fig-ccf-ROC} shows the sensitivity / true positive rate against the false positive rate (FPR) (1 - specificity).
 The curve is very close to the upper left corner,
 which is excellent for classification and drawing conclusion.
 It gives us a true threshold of 0.589 to control the FPR to be less than 0.05 with false negative rate (FNR) to be 0,
@@ -473,7 +473,7 @@ with FNR to be 0.02.
 \centering
 \includegraphics[width=0.8\linewidth]{ccf_tilemap.png}
 \caption{The tilemap shows signals from the same source have CCFs close to 1.}
-\label{fig: ccf_tilemap}
+\label{fig-ccf-tilemap}
 \end{figure}
 
 
@@ -481,7 +481,7 @@ with FNR to be 0.02.
 \centering
 \includegraphics[width=0.8\linewidth]{ccf_boxplot.png}
 \caption{The boxplot shows that signals from the same sources have higher CCfs than those from different sources.}
-\label{fig: ccf_boxplot}
+\label{fig-ccf-boxplot}
 \end{figure}
 
 
@@ -489,7 +489,7 @@ with FNR to be 0.02.
 \centering
 \includegraphics[width=0.8\linewidth]{ccf_density.png}
 \caption{The density plot shows tails of distributions overlap, which can be used as a rough threshold for drawing conclusions.}
-\label{fig: ccf_density}
+\label{fig-ccf-density}
 \end{figure}
 
 
@@ -497,7 +497,7 @@ with FNR to be 0.02.
 \centering
 \includegraphics[width=0.5\linewidth]{ccf_ROC.png}
 \caption{The ROC curve is bending very close to the upper left corner, which means excellent in classification and drawing conclusions.}
-\label{fig: ccf_ROC}
+\label{fig-ccf-ROC}
 \end{figure}
 
 
@@ -509,12 +509,12 @@ with FNR to be 0.02.
 
 
 
-\section*{Code availability} \label{sec: code-availability}
+\section*{Code availability} \label{sec-code-availability}
 
 \tom{table of code-manual?}
 
 \hh{no, we can't use the website as a place for more detailed procedures. This paper is the detailed procedure.}\tom{no more README, scanning procedures in another HTML}
-We put together the cutting and the standard scanning procedures mentioned in Section \ref{sec: cutting-wires} \tom{cross-ref not working} with more pictures for each step into a \href{https://github.com/heike/Wirecuts/blob/main/README.md}{README of the GitHub repository \texttt{heike/Wirecuts}} \tom{(High-res pics needed in the README)}. 
+We put together the cutting and the standard scanning procedures mentioned in Section \ref{sec-cutting-wires} \tom{cross-ref not working} with more pictures for each step into a \href{https://github.com/heike/Wirecuts/blob/main/README.md}{README of the GitHub repository \texttt{heike/Wirecuts}} \tom{(High-res pics needed in the README)}. 
 
 The data set can be easily accessed with the \texttt{CRAN} \texttt{R} package \texttt{x3ptools}.
 Further analysis can be conducted with the \texttt{GitHub} \texttt{R} package \texttt{wire} and the \texttt{GitHub} \texttt{R} shiny app \texttt{wireShiny}
