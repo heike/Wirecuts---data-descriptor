@@ -95,7 +95,7 @@ rbbt::bbt_write_bib(keys=keys, path='references.bib', overwrite = TRUE, library_
 
 
 
-\section*{Background \& Summary}
+# Background \& Summary {#sec-background-summary}
 
 \hh{XXX This section needs a lot more detail - as per instructions, we need:}
 
@@ -140,10 +140,10 @@ tibble(
 
 \tom{breakable table, cannot cross-reference inside table}
 For the reproducibility of all our data and alignment results,
-we introduce in details in \nameref*{sec-cutting-wires} \tom{(cross-reference not working)} how we cut the wire and collect the 120 scans with 5 tools on 3 locations,
-in \nameref*{sec-extract-profiles} how we extract profiles from the scans,
-in \nameref*{sec-filtered-signals} how we filter signals from the profiles,
-in \nameref*{sec-align-signals} how we align signals from different scans,
+we introduce in details in @sec-cutting-wires \tom{(cross-reference not working without section number, number-sections: false not working)} how we cut the wire and collect the 120 scans with 5 tools on 3 locations,
+in @sec-extract-profiles how we extract profiles from the scans,
+in @sec-filtered-signals how we filter signals from the profiles,
+in @sec-align-signals how we align signals from different scans,
 and optimize the alignment with the cross-correlation function (CCF) values.
 Then,
 a technical validation was conducted to further compare signals from different sources also match our assumption.
@@ -156,7 +156,7 @@ We hope this pipeline developed using this data set can be further generalized a
 
 
 
-\section*{Methods} \label{sec-methods}
+# Methods {#sec-methods}
 
 
 \hh{full descriptions of the experimental design, data acquisition assays, and any computational processing}
@@ -168,7 +168,7 @@ despite the wire in some real cases being made of lead.
 The physical property of aluminium wire make it an excellent candidate for keeping marks while being relatively easy to bend and non-toxic.
 
 
-\subsection*{Cutting wires} \label{sec-cutting-wires}
+## Cutting wires {#sec-cutting-wires}
 
 The aluminum wire used was 16 Gauge/1.5 mm, anodized.
 In order to cut the wire,
@@ -216,7 +216,7 @@ The scanned surfaces are saved in a resolution of $0.645 \mu m \times 0.645 \mu 
 \end{figure}
 
 
-\subsection*{Extract profiles} \label{sec-extract-profiles}
+## Extract profiles {#sec-extract-profiles}
 
 Numerical comparisons between 2 replicates cannot be done directly on the \texttt{x3p} files.
 We need to extract representative functions from the scans first.
@@ -235,7 +235,7 @@ We can then investigate the values under this profile line.
 The profile function is along the line is plotted in Figure \ref{fig-T1AW-LI-R1-profiles-signals}(b).
 
 
-\subsection*{Filtered signals} \label{sec-filtered-signals}
+## Filtered signals {#sec-filtered-signals}
 
 With the profile extracted,
 we can then obtain the signal.
@@ -251,7 +251,7 @@ Finally,
 the extreme tail values are removed.
 
 
-\subsection*{Align signals} \label{sec-align-signals}
+## Align signals {#sec-align-signals}
 
 Signals extracted from different scans can be put together for comparison,
 and we maximize the corss-correlation function (CCF) values between the signals to numerically find the best alignment.
@@ -322,7 +322,7 @@ Transparent Methods Checklist
 
 
 
-\section*{Data Records} \label{sec-data-records}
+# Data Records {#sec-data-records}
 
 The complete data set is available on the ISU DataShare repository at \href{https://iastate.figshare.com/}{https://iastate.figshare.com/},
 which is public and open access for every interested researcher.
@@ -338,7 +338,7 @@ The data set consists of 120 scans in the \texttt{x3p} file format with the nami
 
 
 
-\section*{Technical Validation} \label{sec-technical-validation}
+# Technical Validation {#sec-technical-validation}
 
 \tom{a picture of alignment with ccf from different sources to show if different source, our evaluation returns small ccf, which matches what we thought.}
 
@@ -428,7 +428,7 @@ see the detailed \href{https://heike.github.io/Wirecuts/data-descriptor/Technica
 
 
 
-\section*{Usage Notes} \label{sec-usage-notes}
+# Usage Notes {#sec-usage-notes}
 
 \hh{The \texttt{R} package \texttt{x3ptools} (available from \texttt{CRAN}) supports working with files in  x3p format. }
 
@@ -509,7 +509,7 @@ with FNR to be 0.02.
 
 
 
-\section*{Code availability} \label{sec-code-availability}
+# Code availability {#sec-code-availability}
 
 \tom{table of code-manual?}
 
