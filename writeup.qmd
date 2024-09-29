@@ -30,7 +30,6 @@ affiliations:
     department: Department of Statistics
     city: Lincoln
     state: NE
-
 abstract: |
  \tom{Update later}
  Wire cut data is important in forensic investigations but lacks a systematic way of analyzing the data.
@@ -40,8 +39,8 @@ abstract: |
  A systematic pipeline with multiple analysis plots was developed to analyze the data and draw conclusions based on numerical measures.
  
  \ifnum \ifinstruction=1
- \textcolor{gray}{(maximum 170 words) This is a manuscript template for Data Descriptor submissions to \emph{Scientific Data} (\href{http://www.nature.com/scientificdata}{http://www.nature.com/scientificdata}). The abstract must be no longer than 170 words, and should succinctly describe the study, the assay(s) performed, the resulting data, and the reuse potential, but should not make any claims regarding new scientific findings. No references are allowed in this section.}
  \fi
+ \textcolor{gray}{(maximum 170 words) This is a manuscript template for Data Descriptor submissions to \emph{Scientific Data} (\href{http://www.nature.com/scientificdata}{http://www.nature.com/scientificdata}). The abstract must be no longer than 170 words, and should succinctly describe the study, the assay(s) performed, the resulting data, and the reuse potential, but should not make any claims regarding new scientific findings. No references are allowed in this section.}
 number-sections: false
 format:
   pdf:
@@ -54,15 +53,28 @@ acknowledgements: |
  \fi
 contributions: |
  \ifnum \ifinstruction=1
- Y.L. did all of the work, H.H. made him do the work. But seriously, this paper is the one where we need to cite everybody: Eden Amin, Curtis Mosher, Jeff Salyards. Alicia?
  \fi
+ Y.L. did all of the work, H.H. made him do the work. But seriously, this paper is the one where we need to cite everybody: Eden Amin, Curtis Mosher, Jeff Salyards. Alicia?
 competing: |
  \ifnum \ifinstruction=1
- The corresponding author is responsible for providing a \href{https://www.nature.com/sdata/policies/editorial-and-publishing-policies#competing}{competing interests statement} on behalf of all authors of the paper. This statement must be included in the submitted article file.
  H.H. is a technical advisor to AFTE (Association of Firearms and Toolmarks Examiners), fellow of the ASA (American Statistical Association), and committee member of the ASA Forensic Science Committee. H.H. has testified as court witness on behalf of judge April Neubauer, NY State Supreme Court Criminal Term in New York City. 
  \fi
+ The corresponding author is responsible for providing a \href{https://www.nature.com/sdata/policies/editorial-and-publishing-policies#competing}{competing interests statement} on behalf of all authors of the paper. This statement must be included in the submitted article file.
+editor_options: 
+  chunk_output_type: console
 ---
 
+
+```{r}
+#| include: FALSE
+#| eval: true
+
+set.seed(0)
+
+library(tidyverse)
+
+library(gt) # for tables
+```
 
 
 ```{r eval=FALSE, echo=FALSE}
@@ -108,36 +120,25 @@ However,
 there is a lack of a standardized method to analyze it except for visual comparison.
 \tom{...literature review and motivation...}
 Here,
-we provide a data set of \tom{a table here gt package (https://posit.co/blog/great-looking-tables-gt-0-2/), 3 columns: folder name, explaination, link to section}
-\begin{enumerate}
-  \item
-  120 scans of aluminum wire cut in 120 \texttt{x3p} files,
-  with names like \texttt{T1AW-LI-R1.x3p},
-  \tom{no name here} raw
-  
-  \item
-  the metadata of the scans in 1 CSV file,
-  with name \texttt{meta.csv}, raw
-  
-  \item
-  corresponding profiles extracted from the scans in 120 CSV file,
-  with names \texttt{profiles-T1AW-LI-R1.csv}, manual derivatives
-  
-  \item
-  corresponding signals filtered from the profiles in 1 CSV file,
-  with name \texttt{wire-signatures-400-40.csv}, process derivatives
-  
-  \item
-  pictures of pairwise aligned signals from same sources,
-  with name \texttt{T1AW-LI-signal-aligned.png}, process derivatives
-  
-  \item
-  cross-correlation function (CCF) values of all pairwise aligned signals,
-  with name \texttt{wire\_pairwise\_ccf.csv}, process derivatives
-  
-  \item
-  \tom{...other pictures?}
-\end{enumerate}
+we provide a data set with multiple files in our study,
+see @tbl-data-overview.
+
+
+```{r}
+#| echo: FALSE
+#| label: tbl-data-overview
+#| tbl-cap: Overview of the whole data set.
+
+tibble(
+  group_type = c(rep("Raw data", 2), rep("Manually processed derivatives", 1), rep("Computational processed derivatives", 3)),
+  data_type = c("x3p files", "metadata", "profiles", "signals", "aligned signals", "CCF values"),
+  Description = c("120 scans of aluminum wire cut in x3p format", "metadata of the scans in 1 CSV", "profiles extracted from scans in 120 CSVs", "signals filtered from profiles in 1 CSV", "pictures of pairwise aligned signals from same sources in PNGs", "CCF values of all pairwise aligned signals in 1 CSV"),
+  Section = c("Cutting wires", "Cutting wires", "Extract profiles", "Filtered signals", "Align signals", "Align signals")
+) %>%
+  gt(rowname_col = "data_type", groupname_col = "group_type")
+```
+
+\tom{breakable table, cannot cross-reference inside table}
 For the reproducibility of all our data and alignment results,
 we introduce in details in \nameref*{sec: cutting-wires} \tom{(cross-reference not working)} how we cut the wire and collect the 120 scans with 5 tools on 3 locations,
 in \nameref*{sec: extract-profiles} how we extract profiles from the scans,

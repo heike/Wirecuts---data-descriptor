@@ -12,6 +12,13 @@
 
 \newcommand{\ifinstruction}{1} % 1 for instruction, 0 for no instruction
 
+
+% for gt tables
+%--------------------------------
+\usepackage{longtable}
+%--------------------------------
+
+
 %in the preamble
 %--------------------------------
 \usepackage{natbib}
@@ -46,9 +53,9 @@ systematic pipeline with multiple analysis plots was developed to
 analyze the data and draw conclusions based on numerical measures.
 
 \ifnum \ifinstruction=1
+\fi
 
 \textcolor{gray}{(maximum 170 words) This is a manuscript template for Data Descriptor submissions to \emph{Scientific Data} (\href{http://www.nature.com/scientificdata}{http://www.nature.com/scientificdata}). The abstract must be no longer than 170 words, and should succinctly describe the study, the assay(s) performed, the resulting data, and the reuse potential, but should not make any claims regarding new scientific findings. No references are allowed in this section.}
-\fi
 \end{abstract}
 \begin{document}
 
@@ -93,38 +100,41 @@ evidence played a crucial role in the criminal investigation and
 conviction of a defendant. However, there is a lack of a standardized
 method to analyze it except for visual comparison.
 \tom{...literature review and motivation...} Here, we provide a data set
-of
-\tom{a table here gt package (https://posit.co/blog/great-looking-tables-gt-0-2/), 3 columns: folder name, explaination, link to section}
+with multiple files in our study, see Table~\ref{tbl-data-overview}.
 
-\begin{enumerate}
-  \item
-  120 scans of aluminum wire cut in 120 \texttt{x3p} files,
-  with names like \texttt{T1AW-LI-R1.x3p},
-  \tom{no name here} raw
-  
-  \item
-  the metadata of the scans in 1 CSV file,
-  with name \texttt{meta.csv}, raw
-  
-  \item
-  corresponding profiles extracted from the scans in 120 CSV file,
-  with names \texttt{profiles-T1AW-LI-R1.csv}, manual derivatives
-  
-  \item
-  corresponding signals filtered from the profiles in 1 CSV file,
-  with name \texttt{wire-signatures-400-40.csv}, process derivatives
-  
-  \item
-  pictures of pairwise aligned signals from same sources,
-  with name \texttt{T1AW-LI-signal-aligned.png}, process derivatives
-  
-  \item
-  cross-correlation function (CCF) values of all pairwise aligned signals,
-  with name \texttt{wire\_pairwise\_ccf.csv}, process derivatives
-  
-  \item
-  \tom{...other pictures?}
-\end{enumerate}
+\begingroup
+\fontsize{12.0pt}{14.4pt}\selectfont
+
+\begin{longtable}{l|ll}
+
+\caption{\label{tbl-data-overview}Overview of the whole data set.}
+
+\tabularnewline
+
+\toprule
+ & Description & Section \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{3}{l}{Raw data} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+x3p files & 120 scans of aluminum wire cut in x3p format & Cutting wires \\ 
+metadata & metadata of the scans in 1 CSV & Cutting wires \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{3}{l}{Manually processed derivatives} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+profiles & profiles extracted from scans in 120 CSVs & Extract profiles \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{3}{l}{Computational processed derivatives} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+signals & signals filtered from profiles in 1 CSV & Filtered signals \\ 
+aligned signals & pictures of pairwise aligned signals from same sources in PNGs & Align signals \\ 
+CCF values & CCF values of all pairwise aligned signals in 1 CSV & Align signals \\ 
+\bottomrule
+
+\end{longtable}
+
+\endgroup
+
+\tom{breakable table, cannot cross-reference inside table}
 
 For the reproducibility of all our data and alignment results, we
 introduce in details in \nameref*{sec: cutting-wires}
@@ -496,10 +506,11 @@ contribution numbers may be acknowledged. \fi
 \section*{Author contributions statement}
 
 \ifnum \ifinstruction=1
+\fi
 
 Y.L. did all of the work, H.H. made him do the work. But seriously, this
 paper is the one where we need to cite everybody: Eden Amin, Curtis
-Mosher, Jeff Salyards. Alicia? \fi
+Mosher, Jeff Salyards. Alicia?
 Must include all authors, identified by initials, for example:
 A.A. conceived the experiment(s), A.A. and B.A. conducted the experiment(s), C.A. and D.A. analysed the results. All authors reviewed the manuscript. 
 
@@ -507,15 +518,15 @@ A.A. conceived the experiment(s), A.A. and B.A. conducted the experiment(s), C.A
 
 \ifnum \ifinstruction=1
 
-The corresponding author is responsible for providing a
+H.H. is a technical advisor to AFTE (Association of Firearms and
+Toolmarks Examiners), fellow of the ASA (American Statistical
+Association), and committee member of the ASA Forensic Science
+Committee. H.H. has testified as court witness on behalf of judge April
+Neubauer, NY State Supreme Court Criminal Term in New York City. \fi The
+corresponding author is responsible for providing a
 \href{https://www.nature.com/sdata/policies/editorial-and-publishing-policies#competing}{competing interests statement}
 on behalf of all authors of the paper. This statement must be included
-in the submitted article file. H.H. is a technical advisor to AFTE
-(Association of Firearms and Toolmarks Examiners), fellow of the ASA
-(American Statistical Association), and committee member of the ASA
-Forensic Science Committee. H.H. has testified as court witness on
-behalf of judge April Neubauer, NY State Supreme Court Criminal Term in
-New York City. \fi
+in the submitted article file.
 
 % XXX Delete the section below later
 \ifnum \ifinstruction=1
