@@ -71,7 +71,7 @@ $endif$
 \title{$title$}
 
 $for(by-author)$
-\author[$for(it.affiliations)$$it.id$$sep$,$endfor$$if(it.corresponding)$,*$endif$]{$it.name.literal$}
+\author[$for(it.affiliations)$$it.id$$sep$,$endfor$$if(it.attributes.corresponding)$,*$endif$]{$it.name.literal$}
 $endfor$
 
 $for(affiliations)$
@@ -79,7 +79,9 @@ $for(affiliations)$
 $endfor$
 
 $for(by-author)$
-\affil[*]{corresponding author(s): $it.name.literal$ ($it.email$) \tom{it.corresponding returns nothing} }
+  $if(it.attributes.corresponding)$
+    \affil[*]{corresponding author(s): $it.name.literal$ ($it.email$)}
+  $endif$
 $endfor$
 
 \begin{abstract}
