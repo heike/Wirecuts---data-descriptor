@@ -110,47 +110,36 @@ analyze the data and draw conclusions based on numerical measures.
 
 \section{Background \& Summary}\label{sec-background-summary}
 
-\hh{XXX This section needs a lot more detail - as per instructions, we need:}
-
-\hh{\bf overview of the study design: create dataset, manual alignment}
-
-\hh{\bf overview of files created (table?):}
-
-\begin{itemize}
-\item
-  x3p files from scans: format, explainations, link to sections
-\item
-  derivatives from manual processing: profiles, signals
-\item
-  aligned signals
-\item
-  meta csv
-\end{itemize}
-
-\hh{\bf context of previous work and literature}
-
-\hh{\bf motivation for the creation of the dataset}
-
 Wire cut data is a type of forensic tool mark data used to identify the
 source of a wire cutter based on the striations left on the surface.
 There have been cases where the evidence and testimony on wire cut
 evidence played a crucial role in the criminal investigation and
-conviction of a defendant. However, there is a lack of a standardized
-method to analyze it except for visual comparison. Although the
-Association of Firearm and Toolmark Examiners (AFTE) developed the
-Theory of Identification (AFTE 1998) \tom{incorrect citation format},
-which outlines the process of comparing tool marks, it is still
-subjective and relies on the examiner's experience, makes results hard
-to reproduce and validate. Several reports, such as those from the
-National Research Council (NRC 2009) and the President's Council of
-Advisors on Science and Technology (President's Council of Advisors on
-Science and Technology 2016), pointed out the abovementioned issues and
-called for more objective and reproducible methods to analyze tool
-marks. Early research by (Ma et al. 2004) and (Zheng, Soons, and
-Thompson 2016) has focused on collecting and distributing datasets for
-this purpose and provide a foundation for future advancements in tool
-mark analysis. \tom{...literature review and motivation...} Here, we
-provide a data set with multiple files in our study, see
+conviction of a defendant.
+
+However, there is a lack of a standardized method to analyze it except
+for visual comparison. Although the Association of Firearm and Toolmark
+Examiners (AFTE) developed the Theory of Identification (AFTE 1998)
+\tom{incorrect citation format}, which outlines the process of comparing
+tool marks, it is still subjective and relies on the examiner's
+experience, making results hard to reproduce and validate. Several
+reports, such as those from the National Research Council (NRC 2009) and
+the President's Council of Advisors on Science and Technology
+(President's Council of Advisors on Science and Technology 2016),
+pointed out the abovementioned issues and called for more objective and
+reproducible methods to analyze tool marks. Early research by (Ma et al.
+2004) and (Zheng, Soons, and Thompson 2016) has focused on collecting
+and distributing datasets for this purpose and providing a foundation
+for future advancements in tool mark analysis. Studies such as those by
+Chu et al. (2013) and Vorburger et al. (2011) have demonstrated the
+efficacy of using numerical methods to improve accuracy and consistency
+in tool mark analysis. Hare et al. (2017) and Ju and Hofmann (2022) have
+explored methods for quantifying the similarity between representative
+signals, but alignment remains a major hurdle.
+
+In this study, we would like to follow the same path and provide a data
+set of wire cut scans, and also discuss a systematic pipeline to analyze
+the data and draw conclusions based on numerical measures. Here, we
+provide a data set containing multiple files, as described in
 Table~\ref{tbl-data-overview}.
 
 \begingroup
@@ -188,18 +177,25 @@ CCF values & CCF values of all pairwise aligned signals in 1 CSV & Align signals
 \tom{breakable table, cannot cross-reference inside table}
 
 For the reproducibility of all our data and alignment results, we
-introduce in details in Section~\ref{sec-cutting-wires}
+introduce in detail in Section~\ref{sec-cutting-wires}
 \tom{(cross-reference not working without section number, number-sections: false not working)}
 how we cut the wire and collect the 120 scans with 5 tools on 3
 locations, in Section~\ref{sec-extract-profiles} how we extract profiles
 from the scans, in Section~\ref{sec-filtered-signals} how we filter
 signals from the profiles, in Section~\ref{sec-align-signals} how we
-align signals from different scans, and optimize the alignment with the
-cross-correlation function (CCF) values. Then, in
-Section~\ref{sec-technical-validation}, a technical validation was
+align signals from different scans and optimize the alignment with the
+cross-correlation function (CCF) values. In
+Section~\ref{sec-data-records}, we discuss where our data is held. Then,
+in Section~\ref{sec-technical-validation}, a technical validation was
 conducted to further compare signals from different sources also match
-our assumption. We hope this pipeline developed using this data set can
-be further generalized and applied to real crime scenes to help
+our assumption, together with visual aids for drawing conclusions.
+Finally, in Section~\ref{sec-usage-notes}, we provide available codes
+for creating the data set and conducting technical validation, as
+discussed in Section~\ref{sec-methods} and
+Section~\ref{sec-technical-validation}.
+Section~\ref{sec-code-availability} discusses where these codes can be
+found online. We hope this pipeline developed using this data set can be
+further generalized and applied to real crime scenes to help
 investigators draw conclusions based on real wire cut data.
 
 \ifnum \ifinstruction=1
@@ -551,10 +547,27 @@ AFTE. 1998. {``The Association of Firearm and Tool Mark Examiners:
 {Theory} of Identification as It Relates to Toolmarks.''} \emph{AFTE
 Journal} 30 (1): 86--88.
 
+\bibitem[\citeproctext]{ref-chuAutomaticIdentificationBullet2013}
+Chu, Wei, Robert M. Thompson, John Song, and Theodore V. Vorburger.
+2013. {``Automatic Identification of Bullet Signatures Based on
+Consecutive Matching Striae ({CMS}) Criteria.''} \emph{Forensic Science
+International} 231 (1-3): 137--41. \url{https://doi.org/gn65cz}.
+
 \bibitem[\citeproctext]{ref-clevelandLocalRegressionModels1992}
 Cleveland, William S., Eric Grosse, and William M. Shyu. 1992. {``Local
 {Regression Models}.''} In \emph{Statistical {Models} in {S}}.
 Routledge.
+
+\bibitem[\citeproctext]{ref-hareAutomaticMatchingBullet2017}
+Hare, Eric, Heike Hofmann, Alicia Carriquiry, et al. 2017. {``Automatic
+Matching of Bullet Land Impressions.''} \emph{The Annals of Applied
+Statistics} 11 (4): 2332--56. \url{https://doi.org/10.1214/17-AOAS1080}.
+
+\bibitem[\citeproctext]{ref-juJournalOpenSourceImplementation2022}
+Ju, Wangqian, and Heike Hofmann. 2022. {``The {R Journal}: {An
+Open-Source Implementation} of the {CMPS Algorithm} for {Assessing
+Similarity} of {Bullets}.''} \emph{The R Journal} 14 (2): 267--85.
+\url{https://doi.org/10.32614/RJ-2022-035}.
 
 \bibitem[\citeproctext]{ref-maNISTBulletSignature2004}
 Ma, Li, John Song, Eric Whitenton, Alan Zheng, Theodore Vorburger, and
@@ -574,6 +587,11 @@ President's Council of Advisors on Science and Technology. 2016.
 Feature-Comparison Methods}. Washington, D.C.: Executive Office of the
 President of the United States, President's Council.
 \url{https://obamawhitehouse.archives.gov/sites/default/files/microsites/ostp/PCAST/pcast_forensic_science_report_final.pdf}.
+
+\bibitem[\citeproctext]{ref-vorburgerApplicationsCrosscorrelationFunctions2011}
+Vorburger, T. V., J.-F. Song, W. Chu, L. Ma, S. H. Bui, A. Zheng, and T.
+B. Renegar. 2011. {``Applications of Cross-Correlation Functions.''}
+\emph{Wear} 271 (3-4): 529--33. \url{https://doi.org/dt4kzk}.
 
 \bibitem[\citeproctext]{ref-zhengNISTBallisticsToolmark2016}
 Zheng, Xiaoyu A., Johannes A. Soons, and Robert M. Thompson. 2016.

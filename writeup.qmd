@@ -97,38 +97,27 @@ rbbt::bbt_write_bib(keys=keys, path='references.bib', overwrite = TRUE, library_
 
 # Background \& Summary {#sec-background-summary}
 
-\hh{XXX This section needs a lot more detail - as per instructions, we need:}
-
-\hh{\bf overview of the study design: create dataset, manual alignment}
-
-\hh{\bf overview of files created (table?):}
-
-- x3p files from scans: format, explainations, link to sections
-
-- derivatives from manual processing: profiles, signals
-
-- aligned signals
-
-- meta csv
-
-\hh{\bf context of previous work and literature}
-
-\hh{\bf motivation for the creation of the dataset}
 Wire cut data is a type of forensic tool mark data used to identify the source of a wire cutter based on the striations left on the surface.
 There have been cases where the evidence and testimony on wire cut evidence played a crucial role in the criminal investigation and conviction of a defendant.
+
 However,
 there is a lack of a standardized method to analyze it except for visual comparison.
 Although the Association of Firearm and Toolmark Examiners (AFTE) developed the Theory of Identification [@afte] \tom{incorrect citation format}, which outlines the process of comparing tool marks,
 it is still subjective and relies on the examiner's experience,
-makes results hard to reproduce and validate.
+making results hard to reproduce and validate.
 Several reports,
 such as those from the National Research Council [@nas2009] and the President’s Council of Advisors on Science and Technology [@pcast],
 pointed out the abovementioned issues and called for more objective and reproducible methods to analyze tool marks.
-Early research by [@maNISTBulletSignature2004] and [@zhengNISTBallisticsToolmark2016] has focused on collecting and distributing datasets for this purpose and provide a foundation for future advancements in tool mark analysis.
-\tom{...literature review and motivation...}
+Early research by [@maNISTBulletSignature2004] and [@zhengNISTBallisticsToolmark2016] has focused on collecting and distributing datasets for this purpose and providing a foundation for future advancements in tool mark analysis.
+Studies such as those by @chuAutomaticIdentificationBullet2013 and @vorburgerApplicationsCrosscorrelationFunctions2011 have demonstrated the efficacy of using numerical methods to improve accuracy and consistency in tool mark analysis.
+@hareAutomaticMatchingBullet2017 and @juJournalOpenSourceImplementation2022 have explored methods for quantifying the similarity between representative signals, but alignment remains a major hurdle.
+
+In this study,
+we would like to follow the same path and provide a data set of wire cut scans,
+and also discuss a systematic pipeline to analyze the data and draw conclusions based on numerical measures.
 Here,
-we provide a data set with multiple files in our study,
-see @tbl-data-overview.
+we provide a data set containing multiple files,
+as described in @tbl-data-overview.
 
 
 ```{r}
@@ -147,14 +136,20 @@ tibble(
 
 \tom{breakable table, cannot cross-reference inside table}
 For the reproducibility of all our data and alignment results,
-we introduce in details in @sec-cutting-wires \tom{(cross-reference not working without section number, number-sections: false not working)} how we cut the wire and collect the 120 scans with 5 tools on 3 locations,
+we introduce in detail in @sec-cutting-wires \tom{(cross-reference not working without section number, number-sections: false not working)} how we cut the wire and collect the 120 scans with 5 tools on 3 locations,
 in @sec-extract-profiles how we extract profiles from the scans,
 in @sec-filtered-signals how we filter signals from the profiles,
-in @sec-align-signals how we align signals from different scans,
-and optimize the alignment with the cross-correlation function (CCF) values.
+in @sec-align-signals how we align signals from different scans and optimize the alignment with the cross-correlation function (CCF) values.
+In @sec-data-records,
+we discuss where our data is held.
 Then,
 in @sec-technical-validation,
-a technical validation was conducted to further compare signals from different sources also match our assumption.
+a technical validation was conducted to further compare signals from different sources also match our assumption,
+together with visual aids for drawing conclusions.
+Finally,
+in @sec-usage-notes,
+we provide available codes for creating the data set and conducting technical validation,
+as discussed in @sec-methods and @sec-technical-validation. @sec-code-availability discusses where these codes can be found online.
 We hope this pipeline developed using this data set can be further generalized and applied to real crime scenes to help investigators draw conclusions based on real wire cut data.
 
 
