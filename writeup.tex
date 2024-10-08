@@ -14,41 +14,9 @@
 
 
 % for LaTeX Error: Environment CSLReferences undefined.
-%--------------------------------
-% definitions for citeproc citations
-\NewDocumentCommand\citeproctext{}{}
-\NewDocumentCommand\citeproc{mm}{%
-\begingroup\def\citeproctext{#2}\cite{#1}\endgroup}
-\makeatletter
-% allow citations to break across lines
-\let\@cite@ofmt\@firstofone
-% avoid brackets around text for \cite:
-\def\@biblabel#1{}
-\def\@cite#1#2{{#1\if@tempswa , #2\fi}}
-\makeatother
-\newlength{\cslhangindent}
-\setlength{\cslhangindent}{1.5em}
-\newlength{\csllabelwidth}
-\setlength{\csllabelwidth}{3em}
-\newenvironment{CSLReferences}[2] % #1 hanging-indent, #2 entry-spacing
-{\begin{list}{}{%
-	\setlength{\itemindent}{0pt}
-	\setlength{\leftmargin}{0pt}
-	\setlength{\parsep}{0pt}
-	% turn on hanging indent if param 1 is 1
-	\ifodd #1
-	\setlength{\leftmargin}{\cslhangindent}
-	\setlength{\itemindent}{-1\cslhangindent}
-	\fi
-	% set entry spacing
-	\setlength{\itemsep}{#2\baselineskip}}}
-{\end{list}}
-\usepackage{calc}
-\newcommand{\CSLBlock}[1]{\hfill\break\parbox[t]{\linewidth}{\strut\ignorespaces#1\strut}}
-\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\strut#1\strut}}
-\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{\strut#1\strut}}
-\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
-%--------------------------------
+
+% %--------------------------------
+% % %--------------------------------
 
 
 % for gt tables
@@ -59,8 +27,8 @@
 
 %in the preamble
 %--------------------------------
-\usepackage[square,sort,comma,numbers]{natbib}
-\bibliographystyle{jabbr}
+%\usepackage[square,sort,comma,numbers]{natbib}
+%\bibliographystyle{jabbr}
 %--------------------------------
 
 \title{Three-dimensional data of wirecut surface scans under the
@@ -115,23 +83,26 @@ conviction of a defendant.
 
 However, there is a lack of a standardized method to analyze it except
 for visual comparison. Although the Association of Firearm and Toolmark
-Examiners (AFTE) developed the Theory of Identification (AFTE 1998)
-\tom{incorrect citation format}, which outlines the process of comparing
-tool marks, it is still subjective and relies on the examiner's
-experience, making results hard to reproduce and validate. Several
-reports, such as those from the National Research Council (NRC 2009) and
-the President's Council of Advisors on Science and Technology
-(President's Council of Advisors on Science and Technology 2016),
-pointed out the abovementioned issues and called for more objective and
-reproducible methods to analyze tool marks. Early research by (Ma et al.
-2004) and (Zheng, Soons, and Thompson 2016) has focused on collecting
-and distributing datasets for this purpose and providing a foundation
-for future advancements in tool mark analysis. Studies such as those by
-Chu et al. (2013) and Vorburger et al. (2011) have demonstrated the
-efficacy of using numerical methods to improve accuracy and consistency
-in tool mark analysis. Hare et al. (2017) and Ju and Hofmann (2022) have
-explored methods for quantifying the similarity between representative
-signals, but alignment remains a major hurdle.
+Examiners (AFTE) developed the Theory of Identification
+\tom{incorrect citation format} \citep{afte}, which outlines the process
+of comparing tool marks, it is still subjective and relies on the
+examiner's experience, making results hard to reproduce and validate.
+Several reports, such as those from the National Research Council
+\citep{nas2009} and the President's Council of Advisors on Science and
+Technology \citep{pcast}, pointed out the abovementioned issues and
+called for more objective and reproducible methods to analyze tool
+marks. Early research by \citep{maNISTBulletSignature2004} and
+\citep{zhengNISTBallisticsToolmark2016} has focused on collecting and
+distributing datasets for this purpose and providing a foundation for
+future advancements in tool mark analysis. Studies such as those by
+\citet{chuAutomaticIdentificationBullet2013} and
+\citet{vorburgerApplicationsCrosscorrelationFunctions2011} have
+demonstrated the efficacy of using numerical methods to improve accuracy
+and consistency in tool mark analysis.
+\citet{hareAutomaticMatchingBullet2017} and
+\citet{juJournalOpenSourceImplementation2022} have explored methods for
+quantifying the similarity between representative signals, but alignment
+remains a major hurdle.
 
 In this study, we would like to follow the same path and provide a data
 set of wire cut scans, and also discuss a systematic pipeline to analyze
@@ -139,14 +110,15 @@ the data and draw conclusions based on numerical measures. Here, we
 provide a data set containing multiple files, as described in
 Table~\ref{tbl-data-overview}.
 
-\begin{table}
+\begingroup
+\fontsize{12.0pt}{14.4pt}\selectfont
+
+\begin{longtable}{l|ll}
 
 \caption{\label{tbl-data-overview}Overview of the whole data set.}
 
-\centering{
+\tabularnewline
 
-\fontsize{12.0pt}{14.4pt}\selectfont
-\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}l|ll}
 \toprule
  & Description & Section \\ 
 \midrule\addlinespace[2.5pt]
@@ -165,11 +137,10 @@ signals & signals filtered from profiles in 1 CSV & Filtered signals \\
 aligned signals & pictures of pairwise aligned signals from same sources in PNGs & Align signals \\ 
 CCF values & CCF values of all pairwise aligned signals in 1 CSV & Align signals \\ 
 \bottomrule
-\end{tabular*}
 
-}
+\end{longtable}
 
-\end{table}%
+\endgroup
 
 \tom{breakable table, cannot cross-reference inside table}
 
@@ -271,7 +242,7 @@ used a large low-pass filter with bandwidths of 400 microns to remove
 large trend, as it can overwhelm the signals, and then used a small
 high-pass filter of 40 microns to average across noise and remove
 spikes, as shown in Figure \ref{fig-T1AW-LI-R1-profiles-signals}(c).
-(Cleveland, Grosse, and Shyu 1992)
+\citep{clevelandLocalRegressionModels1992}
 \hh{(add reference: W. S. Cleveland, E. Grosse and W. M. Shyu (1992) Local regression models. Chapter 8 of Statistical Models in S eds J.M. Chambers and T.J. Hastie, Wadsworth \& Brooks/Cole.)}.
 Finally, the extreme tail values are removed.
 
@@ -535,69 +506,10 @@ package \texttt{x3ptools}. Further analysis can be conducted with the
 
 \hh{(Note that the bibliography style and the name of the bib-file are hard coded in the template file right now.)}
 
-\phantomsection\label{refs}
-\begin{CSLReferences}{1}{0}
-\bibitem[\citeproctext]{ref-afte}
-AFTE. 1998. {``The Association of Firearm and Tool Mark Examiners:
-{Theory} of Identification as It Relates to Toolmarks.''} \emph{AFTE
-Journal} 30 (1): 86--88.
-
-\bibitem[\citeproctext]{ref-chuAutomaticIdentificationBullet2013}
-Chu, Wei, Robert M. Thompson, John Song, and Theodore V. Vorburger.
-2013. {``Automatic Identification of Bullet Signatures Based on
-Consecutive Matching Striae ({CMS}) Criteria.''} \emph{Forensic Science
-International} 231 (1-3): 137--41. \url{https://doi.org/gn65cz}.
-
-\bibitem[\citeproctext]{ref-clevelandLocalRegressionModels1992}
-Cleveland, William S., Eric Grosse, and William M. Shyu. 1992. {``Local
-{Regression Models}.''} In \emph{Statistical {Models} in {S}}.
-Routledge.
-
-\bibitem[\citeproctext]{ref-hareAutomaticMatchingBullet2017}
-Hare, Eric, Heike Hofmann, Alicia Carriquiry, et al. 2017. {``Automatic
-Matching of Bullet Land Impressions.''} \emph{The Annals of Applied
-Statistics} 11 (4): 2332--56. \url{https://doi.org/10.1214/17-AOAS1080}.
-
-\bibitem[\citeproctext]{ref-juJournalOpenSourceImplementation2022}
-Ju, Wangqian, and Heike Hofmann. 2022. {``The {R Journal}: {An
-Open-Source Implementation} of the {CMPS Algorithm} for {Assessing
-Similarity} of {Bullets}.''} \emph{The R Journal} 14 (2): 267--85.
-\url{https://doi.org/10.32614/RJ-2022-035}.
-
-\bibitem[\citeproctext]{ref-maNISTBulletSignature2004}
-Ma, Li, John Song, Eric Whitenton, Alan Zheng, Theodore Vorburger, and
-Jack Zhou. 2004. {``{NIST Bullet Signature Measurement System} for {RM}
-({Reference Material}) 8240 {Standard Bullets}.''} \emph{Journal of
-Forensic Sciences} 49 (4): 1--11. \url{https://doi.org/cdsbv8}.
-
-\bibitem[\citeproctext]{ref-nas2009}
-NRC. 2009. \emph{National Research Council: {Strengthening} Forensic
-Science in the United States: {A} Path Forward}. National Academies
-Press.
-
-\bibitem[\citeproctext]{ref-pcast}
-President's Council of Advisors on Science and Technology. 2016.
-\emph{President's Council of Advisors on Science and Technology:
-{Forensic} Science in Criminal Courts: {Ensuring} Scientific Validity of
-Feature-Comparison Methods}. Washington, D.C.: Executive Office of the
-President of the United States, President's Council.
-\url{https://obamawhitehouse.archives.gov/sites/default/files/microsites/ostp/PCAST/pcast_forensic_science_report_final.pdf}.
-
-\bibitem[\citeproctext]{ref-vorburgerApplicationsCrosscorrelationFunctions2011}
-Vorburger, T. V., J.-F. Song, W. Chu, L. Ma, S. H. Bui, A. Zheng, and T.
-B. Renegar. 2011. {``Applications of Cross-Correlation Functions.''}
-\emph{Wear} 271 (3-4): 529--33. \url{https://doi.org/dt4kzk}.
-
-\bibitem[\citeproctext]{ref-zhengNISTBallisticsToolmark2016}
-Zheng, Xiaoyu A., Johannes A. Soons, and Robert M. Thompson. 2016.
-{``{NIST Ballistics Toolmark Research Database} {\textbar} {NIST}.''}
-\url{https://www.nist.gov/publications/nist-ballistics-toolmark-research-database}.
-
-\end{CSLReferences}
-
 \bibliography{references}
 
-\noindent LaTeX formats citations and references automatically using the bibliography records in your .bib file, which you can edit via the project menu. Use the cite command for an inline citation, e.g. \cite{Kaufman2020, Figueredo:2009dg, Babichev2002, behringer2014manipulating}. For data citations of datasets uploaded to e.g. \emph{figshare}, please use the \verb|howpublished| option in the bib entry to specify the platform and the link, as in the \verb|Hao:gidmaps:2014| example in the sample bibliography file. For journal articles, DOIs should be included for works in press that do not yet have volume or page numbers. For other journal articles, DOIs should be included uniformly for all articles or not at all. We recommend that you encode all DOIs in your bibtex database as full URLs, e.g. https://doi.org/10.1007/s12110-009-9068-2.
+\noindent LaTeX formats citations and references automatically using the bibliography records in your .bib file, which you can edit via the project menu. Use the cite command for an inline citation, %e.g. \cite{Kaufman2020, Figueredo:2009dg, Babichev2002, behringer2014manipulating}. 
+For data citations of datasets uploaded to e.g. \emph{figshare}, please use the \verb|howpublished| option in the bib entry to specify the platform and the link, as in the \verb|Hao:gidmaps:2014| example in the sample bibliography file. For journal articles, DOIs should be included for works in press that do not yet have volume or page numbers. For other journal articles, DOIs should be included uniformly for all articles or not at all. We recommend that you encode all DOIs in your bibtex database as full URLs, e.g. https://doi.org/10.1007/s12110-009-9068-2.
 
 \section*{Acknowledgements} 
 \ifnum \ifinstruction=1

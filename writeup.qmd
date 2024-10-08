@@ -45,6 +45,9 @@ abstract: |
 number-sections: false
 format:
   pdf:
+    cite-method: natbib
+    natbiboptions: square,sort,comma,numbers
+    biblio-style: jabbr.sty
     template: sf_template.tex
     keep-tex: true
 bibliography: "`r rbbt::bbt_write_bib('references.bib', ignore = stringr::str_subset(rbbt::bbt_detect_citations(), '(^fig-|^tbl-|^eq-|^sec-|^lst-|^thm-|^lem-|^cor-|^prp-|^cnj-|^def-|^exm-|^exr-)'), overwrite = TRUE, library_id=rbbt::bbt_library_id('CSAFE'), translator='bibtex')`"
@@ -103,7 +106,7 @@ There have been cases where the evidence and testimony on wire cut evidence play
 
 However,
 there is a lack of a standardized method to analyze it except for visual comparison.
-Although the Association of Firearm and Toolmark Examiners (AFTE) developed the Theory of Identification [@afte] \tom{incorrect citation format}, which outlines the process of comparing tool marks,
+Although the Association of Firearm and Toolmark Examiners (AFTE) developed the Theory of Identification  \tom{incorrect citation format} [@afte], which outlines the process of comparing tool marks,
 it is still subjective and relies on the examiner's experience,
 making results hard to reproduce and validate.
 Several reports,

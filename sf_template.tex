@@ -14,43 +14,44 @@
 
 
 % for LaTeX Error: Environment CSLReferences undefined.
-%--------------------------------
-$if(csl-refs)$
-% definitions for citeproc citations
-\NewDocumentCommand\citeproctext{}{}
-\NewDocumentCommand\citeproc{mm}{%
-\begingroup\def\citeproctext{#2}\cite{#1}\endgroup}
-\makeatletter
-% allow citations to break across lines
-\let\@cite@ofmt\@firstofone
-% avoid brackets around text for \cite:
-\def\@biblabel#1{}
-\def\@cite#1#2{{#1\if@tempswa , #2\fi}}
-\makeatother
-\newlength{\cslhangindent}
-\setlength{\cslhangindent}{1.5em}
-\newlength{\csllabelwidth}
-\setlength{\csllabelwidth}{3em}
-\newenvironment{CSLReferences}[2] % #1 hanging-indent, #2 entry-spacing
-{\begin{list}{}{%
-	\setlength{\itemindent}{0pt}
-	\setlength{\leftmargin}{0pt}
-	\setlength{\parsep}{0pt}
-	% turn on hanging indent if param 1 is 1
-	\ifodd #1
-	\setlength{\leftmargin}{\cslhangindent}
-	\setlength{\itemindent}{-1\cslhangindent}
-	\fi
-	% set entry spacing
-	\setlength{\itemsep}{#2\baselineskip}}}
-{\end{list}}
-\usepackage{calc}
-\newcommand{\CSLBlock}[1]{\hfill\break\parbox[t]{\linewidth}{\strut\ignorespaces#1\strut}}
-\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\strut#1\strut}}
-\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{\strut#1\strut}}
-\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
-$endif$
-%--------------------------------
+
+% %--------------------------------
+% $if(csl-refs)$
+% % definitions for citeproc citations
+% \NewDocumentCommand\citeproctext{}{}
+% \NewDocumentCommand\citeproc{mm}{%
+% \begingroup\def 1: {#1}. 2: {#2} \citeproctext{#2}\cite{#1}\endgroup}
+% \makeatletter
+% % allow citations to break across lines
+% \let\@cite@ofmt\@firstofone
+% % avoid brackets around text for \cite:
+% \def\@biblabel#1{}
+% \def\@cite#1#2{{#1\if@tempswa , #2\fi}}
+% \makeatother
+% \newlength{\cslhangindent}
+% \setlength{\cslhangindent}{1.5em}
+% \newlength{\csllabelwidth}
+% \setlength{\csllabelwidth}{3em}
+% \newenvironment{CSLReferences}[2] % #1 hanging-indent, #2 entry-spacing
+% {\begin{list}{}{%
+% 	\setlength{\itemindent}{0pt}
+% 	\setlength{\leftmargin}{0pt}
+% 	\setlength{\parsep}{0pt}
+% 	% turn on hanging indent if param 1 is 1
+% 	\ifodd #1
+% 	\setlength{\leftmargin}{\cslhangindent}
+% 	\setlength{\itemindent}{-1\cslhangindent}
+% 	\fi
+% 	% set entry spacing
+% 	\setlength{\itemsep}{#2\baselineskip}}}
+% {\end{list}}
+% \usepackage{calc}
+% \newcommand{\CSLBlock}[1]{\hfill\break\parbox[t]{\linewidth}{\strut\ignorespaces#1\strut}}
+% \newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\strut#1\strut}}
+% \newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{\strut#1\strut}}
+% \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+% $endif$
+% %--------------------------------
 
 
 % for gt tables
@@ -64,8 +65,8 @@ $endif$
 
 %in the preamble
 %--------------------------------
-\usepackage[square,sort,comma,numbers]{natbib}
-\bibliographystyle{jabbr}
+%\usepackage[square,sort,comma,numbers]{natbib}
+%\bibliographystyle{jabbr}
 %--------------------------------
 
 \title{$title$}
@@ -99,7 +100,8 @@ $body$
 
 \bibliography{references}
 
-\noindent LaTeX formats citations and references automatically using the bibliography records in your .bib file, which you can edit via the project menu. Use the cite command for an inline citation, e.g. \cite{Kaufman2020, Figueredo:2009dg, Babichev2002, behringer2014manipulating}. For data citations of datasets uploaded to e.g. \emph{figshare}, please use the \verb|howpublished| option in the bib entry to specify the platform and the link, as in the \verb|Hao:gidmaps:2014| example in the sample bibliography file. For journal articles, DOIs should be included for works in press that do not yet have volume or page numbers. For other journal articles, DOIs should be included uniformly for all articles or not at all. We recommend that you encode all DOIs in your bibtex database as full URLs, e.g. https://doi.org/10.1007/s12110-009-9068-2.
+\noindent LaTeX formats citations and references automatically using the bibliography records in your .bib file, which you can edit via the project menu. Use the cite command for an inline citation, %e.g. \cite{Kaufman2020, Figueredo:2009dg, Babichev2002, behringer2014manipulating}. 
+For data citations of datasets uploaded to e.g. \emph{figshare}, please use the \verb|howpublished| option in the bib entry to specify the platform and the link, as in the \verb|Hao:gidmaps:2014| example in the sample bibliography file. For journal articles, DOIs should be included for works in press that do not yet have volume or page numbers. For other journal articles, DOIs should be included uniformly for all articles or not at all. We recommend that you encode all DOIs in your bibtex database as full URLs, e.g. https://doi.org/10.1007/s12110-009-9068-2.
 
 \section*{Acknowledgements} 
 $acknowledgements$
