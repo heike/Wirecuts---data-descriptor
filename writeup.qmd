@@ -162,10 +162,6 @@ We hope this pipeline developed using this data set can be further generalized a
 
 # Methods {#sec-methods}
 
-
-\hh{full descriptions of the experimental design, data acquisition assays, and any computational processing}
-
-
 In this study,
 aluminum wire was used to create an optimal scenario where the most amount of information could be transferred from the tool to the substrate,
 despite the wire in some real cases being made of lead. 
@@ -188,7 +184,7 @@ with a sharpie line marking the cut ends,
 giving us 4 samples.
 Here,
 we are showing AB sides only in Figure \ref{fig-cut-tent-scan}(b)
-\tom{(need a different tent figure)},
+\tom{(remove the tent figure)},
 and the CD sides are similar from the other side of the cut,
 with the back of A being C and the back of B being D.
 Both AB and CD sides form tent structures on the tips of the wire,
@@ -211,7 +207,7 @@ The scanned surfaces are saved in a resolution of $0.645 \mu m \times 0.645 \mu 
 \tom{hard to put the full requirements here, see \href{https://www.nature.com/sdata/publish/submission-guidelines\#figures}{https://www.nature.com/sdata/publish/submission-guidelines\#figures}}
 
 
-\tom{put into quarto layout with (a) (b) (c) on the top left, no tent, add blade C \& D}
+\tom{put into quarto layout with (a) (b) (c) on the top left, no tent, add blade C \& D (Do later after decide on using qmd or Overleaf)}
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.9\linewidth]{cut-tent-scan.png}

@@ -139,15 +139,14 @@ the data and draw conclusions based on numerical measures. Here, we
 provide a data set containing multiple files, as described in
 Table~\ref{tbl-data-overview}.
 
-\begingroup
-\fontsize{12.0pt}{14.4pt}\selectfont
-
-\begin{longtable}{l|ll}
+\begin{table}
 
 \caption{\label{tbl-data-overview}Overview of the whole data set.}
 
-\tabularnewline
+\centering{
 
+\fontsize{12.0pt}{14.4pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}l|ll}
 \toprule
  & Description & Section \\ 
 \midrule\addlinespace[2.5pt]
@@ -166,10 +165,11 @@ signals & signals filtered from profiles in 1 CSV & Filtered signals \\
 aligned signals & pictures of pairwise aligned signals from same sources in PNGs & Align signals \\ 
 CCF values & CCF values of all pairwise aligned signals in 1 CSV & Align signals \\ 
 \bottomrule
+\end{tabular*}
 
-\end{longtable}
+}
 
-\endgroup
+\end{table}%
 
 \tom{breakable table, cannot cross-reference inside table}
 
@@ -202,8 +202,6 @@ investigators draw conclusions based on real wire cut data.
 
 \section{Methods}\label{sec-methods}
 
-\hh{full descriptions of the experimental design, data acquisition assays, and any computational processing}
-
 In this study, aluminum wire was used to create an optimal scenario
 where the most amount of information could be transferred from the tool
 to the substrate, despite the wire in some real cases being made of
@@ -220,8 +218,8 @@ for 1 blade location, either inner, middle, or outer, which gives us 1
 replicate. Each piece was then cut into half to create 2-inch pieces for
 each side, AB and CD, with a sharpie line marking the cut ends, giving
 us 4 samples. Here, we are showing AB sides only in Figure
-\ref{fig-cut-tent-scan}(b) \tom{(need a different tent figure)}, and the
-CD sides are similar from the other side of the cut, with the back of A
+\ref{fig-cut-tent-scan}(b) \tom{(remove the tent figure)}, and the CD
+sides are similar from the other side of the cut, with the back of A
 being C and the back of B being D. Both AB and CD sides form tent
 structures on the tips of the wire, and we can separate each side of the
 tent into 2 pieces along the bending position, resulting in 8 scans. We
@@ -241,7 +239,7 @@ file format.
 \hh{XXX figure 1 - generally, zoom into these images - we do not want to have a hand in the image, nor a view of the crafting aluminum :)  - what are the exact rules on visuals in Scientific Data ? XXX}
 \tom{hard to put the full requirements here, see \href{https://www.nature.com/sdata/publish/submission-guidelines\#figures}{https://www.nature.com/sdata/publish/submission-guidelines\#figures}}
 
-\tom{put into quarto layout with (a) (b) (c) on the top left, no tent, add blade C \& D}
+\tom{put into quarto layout with (a) (b) (c) on the top left, no tent, add blade C \& D (Do later after decide on using qmd or Overleaf)}
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.9\linewidth]{cut-tent-scan.png}
