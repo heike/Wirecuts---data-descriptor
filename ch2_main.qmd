@@ -59,7 +59,7 @@ acknowledgements: |
 contributions: |
  Let's follow the Elsevier definitions: https://www.elsevier.com/researcher/author/policies-and-guidelines/credit-author-statement
  Y.L.: Methodology, Software, Validation, Data Curation, Writing - Draft; H.H.: Conceptualization, Methodology, Validation, Writing - Review & Editing; C.M.: Lab supervision;
- E.A.: Physical Specimen, Scanning; J.S: Forensic advice; A.C.: Funding acquisition
+ E.A.: Physical Specimen, Scanning; J.S: Forensic advice; A.C.: Funding acquisition.
 competing: |
  H.H. is a technical advisor to AFTE (Association of Firearms and Toolmarks Examiners), fellow of the ASA (American Statistical Association), and committee member of the ASA Forensic Science Committee. H.H. has testified as court witness on behalf of judge April Neubauer, NY State Supreme Court Criminal Term in New York City. 
  \ifnum \ifinstruction=1
@@ -128,15 +128,15 @@ as described in @tbl-data-overview.
 ```{r}
 #| echo: FALSE
 #| label: tbl-data-overview
-#| tbl-cap: Overview of the whole data set.
+#| tbl-cap: Structure of available data and files.
 
 tibble(
-  group_type = c(rep("Raw data", 2), rep("Manually processed derivatives", 1), rep("Computational processed derivatives", 3)),
-  data_type = c("x3p files", "metadata", "profiles", "signals", "aligned signals", "CCF values"),
-  Description = c("120 scans of aluminum wire cut in x3p format", "metadata of the scans in 1 CSV", "profiles extracted from scans in 120 CSVs", "signals filtered from profiles in 1 CSV", "pictures of pairwise aligned signals from same sources in PNGs", "CCF values of all pairwise aligned signals in 1 CSV"),
-  Section = c("Cutting wires", "Cutting wires", "Extract profiles", "Filtered signals", "Align signals", "Align signals")
+  group_type = c(rep("Raw data", 2), rep("Manual derivatives", 1), rep("Computational derivatives", 2), rep("Image files")),
+  data_type = c("`x3p-files`", "`meta.csv`", "`profiles`", "`signals`",  "CCF values", "`aligned-signals`"),
+  Description = c("folder containing 120 topographic 3d scans of aluminum wire cuts in x3p format", "meta information for each cut with tool, blade, and location information (csv format)", "folder of files with manually extracted profiles (csv format)", "folder of signals, processed from corresponding profile (csv format)",  "CCF values of all pairwise aligned signals in 1 CSV", "pictures of pairwise aligned signals from same sources in PNGs"),
+  Section = c("Cutting wires", "Cutting wires", "Extract profiles", "Filtered signals",  "Align signals", "Align signals")
 ) %>%
-  gt(rowname_col = "data_type", groupname_col = "group_type") 
+  gt(rowname_col = "data_type", groupname_col = "group_type") %>% fmt_markdown()
 ```
 
 \tom{breakable table, cannot cross-reference inside table}
