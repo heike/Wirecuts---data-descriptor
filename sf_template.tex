@@ -20,7 +20,14 @@
 $if(highlighting-macros)$
 $highlighting-macros$
 $endif$
+% gt packages - see gt_latex_dependencies()
+\usepackage{booktabs}
+\usepackage{caption}
 \usepackage{longtable}
+\usepackage{colortbl}
+\usepackage{array}
+\usepackage{anyfontsize}
+\usepackage{multirow}
 %--------------------------------
 
 
@@ -29,7 +36,7 @@ $endif$
 % hard code them here
 %--------------------------------
 \usepackage[super,sort&compress,comma,numbers]{natbib}
-\bibliographystyle{jabbr}
+%\bibliographystyle{jabbr}
 %--------------------------------
 
 \title{$title$}
@@ -75,6 +82,7 @@ $contributions$
 %Must include all authors, identified by initials, for example:
 %A.A. conceived the experiment(s), A.A. and B.A. conducted the experiment(s), C.A. and D.A. analysed the results.
 
+\noindent
 All authors reviewed the manuscript. 
 
 \section*{Competing interests} (mandatory statement)
