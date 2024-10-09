@@ -129,14 +129,33 @@ as described in @tbl-data-overview.
 #| echo: FALSE
 #| label: tbl-data-overview
 #| tbl-cap: Structure of available data and files.
+#| results: asis
 
-tibble(
+string <- tibble(
   group_type = c(rep("Raw data", 2), rep("Manual derivatives", 1), rep("Computational derivatives", 2), rep("Image files")),
   data_type = c("`x3p-files`", "`meta.csv`", "`profiles`", "`signals`",  "CCF values", "`aligned-signals`"),
   Description = c("folder containing 120 topographic 3d scans of aluminum wire cuts in x3p format", "meta information for each cut with tool, blade, and location information (csv format)", "folder of files with manually extracted profiles (csv format)", "folder of signals, processed from corresponding profile (csv format)",  "CCF values of all pairwise aligned signals in 1 CSV", "pictures of pairwise aligned signals from same sources in PNGs"),
-  Section = c("Cutting wires", "Cutting wires", "Extract profiles", "Filtered signals",  "Align signals", "Align signals")
+  Section = c("@sec-cutting-wires", "Cutting wires", "Extract profiles", "Filtered signals",  "Align signals", "Align signals")
 ) %>%
-  gt(rowname_col = "data_type", groupname_col = "group_type") %>% fmt_markdown()
+  gt(rowname_col = "data_type", groupname_col = "group_type") %>% 
+  tab_options(table.width = pct(95)) %>%
+  cols_width(Description~pct(45), everything()~pct(25)) %>%
+  fmt_markdown() %>% as_latex() 
+
+# has bug: column Description is not being recognized, last section is the widest
+widths <- str_extract_all(pattern="dimexpr.....", string[1])[[1]]
+# change into the right order
+widths_new <- widths[c(1,3,2)]
+
+# replace all instances to something strange
+string2 <- str_replace_all(string[1], "dimexpr....", "dimexprSMALL")
+# now replace (one at a time, otherwise we have a problem)
+string2 <- str_replace(string2, "dimexprSMALL", widths_new[1])
+string2 <- str_replace(string2, "dimexprSMALL", widths_new[2])
+string2 <- str_replace(string2, "dimexprSMALL", widths_new[3])
+
+string[1] <- string2
+string
 ```
 
 \tom{breakable table, cannot cross-reference inside table}
