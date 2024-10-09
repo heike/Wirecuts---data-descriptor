@@ -46,8 +46,6 @@ number-sections: false
 format:
   pdf:
     cite-method: natbib
-    natbiboptions: square,sort,comma,numbers
-    biblio-style: jabbr.sty
     template: sf_template.tex
     keep-tex: true
 bibliography: "`r rbbt::bbt_write_bib('references.bib', ignore = stringr::str_subset(rbbt::bbt_detect_citations(), '(^fig-|^tbl-|^eq-|^sec-|^lst-|^thm-|^lem-|^cor-|^prp-|^cnj-|^def-|^exm-|^exr-)'), overwrite = TRUE, library_id=rbbt::bbt_library_id('CSAFE'), translator='bibtex')`"
@@ -135,7 +133,7 @@ tibble(
   Description = c("120 scans of aluminum wire cut in x3p format", "metadata of the scans in 1 CSV", "profiles extracted from scans in 120 CSVs", "signals filtered from profiles in 1 CSV", "pictures of pairwise aligned signals from same sources in PNGs", "CCF values of all pairwise aligned signals in 1 CSV"),
   Section = c("Cutting wires", "Cutting wires", "Extract profiles", "Filtered signals", "Align signals", "Align signals")
 ) %>%
-  gt(rowname_col = "data_type", groupname_col = "group_type")
+  gt(rowname_col = "data_type", groupname_col = "group_type") 
 ```
 
 \tom{breakable table, cannot cross-reference inside table}
