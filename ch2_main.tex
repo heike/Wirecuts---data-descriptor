@@ -110,15 +110,14 @@ the data and draw conclusions based on numerical measures. Here, we
 provide a data set containing multiple files, as described in
 Table~\ref{tbl-data-overview}.
 
-\begingroup
-\fontsize{12.0pt}{14.4pt}\selectfont
-
-\begin{longtable}{l|ll}
+\begin{table}
 
 \caption{\label{tbl-data-overview}Overview of the whole data set.}
 
-\tabularnewline
+\centering{
 
+\fontsize{12.0pt}{14.4pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}l|ll}
 \toprule
  & Description & Section \\ 
 \midrule\addlinespace[2.5pt]
@@ -137,10 +136,11 @@ signals & signals filtered from profiles in 1 CSV & Filtered signals \\
 aligned signals & pictures of pairwise aligned signals from same sources in PNGs & Align signals \\ 
 CCF values & CCF values of all pairwise aligned signals in 1 CSV & Align signals \\ 
 \bottomrule
+\end{tabular*}
 
-\end{longtable}
+}
 
-\endgroup
+\end{table}%
 
 \tom{breakable table, cannot cross-reference inside table}
 
