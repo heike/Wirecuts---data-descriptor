@@ -15,6 +15,11 @@ authors:
     orcid: 0000-0001-6216-5183
     email: hhofmann4@unl.edu
     corresponding: false
+  - name: Curtis Mosher, Alicia Carriquiry, Eden Amin, Jeff Salyards
+    affiliations:
+      - ref: 1
+      - ref: 3
+    corresponding: false  
 affiliations: 
   - id: 1
     name: Iowa State University
@@ -32,7 +37,7 @@ affiliations:
     city: Lincoln
     state: NE
 abstract: |
- \tom{Update later}
+ \tom{Update later: max of 170 words: describe the study, the assay(s) performed,  resulting data, and reuse potential}
  Wire cut data is important in forensic investigations but lacks a systematic way of analyzing the data.
  We created a data set of 120 scans of aluminum wire cut in \texttt{x3p} format,
  using 5 wire cutters and 3 locations along the 4 blades,
@@ -50,18 +55,16 @@ format:
     keep-tex: true
 bibliography: "`r rbbt::bbt_write_bib('references.bib', ignore = stringr::str_subset(rbbt::bbt_detect_citations(), '(^fig-|^tbl-|^eq-|^sec-|^lst-|^thm-|^lem-|^cor-|^prp-|^cnj-|^def-|^exm-|^exr-)'), overwrite = TRUE, library_id=rbbt::bbt_library_id('CSAFE'), translator='bibtex')`"
 acknowledgements: |
- \ifnum \ifinstruction=1
- Acknowledgements should be brief, and should not include thanks to anonymous referees and editors, or effusive comments. Grant or contribution numbers may be acknowledged.
- \fi
+ This work was partially funded by the Center for Statistics and Applications in Forensic Evidence (CSAFE) through Cooperative Agreement 70NANB20H019 between NIST and Iowa State University, which includes activities carried out at Carnegie Mellon University, Duke University, University of California Irvine, University of Virginia, West Virginia University, University of Pennsylvania, Swarthmore College and the University of Nebraska-Lincoln.
 contributions: |
- \ifnum \ifinstruction=1
- \fi
- Y.L. did all of the work, H.H. made him do the work. But seriously, this paper is the one where we need to cite everybody: Eden Amin, Curtis Mosher, Jeff Salyards. Alicia?
+ Let's follow the Elsevier definitions: https://www.elsevier.com/researcher/author/policies-and-guidelines/credit-author-statement
+ Y.L.: Methodology, Software, Validation, Data Curation, Writing - Draft; H.H.: Conceptualization, Methodology, Validation, Writing - Review & Editing; C.M.: Lab supervision;
+ E.A.: Physical Specimen, Scanning; J.S: Forensic advice; A.C.: Funding acquisition
 competing: |
- \ifnum \ifinstruction=1
  H.H. is a technical advisor to AFTE (Association of Firearms and Toolmarks Examiners), fellow of the ASA (American Statistical Association), and committee member of the ASA Forensic Science Committee. H.H. has testified as court witness on behalf of judge April Neubauer, NY State Supreme Court Criminal Term in New York City. 
+ \ifnum \ifinstruction=1
+  The corresponding author is responsible for providing a \href{https://www.nature.com/sdata/policies/editorial-and-publishing-policies#competing}{competing interests statement} on behalf of all authors of the paper. This statement must be included in the submitted article file.
  \fi
- The corresponding author is responsible for providing a \href{https://www.nature.com/sdata/policies/editorial-and-publishing-policies#competing}{competing interests statement} on behalf of all authors of the paper. This statement must be included in the submitted article file.
 editor_options: 
   chunk_output_type: console
 ---
@@ -520,7 +523,7 @@ We put together the cutting and the standard scanning procedures mentioned in Se
 The data set can be easily accessed with the \texttt{CRAN} \texttt{R} package \texttt{x3ptools}.
 Further analysis can be conducted with the \texttt{GitHub} \texttt{R} package \texttt{wire} and the \texttt{GitHub} \texttt{R} shiny app \texttt{wireShiny}
 \tom{(citation)}
-\tom{(again????)}.
+.
 
 \ifnum \ifinstruction=1
 \textcolor{gray}{For all studies using custom code in the generation or processing of datasets, a statement must be included under the heading "Code availability", indicating whether and how the code can be accessed, including any restrictions to access. This section should also include information on the versions of any software used, if relevant, and any specific variables or parameters used to generate, test, or process the current dataset.}
@@ -528,7 +531,5 @@ Further analysis can be conducted with the \texttt{GitHub} \texttt{R} package \t
 
 
 
-# End of Body
-\hh{(Note that the bibliography style and the name of the bib-file are hard coded in the template file right now.)}
 
 
