@@ -135,7 +135,7 @@ string <- tibble(
   group_type = c(rep("Raw data", 2), rep("Manual derivatives", 1), rep("Computational derivatives", 2), rep("Image files")),
   data_type = c("`x3p-files`", "`meta.csv`", "`profiles`", "`signals`",  "CCF values", "`aligned-signals`"),
   Description = c("folder containing 120 topographic 3d scans of aluminum wire cuts in x3p format", "meta information for each cut with tool, blade, and location information (csv format)", "folder of files with manually extracted profiles (csv format)", "folder of signals, processed from corresponding profile (csv format)",  "CCF values of all pairwise aligned signals in 1 CSV", "pictures of pairwise aligned signals from same sources in PNGs"),
-  Section = c("@sec-cutting-wires", "@sec-cutting-wires", "@sec-extract-profiles", "@sec-filtered-signals",  "@sec-align-signals", "@sec-align-signals")
+  Section = c("[Cutting wires](#sec-cutting-wires)", "[Cutting wires](#sec-cutting-wires)", "[Extract profiles](#sec-extract-profiles)", "[Filtered signals](#sec-filtered-signals)",  "[Align signals](#sec-align-signals)", "[Align signals](#sec-align-signals)")
 ) %>%
   gt(rowname_col = "data_type", groupname_col = "group_type") %>% 
   tab_options(table.width = pct(95)) %>%
@@ -178,20 +178,20 @@ string
 
 \tom{breakable table, cannot cross-reference inside table}
 For the reproducibility of all our data and alignment results,
-we introduce in detail in @sec-cutting-wires \tom{(cross-reference not working without section number, number-sections: false not working)} how we cut the wire and collect the 120 scans with 5 tools on 3 locations,
-in @sec-extract-profiles how we extract profiles from the scans,
-in @sec-filtered-signals how we filter signals from the profiles,
-in @sec-align-signals how we align signals from different scans and optimize the alignment with the cross-correlation function (CCF) values.
-In @sec-data-records,
+we introduce in detail in [Cutting wires](#sec-cutting-wires) \tom{(cross-reference not working without section number, number-sections: false not working)} how we cut the wire and collect the 120 scans with 5 tools on 3 locations,
+in [Extract profiles](#sec-extract-profiles) how we extract profiles from the scans,
+in [Filtered signals](#sec-filtered-signals) how we filter signals from the profiles,
+in [Align signals](#sec-align-signals) how we align signals from different scans and optimize the alignment with the cross-correlation function (CCF) values.
+In [Data Records](#sec-data-records),
 we discuss where our data is held.
 Then,
-in @sec-technical-validation,
+in [Technical Validation](#sec-technical-validation),
 a technical validation was conducted to further compare signals from different sources also match our assumption,
 together with visual aids for drawing conclusions.
 Finally,
-in @sec-usage-notes,
+in [Usage Notes](#sec-usage-notes),
 we provide available codes for creating the data set and conducting technical validation,
-as discussed in @sec-methods and @sec-technical-validation. @sec-code-availability discusses where these codes can be found online.
+as discussed in [Methods](#sec-methods) and [Technical Validation](#sec-technical-validation). [Code availability](#sec-code-availability) discusses where these codes can be found online.
 We hope this pipeline developed using this data set can be further generalized and applied to real crime scenes to help investigators draw conclusions based on real wire cut data.
 
 

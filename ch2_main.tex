@@ -130,21 +130,21 @@ files.}
 \midrule\addlinespace[2.5pt]
 \multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{Raw data} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
-\texttt{x3p-files} & folder containing 120 topographic 3d scans of aluminum wire cuts in x3p format & \autoref{sec-cutting-wires} \\ 
-\texttt{meta.csv} & meta information for each cut with tool, blade, and location information (csv format) & \autoref{sec-cutting-wires} \\ 
+\texttt{x3p-files} & folder containing 120 topographic 3d scans of aluminum wire cuts in x3p format & \protect\hyperlink{sec-cutting-wires}{Cutting wires} \\ 
+\texttt{meta.csv} & meta information for each cut with tool, blade, and location information (csv format) & \protect\hyperlink{sec-cutting-wires}{Cutting wires} \\ 
 \midrule\addlinespace[2.5pt]
 \multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{Manual derivatives} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
-\texttt{profiles} & folder of files with manually extracted profiles (csv format) & \autoref{sec-extract-profiles} \\ 
+\texttt{profiles} & folder of files with manually extracted profiles (csv format) & \protect\hyperlink{sec-extract-profiles}{Extract profiles} \\ 
 \midrule\addlinespace[2.5pt]
 \multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{Computational derivatives} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
-\texttt{signals} & folder of signals, processed from corresponding profile (csv format) & \autoref{sec-filtered-signals} \\ 
-CCF values & CCF values of all pairwise aligned signals in 1 CSV & \autoref{sec-align-signals} \\ 
+\texttt{signals} & folder of signals, processed from corresponding profile (csv format) & \protect\hyperlink{sec-filtered-signals}{Filtered signals} \\ 
+CCF values & CCF values of all pairwise aligned signals in 1 CSV & \protect\hyperlink{sec-align-signals}{Align signals} \\ 
 \midrule\addlinespace[2.5pt]
 \multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{Image files} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
-\texttt{aligned-signals} & pictures of pairwise aligned signals from same sources in PNGs & \autoref{sec-align-signals} \\ 
+\texttt{aligned-signals} & pictures of pairwise aligned signals from same sources in PNGs & \protect\hyperlink{sec-align-signals}{Align signals} \\ 
 \bottomrule
 \end{tabular*}
 
@@ -155,26 +155,29 @@ CCF values & CCF values of all pairwise aligned signals in 1 CSV & \autoref{sec-
 \tom{breakable table, cannot cross-reference inside table}
 
 For the reproducibility of all our data and alignment results, we
-introduce in detail in Section~\ref{sec-cutting-wires}
+introduce in detail in \hyperref[sec-cutting-wires]{Cutting wires}
 \tom{(cross-reference not working without section number, number-sections: false not working)}
 how we cut the wire and collect the 120 scans with 5 tools on 3
-locations, in Section~\ref{sec-extract-profiles} how we extract profiles
-from the scans, in Section~\ref{sec-filtered-signals} how we filter
-signals from the profiles, in Section~\ref{sec-align-signals} how we
+locations, in \hyperref[sec-extract-profiles]{Extract profiles} how we
+extract profiles from the scans, in
+\hyperref[sec-filtered-signals]{Filtered signals} how we filter signals
+from the profiles, in \hyperref[sec-align-signals]{Align signals} how we
 align signals from different scans and optimize the alignment with the
 cross-correlation function (CCF) values. In
-Section~\ref{sec-data-records}, we discuss where our data is held. Then,
-in Section~\ref{sec-technical-validation}, a technical validation was
-conducted to further compare signals from different sources also match
-our assumption, together with visual aids for drawing conclusions.
-Finally, in Section~\ref{sec-usage-notes}, we provide available codes
-for creating the data set and conducting technical validation, as
-discussed in Section~\ref{sec-methods} and
-Section~\ref{sec-technical-validation}.
-Section~\ref{sec-code-availability} discusses where these codes can be
-found online. We hope this pipeline developed using this data set can be
-further generalized and applied to real crime scenes to help
-investigators draw conclusions based on real wire cut data.
+\hyperref[sec-data-records]{Data Records}, we discuss where our data is
+held. Then, in \hyperref[sec-technical-validation]{Technical
+Validation}, a technical validation was conducted to further compare
+signals from different sources also match our assumption, together with
+visual aids for drawing conclusions. Finally, in
+\hyperref[sec-usage-notes]{Usage Notes}, we provide available codes for
+creating the data set and conducting technical validation, as discussed
+in \hyperref[sec-methods]{Methods} and
+\hyperref[sec-technical-validation]{Technical Validation}.
+\hyperref[sec-code-availability]{Code availability} discusses where
+these codes can be found online. We hope this pipeline developed using
+this data set can be further generalized and applied to real crime
+scenes to help investigators draw conclusions based on real wire cut
+data.
 
 \ifnum \ifinstruction=1
 
