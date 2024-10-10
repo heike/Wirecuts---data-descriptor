@@ -135,13 +135,14 @@ string <- tibble(
   group_type = c(rep("Raw data", 2), rep("Manual derivatives", 1), rep("Computational derivatives", 2), rep("Image files")),
   data_type = c("`x3p-files`", "`meta.csv`", "`profiles`", "`signals`",  "CCF values", "`aligned-signals`"),
   Description = c("folder containing 120 topographic 3d scans of aluminum wire cuts in x3p format", "meta information for each cut with tool, blade, and location information (csv format)", "folder of files with manually extracted profiles (csv format)", "folder of signals, processed from corresponding profile (csv format)",  "CCF values of all pairwise aligned signals in 1 CSV", "pictures of pairwise aligned signals from same sources in PNGs"),
-  Section = c("@sec-cutting-wires", "Cutting wires", "Extract profiles", "Filtered signals",  "Align signals", "Align signals")
+  Section = c("@sec-cutting-wires", "@sec-cutting-wires", "@sec-extract-profiles", "@sec-filtered-signals",  "@sec-align-signals", "@sec-align-signals")
 ) %>%
   gt(rowname_col = "data_type", groupname_col = "group_type") %>% 
   tab_options(table.width = pct(95)) %>%
   cols_width(Description~pct(45), everything()~pct(25)) %>%
   fmt_markdown() %>% as_latex() 
 
+# column widths code - start
 # has bug: column Description is not being recognized, last section is the widest
 widths <- str_extract_all(pattern="dimexpr.....", string[1])[[1]]
 # change into the right order
@@ -155,6 +156,23 @@ string2 <- str_replace(string2, "dimexprSMALL", widths_new[2])
 string2 <- str_replace(string2, "dimexprSMALL", widths_new[3])
 
 string[1] <- string2
+# column widths code - end
+
+# fixing cross-references - start
+crossrefs <- str_extract_all(pattern="@[^ {]*", string[1])[[1]]
+# now replace every one of these cross references with the Latex call to autoref
+crossrefs <- unique(crossrefs) # only needed once
+crossrefs <- crossrefs[nchar(crossrefs) > 1] # and only real references need to be dealt with
+# not sure why the command needs to be escaped twice ... but it works
+cross_latex <- sprintf("\\\\autoref{%s}", gsub("@", "", crossrefs)) 
+
+string2 <- string[1]
+for (i in seq_along(crossrefs)) {
+    string2 <- str_replace_all(string2, crossrefs[i], cross_latex[i])
+}
+string[1] <- string2
+# fixing cross-references - end
+
 string
 ```
 
