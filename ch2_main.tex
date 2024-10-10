@@ -10,24 +10,29 @@
 \newcommand{\hh}[1]{{\textcolor{Green}{#1}}}
 \usepackage{framed}
 
-\newcommand{\ifinstruction}{1} % 1 for instruction, 0 for no instruction
+\newcommand{\ifinstruction}{0} % 1 for instruction, 0 for no instruction
 
 
-% for LaTeX Error: Environment CSLReferences undefined.
-
-% %--------------------------------
-% % %--------------------------------
 
 
 % for gt tables
 %--------------------------------
+% gt packages - see gt_latex_dependencies()
+\usepackage{booktabs}
+\usepackage{caption}
 \usepackage{longtable}
+\usepackage{colortbl}
+\usepackage{array}
+\usepackage{anyfontsize}
+\usepackage{multirow}
 %--------------------------------
 
 
-%in the preamble
+% cite-method must be defined in the pre-amble as natbib. 
+% any natbib options are overwritten by quarto processing somewhere, so 
+% hard code them here
 %--------------------------------
-%\usepackage[square,sort,comma,numbers]{natbib}
+\usepackage[super,sort&compress,comma,numbers]{natbib}
 %\bibliographystyle{jabbr}
 %--------------------------------
 
@@ -36,6 +41,7 @@ confocal microscope (110 character maximum, inc. spaces)}
 
 \author[1,2,*]{Yuhang Lin}
 \author[2,3]{Heike Hofmann}
+\author[1,3]{Curtis Mosher, Alicia Carriquiry, Eden Amin, Jeff Salyards}
 
 \affil[1]{Iowa State University, Department of Statistics, Ames, }
 \affil[2]{Center for Statistics and Applications in Forensic Evidence
@@ -44,9 +50,9 @@ confocal microscope (110 character maximum, inc. spaces)}
 Statistics, Lincoln, }
 
       \affil[*]{corresponding author(s): Yuhang Lin (yhlin@iastate.edu)}
-    
+      
 \begin{abstract}
-\tom{Update later}
+\tom{Update later: max of 170 words: describe the study, the assay(s) performed,  resulting data, and reuse potential}
 
 Wire cut data is important in forensic investigations but lacks a
 systematic way of analyzing the data. We created a data set of 120 scans
@@ -112,29 +118,33 @@ Table~\ref{tbl-data-overview}.
 
 \begin{table}
 
-\caption{\label{tbl-data-overview}Overview of the whole data set.}
+\caption{\label{tbl-data-overview}Structure of available data and
+files.}
 
 \centering{
 
 \fontsize{12.0pt}{14.4pt}\selectfont
-\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}l|ll}
+\begin{tabular*}{0.95\linewidth}{@{\extracolsep{\fill}}>{\raggedright\arraybackslash}p{\dimexpr 0.244\linewidth -2\tabcolsep-1.5\arrayrulewidth}|>{\raggedright\arraybackslash}p{\dimexpr 0.243\linewidth -2\tabcolsep-1.5\arrayrulewidth}>{\raggedright\arraybackslash}p{\dimexpr 0.434\linewidth -2\tabcolsep-1.5\arrayrulewidth}}
 \toprule
  & Description & Section \\ 
 \midrule\addlinespace[2.5pt]
-\multicolumn{3}{l}{Raw data} \\[2.5pt] 
+\multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{Raw data} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
-x3p files & 120 scans of aluminum wire cut in x3p format & Cutting wires \\ 
-metadata & metadata of the scans in 1 CSV & Cutting wires \\ 
+\texttt{x3p-files} & folder containing 120 topographic 3d scans of aluminum wire cuts in x3p format & \autoref{sec-cutting-wires} \\ 
+\texttt{meta.csv} & meta information for each cut with tool, blade, and location information (csv format) & \autoref{sec-cutting-wires} \\ 
 \midrule\addlinespace[2.5pt]
-\multicolumn{3}{l}{Manually processed derivatives} \\[2.5pt] 
+\multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{Manual derivatives} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
-profiles & profiles extracted from scans in 120 CSVs & Extract profiles \\ 
+\texttt{profiles} & folder of files with manually extracted profiles (csv format) & \autoref{sec-extract-profiles} \\ 
 \midrule\addlinespace[2.5pt]
-\multicolumn{3}{l}{Computational processed derivatives} \\[2.5pt] 
+\multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{Computational derivatives} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
-signals & signals filtered from profiles in 1 CSV & Filtered signals \\ 
-aligned signals & pictures of pairwise aligned signals from same sources in PNGs & Align signals \\ 
-CCF values & CCF values of all pairwise aligned signals in 1 CSV & Align signals \\ 
+\texttt{signals} & folder of signals, processed from corresponding profile (csv format) & \autoref{sec-filtered-signals} \\ 
+CCF values & CCF values of all pairwise aligned signals in 1 CSV & \autoref{sec-align-signals} \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{Image files} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+\texttt{aligned-signals} & pictures of pairwise aligned signals from same sources in PNGs & \autoref{sec-align-signals} \\ 
 \bottomrule
 \end{tabular*}
 
@@ -494,88 +504,87 @@ with more pictures for each step into a
 The data set can be easily accessed with the \texttt{CRAN} \texttt{R}
 package \texttt{x3ptools}. Further analysis can be conducted with the
 \texttt{GitHub} \texttt{R} package \texttt{wire} and the \texttt{GitHub}
-\texttt{R} shiny app \texttt{wireShiny} \tom{(citation)}
-\tom{(again????)}.
+\texttt{R} shiny app \texttt{wireShiny} \tom{(citation)} .
 
 \ifnum \ifinstruction=1
 
 \textcolor{gray}{For all studies using custom code in the generation or processing of datasets, a statement must be included under the heading "Code availability", indicating whether and how the code can be accessed, including any restrictions to access. This section should also include information on the versions of any software used, if relevant, and any specific variables or parameters used to generate, test, or process the current dataset.}
 \fi
 
-\section{End of Body}\label{end-of-body}
-
-\hh{(Note that the bibliography style and the name of the bib-file are hard coded in the template file right now.)}
-
 \bibliography{references}
 
-\noindent LaTeX formats citations and references automatically using the bibliography records in your .bib file, which you can edit via the project menu. Use the cite command for an inline citation, %e.g. \cite{Kaufman2020, Figueredo:2009dg, Babichev2002, behringer2014manipulating}. 
-For data citations of datasets uploaded to e.g. \emph{figshare}, please use the \verb|howpublished| option in the bib entry to specify the platform and the link, as in the \verb|Hao:gidmaps:2014| example in the sample bibliography file. For journal articles, DOIs should be included for works in press that do not yet have volume or page numbers. For other journal articles, DOIs should be included uniformly for all articles or not at all. We recommend that you encode all DOIs in your bibtex database as full URLs, e.g. https://doi.org/10.1007/s12110-009-9068-2.
+%\noindent LaTeX formats citations and references automatically using the bibliography records in your .bib file, which you can edit via the project menu. Use the cite command for an inline citation, %e.g. \cite{Kaufman2020, Figueredo:2009dg, Babichev2002, behringer2014manipulating}. 
+%For data citations of datasets uploaded to e.g. \emph{figshare}, please use the \verb|howpublished| option in the bib entry to specify the platform and the link, as in the \verb|Hao:gidmaps:2014| example in the sample bibliography file. For journal articles, DOIs should be included for works in press that do not yet have volume or page numbers. For other journal articles, DOIs should be included uniformly for all articles or not at all. We recommend that you encode all DOIs in your bibtex database as full URLs, e.g. https://doi.org/10.1007/s12110-009-9068-2.
 
 \section*{Acknowledgements} 
-\ifnum \ifinstruction=1
-
-Acknowledgements should be brief, and should not include thanks to
-anonymous referees and editors, or effusive comments. Grant or
-contribution numbers may be acknowledged. \fi
+This work was partially funded by the Center for Statistics and
+Applications in Forensic Evidence (CSAFE) through Cooperative Agreement
+70NANB20H019 between NIST and Iowa State University, which includes
+activities carried out at Carnegie Mellon University, Duke University,
+University of California Irvine, University of Virginia, West Virginia
+University, University of Pennsylvania, Swarthmore College and the
+University of Nebraska-Lincoln.
 
 \section*{Author contributions statement}
 
-\ifnum \ifinstruction=1
-\fi
+Let's follow the Elsevier definitions:
+https://www.elsevier.com/researcher/author/policies-and-guidelines/credit-author-statement
+Y.L.: Methodology, Software, Validation, Data Curation, Writing - Draft;
+H.H.: Conceptualization, Methodology, Validation, Writing - Review \&
+Editing; C.M.: Lab supervision; E.A.: Physical Specimen, Scanning; J.S:
+Forensic advice; A.C.: Funding acquisition.
+%Must include all authors, identified by initials, for example:
+%A.A. conceived the experiment(s), A.A. and B.A. conducted the experiment(s), C.A. and D.A. analysed the results.
 
-Y.L. did all of the work, H.H. made him do the work. But seriously, this
-paper is the one where we need to cite everybody: Eden Amin, Curtis
-Mosher, Jeff Salyards. Alicia?
-Must include all authors, identified by initials, for example:
-A.A. conceived the experiment(s), A.A. and B.A. conducted the experiment(s), C.A. and D.A. analysed the results. All authors reviewed the manuscript. 
+\noindent
+All authors reviewed the manuscript. 
 
 \section*{Competing interests} (mandatory statement)
-
-\ifnum \ifinstruction=1
 
 H.H. is a technical advisor to AFTE (Association of Firearms and
 Toolmarks Examiners), fellow of the ASA (American Statistical
 Association), and committee member of the ASA Forensic Science
 Committee. H.H. has testified as court witness on behalf of judge April
-Neubauer, NY State Supreme Court Criminal Term in New York City. \fi The
-corresponding author is responsible for providing a
+Neubauer, NY State Supreme Court Criminal Term in New York City.
+\ifnum \ifinstruction=1 The corresponding author is responsible for
+providing a
 \href{https://www.nature.com/sdata/policies/editorial-and-publishing-policies#competing}{competing interests statement}
 on behalf of all authors of the paper. This statement must be included
-in the submitted article file.
+in the submitted article file. \fi
 
 % XXX Delete the section below later
-\ifnum \ifinstruction=1
-\section*{Figures \& Tables}
-
-
-Figures, tables, and their legends, should be included at the end of the document. Figures and tables can be referenced in \LaTeX{} using the ref command, e.g. Figure \ref{fig:stream} and Table \ref{tab:example}. 
-
-Authors are encouraged to provide one or more tables that provide basic information on the main ‘inputs’ to the study (e.g. samples, participants, or information sources) and the main data outputs of the study. Tables in the manuscript should generally not be used to present primary data (i.e. measurements). Tables containing primary data should be submitted to an appropriate data repository.
-
-Tables may be provided within the \LaTeX{} document or as separate files (tab-delimited text or Excel files). Legends, where needed, should be included here. Generally, a Data Descriptor should have fewer than ten Tables, but more may be allowed when needed. Tables may be of any size, but only Tables which fit onto a single printed page will be included in the PDF version of the article (up to a maximum of three). 
-
-Due to typesetting constraints, tables that do not fit onto a single A4 page cannot be included in the PDF version of the article and will be made available in the online version only. Any such tables must be labelled in the text as ‘Online-only’ tables and numbered separately from the main table list e.g. ‘Table 1, Table 2, Online-only Table 1’ etc.
-
-\begin{figure}[ht]
-\centering
-\includegraphics[width=\linewidth]{stream}
-\caption{Legend (350 words max). Example legend text.}
-\label{fig:stream}
-\end{figure}
-
-\begin{table}[ht]
-\centering
-\begin{tabular}{|l|l|l|}
-\hline
-Condition & n & p \\
-\hline
-A & 5 & 0.1 \\
-\hline
-B & 10 & 0.01 \\
-\hline
-\end{tabular}
-\caption{\label{tab:example}Legend (350 words max). Example legend text.}
-\end{table}
-\fi
+% \ifnum \ifinstruction=1
+% \section*{Figures \& Tables}
+% 
+% 
+% Figures, tables, and their legends, should be included at the end of the document. Figures and tables can be referenced in \LaTeX{} using the ref command, e.g. Figure \ref{fig:stream} and Table \ref{tab:example}. 
+% 
+% Authors are encouraged to provide one or more tables that provide basic information on the main ‘inputs’ to the study (e.g. samples, participants, or information sources) and the main data outputs of the study. Tables in the manuscript should generally not be used to present primary data (i.e. measurements). Tables containing primary data should be submitted to an appropriate data repository.
+% 
+% Tables may be provided within the \LaTeX{} document or as separate files (tab-delimited text or Excel files). Legends, where needed, should be included here. Generally, a Data Descriptor should have fewer than ten Tables, but more may be allowed when needed. Tables may be of any size, but only Tables which fit onto a single printed page will be included in the PDF version of the article (up to a maximum of three). 
+% 
+% Due to typesetting constraints, tables that do not fit onto a single A4 page cannot be included in the PDF version of the article and will be made available in the online version only. Any such tables must be labelled in the text as ‘Online-only’ tables and numbered separately from the main table list e.g. ‘Table 1, Table 2, Online-only Table 1’ etc.
+% 
+% \begin{figure}[ht]
+% \centering
+% \includegraphics[width=\linewidth]{stream}
+% \caption{Legend (350 words max). Example legend text.}
+% \label{fig:stream}
+% \end{figure}
+% 
+% \begin{table}[ht]
+% \centering
+% \begin{tabular}{|l|l|l|}
+% \hline
+% Condition & n & p \\
+% \hline
+% A & 5 & 0.1 \\
+% \hline
+% B & 10 & 0.01 \\
+% \hline
+% \end{tabular}
+% \caption{\label{tab:example}Legend (350 words max). Example legend text.}
+% \end{table}
+% \fi
 
 \end{document}
