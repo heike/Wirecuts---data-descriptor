@@ -57,14 +57,12 @@ bibliography: "`r rbbt::bbt_write_bib('references.bib', ignore = stringr::str_su
 acknowledgements: |
  This work was partially funded by the Center for Statistics and Applications in Forensic Evidence (CSAFE) through Cooperative Agreement 70NANB20H019 between NIST and Iowa State University, which includes activities carried out at Carnegie Mellon University, Duke University, University of California Irvine, University of Virginia, West Virginia University, University of Pennsylvania, Swarthmore College and the University of Nebraska-Lincoln.
 contributions: |
- Let's follow the Elsevier definitions: https://www.elsevier.com/researcher/author/policies-and-guidelines/credit-author-statement
+ hh{Let's follow the Elsevier definitions: https://www.elsevier.com/researcher/author/policies-and-guidelines/credit-author-statement}
  Y.L.: Methodology, Software, Validation, Data Curation, Writing - Draft; H.H.: Conceptualization, Methodology, Validation, Writing - Review & Editing; C.M.: Lab supervision;
  E.A.: Physical Specimen, Scanning; J.S: Forensic advice; A.C.: Funding acquisition.
 competing: |
  H.H. is a technical advisor to AFTE (Association of Firearms and Toolmarks Examiners), fellow of the ASA (American Statistical Association), and committee member of the ASA Forensic Science Committee. H.H. has testified as court witness on behalf of judge April Neubauer, NY State Supreme Court Criminal Term in New York City. 
- \ifnum \ifinstruction=1
-  The corresponding author is responsible for providing a \href{https://www.nature.com/sdata/policies/editorial-and-publishing-policies#competing}{competing interests statement} on behalf of all authors of the paper. This statement must be included in the submitted article file.
- \fi
+ \hh{other competing interests - Alicia?}
 editor_options: 
   chunk_output_type: console
 ---
@@ -106,8 +104,8 @@ Wire cut data is a type of forensic tool mark data used to identify the source o
 There have been cases where the evidence and testimony on wire cut evidence played a crucial role in the criminal investigation and conviction of a defendant.
 
 However,
-there is a lack of a standardized method to analyze it except for visual comparison.
-Although the Association of Firearm and Toolmark Examiners (AFTE) developed the Theory of Identification  \tom{incorrect citation format} [@afte], which outlines the process of comparing tool marks,
+there is a lack of a standardized method to analyze it except for visual comparison. 
+Although the Association of Firearm and Toolmark Examiners (AFTE) developed the Theory of Identification[@afte], which outlines the process of comparing tool marks,
 it is still subjective and relies on the examiner's experience,
 making results hard to reproduce and validate.
 Several reports,
@@ -133,7 +131,7 @@ as described in @tbl-data-overview.
 
 string <- tibble(
   group_type = c(rep("Raw data", 2), rep("Manual derivatives", 1), rep("Computational derivatives", 2), rep("Image files")),
-  data_type = c("`x3p-files`", "`meta.csv`", "`profiles`", "`signals`",  "CCF values", "`aligned-signals`"),
+  data_type = c("`scans/`", "`meta.csv`", "`profiles`", "`signals`",  "CCF values", "`aligned-signals`"),
   Description = c("folder containing 120 topographic 3d scans of aluminum wire cuts in x3p format", "meta information for each cut with tool, blade, and location information (csv format)", "folder of files with manually extracted profiles (csv format)", "folder of signals, processed from corresponding profile (csv format)",  "CCF values of all pairwise aligned signals in 1 CSV", "pictures of pairwise aligned signals from same sources in PNGs"),
   Section = c("@sec-cutting-wires", "@sec-cutting-wires", "@sec-extract-profiles", "@sec-filtered-signals",  "@sec-align-signals", "@sec-align-signals")
 ) %>%
@@ -391,12 +389,11 @@ A third person then checked the data to ensure that the data was consistent in n
 
 
 
-\hh{again - the website is not the right place for the validation - instead, move parts from the website here. }
 
 \hh{For the validation of the scans and their processing we investigate the correlation scores of pair-wise aligned signals. For signals from scans of wires cut with a different tool, we would expect a low correlation score. Large scores between signals are indicative of being made by the same tool. 
 Show boxplots and roc curve. }
-For validation of all other tools and locations of scan replicates,
-see the detailed \href{https://heike.github.io/Wirecuts/data-descriptor/Technical_Validation.html}{report}.
+For the validation of all other tools and locations of scan replicates,
+see \href{https://heike.github.io/Wirecuts/data-descriptor/README.md}{Github repo}.
 
 
 \begin{figure}[ht]
@@ -552,7 +549,7 @@ with FNR to be 0.02.
 
 # Code availability {#sec-code-availability}
 
-\tom{table of code-manual?}
+\tom{table of code}\hh{list files with short explanation, similar to table 1}
 
 \hh{no, we can't use the website as a place for more detailed procedures. This paper is the detailed procedure.}\tom{no more README, scanning procedures in another HTML}
 We put together the cutting and the standard scanning procedures mentioned in Section \ref{sec-cutting-wires} \tom{cross-ref not working} with more pictures for each step into a \href{https://github.com/heike/Wirecuts/blob/main/README.md}{README of the GitHub repository \texttt{heike/Wirecuts}} \tom{(High-res pics needed in the README)}. 
