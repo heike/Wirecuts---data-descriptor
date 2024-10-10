@@ -15,10 +15,31 @@ authors:
     orcid: 0000-0001-6216-5183
     email: hhofmann4@unl.edu
     corresponding: false
-  - name: Curtis Mosher, Alicia Carriquiry, Eden Amin, Jeff Salyards
+  - name: Curtis Mosher
+    affiliations:
+      - ref: 4
+      - ref: 5
+    email: cmosher@iastate.edu
+    corresponding: false
+  - name: Alicia L Carriquiry
     affiliations:
       - ref: 1
-      - ref: 3
+      - ref: 2
+    orcid: 0000-0002-6428-9427
+    email: alicia@iastate.edu
+    corresponding: false
+  - name: Eden Amin
+    affiliations:
+      - ref: 2
+    email: eamin@iastate.edu
+    corresponding: false
+  - name: Jeff Salyards
+    affiliations:
+      - ref: 2
+    orcid: 0000-0002-8321-1246
+    email: jdsal@msn.com
+    corresponding: false
+  - name: \tom{order? Jeff the last? check details? affiliations? Middle name for Alicia?}
     corresponding: false  
 affiliations: 
   - id: 1
@@ -27,8 +48,8 @@ affiliations:
     city: Ames
     state: IA
   - id: 2
-    name: Center for Statistics and Applications in Forensic Evidence (CSAFE)
-    department: Iowa State University
+    name: Iowa State University
+    department: Center for Statistics and Applications in Forensic Evidence (CSAFE)
     city: Ames
     state: IA
   - id: 3
@@ -36,6 +57,16 @@ affiliations:
     department: Department of Statistics
     city: Lincoln
     state: NE
+  - id: 4
+    name: Iowa State University
+    department: Department of Genetics, Development and Cell Biology (GDCB)
+    city: Ames
+    state: IA
+  - id: 5
+    name: Iowa State University
+    department: Roy J Carver High Resolution Microscopy Facility (HRMF)
+    city: Ames
+    state: IA
 abstract: |
  \tom{Update later: max of 170 words: describe the study, the assay(s) performed,  resulting data, and reuse potential}
  Wire cut data is important in forensic investigations but lacks a systematic way of analyzing the data.

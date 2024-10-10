@@ -10,24 +10,29 @@
 \newcommand{\hh}[1]{{\textcolor{Green}{#1}}}
 \usepackage{framed}
 
-\newcommand{\ifinstruction}{1} % 1 for instruction, 0 for no instruction
+\newcommand{\ifinstruction}{0} % 1 for instruction, 0 for no instruction
 
 
-% for LaTeX Error: Environment CSLReferences undefined.
-
-% %--------------------------------
-% % %--------------------------------
 
 
 % for gt tables
 %--------------------------------
+% gt packages - see gt_latex_dependencies()
+\usepackage{booktabs}
+\usepackage{caption}
 \usepackage{longtable}
+\usepackage{colortbl}
+\usepackage{array}
+\usepackage{anyfontsize}
+\usepackage{multirow}
 %--------------------------------
 
 
-%in the preamble
+% cite-method must be defined in the pre-amble as natbib. 
+% any natbib options are overwritten by quarto processing somewhere, so 
+% hard code them here
 %--------------------------------
-%\usepackage[square,sort,comma,numbers]{natbib}
+\usepackage[super,sort&compress,comma,numbers]{natbib}
 %\bibliographystyle{jabbr}
 %--------------------------------
 
@@ -36,17 +41,26 @@ confocal microscope (110 character maximum, inc. spaces)}
 
 \author[1,2,*]{Yuhang Lin}
 \author[2,3]{Heike Hofmann}
+\author[4,5]{Curtis Mosher}
+\author[1,2]{Alicia L Carriquiry}
+\author[2]{Eden Amin}
+\author[2]{Jeff Salyards}
+\author[]{\tom{order? Jeff the last? check details? affiliations? Middle name for Alicia?}}
 
 \affil[1]{Iowa State University, Department of Statistics, Ames, }
-\affil[2]{Center for Statistics and Applications in Forensic Evidence
-(CSAFE), Iowa State University, Ames, }
+\affil[2]{Iowa State University, Center for Statistics and Applications
+in Forensic Evidence (CSAFE), Ames, }
 \affil[3]{University of Nebraska-Lincoln, Department of
 Statistics, Lincoln, }
+\affil[4]{Iowa State University, Department of Genetics, Development and
+Cell Biology (GDCB), Ames, }
+\affil[5]{Iowa State University, Roy J Carver High Resolution Microscopy
+Facility (HRMF), Ames, }
 
       \affil[*]{corresponding author(s): Yuhang Lin (yhlin@iastate.edu)}
-    
+              
 \begin{abstract}
-\tom{Update later}
+\tom{Update later: max of 170 words: describe the study, the assay(s) performed,  resulting data, and reuse potential}
 
 Wire cut data is important in forensic investigations but lacks a
 systematic way of analyzing the data. We created a data set of 120 scans
@@ -83,15 +97,15 @@ conviction of a defendant.
 
 However, there is a lack of a standardized method to analyze it except
 for visual comparison. Although the Association of Firearm and Toolmark
-Examiners (AFTE) developed the Theory of Identification
-\tom{incorrect citation format} \citep{afte}, which outlines the process
-of comparing tool marks, it is still subjective and relies on the
-examiner's experience, making results hard to reproduce and validate.
-Several reports, such as those from the National Research Council
-\citep{nas2009} and the President's Council of Advisors on Science and
-Technology \citep{pcast}, pointed out the abovementioned issues and
-called for more objective and reproducible methods to analyze tool
-marks. Early research by \citep{maNISTBulletSignature2004} and
+Examiners (AFTE) developed the Theory of Identification\citep{afte},
+which outlines the process of comparing tool marks, it is still
+subjective and relies on the examiner's experience, making results hard
+to reproduce and validate. Several reports, such as those from the
+National Research Council \citep{nas2009} and the President's Council of
+Advisors on Science and Technology \citep{pcast}, pointed out the
+abovementioned issues and called for more objective and reproducible
+methods to analyze tool marks. Early research by
+\citep{maNISTBulletSignature2004} and
 \citep{zhengNISTBallisticsToolmark2016} has focused on collecting and
 distributing datasets for this purpose and providing a foundation for
 future advancements in tool mark analysis. Studies such as those by
@@ -112,29 +126,33 @@ Table~\ref{tbl-data-overview}.
 
 \begin{table}
 
-\caption{\label{tbl-data-overview}Overview of the whole data set.}
+\caption{\label{tbl-data-overview}Structure of available data and
+files.}
 
 \centering{
 
 \fontsize{12.0pt}{14.4pt}\selectfont
-\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}l|ll}
+\begin{tabular*}{0.95\linewidth}{@{\extracolsep{\fill}}>{\raggedright\arraybackslash}p{\dimexpr 0.244\linewidth -2\tabcolsep-1.5\arrayrulewidth}|>{\raggedright\arraybackslash}p{\dimexpr 0.243\linewidth -2\tabcolsep-1.5\arrayrulewidth}>{\raggedright\arraybackslash}p{\dimexpr 0.434\linewidth -2\tabcolsep-1.5\arrayrulewidth}}
 \toprule
  & Description & Section \\ 
 \midrule\addlinespace[2.5pt]
-\multicolumn{3}{l}{Raw data} \\[2.5pt] 
+\multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{Raw data} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
-x3p files & 120 scans of aluminum wire cut in x3p format & Cutting wires \\ 
-metadata & metadata of the scans in 1 CSV & Cutting wires \\ 
+\texttt{scans/} & folder containing 120 topographic 3d scans of aluminum wire cuts in x3p format & \protect\nameref{sec-cutting-wires} \\ 
+\texttt{meta.csv} & meta information for each cut with tool, blade, and location information (csv format) & \protect\nameref{sec-cutting-wires} \\ 
 \midrule\addlinespace[2.5pt]
-\multicolumn{3}{l}{Manually processed derivatives} \\[2.5pt] 
+\multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{Manual derivatives} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
-profiles & profiles extracted from scans in 120 CSVs & Extract profiles \\ 
+\texttt{profiles} & folder of files with manually extracted profiles (csv format) & \protect\nameref{sec-extract-profiles} \\ 
 \midrule\addlinespace[2.5pt]
-\multicolumn{3}{l}{Computational processed derivatives} \\[2.5pt] 
+\multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{Computational derivatives} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
-signals & signals filtered from profiles in 1 CSV & Filtered signals \\ 
-aligned signals & pictures of pairwise aligned signals from same sources in PNGs & Align signals \\ 
-CCF values & CCF values of all pairwise aligned signals in 1 CSV & Align signals \\ 
+\texttt{signals} & folder of signals, processed from corresponding profile (csv format) & \protect\nameref{sec-filtered-signals} \\ 
+CCF values & CCF values of all pairwise aligned signals in 1 CSV & \protect\nameref{sec-align-signals} \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{Image files} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+\texttt{aligned-signals} & pictures of pairwise aligned signals from same sources in PNGs & \protect\nameref{sec-align-signals} \\ 
 \bottomrule
 \end{tabular*}
 
@@ -145,26 +163,29 @@ CCF values & CCF values of all pairwise aligned signals in 1 CSV & Align signals
 \tom{breakable table, cannot cross-reference inside table}
 
 For the reproducibility of all our data and alignment results, we
-introduce in detail in Section~\ref{sec-cutting-wires}
+introduce in detail in \hyperref[sec-cutting-wires]{Cutting wires}
 \tom{(cross-reference not working without section number, number-sections: false not working)}
 how we cut the wire and collect the 120 scans with 5 tools on 3
-locations, in Section~\ref{sec-extract-profiles} how we extract profiles
-from the scans, in Section~\ref{sec-filtered-signals} how we filter
-signals from the profiles, in Section~\ref{sec-align-signals} how we
+locations, in \hyperref[sec-extract-profiles]{Extract profiles} how we
+extract profiles from the scans, in
+\hyperref[sec-filtered-signals]{Filtered signals} how we filter signals
+from the profiles, in \hyperref[sec-align-signals]{Align signals} how we
 align signals from different scans and optimize the alignment with the
 cross-correlation function (CCF) values. In
-Section~\ref{sec-data-records}, we discuss where our data is held. Then,
-in Section~\ref{sec-technical-validation}, a technical validation was
-conducted to further compare signals from different sources also match
-our assumption, together with visual aids for drawing conclusions.
-Finally, in Section~\ref{sec-usage-notes}, we provide available codes
-for creating the data set and conducting technical validation, as
-discussed in Section~\ref{sec-methods} and
-Section~\ref{sec-technical-validation}.
-Section~\ref{sec-code-availability} discusses where these codes can be
-found online. We hope this pipeline developed using this data set can be
-further generalized and applied to real crime scenes to help
-investigators draw conclusions based on real wire cut data.
+\hyperref[sec-data-records]{Data Records}, we discuss where our data is
+held. Then, in \hyperref[sec-technical-validation]{Technical
+Validation}, a technical validation was conducted to further compare
+signals from different sources also match our assumption, together with
+visual aids for drawing conclusions. Finally, in
+\hyperref[sec-usage-notes]{Usage Notes}, we provide available codes for
+creating the data set and conducting technical validation, as discussed
+in \hyperref[sec-methods]{Methods} and
+\hyperref[sec-technical-validation]{Technical Validation}.
+\hyperref[sec-code-availability]{Code availability} discusses where
+these codes can be found online. We hope this pipeline developed using
+this data set can be further generalized and applied to real crime
+scenes to help investigators draw conclusions based on real wire cut
+data.
 
 \ifnum \ifinstruction=1
 
@@ -330,14 +351,12 @@ consistent format to ensure they could be easily accessed and analyzed.
 A third person then checked the data to ensure that the data was
 consistent in naming and accurate.
 
-\hh{again - the website is not the right place for the validation - instead, move parts from the website here. }
-
 \hh{For the validation of the scans and their processing we investigate the correlation scores of pair-wise aligned signals. For signals from scans of wires cut with a different tool, we would expect a low correlation score. Large scores between signals are indicative of being made by the same tool. 
 Show boxplots and roc curve. }
 
-For validation of all other tools and locations of scan replicates, see
-the detailed
-\href{https://heike.github.io/Wirecuts/data-descriptor/Technical_Validation.html}{report}.
+For the validation of all other tools and locations of scan replicates,
+see
+\href{https://heike.github.io/Wirecuts/data-descriptor/README.md}{Github repo}.
 
 \begin{figure}[ht]
 \centering
@@ -481,7 +500,7 @@ and 0.658 to control the FPR to be less than 0.01, with FNR to be 0.02.
 
 \section{Code availability}\label{sec-code-availability}
 
-\tom{table of code-manual?}
+\tom{table of code}\hh{list files with short explanation, similar to table 1}
 
 \hh{no, we can't use the website as a place for more detailed procedures. This paper is the detailed procedure.}\tom{no more README, scanning procedures in another HTML}
 
@@ -494,88 +513,83 @@ with more pictures for each step into a
 The data set can be easily accessed with the \texttt{CRAN} \texttt{R}
 package \texttt{x3ptools}. Further analysis can be conducted with the
 \texttt{GitHub} \texttt{R} package \texttt{wire} and the \texttt{GitHub}
-\texttt{R} shiny app \texttt{wireShiny} \tom{(citation)}
-\tom{(again????)}.
+\texttt{R} shiny app \texttt{wireShiny} \tom{(citation)} .
 
 \ifnum \ifinstruction=1
 
 \textcolor{gray}{For all studies using custom code in the generation or processing of datasets, a statement must be included under the heading "Code availability", indicating whether and how the code can be accessed, including any restrictions to access. This section should also include information on the versions of any software used, if relevant, and any specific variables or parameters used to generate, test, or process the current dataset.}
 \fi
 
-\section{End of Body}\label{end-of-body}
-
-\hh{(Note that the bibliography style and the name of the bib-file are hard coded in the template file right now.)}
-
 \bibliography{references}
 
-\noindent LaTeX formats citations and references automatically using the bibliography records in your .bib file, which you can edit via the project menu. Use the cite command for an inline citation, %e.g. \cite{Kaufman2020, Figueredo:2009dg, Babichev2002, behringer2014manipulating}. 
-For data citations of datasets uploaded to e.g. \emph{figshare}, please use the \verb|howpublished| option in the bib entry to specify the platform and the link, as in the \verb|Hao:gidmaps:2014| example in the sample bibliography file. For journal articles, DOIs should be included for works in press that do not yet have volume or page numbers. For other journal articles, DOIs should be included uniformly for all articles or not at all. We recommend that you encode all DOIs in your bibtex database as full URLs, e.g. https://doi.org/10.1007/s12110-009-9068-2.
+%\noindent LaTeX formats citations and references automatically using the bibliography records in your .bib file, which you can edit via the project menu. Use the cite command for an inline citation, %e.g. \cite{Kaufman2020, Figueredo:2009dg, Babichev2002, behringer2014manipulating}. 
+%For data citations of datasets uploaded to e.g. \emph{figshare}, please use the \verb|howpublished| option in the bib entry to specify the platform and the link, as in the \verb|Hao:gidmaps:2014| example in the sample bibliography file. For journal articles, DOIs should be included for works in press that do not yet have volume or page numbers. For other journal articles, DOIs should be included uniformly for all articles or not at all. We recommend that you encode all DOIs in your bibtex database as full URLs, e.g. https://doi.org/10.1007/s12110-009-9068-2.
 
 \section*{Acknowledgements} 
-\ifnum \ifinstruction=1
-
-Acknowledgements should be brief, and should not include thanks to
-anonymous referees and editors, or effusive comments. Grant or
-contribution numbers may be acknowledged. \fi
+This work was partially funded by the Center for Statistics and
+Applications in Forensic Evidence (CSAFE) through Cooperative Agreement
+70NANB20H019 between NIST and Iowa State University, which includes
+activities carried out at Carnegie Mellon University, Duke University,
+University of California Irvine, University of Virginia, West Virginia
+University, University of Pennsylvania, Swarthmore College and the
+University of Nebraska-Lincoln.
 
 \section*{Author contributions statement}
 
-\ifnum \ifinstruction=1
-\fi
+hh\{Let's follow the Elsevier definitions:
+https://www.elsevier.com/researcher/author/policies-and-guidelines/credit-author-statement\}
+Y.L.: Methodology, Software, Validation, Data Curation, Writing - Draft;
+H.H.: Conceptualization, Methodology, Validation, Writing - Review \&
+Editing; C.M.: Lab supervision; E.A.: Physical Specimen, Scanning; J.S:
+Forensic advice; A.C.: Funding acquisition.
+%Must include all authors, identified by initials, for example:
+%A.A. conceived the experiment(s), A.A. and B.A. conducted the experiment(s), C.A. and D.A. analysed the results.
 
-Y.L. did all of the work, H.H. made him do the work. But seriously, this
-paper is the one where we need to cite everybody: Eden Amin, Curtis
-Mosher, Jeff Salyards. Alicia?
-Must include all authors, identified by initials, for example:
-A.A. conceived the experiment(s), A.A. and B.A. conducted the experiment(s), C.A. and D.A. analysed the results. All authors reviewed the manuscript. 
+\noindent
+All authors reviewed the manuscript. 
 
 \section*{Competing interests} (mandatory statement)
-
-\ifnum \ifinstruction=1
 
 H.H. is a technical advisor to AFTE (Association of Firearms and
 Toolmarks Examiners), fellow of the ASA (American Statistical
 Association), and committee member of the ASA Forensic Science
 Committee. H.H. has testified as court witness on behalf of judge April
-Neubauer, NY State Supreme Court Criminal Term in New York City. \fi The
-corresponding author is responsible for providing a
-\href{https://www.nature.com/sdata/policies/editorial-and-publishing-policies#competing}{competing interests statement}
-on behalf of all authors of the paper. This statement must be included
-in the submitted article file.
+Neubauer, NY State Supreme Court Criminal Term in New York City.
+\hh{other competing interests - Alicia?}
 
 % XXX Delete the section below later
-\ifnum \ifinstruction=1
-\section*{Figures \& Tables}
-
-
-Figures, tables, and their legends, should be included at the end of the document. Figures and tables can be referenced in \LaTeX{} using the ref command, e.g. Figure \ref{fig:stream} and Table \ref{tab:example}. 
-
-Authors are encouraged to provide one or more tables that provide basic information on the main ‘inputs’ to the study (e.g. samples, participants, or information sources) and the main data outputs of the study. Tables in the manuscript should generally not be used to present primary data (i.e. measurements). Tables containing primary data should be submitted to an appropriate data repository.
-
-Tables may be provided within the \LaTeX{} document or as separate files (tab-delimited text or Excel files). Legends, where needed, should be included here. Generally, a Data Descriptor should have fewer than ten Tables, but more may be allowed when needed. Tables may be of any size, but only Tables which fit onto a single printed page will be included in the PDF version of the article (up to a maximum of three). 
-
-Due to typesetting constraints, tables that do not fit onto a single A4 page cannot be included in the PDF version of the article and will be made available in the online version only. Any such tables must be labelled in the text as ‘Online-only’ tables and numbered separately from the main table list e.g. ‘Table 1, Table 2, Online-only Table 1’ etc.
-
-\begin{figure}[ht]
-\centering
-\includegraphics[width=\linewidth]{stream}
-\caption{Legend (350 words max). Example legend text.}
-\label{fig:stream}
-\end{figure}
-
-\begin{table}[ht]
-\centering
-\begin{tabular}{|l|l|l|}
-\hline
-Condition & n & p \\
-\hline
-A & 5 & 0.1 \\
-\hline
-B & 10 & 0.01 \\
-\hline
-\end{tabular}
-\caption{\label{tab:example}Legend (350 words max). Example legend text.}
-\end{table}
-\fi
+% \ifnum \ifinstruction=1
+% \section*{Figures \& Tables}
+% 
+% 
+% Figures, tables, and their legends, should be included at the end of the document. Figures and tables can be referenced in \LaTeX{} using the ref command, e.g. Figure \ref{fig:stream} and Table \ref{tab:example}. 
+% 
+% Authors are encouraged to provide one or more tables that provide basic information on the main ‘inputs’ to the study (e.g. samples, participants, or information sources) and the main data outputs of the study. Tables in the manuscript should generally not be used to present primary data (i.e. measurements). Tables containing primary data should be submitted to an appropriate data repository.
+% 
+% Tables may be provided within the \LaTeX{} document or as separate files (tab-delimited text or Excel files). Legends, where needed, should be included here. Generally, a Data Descriptor should have fewer than ten Tables, but more may be allowed when needed. Tables may be of any size, but only Tables which fit onto a single printed page will be included in the PDF version of the article (up to a maximum of three). 
+% 
+% Due to typesetting constraints, tables that do not fit onto a single A4 page cannot be included in the PDF version of the article and will be made available in the online version only. Any such tables must be labelled in the text as ‘Online-only’ tables and numbered separately from the main table list e.g. ‘Table 1, Table 2, Online-only Table 1’ etc.
+% 
+% \begin{figure}[ht]
+% \centering
+% \includegraphics[width=\linewidth]{stream}
+% \caption{Legend (350 words max). Example legend text.}
+% \label{fig:stream}
+% \end{figure}
+% 
+% \begin{table}[ht]
+% \centering
+% \begin{tabular}{|l|l|l|}
+% \hline
+% Condition & n & p \\
+% \hline
+% A & 5 & 0.1 \\
+% \hline
+% B & 10 & 0.01 \\
+% \hline
+% \end{tabular}
+% \caption{\label{tab:example}Legend (350 words max). Example legend text.}
+% \end{table}
+% \fi
 
 \end{document}
