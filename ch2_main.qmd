@@ -159,16 +159,17 @@ string[1] <- string2
 # column widths code - end
 
 # fixing cross-references - start
-crossrefs <- str_extract_all(pattern="@[^ {]*", string[1])[[1]]
+crossrefs <- str_extract_all(pattern="hyperlink\\{[^ {]*\\}\\{.*\\}", string[1])[[1]]
 # now replace every one of these cross references with the Latex call to autoref
 crossrefs <- unique(crossrefs) # only needed once
-crossrefs <- crossrefs[nchar(crossrefs) > 1] # and only real references need to be dealt with
-# not sure why the command needs to be escaped twice ... but it works
-cross_latex <- sprintf("\\\\autoref{%s}", gsub("@", "", crossrefs)) 
+# crossrefs <- crossrefs[nchar(crossrefs) > 1] # and only real references need to be dealt with
+cross_latex <- sprintf("\\nameref%s", str_extract_all(pattern="\\{[^ {]*\\}", crossrefs))
 
 string2 <- string[1]
 for (i in seq_along(crossrefs)) {
-    string2 <- str_replace_all(string2, crossrefs[i], cross_latex[i])
+    string2 <- str_replace_all(string2, crossrefs[i] %>%
+  str_replace_all("\\{", "\\\\{") %>% 
+  str_replace_all("\\}", "\\\\}"), cross_latex[i])
 }
 string[1] <- string2
 # fixing cross-references - end
