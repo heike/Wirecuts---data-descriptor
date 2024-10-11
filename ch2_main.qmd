@@ -125,7 +125,7 @@ rbbt::bbt_write_bib(keys=keys, path='references.bib', overwrite = TRUE, library_
 
 
 
-# Background \& Summary {#sec-background-summary}
+# Background \& Summary {#sec-background-summary .unnumbered}
 
 Wire cut data is a type of forensic tool mark data used to identify the source of a wire cutter based on the striations left on the surface.
 There have been cases where the evidence and testimony on wire cut evidence played a crucial role in the criminal investigation and conviction of a defendant.
@@ -189,7 +189,10 @@ crossrefs <- str_extract_all(pattern = "hyperlink\\{[^ {]*\\}\\{.*\\}", string[1
 # now replace every one of these cross references with the Latex call to autoref
 crossrefs <- unique(crossrefs) # only needed once
 # crossrefs <- crossrefs[nchar(crossrefs) > 1] # and only real references need to be dealt with
-cross_latex <- sprintf("\\nameref%s", str_extract_all(pattern = "\\{[^ {]*\\}", crossrefs))
+cross_latex <- crossrefs %>%
+  str_replace("\\{", "[") %>%
+  str_replace("\\}", "]") %>%
+  str_replace("hyperlink", "\\\\hyperref")
 
 string2 <- string[1]
 for (i in seq_along(crossrefs)) {
@@ -204,7 +207,7 @@ string
 ```
 
 For the reproducibility of all our data and alignment results,
-we introduce in detail in [Cutting wires](#sec-cutting-wires) \tom{(number-sections: false not working)} how we cut the wire and collect the 120 scans with 5 tools on 3 locations,
+we introduce in detail in [Cutting wires](#sec-cutting-wires) \tom{hyperlink location incorrect for unnumbered sections} how we cut the wire and collect the 120 scans with 5 tools on 3 locations,
 in [Extract profiles](#sec-extract-profiles) how we extract profiles from the scans,
 in [Filtered signals](#sec-filtered-signals) how we filter signals from the profiles,
 in [Align signals](#sec-align-signals) how we align signals from different scans and optimize the alignment with the cross-correlation function (CCF) values.
@@ -227,7 +230,7 @@ We hope this pipeline developed using this data set can be further generalized a
 
 
 
-# Methods {#sec-methods}
+# Methods {#sec-methods .unnumbered}
 
 In this study,
 aluminum wire was used to create an optimal scenario where the most amount of information could be transferred from the tool to the substrate,
@@ -235,7 +238,7 @@ despite the wire in some real cases being made of lead.
 The physical property of aluminium wire make it an excellent candidate for keeping marks while being relatively easy to bend and non-toxic.
 
 
-## Cutting wires {#sec-cutting-wires}
+## Cutting wires {#sec-cutting-wires .unnumbered}
 
 The aluminum wire used was 16 Gauge/1.5 mm, anodized.
 In order to cut the wire,
@@ -283,7 +286,7 @@ The scanned surfaces are saved in a resolution of $0.645 \mu m \times 0.645 \mu 
 \end{figure}
 
 
-## Extract profiles {#sec-extract-profiles}
+## Extract profiles {#sec-extract-profiles .unnumbered}
 
 Numerical comparisons between 2 replicates cannot be done directly on the \texttt{x3p} files.
 We need to extract representative functions from the scans first.
@@ -302,7 +305,7 @@ We can then investigate the values under this profile line.
 The profile function is along the line is plotted in Figure \ref{fig-T1AW-LI-R1-profiles-signals}(b).
 
 
-## Filtered signals {#sec-filtered-signals}
+## Filtered signals {#sec-filtered-signals .unnumbered}
 
 With the profile extracted,
 we can then obtain the signal.
@@ -318,7 +321,7 @@ Finally,
 the extreme tail values are removed.
 
 
-## Align signals {#sec-align-signals}
+## Align signals {#sec-align-signals .unnumbered}
 
 Signals extracted from different scans can be put together for comparison,
 and we maximize the corss-correlation function (CCF) values between the signals to numerically find the best alignment.
@@ -389,7 +392,7 @@ Transparent Methods Checklist
 
 
 
-# Data Records {#sec-data-records}
+# Data Records {#sec-data-records .unnumbered}
 
 The complete data set is available on the ISU DataShare repository at \href{https://iastate.figshare.com/}{https://iastate.figshare.com/},
 which is public and open access for every interested researcher.
@@ -405,7 +408,7 @@ The data set consists of 120 scans in the \texttt{x3p} file format with the nami
 
 
 
-# Technical Validation {#sec-technical-validation}
+# Technical Validation {#sec-technical-validation .unnumbered}
 
 \tom{a picture of alignment with ccf from different sources to show if different source, our evaluation returns small ccf, which matches what we thought.}
 
@@ -494,7 +497,7 @@ see \href{https://heike.github.io/Wirecuts/data-descriptor/README.md}{Github rep
 
 
 
-# Usage Notes {#sec-usage-notes}
+# Usage Notes {#sec-usage-notes .unnumbered}
 
 \hh{The \texttt{R} package \texttt{x3ptools} (available from \texttt{CRAN}) supports working with files in  x3p format. }
 
@@ -575,7 +578,7 @@ with FNR to be 0.02.
 
 
 
-# Code availability {#sec-code-availability}
+# Code availability {#sec-code-availability .unnumbered}
 
 \tom{table of code}\hh{list files with short explanation, similar to table 1}
 
