@@ -271,16 +271,23 @@ to scan the wire tip surfaces.
 The scanned surfaces are saved in a resolution of $0.645 \mu m \times 0.645 \mu m$ per square pixel in an \texttt{x3p} file format.
 
 
-::: {#fig-cut-tent-scan layout="[[20, -2, 32, -2, 20]]" fig-env="figure"}
+:::: {#fig-cut-tent-scan layout="[30, -5, 65]"}
 
-![](images/kaiweet-label-062524.JPG){#fig-cut-tent-scan-a height=14%}
+:::{}
 
-![](images/T1AW-LI-R2-4edges.png){#fig-cut-tent-scan-b height=22%}
+![](images/kaiweet-label-062524.JPG){#fig-cut-tent-scan-a height=15%}
 
-![](images/wire-microscope-062524.JPG){#fig-cut-tent-scan-c height=14%}
+![](images/wire-microscope-062524.JPG){#fig-cut-tent-scan-c height=15%}
+
+:::
+
+:::{}
+![](images/T1AW-LI-R2-4edges.png){#fig-cut-tent-scan-b height=33%}
+:::
 
 \(a) A Kaiweets wire cutter of model KWS-105 was used to cut the wire. \tom{we don't have another high resolution pic showing wirecutter cutting wire} (b) A tent structure created by blade AB. After separating 2 tent structures by the connecting position, we obtained 2 samples - 1 sample from blade A and B. (c) A confocal microscope was used to scan the wire surfaces. \tom{need an extra pic of the tip} \tom{| full requirements see \href{https://www.nature.com/sdata/publish/submission-guidelines\#figures}{https://www.nature.com/sdata/publish/submission-guidelines\#figures}}
-:::
+
+::::
 
 
 ## Extract profiles {#sec-extract-profiles .unnumbered}
