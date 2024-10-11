@@ -304,9 +304,9 @@ and be orthogonal to the striation marks of the scan,
 which are formed by ups and downs of grooves.
 So,
 we draw the line across the wide region of the scan to maximize the feature captured,
-as shown in dark blue in Figure \ref{fig-T1AW-LI-R1-profiles-signals}(a).
+as shown in dark blue in @fig-T1AW-LI-R1-profiles.
 We can then investigate the values under this profile line.
-The profile function is along the line is plotted in Figure \ref{fig-T1AW-LI-R1-profiles-signals}(b).
+The profile function is along the line is plotted in @fig-T1AW-LI-R1-profiles-plot.
 
 
 ## Filtered signals {#sec-filtered-signals .unnumbered}
@@ -318,8 +318,8 @@ In particular,
 we first used a large low-pass filter with bandwidths of 400 microns to remove large trend,
 as it can overwhelm the signals,
 and then used a small high-pass filter of 40 microns to average across noise and remove spikes,
-as shown in Figure \ref{fig-T1AW-LI-R1-profiles-signals}(c).
-Cleveland et al. [@clevelandLocalRegressionModels1992]
+as shown in @fig-T1AW-LI-R1-signals-plot.
+Cleveland et al. [@clevelandLocalRegressionModels1992]\tom{???}
 \hh{(add reference: W. S. Cleveland, E. Grosse and W. M. Shyu (1992) Local regression models. Chapter 8 of Statistical Models in S eds J.M. Chambers and T.J. Hastie, Wadsworth \& Brooks/Cole.)}.
 Finally,
 the extreme tail values are removed.
@@ -431,12 +431,24 @@ For the validation of all other tools and locations of scan replicates,
 see \href{https://heike.github.io/Wirecuts/data-descriptor/README.md}{Github repo}.
 
 
-\begin{figure}[ht]
-\centering
-\includegraphics[width=0.9\linewidth]{T1AW-LI-R1-profiles-signals.png}
-\caption{(a) A profile line in dark blue was drawn across the striations of the scan. (b) The profile function extracted along the profile line in (a). (c) The raw signal in light blue is obtained by using the low-pass filter on the profile function in (b) and the filtered signal is obtained by using the high-pass filter on the raw signal.}
-\label{fig-T1AW-LI-R1-profiles-signals}
-\end{figure}
+:::: {#fig-T1AW-LI-R1-profiles-signals layout="[1, 1]"}
+
+:::{}
+
+![](images/T1AW-LI-R1-profiles.png){#fig-T1AW-LI-R1-profiles height=28%}
+
+:::
+
+:::{}
+
+![](images/T1AW-LI-R1-profiles-plot.png){#fig-T1AW-LI-R1-profiles-plot height=13%}
+
+![](images/T1AW-LI-R1-signals-plot.png){#fig-T1AW-LI-R1-signals-plot height=13%}
+:::
+
+\(a) A profile line in dark blue was drawn across the striations of the scan. (b) The profile function extracted along the profile line in (a). (c) The raw signal in light blue is obtained by using the low-pass filter on the profile function in (b) and the filtered signal is obtained by using the high-pass filter on the raw signal.
+
+::::
 
 
 \begin{figure}[ht]
