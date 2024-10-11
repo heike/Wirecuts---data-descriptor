@@ -84,7 +84,7 @@ bibliography: "`r rbbt::bbt_write_bib('references.bib', ignore = stringr::str_su
 acknowledgements: |
  This work was partially funded by the Center for Statistics and Applications in Forensic Evidence (CSAFE) through Cooperative Agreement 70NANB20H019 between NIST and Iowa State University, which includes activities carried out at Carnegie Mellon University, Duke University, University of California Irvine, University of Virginia, West Virginia University, University of Pennsylvania, Swarthmore College and the University of Nebraska-Lincoln.
 contributions: |
- hh{Let's follow the Elsevier definitions: https://www.elsevier.com/researcher/author/policies-and-guidelines/credit-author-statement}
+ \hh{Let's follow the Elsevier definitions: https://www.elsevier.com/researcher/author/policies-and-guidelines/credit-author-statement}
  Y.L.: Methodology, Software, Validation, Data Curation, Writing - Draft; H.H.: Conceptualization, Methodology, Validation, Writing - Review & Editing; C.M.: Lab supervision;
  E.A.: Physical Specimen, Scanning; J.S: Forensic advice; A.C.: Funding acquisition.
 competing: |
@@ -203,9 +203,8 @@ string[1] <- string2
 string
 ```
 
-\tom{breakable table, cannot cross-reference inside table}
 For the reproducibility of all our data and alignment results,
-we introduce in detail in [Cutting wires](#sec-cutting-wires) \tom{(cross-reference not working without section number, number-sections: false not working)} how we cut the wire and collect the 120 scans with 5 tools on 3 locations,
+we introduce in detail in [Cutting wires](#sec-cutting-wires) \tom{(number-sections: false not working)} how we cut the wire and collect the 120 scans with 5 tools on 3 locations,
 in [Extract profiles](#sec-extract-profiles) how we extract profiles from the scans,
 in [Filtered signals](#sec-filtered-signals) how we filter signals from the profiles,
 in [Align signals](#sec-align-signals) how we align signals from different scans and optimize the alignment with the cross-correlation function (CCF) values.
