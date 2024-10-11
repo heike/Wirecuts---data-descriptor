@@ -82,8 +82,7 @@ analyze the data and draw conclusions based on numerical measures.
 \noindent \textcolor{gray}{Please note: Abbreviations should be introduced at the first mention in the main text – no abbreviations lists or tables should be included. Structure of the main text is provided below.}
 \fi
 
-\section*{Background \& Summary}\label{sec-background-summary}
-\addcontentsline{toc}{section}{Background \& Summary}
+\section{Background \& Summary}\label{sec-background-summary}
 
 Wire cut data is a type of forensic tool mark data used to identify the
 source of a wire cutter based on the striations left on the surface.
@@ -185,8 +184,7 @@ data.
 \textcolor{gray}{(unlimited length) An overview of the study design, the assay(s) performed, and the created data, including any background information needed to put this study in the context of previous work and the literature. The section should also briefly outline the broader goals that motivated the creation of this dataset and the potential reuse value. We also encourage authors to include a figure that provides a schematic overview of the study and assay(s) design. The Background \& Summary should not include subheadings. This section and the other main body sections of the manuscript should include citations to the literature as needed.}
 \fi
 
-\section*{Methods}\label{sec-methods}
-\addcontentsline{toc}{section}{Methods}
+\section{Methods}\label{sec-methods}
 
 In this study, aluminum wire was used to create an optimal scenario
 where the most amount of information could be transferred from the tool
@@ -195,8 +193,7 @@ lead. The physical property of aluminium wire make it an excellent
 candidate for keeping marks while being relatively easy to bend and
 non-toxic.
 
-\subsection*{Cutting wires}\label{sec-cutting-wires}
-\addcontentsline{toc}{subsection}{Cutting wires}
+\subsection{Cutting wires}\label{sec-cutting-wires}
 
 The aluminum wire used was 16 Gauge/1.5 mm, anodized. In order to cut
 the wire, 4-inch pieces were unspooled and cut using Kaiweets wire
@@ -234,8 +231,7 @@ file format.
 \label{fig-cut-tent-scan}
 \end{figure}
 
-\subsection*{Extract profiles}\label{sec-extract-profiles}
-\addcontentsline{toc}{subsection}{Extract profiles}
+\subsection{Extract profiles}\label{sec-extract-profiles}
 
 Numerical comparisons between 2 replicates cannot be done directly on
 the \texttt{x3p} files. We need to extract representative functions from
@@ -251,8 +247,7 @@ maximize the feature captured, as shown in dark blue in Figure
 values under this profile line. The profile function is along the line
 is plotted in Figure \ref{fig-T1AW-LI-R1-profiles-signals}(b).
 
-\subsection*{Filtered signals}\label{sec-filtered-signals}
-\addcontentsline{toc}{subsection}{Filtered signals}
+\subsection{Filtered signals}\label{sec-filtered-signals}
 
 With the profile extracted, we can then obtain the signal. Two Gaussian
 filters are applied to these resulting profiles. In particular, we first
@@ -264,8 +259,7 @@ Cleveland et al. \citep{clevelandLocalRegressionModels1992}
 \hh{(add reference: W. S. Cleveland, E. Grosse and W. M. Shyu (1992) Local regression models. Chapter 8 of Statistical Models in S eds J.M. Chambers and T.J. Hastie, Wadsworth \& Brooks/Cole.)}.
 Finally, the extreme tail values are removed.
 
-\subsection*{Align signals}\label{sec-align-signals}
-\addcontentsline{toc}{subsection}{Align signals}
+\subsection{Align signals}\label{sec-align-signals}
 
 Signals extracted from different scans can be put together for
 comparison, and we maximize the corss-correlation function (CCF) values
@@ -321,8 +315,7 @@ Transparent Methods Checklist
 \end{itemize}
 \fi
 
-\section*{Data Records}\label{sec-data-records}
-\addcontentsline{toc}{section}{Data Records}
+\section{Data Records}\label{sec-data-records}
 
 The complete data set is available on the ISU DataShare repository at
 \href{https://iastate.figshare.com/}{https://iastate.figshare.com/},
@@ -338,8 +331,7 @@ naming convention as described before.
 \textcolor{gray}{Tables should be used to support the data records, and should clearly indicate the samples and subjects (study inputs), their provenance, and the experimental manipulations performed on each (please see 'Tables' below). They should also specify the data output resulting from each data-collection or analytical step, should these form part of the archived record.}
 \fi
 
-\section*{Technical Validation}\label{sec-technical-validation}
-\addcontentsline{toc}{section}{Technical Validation}
+\section{Technical Validation}\label{sec-technical-validation}
 
 \tom{a picture of alignment with ccf from different sources to show if different source, our evaluation returns small ccf, which matches what we thought.}
 
@@ -424,8 +416,7 @@ see
 \end{itemize}
 \fi
 
-\section*{Usage Notes}\label{sec-usage-notes}
-\addcontentsline{toc}{section}{Usage Notes}
+\section{Usage Notes}\label{sec-usage-notes}
 
 \hh{The \texttt{R} package \texttt{x3ptools} (available from \texttt{CRAN}) supports working with files in  x3p format. }
 
@@ -499,8 +490,7 @@ and 0.658 to control the FPR to be less than 0.01, with FNR to be 0.02.
 \textcolor{gray}{For studies involving privacy or safety controls on public access to the data, this section should describe in detail these controls, including how authors can apply to access the data, what criteria will be used to determine who may access the data, and any limitations on data use.}
 \fi
 
-\section*{Code availability}\label{sec-code-availability}
-\addcontentsline{toc}{section}{Code availability}
+\section{Code availability}\label{sec-code-availability}
 
 \tom{table of code}\hh{list files with short explanation, similar to table 1}
 
