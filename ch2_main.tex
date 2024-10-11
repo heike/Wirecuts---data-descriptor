@@ -36,6 +36,8 @@
 %\bibliographystyle{jabbr}
 %--------------------------------
 
+\usepackage{subcaption} % for subfigures
+
 \title{Three-dimensional data of wirecut surface scans under the
 confocal microscope (110 character maximum, inc. spaces)}
 
@@ -200,39 +202,81 @@ non-toxic.
 
 The aluminum wire used was 16 Gauge/1.5 mm, anodized. In order to cut
 the wire, 4-inch pieces were unspooled and cut using Kaiweets wire
-cutters, model KWS-105, as shown in Figure \ref{fig-cut-tent-scan}(a),
+cutters, model KWS-105, as shown in Figure~\ref{fig-cut-tent-scan-a},
 for 1 blade location, either inner, middle, or outer, which gives us 1
 replicate. Each piece was then cut into half to create 2-inch pieces for
 each side, AB and CD, with a sharpie line marking the cut ends, giving
-us 4 samples. Here, we are showing AB sides only in Figure
-\ref{fig-cut-tent-scan}(b) \tom{(remove the tent figure)}, and the CD
-sides are similar from the other side of the cut, with the back of A
-being C and the back of B being D. Both AB and CD sides form tent
-structures on the tips of the wire, and we can separate each side of the
-tent into 2 pieces along the bending position, resulting in 8 scans. We
-repeated this process for all 3 locations along the blade and 5 wire
-cutters, with 2 replicates for each tool-edge-location combination,
-resulting in 120 scans. Each piece was labeled with the naming
-conventions, T(ool) 1/2/3/4/5 (Edge) A/B/C/D W(ire) - L(ocation)
-I(nner)/M(iddle)/O(uter) - R(epetition) 1/2, with T1AW-LI-R1 being the
-piece cut by tool 1 on the A edge at the inner location for the first
-repetition. Then, we can use the standard scanning protocols for the
-confocal microscope, shown in Figure \ref{fig-cut-tent-scan}(c)
-\tom{(need an extra pic of the very tip)}, to scan the wire tip
-surfaces. The scanned surfaces are saved in a resolution of
+us 4 samples. Here, we are showing AB and CD sides in
+Figure~\ref{fig-cut-tent-scan-b}, with the back of A being C and the
+back of B being D. Both AB and CD sides form tent structures on the tips
+of the wire, and we can separate each side of the tent into 2 pieces
+along the bending position, resulting in 8 scans. We repeated this
+process for all 3 locations along the blade and 5 wire cutters, with 2
+replicates for each tool-edge-location combination, resulting in 120
+scans. Each piece was labeled with the naming conventions, T(ool)
+1/2/3/4/5 (Edge) A/B/C/D W(ire) - L(ocation) I(nner)/M(iddle)/O(uter) -
+R(epetition) 1/2, with T1AW-LI-R1 being the piece cut by tool 1 on the A
+edge at the inner location for the first repetition. Then, we can use
+the standard scanning protocols for the confocal microscope, shown in
+Figure Figure~\ref{fig-cut-tent-scan-c}, to scan the wire tip surfaces.
+The scanned surfaces are saved in a resolution of
 \(0.645 \mu m \times 0.645 \mu m\) per square pixel in an \texttt{x3p}
 file format.
 
-\hh{XXX figure 1 - generally, zoom into these images - we do not want to have a hand in the image, nor a view of the crafting aluminum :)  - what are the exact rules on visuals in Scientific Data ? XXX}
-\tom{hard to put the full requirements here, see \href{https://www.nature.com/sdata/publish/submission-guidelines\#figures}{https://www.nature.com/sdata/publish/submission-guidelines\#figures}}
+\begin{figure}
 
-\tom{put into quarto layout with (a) (b) (c) on the top left, no tent, add blade C \& D (Do later after decide on using qmd or Overleaf)}
-\begin{figure}[ht]
-\centering
-\includegraphics[width=0.9\linewidth]{cut-tent-scan.png}
-\caption{(a) A Kaiweets wire cutter of model KWS-105 was used to cut the wire. (b) A tent structure created by blade AB. After separating 2 tent structures by the connecting position, we obtained 2 samples - 1 sample from blade A and B. (c) A confocal microscope was used to scan the wire surfaces.}
-\label{fig-cut-tent-scan}
-\end{figure}
+\begin{minipage}{0.32\linewidth}
+
+\centering{
+
+\includegraphics[width=\textwidth,height=0.24\textheight]{images/kaiweet-label-062524.JPG}
+
+}
+
+\subcaption{\label{fig-cut-tent-scan-a}}
+
+\end{minipage}%
+%
+\begin{minipage}{0.03\linewidth}
+~\end{minipage}%
+%
+\begin{minipage}{0.32\linewidth}
+
+\centering{
+
+\includegraphics[width=\textwidth,height=0.24\textheight]{images/T1AW-LI-R2-4edges.png}
+
+}
+
+\subcaption{\label{fig-cut-tent-scan-b}}
+
+\end{minipage}%
+%
+\begin{minipage}{0.03\linewidth}
+~\end{minipage}%
+%
+\begin{minipage}{0.32\linewidth}
+
+\centering{
+
+\includegraphics[width=\textwidth,height=0.24\textheight]{images/wire-microscope-062524.JPG}
+
+}
+
+\subcaption{\label{fig-cut-tent-scan-c}}
+
+\end{minipage}%
+
+\caption{\label{fig-cut-tent-scan}(a) A Kaiweets wire cutter of model
+KWS-105 was used to cut the wire.
+\tom{we don't have another high resolution pic showing wirecutter cutting wire}
+(b) A tent structure created by blade AB. After separating 2 tent
+structures by the connecting position, we obtained 2 samples - 1 sample
+from blade A and B. (c) A confocal microscope was used to scan the wire
+surfaces. \tom{need an extra pic of the tip}
+\tom{| full requirements see \href{https://www.nature.com/sdata/publish/submission-guidelines\#figures}{https://www.nature.com/sdata/publish/submission-guidelines\#figures}}}
+
+\end{figure}%
 
 \subsection*{Extract profiles}\label{sec-extract-profiles}
 \addcontentsline{toc}{subsection}{Extract profiles}
