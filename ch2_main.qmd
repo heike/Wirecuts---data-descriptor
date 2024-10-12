@@ -360,6 +360,22 @@ which will give alignments of massive overlapping and high CCF values close to 1
 The alignments and values we got in the rightmost column of Figure \ref{fig-signals-pair-alignment} fulfill our expectations.
 
 
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.8\linewidth]{scans_pair.png}
+\caption{Scans from different sides of tool 1 at the inner location.}
+\label{fig-scans-pair}
+\end{figure}
+
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.8\linewidth]{signals_pair_alignment.png}
+\caption{The first and second columns show the signals extracted from Figure \ref{fig-scans-pair}, and the third column shows the alignments and CCF values between pairs of signals.}
+\label{fig-signals-pair-alignment}
+\end{figure}
+
+
 \ifnum \ifinstruction=1
 \textcolor{gray}{(unlimited length) The Methods should include detailed text describing any steps or procedures used in producing the data, including full descriptions of the experimental design, data acquisition assays, and any computational processing (e.g. normalization, image feature extraction). See the detailed section in our submission guidelines for advice on writing a transparent and reproducible methods section. Related methods should be grouped under corresponding subheadings where possible, and methods should be described in enough detail to allow other researchers to interpret and repeat, if required, the full study. Specific data outputs should be explicitly referenced via data citation (see Data Records and Citing Data, below).}
 
@@ -440,9 +456,14 @@ then one person did the scanning and named according to the naming convention ab
 The data was saved in a consistent format to ensure they could be easily accessed and analyzed.
 A third person then checked the data to ensure that the data was consistent in naming and accurate.
 
-For the validation of the scans and their processing we investigate the correlation scores of pair-wise aligned signals. Large scores between signals are indicative of being made by the same tool. As showed previously in Figure \ref{fig-signals-pair-alignment} in [Align signals](#sec-align-signals), we would expect a high correlation score between signals from scans of wires cut with the same tool. For signals from scans of wires cut with a different tool, we would expect a low correlation score. For example, we have two scans from different tools, T1AW-LI-R1 and T2AW-LI-R1, as shown in @fig-T1AW-LI-R1 and @fig-T2AW-LI-R1. The alignment is shown in @fig-T1AW-LI-R1-T2AW-LI-R1 with 0.2 CCF value, which is low, as expected. This is consistent with our expectations and validates our data processing pipeline.
+For the validation of the scans and their processing we investigate the correlation scores of pair-wise aligned signals. Large scores between signals are indicative of being made by the same tool. As showed previously in Figure \ref{fig-signals-pair-alignment} in [Align signals](#sec-align-signals), we would expect a high correlation score between signals from scans of wires cut with the same tool. For signals from scans of wires cut with a different tool, we would expect a low correlation score. For example, we have two scans from different tools, T1AW-LI-R1 and T2AW-LI-R1, as shown in @fig-T1AW-LI-R1 and @fig-T2AW-LI-R1. The alignment is shown in @fig-T1AW-LI-R1-T2AW-LI-R1 with 0.2 CCF value, which is low, as expected.
 
-\hh{Show boxplots and roc curve.}
+We also put resulting CCFs for all pairwise comparisions in the boxplot,
+together with the receiver operating characteristic (ROC) curve,
+as in Figure \ref{fig-ccf-boxplot} and Figure \ref{fig-ccf-ROC}.
+We can see that the CCF values for the same sources are close to 1,
+while the CCF values for different sources are much lower than expected.
+This is consistent with our expectations and validates our data processing pipeline.
 
 
 ::: {#fig-T1AW-LI-R1-T2AW-LI-R1-alignment layout="[[1, 1], [-0.5, 9, 0.5]]"}
@@ -460,17 +481,17 @@ For the validation of the scans and their processing we investigate the correlat
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=0.8\linewidth]{scans_pair.png}
-\caption{Scans from different sides of tool 1 at the inner location.}
-\label{fig-scans-pair}
+\includegraphics[width=0.8\linewidth]{ccf_boxplot.png}
+\caption{The boxplot shows that signals from the same sources have higher CCfs than those from different sources.}
+\label{fig-ccf-boxplot}
 \end{figure}
 
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=0.8\linewidth]{signals_pair_alignment.png}
-\caption{The first and second columns show the signals extracted from Figure \ref{fig-scans-pair}, and the third column shows the alignments and CCF values between pairs of signals.}
-\label{fig-signals-pair-alignment}
+\includegraphics[width=0.5\linewidth]{ccf_ROC.png}
+\caption{The ROC curve is bending very close to the upper left corner, which means excellent in classification and drawing conclusions.}
+\label{fig-ccf-ROC}
 \end{figure}
 
 
@@ -543,16 +564,11 @@ the behavior is consistent with our expectation overall,
 except for some rare cases with tool 5 edge D,
 which is caused by
 \tom{?????}.
-We also put the resulting CCFs in the boxplot,
-as in Figure \ref{fig-ccf-boxplot}.
-We can see that the CCF values for the same sources are close to 1,
-while the CCF values for different sources are much lower than expected.
-This difference can be used to establish a threshold for CCF and help us draw conclusions about the similarity between wire cut scans numerically,
-which can be used in real crime scenes.
 The density plot in Figure \ref{fig-ccf-density} shows the distribution of the CCF values with the same sources and different sources.
 The overlapping points between the tails of these two distributions can be a rough threshold.
+
 Furthermore,
-the receiver operating characteristic (ROC) curve in Figure \ref{fig-ccf-ROC} shows the sensitivity / true positive rate against the false positive rate (FPR) (1 - specificity).
+the ROC curve in Figure \ref{fig-ccf-ROC} shows the sensitivity / true positive rate against the false positive rate (FPR) (1 - specificity).
 The curve is very close to the upper left corner,
 which is excellent for classification and drawing conclusion.
 It gives us a true threshold of 0.589 to control the FPR to be less than 0.05 with false negative rate (FNR) to be 0,
@@ -571,25 +587,9 @@ with FNR to be 0.02.
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=0.8\linewidth]{ccf_boxplot.png}
-\caption{The boxplot shows that signals from the same sources have higher CCfs than those from different sources.}
-\label{fig-ccf-boxplot}
-\end{figure}
-
-
-\begin{figure}[ht]
-\centering
 \includegraphics[width=0.8\linewidth]{ccf_density.png}
 \caption{The density plot shows tails of distributions overlap, which can be used as a rough threshold for drawing conclusions.}
 \label{fig-ccf-density}
-\end{figure}
-
-
-\begin{figure}[ht]
-\centering
-\includegraphics[width=0.5\linewidth]{ccf_ROC.png}
-\caption{The ROC curve is bending very close to the upper left corner, which means excellent in classification and drawing conclusions.}
-\label{fig-ccf-ROC}
 \end{figure}
 
 
