@@ -325,6 +325,26 @@ Finally,
 the extreme tail values are removed.
 
 
+:::: {#fig-T1AW-LI-R1-profiles-signals layout="[1, 1]"}
+
+:::{}
+
+![](images/T1AW-LI-R1-profiles.png){#fig-T1AW-LI-R1-profiles height=28%}
+
+:::
+
+:::{}
+
+![](images/T1AW-LI-R1-profiles-plot.png){#fig-T1AW-LI-R1-profiles-plot height=13%}
+
+![](images/T1AW-LI-R1-signals-plot.png){#fig-T1AW-LI-R1-signals-plot height=13%}
+:::
+
+\(a) A profile line in dark blue was drawn across the striations of the scan. (b) The profile function extracted along the profile line in (a). (c) The raw signal in light blue is obtained by using the low-pass filter on the profile function in (b) and the filtered signal is obtained by using the high-pass filter on the raw signal.
+
+::::
+
+
 ## Align signals {#sec-align-signals .unnumbered}
 
 Signals extracted from different scans can be put together for comparison,
@@ -429,26 +449,6 @@ A third person then checked the data to ensure that the data was consistent in n
 Show boxplots and roc curve. }
 For the validation of all other tools and locations of scan replicates,
 see \href{https://heike.github.io/Wirecuts/data-descriptor/README.md}{Github repo}.
-
-
-:::: {#fig-T1AW-LI-R1-profiles-signals layout="[1, 1]"}
-
-:::{}
-
-![](images/T1AW-LI-R1-profiles.png){#fig-T1AW-LI-R1-profiles height=28%}
-
-:::
-
-:::{}
-
-![](images/T1AW-LI-R1-profiles-plot.png){#fig-T1AW-LI-R1-profiles-plot height=13%}
-
-![](images/T1AW-LI-R1-signals-plot.png){#fig-T1AW-LI-R1-signals-plot height=13%}
-:::
-
-\(a) A profile line in dark blue was drawn across the striations of the scan. (b) The profile function extracted along the profile line in (a). (c) The raw signal in light blue is obtained by using the low-pass filter on the profile function in (b) and the filtered signal is obtained by using the high-pass filter on the raw signal.
-
-::::
 
 
 \begin{figure}[ht]
