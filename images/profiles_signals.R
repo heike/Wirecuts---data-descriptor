@@ -23,3 +23,13 @@ signals %>%
   scale_color_manual(values = c(raw = "#40B4E5", filtered = "#003A70")) +
   theme(legend.position = "bottom")
 ggsave(here::here("images/T1AW-LI-R1-signals-plot.png"), width = 6, height = 2.5)
+
+signal1 <- signals %>%
+  filter(id == "T1AW-LI-R1") %>%
+  pull(sig)
+signal2 <- signals %>%
+  filter(id == "T2AW-LI-R1") %>%
+  pull(raw_sig)
+
+wire::vec_align_sigs_list(sig1 = signal1, sig2 = signal2, legendname = "Tool", ifplot = TRUE)
+ggsave(here::here("images/T1AW-LI-R1-T2AW-LI-R1.png"), width = 6, height = 2)

@@ -347,7 +347,7 @@ high-pass filter on the raw signal.}
 \addcontentsline{toc}{subsection}{Align signals}
 
 Signals extracted from different scans can be put together for
-comparison, and we maximize the corss-correlation function (CCF) values
+comparison, and we maximize the cross-correlation function (CCF) values
 between the signals to numerically find the best alignment. For example,
 we compare T1AW-LI-R1 to T1AW-LI-R2, T1CW-LI-R1 to T1CW-LI-R2, and so
 on. That is comparing each row in Figure \ref{fig-scans-pair}. We know
@@ -420,8 +420,6 @@ naming convention as described before.
 \section*{Technical Validation}\label{sec-technical-validation}
 \addcontentsline{toc}{section}{Technical Validation}
 
-\tom{a picture of alignment with ccf from different sources to show if different source, our evaluation returns small ccf, which matches what we thought.}
-
 For the data collection process, two team members did the cutting and
 labeling together, then one person did the scanning and named according
 to the naming convention above. The scanning was done in a specific
@@ -430,12 +428,68 @@ consistent format to ensure they could be easily accessed and analyzed.
 A third person then checked the data to ensure that the data was
 consistent in naming and accurate.
 
-\hh{For the validation of the scans and their processing we investigate the correlation scores of pair-wise aligned signals. For signals from scans of wires cut with a different tool, we would expect a low correlation score. Large scores between signals are indicative of being made by the same tool. 
-Show boxplots and roc curve. }
+For the validation of the scans and their processing we investigate the
+correlation scores of pair-wise aligned signals. Large scores between
+signals are indicative of being made by the same tool. As showed
+previously in Figure \ref{fig-signals-pair-alignment} in
+\hyperref[sec-align-signals]{Align signals}, we would expect a high
+correlation score between signals from scans of wires cut with the same
+tool. For signals from scans of wires cut with a different tool, we
+would expect a low correlation score. For example, we have two scans
+from different tools, T1AW-LI-R1 and T2AW-LI-R1, as shown in
+Figure~\ref{fig-T1AW-LI-R1} and Figure~\ref{fig-T2AW-LI-R1}. The
+alignment is shown in Figure~\ref{fig-T1AW-LI-R1-T2AW-LI-R1} with 0.2
+CCF value, which is low, as expected. This is consistent with our
+expectations and validates our data processing pipeline.
 
-For the validation of all other tools and locations of scan replicates,
-see
-\href{https://heike.github.io/Wirecuts/data-descriptor/README.md}{Github repo}.
+\hh{Show boxplots and roc curve.}
+
+\begin{figure}
+
+\begin{minipage}{0.50\linewidth}
+
+\centering{
+
+\includegraphics[width=\textwidth,height=6cm]{images/T1AW-LI-R1.png}
+
+}
+
+\subcaption{\label{fig-T1AW-LI-R1}}
+
+\end{minipage}%
+%
+\begin{minipage}{0.50\linewidth}
+
+\centering{
+
+\includegraphics[width=\textwidth,height=6cm]{images/T2AW-LI-R1.png}
+
+}
+
+\subcaption{\label{fig-T2AW-LI-R1}}
+
+\end{minipage}%
+\newline
+\begin{minipage}{0.05\linewidth}
+~\end{minipage}%
+%
+\begin{minipage}{0.90\linewidth}
+
+\centering{
+
+\includegraphics[width=\textwidth,height=5cm]{images/T1AW-LI-R1-T2AW-LI-R1.png}
+
+}
+
+\subcaption{\label{fig-T1AW-LI-R1-T2AW-LI-R1}}
+
+\end{minipage}%
+
+\caption{\label{fig-T1AW-LI-R1-T2AW-LI-R1-alignment}(a) Scan T1AW-LI-R1
+cut by tool 1. (b) Scan T2AW-LI-R1 cut by tool 2. (c) Alignment of
+signals from T1AW-LI-R1 and T2AW-LI-R1.}
+
+\end{figure}%
 
 \begin{figure}[ht]
 \centering
