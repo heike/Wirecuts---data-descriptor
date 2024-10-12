@@ -1,5 +1,10 @@
 library(tidyverse)
 
+x3ptools::x3p_read(here::here("../Wirecuts/scans/T1AW-LI-R1.x3p")) %>% 
+  wire::x3p_image_autosize(file = here::here("images/T1AW-LI-R1.png"))
+x3ptools::x3p_read(here::here("../Wirecuts/scans/T2AW-LI-R1.x3p")) %>% 
+  wire::x3p_image_autosize(file = here::here("images/T2AW-LI-R1.png"))
+
 profiles <- read_csv("~/Documents/GitHub/Wirecuts/profiles/profiles-T1AW-LI-R1.csv", show_col_types = FALSE)
 profiles %>%
   ggplot(aes(x = x, y = value)) +

@@ -447,9 +447,9 @@ For the validation of the scans and their processing we investigate the correlat
 
 ::: {#fig-T1AW-LI-R1-T2AW-LI-R1-alignment layout="[[1, 1], [-0.5, 9, 0.5]]"}
 
-![](images/T1AW-LI-R1.png){#fig-T1AW-LI-R1 height=6cm}
+![](images/T1AW-LI-R1.png){#fig-T1AW-LI-R1 height=5.5cm}
 
-![](images/T2AW-LI-R1.png){#fig-T2AW-LI-R1 height=6cm}
+![](images/T2AW-LI-R1.png){#fig-T2AW-LI-R1 height=5.5cm}
 
 ![](images/T1AW-LI-R1-T2AW-LI-R1.png){#fig-T1AW-LI-R1-T2AW-LI-R1 height=5cm}
 
