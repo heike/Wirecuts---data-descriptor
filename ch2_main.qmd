@@ -602,23 +602,25 @@ with FNR to be 0.02.
 
 # Code availability {#sec-code-availability .unnumbered}
 
-\tom{table of code}\hh{list files with short explanation, similar to table 1}
+
+We made available all codes we used for inspecting raw scans, extracting profiles, derving signals, aligning signals, and visualizing comparison results discussed in [Methods](#sec-methods) and [Technical Validation](#sec-technical-validation), as described in @tbl-code-overview. All results are reproducible using these codes provided.
+
 
 ```{r}
 #| echo: FALSE
 #| label: tbl-code-overview
-#| tbl-cap: Overview of available codes in "`assessment/code/`".
+#| tbl-cap: Overview of available codes.
 #| results: asis
 
 string <- tibble(
-  group_type = c(rep("Process raw data", 1), rep("Extract manual derivatives", 2), rep("Obtain computational derivatives", 4)),
-  code_type = c("`create_pngs_from_x3p.R`", "`create_profiles_from_x3p.R`", "`create-single-profile-file.R`", "`create_signatures_from_profiles.R`", "`create-images.R`", "`align-pairwise.R`", "`all-comparison-results.R`"),
-  Description = c("extract PNGs from raw data in `scans/`", "manually extract profiles for each scan", "extract profiles as numeric values", "extract signals from profiles as numeric values", "create images", "pairwise alignment", "compare and analyze"),
-  Section = c("[Cutting wires](#sec-cutting-wires)", "[Extract profiles](#sec-extract-profiles)", "[Extract profiles](#sec-extract-profiles)", "[Filtered signals](#sec-filtered-signals)", "[Filtered signals](#sec-filtered-signals)", "[Align signals](#sec-align-signals)", "[Align signals](#sec-align-signals)")
+  group_type = c(rep("Inspect raw scans", 1), rep("Extract profiles", 2), rep("Derive signals", 1), rep("Align signals", 3)),
+  code_type = c("`1-create_pngs_from_x3p.R`", "`2-create_profiles_from_x3p.R`", "`3-create-single-profile-file.R`", "`4-create_signatures_from_profiles.R`", "`5-create-images.R`", "`6-align-pairwise.R`", "`7-all-comparison-results.R`"),
+  Description = c("obtain images of `x3p`s in `scans/`", "manually extract profiles from each scan", "wire-profiles.csv NOT USED, REMOVE THIS FILE???", "derive signals from each profile", "create images for pairwise alignment", "compute pairwise alignment CCF values", "visualize comparison results"),
+  Section = c("[Cutting wires](#sec-cutting-wires)", "[Extract profiles](#sec-extract-profiles)", "[Extract profiles](#sec-extract-profiles)", "[Filtered signals](#sec-filtered-signals)", "[Align signals](#sec-align-signals)", "[Align signals](#sec-align-signals)", "[Align signals](#sec-align-signals)")
 ) %>%
-  gt(rowname_col = "data_type", groupname_col = "group_type") %>%
+  gt(rowname_col = "code_type", groupname_col = "group_type") %>%
   tab_options(table.width = pct(95)) %>%
-  cols_width(Description ~ pct(45), Section ~ pct(30), everything() ~ pct(50)) %>%
+  cols_width(Description ~ pct(45), Section ~ pct(30), everything() ~ pct(55)) %>%
   fmt_markdown() %>%
   as_latex()
 
@@ -660,13 +662,6 @@ string[1] <- string2
 string
 ```
 
-\hh{no, we can't use the website as a place for more detailed procedures. This paper is the detailed procedure.}\tom{no more README, scanning procedures in another HTML}
-We put together the cutting and the standard scanning procedures mentioned in Section \ref{sec-cutting-wires} \tom{cross-ref not working} with more pictures for each step into a \href{https://github.com/heike/Wirecuts/blob/main/README.md}{README of the GitHub repository \texttt{heike/Wirecuts}} \tom{(High-res pics needed in the README)}. 
-
-The data set can be easily accessed with the \texttt{CRAN} \texttt{R} package \texttt{x3ptools}.
-Further analysis can be conducted with the \texttt{GitHub} \texttt{R} package \texttt{wire} and the \texttt{GitHub} \texttt{R} shiny app \texttt{wireShiny}
-\tom{(citation)}
-.
 
 \ifnum \ifinstruction=1
 \textcolor{gray}{For all studies using custom code in the generation or processing of datasets, a statement must be included under the heading "Code availability", indicating whether and how the code can be accessed, including any restrictions to access. This section should also include information on the versions of any software used, if relevant, and any specific variables or parameters used to generate, test, or process the current dataset.}

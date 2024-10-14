@@ -627,54 +627,48 @@ and 0.658 to control the FPR to be less than 0.01, with FNR to be 0.02.
 \section*{Code availability}\label{sec-code-availability}
 \addcontentsline{toc}{section}{Code availability}
 
-\tom{table of code}\hh{list files with short explanation, similar to table 1}
+We made available all codes we used for inspecting raw scans, extracting
+profiles, derving signals, aligning signals, and visualizing comparison
+results discussed in \hyperref[sec-methods]{Methods} and
+\hyperref[sec-technical-validation]{Technical Validation}, as described
+in Table~\ref{tbl-code-overview}. All results are reproducible using
+these codes provided.
 
 \begin{table}
 
-\caption{\label{tbl-code-overview}Overview of available codes in
-``\texttt{assessment/code/}''.}
+\caption{\label{tbl-code-overview}Overview of available codes.}
 
 \centering{
 
 \fontsize{12.0pt}{14.4pt}\selectfont
-\begin{tabular*}{0.95\linewidth}{@{\extracolsep{\fill}}>{\raggedright\arraybackslash}p{\dimexpr 0.477\linewidth -2\tabcolsep-1.5\arrayrulewidth}>{\raggedright\arraybackslash}p{\dimexpr 0.283\linewidth -2\tabcolsep-1.5\arrayrulewidth}>{\raggedright\arraybackslash}p{\dimexpr 0.438\linewidth -2\tabcolsep-1.5\arrayrulewidth}}
+\begin{tabular*}{0.95\linewidth}{@{\extracolsep{\fill}}>{\raggedright\arraybackslash}p{\dimexpr 0.522\linewidth -2\tabcolsep-1.5\arrayrulewidth}|>{\raggedright\arraybackslash}p{\dimexpr 0.283\linewidth -2\tabcolsep-1.5\arrayrulewidth}>{\raggedright\arraybackslash}p{\dimexpr 0.438\linewidth -2\tabcolsep-1.5\arrayrulewidth}}
 \toprule
-code\_type & Description & Section \\ 
+ & Description & Section \\ 
 \midrule\addlinespace[2.5pt]
-\multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{Process raw data} \\[2.5pt] 
+\multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{Inspect raw scans} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
-\texttt{create\_pngs\_from\_x3p.R} & extract PNGs from raw data in \texttt{scans/} & \protect\hyperref[sec-cutting-wires]{Cutting wires} \\ 
+\texttt{1-create\_pngs\_from\_x3p.R} & obtain images of \texttt{x3p}s in \texttt{scans/} & \protect\hyperref[sec-cutting-wires]{Cutting wires} \\ 
 \midrule\addlinespace[2.5pt]
-\multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{Extract manual derivatives} \\[2.5pt] 
+\multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{Extract profiles} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
-\texttt{create\_profiles\_from\_x3p.R} & manually extract profiles for each scan & \protect\hyperref[sec-extract-profiles]{Extract profiles} \\ 
-\texttt{create-single-profile-file.R} & extract profiles as numeric values & \protect\hyperref[sec-extract-profiles]{Extract profiles} \\ 
+\texttt{2-create\_profiles\_from\_x3p.R} & manually extract profiles from each scan & \protect\hyperref[sec-extract-profiles]{Extract profiles} \\ 
+\texttt{3-create-single-profile-file.R} & wire-profiles.csv NOT USED, REMOVE THIS FILE??? & \protect\hyperref[sec-extract-profiles]{Extract profiles} \\ 
 \midrule\addlinespace[2.5pt]
-\multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{Obtain computational derivatives} \\[2.5pt] 
+\multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{Derive signals} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
-\texttt{create\_signatures\_from\_profiles.R} & extract signals from profiles as numeric values & \protect\hyperref[sec-filtered-signals]{Filtered signals} \\ 
-\texttt{create-images.R} & create images & \protect\hyperref[sec-filtered-signals]{Filtered signals} \\ 
-\texttt{align-pairwise.R} & pairwise alignment & \protect\hyperref[sec-align-signals]{Align signals} \\ 
-\texttt{all-comparison-results.R} & compare and analyze & \protect\hyperref[sec-align-signals]{Align signals} \\ 
+\texttt{4-create\_signatures\_from\_profiles.R} & derive signals from each profile & \protect\hyperref[sec-filtered-signals]{Filtered signals} \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{Align signals} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+\texttt{5-create-images.R} & create images for pairwise alignment & \protect\hyperref[sec-align-signals]{Align signals} \\ 
+\texttt{6-align-pairwise.R} & compute pairwise alignment CCF values & \protect\hyperref[sec-align-signals]{Align signals} \\ 
+\texttt{7-all-comparison-results.R} & visualize comparison results & \protect\hyperref[sec-align-signals]{Align signals} \\ 
 \bottomrule
 \end{tabular*}
 
 }
 
 \end{table}%
-
-\hh{no, we can't use the website as a place for more detailed procedures. This paper is the detailed procedure.}\tom{no more README, scanning procedures in another HTML}
-
-We put together the cutting and the standard scanning procedures
-mentioned in Section \ref{sec-cutting-wires} \tom{cross-ref not working}
-with more pictures for each step into a
-\href{https://github.com/heike/Wirecuts/blob/main/README.md}{README of the GitHub repository \texttt{heike/Wirecuts}}
-\tom{(High-res pics needed in the README)}.
-
-The data set can be easily accessed with the \texttt{CRAN} \texttt{R}
-package \texttt{x3ptools}. Further analysis can be conducted with the
-\texttt{GitHub} \texttt{R} package \texttt{wire} and the \texttt{GitHub}
-\texttt{R} shiny app \texttt{wireShiny} \tom{(citation)} .
 
 \ifnum \ifinstruction=1
 
