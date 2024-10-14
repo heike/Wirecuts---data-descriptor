@@ -21,7 +21,7 @@ authors:
       - ref: 5
     email: cmosher@iastate.edu
     corresponding: false
-  - name: Alicia L Carriquiry
+  - name: Alicia Carriquiry
     affiliations:
       - ref: 1
       - ref: 2
@@ -39,7 +39,7 @@ authors:
     orcid: 0000-0002-8321-1246
     email: jdsal@msn.com
     corresponding: false
-  - name: \tom{order? Jeff the last? check details? affiliations? Middle name for Alicia?}
+  - name: \tom{order? Jeff the last? check details? affiliations?}
     corresponding: false  
 affiliations: 
   - id: 1
