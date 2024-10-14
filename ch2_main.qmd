@@ -436,8 +436,7 @@ Transparent Methods Checklist
 
 The complete data set is available on the ISU DataShare repository at \href{https://iastate.figshare.com/}{https://iastate.figshare.com/},
 which is public and open access for every interested researcher.
-The data set consists of 120 scans in the \texttt{x3p} file format with the naming convention as described before.
-\tom{(Explain the x3p header info?)}
+The structure of the data set is described before in @tbl-data-overview.
 
 
 \ifnum \ifinstruction=1
