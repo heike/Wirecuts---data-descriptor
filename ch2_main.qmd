@@ -160,7 +160,7 @@ string <- tibble(
   group_type = c(rep("Raw data", 2), rep("Manual derivatives", 1), rep("Computational derivatives", 2), rep("Image files")),
   data_type = c("`scans/`", "`meta.csv`", "`profiles`", "`signals`", "CCF values", "`aligned-signals`"),
   Description = c("folder containing 120 topographic 3d scans of aluminum wire cuts in x3p format", "meta information for each cut with tool, blade, and location information (csv format)", "folder of files with manually extracted profiles (csv format)", "folder of signals, processed from corresponding profile (csv format)", "CCF values of all pairwise aligned signals in 1 CSV", "pictures of pairwise aligned signals from same sources in PNGs"),
-  Section = c("[Cutting wires](#sec-cutting-wires)", "[Cutting wires](#sec-cutting-wires)", "[Extract profiles](#sec-extract-profiles)", "[Filtered signals](#sec-filtered-signals)", "[Align signals](#sec-align-signals)", "[Align signals](#sec-align-signals)")
+  Section = c("[Cutting Wires](#sec-cutting-wires)", "[Cutting Wires](#sec-cutting-wires)", "[Extract Profiles](#sec-extract-profiles)", "[Filtered Signals](#sec-filtered-signals)", "[Align Signals](#sec-align-signals)", "[Align Signals](#sec-align-signals)")
 ) %>%
   gt(rowname_col = "data_type", groupname_col = "group_type") %>%
   tab_options(table.width = pct(95)) %>%
@@ -207,10 +207,10 @@ string
 ```
 
 For the reproducibility of all our data and alignment results,
-we introduce in detail in [Cutting wires](#sec-cutting-wires) \tom{hyperlink location incorrect for unnumbered sections} how we cut the wire and collect the 120 scans with 5 tools on 3 locations,
-in [Extract profiles](#sec-extract-profiles) how we extract profiles from the scans,
-in [Filtered signals](#sec-filtered-signals) how we filter signals from the profiles,
-in [Align signals](#sec-align-signals) how we align signals from different scans and optimize the alignment with the cross-correlation function (CCF) values.
+we introduce in detail in [Cutting Wires](#sec-cutting-wires) \tom{hyperlink location incorrect for unnumbered sections} how we cut the wire and collect the 120 scans with 5 tools on 3 locations,
+in [Extract Profiles](#sec-extract-profiles) how we extract profiles from the scans,
+in [Filtered Signals](#sec-filtered-signals) how we filter signals from the profiles,
+in [Align Signals](#sec-align-signals) how we align signals from different scans and optimize the alignment with the cross-correlation function (CCF) values.
 In [Data Records](#sec-data-records),
 we discuss where our data is held.
 Then,
@@ -238,7 +238,7 @@ despite the wire in some real cases being made of lead.
 The physical property of aluminium wire make it an excellent candidate for keeping marks while being relatively easy to bend and non-toxic.
 
 
-## Cutting wires {#sec-cutting-wires .unnumbered}
+## Cutting Wires {#sec-cutting-wires .unnumbered}
 
 The aluminum wire used was 16 Gauge/1.5 mm, anodized.
 In order to cut the wire,
@@ -290,7 +290,7 @@ with T1AW-LI-R1 being the piece cut by tool 1 on the A edge at the inner locatio
 ::::
 
 
-## Extract profiles {#sec-extract-profiles .unnumbered}
+## Extract Profiles {#sec-extract-profiles .unnumbered}
 
 Numerical comparisons between 2 replicates cannot be done directly on the \texttt{x3p} files.
 We need to extract representative functions from the scans first.
@@ -309,7 +309,7 @@ We can then investigate the values under this profile line.
 The profile function is along the line is plotted in @fig-T1AW-LI-R1-profiles-plot.
 
 
-## Filtered signals {#sec-filtered-signals .unnumbered}
+## Filtered Signals {#sec-filtered-signals .unnumbered}
 
 With the profile extracted,
 we can then obtain the signal.
@@ -345,7 +345,7 @@ the extreme tail values are removed.
 ::::
 
 
-## Align signals {#sec-align-signals .unnumbered}
+## Align Signals {#sec-align-signals .unnumbered}
 
 Signals extracted from different scans can be put together for comparison,
 and we maximize the cross-correlation function (CCF) values between the signals to numerically find the best alignment.
@@ -455,7 +455,7 @@ then one person did the scanning and named according to the naming convention ab
 The data was saved in a consistent format to ensure they could be easily accessed and analyzed.
 A third person then checked the data to ensure that the data was consistent in naming and accurate.
 
-For the validation of the scans and their processing we investigate the correlation scores of pair-wise aligned signals. Large scores between signals are indicative of being made by the same tool. As showed previously in Figure \ref{fig-signals-pair-alignment} in [Align signals](#sec-align-signals), we would expect a high correlation score between signals from scans of wires cut with the same tool. For signals from scans of wires cut with a different tool, we would expect a low correlation score. For example, we have two scans from different tools, T1AW-LI-R1 and T2AW-LI-R1, as shown in @fig-T1AW-LI-R1 and @fig-T2AW-LI-R1. The alignment is shown in @fig-T1AW-LI-R1-T2AW-LI-R1 with 0.2 CCF value, which is low, as expected.
+For the validation of the scans and their processing we investigate the correlation scores of pair-wise aligned signals. Large scores between signals are indicative of being made by the same tool. As showed previously in Figure \ref{fig-signals-pair-alignment} in [Align Signals](#sec-align-signals), we would expect a high correlation score between signals from scans of wires cut with the same tool. For signals from scans of wires cut with a different tool, we would expect a low correlation score. For example, we have two scans from different tools, T1AW-LI-R1 and T2AW-LI-R1, as shown in @fig-T1AW-LI-R1 and @fig-T2AW-LI-R1. The alignment is shown in @fig-T1AW-LI-R1-T2AW-LI-R1 with 0.2 CCF value, which is low, as expected.
 
 We also put resulting CCFs for all pairwise comparisions in the boxplot,
 together with the receiver operating characteristic (ROC) curve,
@@ -555,7 +555,7 @@ string <- tibble(
   group_type = c(rep("Inspect raw scans", 1), rep("Extract profiles", 2), rep("Derive signals", 1), rep("Align signals", 3)),
   code_type = c("`1-create_pngs_from_x3p.R`", "`2-create_profiles_from_x3p.R`", "`3-create-single-profile-file.R`", "`4-create_signatures_from_profiles.R`", "`5-create-images.R`", "`6-align-pairwise.R`", "`7-all-comparison-results.R`"),
   Description = c("obtain images of `x3p`s in `scans/`", "manually extract profiles from each scan", "wire-profiles.csv NOT USED, REMOVE THIS FILE???", "derive signals from each profile", "create images for pairwise alignment", "compute pairwise alignment CCF values", "visualize comparison results"),
-  Section = c("[Cutting wires](#sec-cutting-wires)", "[Extract profiles](#sec-extract-profiles)", "[Extract profiles](#sec-extract-profiles)", "[Filtered signals](#sec-filtered-signals)", "[Align signals](#sec-align-signals)", "[Align signals](#sec-align-signals)", "[Align signals](#sec-align-signals)")
+  Section = c("[Cutting Wires](#sec-cutting-wires)", "[Extract Profiles](#sec-extract-profiles)", "[Extract Profiles](#sec-extract-profiles)", "[Filtered Signals](#sec-filtered-signals)", "[Align Signals](#sec-align-signals)", "[Align Signals](#sec-align-signals)", "[Align Signals](#sec-align-signals)")
 ) %>%
   gt(rowname_col = "code_type", groupname_col = "group_type") %>%
   tab_options(table.width = pct(95)) %>%
@@ -602,7 +602,7 @@ string
 ```
 
 
-We already conduct pairwise comparisons and visualize some of the comparison results in [Align signals](#sec-align-signals) and [Technical Validation](#sec-technical-validation),
+We already conduct pairwise comparisons and visualize some of the comparison results in [Align Signals](#sec-align-signals) and [Technical Validation](#sec-technical-validation),
 and we can also produce other analysis plots.
 
 Suppose we put the CCF values in a tilemap with different tool, location and edge combinations.

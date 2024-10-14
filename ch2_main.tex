@@ -136,21 +136,21 @@ files.}
 \midrule\addlinespace[2.5pt]
 \multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{Raw data} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
-\texttt{scans/} & folder containing 120 topographic 3d scans of aluminum wire cuts in x3p format & \protect\hyperref[sec-cutting-wires]{Cutting wires} \\ 
-\texttt{meta.csv} & meta information for each cut with tool, blade, and location information (csv format) & \protect\hyperref[sec-cutting-wires]{Cutting wires} \\ 
+\texttt{scans/} & folder containing 120 topographic 3d scans of aluminum wire cuts in x3p format & \protect\hyperref[sec-cutting-wires]{Cutting Wires} \\ 
+\texttt{meta.csv} & meta information for each cut with tool, blade, and location information (csv format) & \protect\hyperref[sec-cutting-wires]{Cutting Wires} \\ 
 \midrule\addlinespace[2.5pt]
 \multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{Manual derivatives} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
-\texttt{profiles} & folder of files with manually extracted profiles (csv format) & \protect\hyperref[sec-extract-profiles]{Extract profiles} \\ 
+\texttt{profiles} & folder of files with manually extracted profiles (csv format) & \protect\hyperref[sec-extract-profiles]{Extract Profiles} \\ 
 \midrule\addlinespace[2.5pt]
 \multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{Computational derivatives} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
-\texttt{signals} & folder of signals, processed from corresponding profile (csv format) & \protect\hyperref[sec-filtered-signals]{Filtered signals} \\ 
-CCF values & CCF values of all pairwise aligned signals in 1 CSV & \protect\hyperref[sec-align-signals]{Align signals} \\ 
+\texttt{signals} & folder of signals, processed from corresponding profile (csv format) & \protect\hyperref[sec-filtered-signals]{Filtered Signals} \\ 
+CCF values & CCF values of all pairwise aligned signals in 1 CSV & \protect\hyperref[sec-align-signals]{Align Signals} \\ 
 \midrule\addlinespace[2.5pt]
 \multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{Image files} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
-\texttt{aligned-signals} & pictures of pairwise aligned signals from same sources in PNGs & \protect\hyperref[sec-align-signals]{Align signals} \\ 
+\texttt{aligned-signals} & pictures of pairwise aligned signals from same sources in PNGs & \protect\hyperref[sec-align-signals]{Align Signals} \\ 
 \bottomrule
 \end{tabular*}
 
@@ -159,13 +159,13 @@ CCF values & CCF values of all pairwise aligned signals in 1 CSV & \protect\hype
 \end{table}%
 
 For the reproducibility of all our data and alignment results, we
-introduce in detail in \hyperref[sec-cutting-wires]{Cutting wires}
+introduce in detail in \hyperref[sec-cutting-wires]{Cutting Wires}
 \tom{hyperlink location incorrect for unnumbered sections} how we cut
 the wire and collect the 120 scans with 5 tools on 3 locations, in
-\hyperref[sec-extract-profiles]{Extract profiles} how we extract
+\hyperref[sec-extract-profiles]{Extract Profiles} how we extract
 profiles from the scans, in \hyperref[sec-filtered-signals]{Filtered
-signals} how we filter signals from the profiles, in
-\hyperref[sec-align-signals]{Align signals} how we align signals from
+Signals} how we filter signals from the profiles, in
+\hyperref[sec-align-signals]{Align Signals} how we align signals from
 different scans and optimize the alignment with the cross-correlation
 function (CCF) values. In \hyperref[sec-data-records]{Data Records}, we
 discuss where our data is held. Then, in
@@ -197,8 +197,8 @@ lead. The physical property of aluminium wire make it an excellent
 candidate for keeping marks while being relatively easy to bend and
 non-toxic.
 
-\subsection*{Cutting wires}\label{sec-cutting-wires}
-\addcontentsline{toc}{subsection}{Cutting wires}
+\subsection*{Cutting Wires}\label{sec-cutting-wires}
+\addcontentsline{toc}{subsection}{Cutting Wires}
 
 The aluminum wire used was 16 Gauge/1.5 mm, anodized. In order to cut
 the wire, 4-inch pieces were unspooled and cut using Kaiweets wire
@@ -270,8 +270,8 @@ from blade A and B, and others from blade C and D.
 
 \end{figure}%
 
-\subsection*{Extract profiles}\label{sec-extract-profiles}
-\addcontentsline{toc}{subsection}{Extract profiles}
+\subsection*{Extract Profiles}\label{sec-extract-profiles}
+\addcontentsline{toc}{subsection}{Extract Profiles}
 
 Numerical comparisons between 2 replicates cannot be done directly on
 the \texttt{x3p} files. We need to extract representative functions from
@@ -287,8 +287,8 @@ Figure~\ref{fig-T1AW-LI-R1-profiles}. We can then investigate the values
 under this profile line. The profile function is along the line is
 plotted in Figure~\ref{fig-T1AW-LI-R1-profiles-plot}.
 
-\subsection*{Filtered signals}\label{sec-filtered-signals}
-\addcontentsline{toc}{subsection}{Filtered signals}
+\subsection*{Filtered Signals}\label{sec-filtered-signals}
+\addcontentsline{toc}{subsection}{Filtered Signals}
 
 With the profile extracted, we can then obtain the signal. Two Gaussian
 filters are applied to these resulting profiles. In particular, we first
@@ -343,8 +343,8 @@ high-pass filter on the raw signal.}
 
 \end{figure}%
 
-\subsection*{Align signals}\label{sec-align-signals}
-\addcontentsline{toc}{subsection}{Align signals}
+\subsection*{Align Signals}\label{sec-align-signals}
+\addcontentsline{toc}{subsection}{Align Signals}
 
 Signals extracted from different scans can be put together for
 comparison, and we maximize the cross-correlation function (CCF) values
@@ -445,7 +445,7 @@ For the validation of the scans and their processing we investigate the
 correlation scores of pair-wise aligned signals. Large scores between
 signals are indicative of being made by the same tool. As showed
 previously in Figure \ref{fig-signals-pair-alignment} in
-\hyperref[sec-align-signals]{Align signals}, we would expect a high
+\hyperref[sec-align-signals]{Align Signals}, we would expect a high
 correlation score between signals from scans of wires cut with the same
 tool. For signals from scans of wires cut with a different tool, we
 would expect a low correlation score. For example, we have two scans
@@ -593,22 +593,22 @@ Table~\ref{tbl-code-overview}.
 \midrule\addlinespace[2.5pt]
 \multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{Inspect raw scans} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
-\texttt{1-create\_pngs\_from\_x3p.R} & obtain images of \texttt{x3p}s in \texttt{scans/} & \protect\hyperref[sec-cutting-wires]{Cutting wires} \\ 
+\texttt{1-create\_pngs\_from\_x3p.R} & obtain images of \texttt{x3p}s in \texttt{scans/} & \protect\hyperref[sec-cutting-wires]{Cutting Wires} \\ 
 \midrule\addlinespace[2.5pt]
 \multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{Extract profiles} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
-\texttt{2-create\_profiles\_from\_x3p.R} & manually extract profiles from each scan & \protect\hyperref[sec-extract-profiles]{Extract profiles} \\ 
-\texttt{3-create-single-profile-file.R} & wire-profiles.csv NOT USED, REMOVE THIS FILE??? & \protect\hyperref[sec-extract-profiles]{Extract profiles} \\ 
+\texttt{2-create\_profiles\_from\_x3p.R} & manually extract profiles from each scan & \protect\hyperref[sec-extract-profiles]{Extract Profiles} \\ 
+\texttt{3-create-single-profile-file.R} & wire-profiles.csv NOT USED, REMOVE THIS FILE??? & \protect\hyperref[sec-extract-profiles]{Extract Profiles} \\ 
 \midrule\addlinespace[2.5pt]
 \multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{Derive signals} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
-\texttt{4-create\_signatures\_from\_profiles.R} & derive signals from each profile & \protect\hyperref[sec-filtered-signals]{Filtered signals} \\ 
+\texttt{4-create\_signatures\_from\_profiles.R} & derive signals from each profile & \protect\hyperref[sec-filtered-signals]{Filtered Signals} \\ 
 \midrule\addlinespace[2.5pt]
 \multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{Align signals} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
-\texttt{5-create-images.R} & create images for pairwise alignment & \protect\hyperref[sec-align-signals]{Align signals} \\ 
-\texttt{6-align-pairwise.R} & compute pairwise alignment CCF values & \protect\hyperref[sec-align-signals]{Align signals} \\ 
-\texttt{7-all-comparison-results.R} & visualize comparison results & \protect\hyperref[sec-align-signals]{Align signals} \\ 
+\texttt{5-create-images.R} & create images for pairwise alignment & \protect\hyperref[sec-align-signals]{Align Signals} \\ 
+\texttt{6-align-pairwise.R} & compute pairwise alignment CCF values & \protect\hyperref[sec-align-signals]{Align Signals} \\ 
+\texttt{7-all-comparison-results.R} & visualize comparison results & \protect\hyperref[sec-align-signals]{Align Signals} \\ 
 \bottomrule
 \end{tabular*}
 
@@ -617,7 +617,7 @@ Table~\ref{tbl-code-overview}.
 \end{table}%
 
 We already conduct pairwise comparisons and visualize some of the
-comparison results in \hyperref[sec-align-signals]{Align signals} and
+comparison results in \hyperref[sec-align-signals]{Align Signals} and
 \hyperref[sec-technical-validation]{Technical Validation}, and we can
 also produce other analysis plots.
 
