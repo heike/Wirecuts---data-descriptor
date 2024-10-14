@@ -571,16 +571,55 @@ signals from T1AW-LI-R1 and T2AW-LI-R1.}
 \section*{Usage Notes}\label{sec-usage-notes}
 \addcontentsline{toc}{section}{Usage Notes}
 
-\hh{The \texttt{R} package \texttt{x3ptools} (available from \texttt{CRAN}) supports working with files in  x3p format. }
+The \texttt{R} package
+\texttt{x3ptools}\citep{hofmannX3ptoolsToolsWorking2018} available from
+\texttt{CRAN} supports working with files in \texttt{x3p} format. The
+sample scripts in \texttt{R} for processing scans from \texttt{x3p}
+format to their signal and alignment are available on \texttt{GitHub}
+\href{https://github.com/heike/wirecuts-data}{heike/wirecuts-data} in
+\texttt{assessment/code} folder, as described in
+Table~\ref{tbl-code-overview}.
 
-\hh{Sample scripts in R for processing scans from x3p format to their signal are available from ... github. }
+\begin{table}
 
-Further analysis can be conducted with the \texttt{GitHub} \texttt{R}
-package \texttt{wire} and the \texttt{GitHub} \texttt{R} shiny app
-\texttt{wireShiny} \tom{(citation?)}. We already conduct
-between-replicate comparisons in the technical validation section, and
-we can also conduct across-replicate comparisons to establish error
-rates threshold and produce other analysis plots.
+\caption{\label{tbl-code-overview}Overview of available codes.}
+
+\centering{
+
+\fontsize{12.0pt}{14.4pt}\selectfont
+\begin{tabular*}{0.95\linewidth}{@{\extracolsep{\fill}}>{\raggedright\arraybackslash}p{\dimexpr 0.522\linewidth -2\tabcolsep-1.5\arrayrulewidth}|>{\raggedright\arraybackslash}p{\dimexpr 0.283\linewidth -2\tabcolsep-1.5\arrayrulewidth}>{\raggedright\arraybackslash}p{\dimexpr 0.438\linewidth -2\tabcolsep-1.5\arrayrulewidth}}
+\toprule
+ & Description & Section \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{Inspect raw scans} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+\texttt{1-create\_pngs\_from\_x3p.R} & obtain images of \texttt{x3p}s in \texttt{scans/} & \protect\hyperref[sec-cutting-wires]{Cutting wires} \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{Extract profiles} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+\texttt{2-create\_profiles\_from\_x3p.R} & manually extract profiles from each scan & \protect\hyperref[sec-extract-profiles]{Extract profiles} \\ 
+\texttt{3-create-single-profile-file.R} & wire-profiles.csv NOT USED, REMOVE THIS FILE??? & \protect\hyperref[sec-extract-profiles]{Extract profiles} \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{Derive signals} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+\texttt{4-create\_signatures\_from\_profiles.R} & derive signals from each profile & \protect\hyperref[sec-filtered-signals]{Filtered signals} \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{Align signals} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+\texttt{5-create-images.R} & create images for pairwise alignment & \protect\hyperref[sec-align-signals]{Align signals} \\ 
+\texttt{6-align-pairwise.R} & compute pairwise alignment CCF values & \protect\hyperref[sec-align-signals]{Align signals} \\ 
+\texttt{7-all-comparison-results.R} & visualize comparison results & \protect\hyperref[sec-align-signals]{Align signals} \\ 
+\bottomrule
+\end{tabular*}
+
+}
+
+\end{table}%
+
+We already conduct pairwise comparisons and visualize some of the
+comparison results in \hyperref[sec-align-signals]{Align signals} and
+\hyperref[sec-technical-validation]{Technical Validation}, and we can
+also produce other analysis plots.
 
 Suppose we put the CCF values in a tilemap with different tool, location
 and edge combinations. In that case, we expect only the diagonal to have
@@ -588,11 +627,10 @@ high CCF values, close to 1 and marked as orange in the tilemap, as the
 diagonal represents the same source, and the rest of the matrix to have
 low CCF values, close to 0 and marked as gray. In Figure
 \ref{fig-ccf-tilemap}, the behavior is consistent with our expectation
-overall, except for some rare cases with tool 5 edge D, which is caused
-by \tom{?????}. The density plot in Figure \ref{fig-ccf-density} shows
-the distribution of the CCF values with the same sources and different
-sources. The overlapping points between the tails of these two
-distributions can be a rough threshold.
+overall, except for some rare cases with tool 5 edge D. The density plot
+in Figure \ref{fig-ccf-density} shows the distribution of the CCF values
+with the same sources and different sources. The overlapping points
+between the tails of these two distributions can be a rough threshold.
 
 Furthermore, the ROC curve in Figure \ref{fig-ccf-ROC} shows the
 sensitivity / true positive rate against the false positive rate (FPR)
@@ -633,42 +671,6 @@ results discussed in \hyperref[sec-methods]{Methods} and
 \hyperref[sec-technical-validation]{Technical Validation}, as described
 in Table~\ref{tbl-code-overview}. All results are reproducible using
 these codes provided.
-
-\begin{table}
-
-\caption{\label{tbl-code-overview}Overview of available codes.}
-
-\centering{
-
-\fontsize{12.0pt}{14.4pt}\selectfont
-\begin{tabular*}{0.95\linewidth}{@{\extracolsep{\fill}}>{\raggedright\arraybackslash}p{\dimexpr 0.522\linewidth -2\tabcolsep-1.5\arrayrulewidth}|>{\raggedright\arraybackslash}p{\dimexpr 0.283\linewidth -2\tabcolsep-1.5\arrayrulewidth}>{\raggedright\arraybackslash}p{\dimexpr 0.438\linewidth -2\tabcolsep-1.5\arrayrulewidth}}
-\toprule
- & Description & Section \\ 
-\midrule\addlinespace[2.5pt]
-\multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{Inspect raw scans} \\[2.5pt] 
-\midrule\addlinespace[2.5pt]
-\texttt{1-create\_pngs\_from\_x3p.R} & obtain images of \texttt{x3p}s in \texttt{scans/} & \protect\hyperref[sec-cutting-wires]{Cutting wires} \\ 
-\midrule\addlinespace[2.5pt]
-\multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{Extract profiles} \\[2.5pt] 
-\midrule\addlinespace[2.5pt]
-\texttt{2-create\_profiles\_from\_x3p.R} & manually extract profiles from each scan & \protect\hyperref[sec-extract-profiles]{Extract profiles} \\ 
-\texttt{3-create-single-profile-file.R} & wire-profiles.csv NOT USED, REMOVE THIS FILE??? & \protect\hyperref[sec-extract-profiles]{Extract profiles} \\ 
-\midrule\addlinespace[2.5pt]
-\multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{Derive signals} \\[2.5pt] 
-\midrule\addlinespace[2.5pt]
-\texttt{4-create\_signatures\_from\_profiles.R} & derive signals from each profile & \protect\hyperref[sec-filtered-signals]{Filtered signals} \\ 
-\midrule\addlinespace[2.5pt]
-\multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{Align signals} \\[2.5pt] 
-\midrule\addlinespace[2.5pt]
-\texttt{5-create-images.R} & create images for pairwise alignment & \protect\hyperref[sec-align-signals]{Align signals} \\ 
-\texttt{6-align-pairwise.R} & compute pairwise alignment CCF values & \protect\hyperref[sec-align-signals]{Align signals} \\ 
-\texttt{7-all-comparison-results.R} & visualize comparison results & \protect\hyperref[sec-align-signals]{Align signals} \\ 
-\bottomrule
-\end{tabular*}
-
-}
-
-\end{table}%
 
 \ifnum \ifinstruction=1
 

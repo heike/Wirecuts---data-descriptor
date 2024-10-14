@@ -542,68 +542,7 @@ This is consistent with our expectations and validates our data processing pipel
 
 # Usage Notes {#sec-usage-notes .unnumbered}
 
-\hh{The \texttt{R} package \texttt{x3ptools} (available from \texttt{CRAN}) supports working with files in  x3p format. }
-
-\hh{Sample scripts in R for processing scans from x3p format to their signal are available from ... github. }
-
-Further analysis can be conducted with the \texttt{GitHub} \texttt{R} package \texttt{wire} and the \texttt{GitHub} \texttt{R} shiny app \texttt{wireShiny}
-\tom{(citation?)}.
-We already conduct between-replicate comparisons in the technical validation section,
-and we can also conduct across-replicate comparisons to establish error rates threshold and produce other analysis plots.
-
-Suppose we put the CCF values in a tilemap with different tool, location and edge combinations.
-In that case,
-we expect only the diagonal to have high CCF values,
-close to 1 and marked as orange in the tilemap,
-as the diagonal represents the same source,
-and the rest of the matrix to have low CCF values,
-close to 0 and marked as gray.
-In Figure \ref{fig-ccf-tilemap},
-the behavior is consistent with our expectation overall,
-except for some rare cases with tool 5 edge D,
-which is caused by
-\tom{?????}.
-The density plot in Figure \ref{fig-ccf-density} shows the distribution of the CCF values with the same sources and different sources.
-The overlapping points between the tails of these two distributions can be a rough threshold.
-
-Furthermore,
-the ROC curve in Figure \ref{fig-ccf-ROC} shows the sensitivity / true positive rate against the false positive rate (FPR) (1 - specificity).
-The curve is very close to the upper left corner,
-which is excellent for classification and drawing conclusion.
-It gives us a true threshold of 0.589 to control the FPR to be less than 0.05 with false negative rate (FNR) to be 0,
-\tom{(false positive rate (FPR) / false discovery rate (FDR) -> define the H0 or call it false identification rate (FIR)???)},
-and 0.658 to control the FPR to be less than 0.01,
-with FNR to be 0.02.
-
-
-\begin{figure}[ht]
-\centering
-\includegraphics[width=0.8\linewidth]{ccf_tilemap.png}
-\caption{The tilemap shows signals from the same source have CCFs close to 1.}
-\label{fig-ccf-tilemap}
-\end{figure}
-
-
-\begin{figure}[ht]
-\centering
-\includegraphics[width=0.8\linewidth]{ccf_density.png}
-\caption{The density plot shows tails of distributions overlap, which can be used as a rough threshold for drawing conclusions.}
-\label{fig-ccf-density}
-\end{figure}
-
-
-\ifnum \ifinstruction=1
-\textcolor{gray}{(unlimited length) The Usage Notes should contain brief instructions to assist other researchers with reuse of the data. This may include discussion of software packages that are suitable for analysing the assay data files, suggested downstream processing steps (e.g. normalization, etc.), or tips for integrating or comparing the data records with other datasets. Authors are encouraged to provide code, programs or data-processing workflows if they may help others understand or use the data. Please see our code availability policy for advice on supplying custom code alongside Data Descriptor manuscripts.}
-
-\textcolor{gray}{For studies involving privacy or safety controls on public access to the data, this section should describe in detail these controls, including how authors can apply to access the data, what criteria will be used to determine who may access the data, and any limitations on data use.} 
-\fi
-
-
-
-# Code availability {#sec-code-availability .unnumbered}
-
-
-We made available all codes we used for inspecting raw scans, extracting profiles, derving signals, aligning signals, and visualizing comparison results discussed in [Methods](#sec-methods) and [Technical Validation](#sec-technical-validation), as described in @tbl-code-overview. All results are reproducible using these codes provided.
+The \texttt{R} package \texttt{x3ptools}[@hofmannX3ptoolsToolsWorking2018] available from \texttt{CRAN} supports working with files in \texttt{x3p} format. The sample scripts in \texttt{R} for processing scans from \texttt{x3p} format to their signal and alignment are available on \texttt{GitHub} [heike/wirecuts-data](https://github.com/heike/wirecuts-data) in `assessment/code` folder, as described in @tbl-code-overview.
 
 
 ```{r}
@@ -661,6 +600,62 @@ string[1] <- string2
 
 string
 ```
+
+
+We already conduct pairwise comparisons and visualize some of the comparison results in [Align signals](#sec-align-signals) and [Technical Validation](#sec-technical-validation),
+and we can also produce other analysis plots.
+
+Suppose we put the CCF values in a tilemap with different tool, location and edge combinations.
+In that case,
+we expect only the diagonal to have high CCF values,
+close to 1 and marked as orange in the tilemap,
+as the diagonal represents the same source,
+and the rest of the matrix to have low CCF values,
+close to 0 and marked as gray.
+In Figure \ref{fig-ccf-tilemap},
+the behavior is consistent with our expectation overall,
+except for some rare cases with tool 5 edge D.
+The density plot in Figure \ref{fig-ccf-density} shows the distribution of the CCF values with the same sources and different sources.
+The overlapping points between the tails of these two distributions can be a rough threshold.
+
+Furthermore,
+the ROC curve in Figure \ref{fig-ccf-ROC} shows the sensitivity / true positive rate against the false positive rate (FPR) (1 - specificity).
+The curve is very close to the upper left corner,
+which is excellent for classification and drawing conclusion.
+It gives us a true threshold of 0.589 to control the FPR to be less than 0.05 with false negative rate (FNR) to be 0,
+\tom{(false positive rate (FPR) / false discovery rate (FDR) -> define the H0 or call it false identification rate (FIR)???)},
+and 0.658 to control the FPR to be less than 0.01,
+with FNR to be 0.02.
+
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.8\linewidth]{ccf_tilemap.png}
+\caption{The tilemap shows signals from the same source have CCFs close to 1.}
+\label{fig-ccf-tilemap}
+\end{figure}
+
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.8\linewidth]{ccf_density.png}
+\caption{The density plot shows tails of distributions overlap, which can be used as a rough threshold for drawing conclusions.}
+\label{fig-ccf-density}
+\end{figure}
+
+
+\ifnum \ifinstruction=1
+\textcolor{gray}{(unlimited length) The Usage Notes should contain brief instructions to assist other researchers with reuse of the data. This may include discussion of software packages that are suitable for analysing the assay data files, suggested downstream processing steps (e.g. normalization, etc.), or tips for integrating or comparing the data records with other datasets. Authors are encouraged to provide code, programs or data-processing workflows if they may help others understand or use the data. Please see our code availability policy for advice on supplying custom code alongside Data Descriptor manuscripts.}
+
+\textcolor{gray}{For studies involving privacy or safety controls on public access to the data, this section should describe in detail these controls, including how authors can apply to access the data, what criteria will be used to determine who may access the data, and any limitations on data use.} 
+\fi
+
+
+
+# Code availability {#sec-code-availability .unnumbered}
+
+
+We made available all codes we used for inspecting raw scans, extracting profiles, derving signals, aligning signals, and visualizing comparison results discussed in [Methods](#sec-methods) and [Technical Validation](#sec-technical-validation), as described in @tbl-code-overview. All results are reproducible using these codes provided.
 
 
 \ifnum \ifinstruction=1
