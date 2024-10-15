@@ -310,13 +310,12 @@ The profile function is along the line is plotted in @fig-T1AW-LI-R1-profiles-pl
 
 With the profile extracted,
 we can then obtain the signal.
-Two Gaussian filters are applied to these resulting profiles.
+Two Gaussian filters as discussed in Cleveland et al. [@clevelandLocalRegressionModels1992] are applied to these resulting profiles.
 In particular,
 we first used a large low-pass filter with bandwidths of 400 microns to remove large trend,
 as it can overwhelm the signals,
 and then used a small high-pass filter of 40 microns to average across noise and remove spikes,
 as shown in @fig-T1AW-LI-R1-signals-plot.
-Cleveland et al. [@clevelandLocalRegressionModels1992]\tom{???}
 \hh{(add reference: W. S. Cleveland, E. Grosse and W. M. Shyu (1992) Local regression models. Chapter 8 of Statistical Models in S eds J.M. Chambers and T.J. Hastie, Wadsworth \& Brooks/Cole.)}.
 Finally,
 the extreme tail values are removed.
