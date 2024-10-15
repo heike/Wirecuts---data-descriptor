@@ -241,7 +241,7 @@ The aluminum wire used was 16 Gauge/1.5 mm, anodized.
 In order to cut the wire,
 4-inch pieces were unspooled and cut using Kaiweets wire cutters,
 model KWS-105,
-as shown in @fig-kaiweet-label,
+as shown in @fig-plier-tip,
 for 1 blade location,
 either inner, middle, or outer,
 which gives us 1 replicate.
@@ -272,7 +272,7 @@ with T1AW-LI-R1 being the piece cut by tool 1 on the A edge at the inner locatio
 
 :::{}
 
-![](images/kaiweet-label-062524.JPG){#fig-kaiweet-label height=15%}
+![](images/plier-tip.png){#fig-plier-tip height=15%}
 
 ![](images/wire-microscope-062524.JPG){#fig-wire-microscope height=15%}
 
@@ -282,7 +282,7 @@ with T1AW-LI-R1 being the piece cut by tool 1 on the A edge at the inner locatio
 ![](images/T1AW-LI-R2-4edges.png){#fig-T1AW-LI-R2-4edges height=33%}
 :::
 
-\(a) A Kaiweets wire cutter of model KWS-105 was used to cut the wire. \tom{we don't have another high resolution pic showing wirecutter cutting wire} (b) A confocal microscope was used to scan the wire surfaces. \tom{need an extra pic of the tip} (c) After separating 2 tent structures by the connecting position, we obtained 4 samples - 2 samples from blade A and B, and others from blade C and D. \tom{full requirements see \href{https://www.nature.com/sdata/publish/submission-guidelines\#figures}{https://www.nature.com/sdata/publish/submission-guidelines\#figures}}
+\(a) A Kaiweets wire cutter of model KWS-105 was used to cut the wire, with inner, middle and outer locations marked. (b) A confocal microscope was used to scan the wire surfaces. (c) After separating 2 tent structures by the connecting position, we obtained 4 samples - 2 samples from blade A and B, and others from blade C and D. \tom{width and height are tuned manually} \tom{ | full requirements see \href{https://www.nature.com/sdata/publish/submission-guidelines\#figures}{https://www.nature.com/sdata/publish/submission-guidelines\#figures}}
 
 ::::
 
