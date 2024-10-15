@@ -42,27 +42,27 @@ affiliations:
   - id: 1
     name: Iowa State University
     department: Department of Statistics
-    city: Ames, IA
+    city: Ames, IA, 50011
     country: USA
   - id: 2
     name: Iowa State University
     department: Center for Statistics and Applications in Forensic Evidence (CSAFE)
-    city: Ames, IA
+    city: Ames, IA, 50011
     country: USA
   - id: 3
     name: University of Nebraska-Lincoln
     department: Department of Statistics
-    city: Lincoln, NE
+    city: Lincoln, NE, 68583
     country: USA
   - id: 4
     name: Iowa State University
     department: Roy J Carver High Resolution Microscopy Facility (HRMF)
-    city: Ames, IA
+    city: Ames, IA, 50011
     country: USA
   - id: 5
     name: University of Central Oklahoma
     department: Criminal Justice and Forensic Science
-    city: Edmond, OK
+    city: Edmond, OK, 73034
     country: USA
 abstract: |
  \tom{Update later: max of 170 words: describe the study, the assay(s) performed,  resulting data, and reuse potential}
