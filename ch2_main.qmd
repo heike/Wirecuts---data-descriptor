@@ -44,26 +44,31 @@ affiliations:
     department: Department of Statistics
     city: Ames
     state: IA
+    country: USA
   - id: 2
     name: Iowa State University
     department: Center for Statistics and Applications in Forensic Evidence (CSAFE)
     city: Ames
     state: IA
+    country: USA
   - id: 3
     name: University of Nebraska-Lincoln
     department: Department of Statistics
     city: Lincoln
     state: NE
+    country: USA
   - id: 4
     name: Iowa State University
     department: Roy J Carver High Resolution Microscopy Facility (HRMF)
     city: Ames
     state: IA
+    country: USA
   - id: 5
     name: University of Central Oklahoma
     department: Criminal Justice and Forensic Science
     city: Edmond
     state: OK
+    country: USA
 abstract: |
  \tom{Update later: max of 170 words: describe the study, the assay(s) performed,  resulting data, and reuse potential}
  Wire cut data is important in forensic investigations but lacks a systematic way of analyzing the data.
