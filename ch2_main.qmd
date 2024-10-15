@@ -550,7 +550,7 @@ The \texttt{R} package \texttt{x3ptools}[@hofmannX3ptoolsToolsWorking2018] avail
 string <- tibble(
   group_type = c(rep("Inspect raw scans", 1), rep("Extract profiles", 2), rep("Derive signals", 1), rep("Align signals", 3)),
   code_type = c("`1-create_pngs_from_x3p.R`", "`2-create_profiles_from_x3p.R`", "`3-create-single-profile-file.R`", "`4-create_signals_from_profiles.R`", "`5-create-images.R`", "`6-align-pairwise.R`", "`7-all-comparison-results.R`"),
-  Description = c("obtain images of `x3p`s in `scans/`", "manually extract profiles from each scan", "wire-profiles.csv NOT USED, REMOVE THIS FILE???", "derive signals from each profile", "create images for pairwise alignment", "compute pairwise alignment CCF values", "visualize comparison results"),
+  Description = c("obtain images of `x3p`s in `scans/`", "manually extract profiles from each scan", "create meta profile information", "derive signals from each profile", "create images for pairwise alignment", "compute pairwise alignment CCF values", "visualize comparison results"),
   Section = c("[Cutting Wires](#sec-cutting-wires)", "[Extract Profiles](#sec-extract-profiles)", "[Extract Profiles](#sec-extract-profiles)", "[Filtered Signals](#sec-filtered-signals)", "[Align Signals](#sec-align-signals)", "[Align Signals](#sec-align-signals)", "[Align Signals](#sec-align-signals)")
 ) %>%
   gt(rowname_col = "code_type", groupname_col = "group_type") %>%
