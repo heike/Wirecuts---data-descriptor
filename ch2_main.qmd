@@ -1,5 +1,5 @@
 ---
-title: "Three-dimensional data of wirecut surface scans under the confocal microscope (110 character maximum, inc. spaces)"
+title: "Three-dimensional data of wire-cut surface scans under the confocal microscope (110 character maximum, inc. spaces)"
 authors: 
   - name: Yuhang Lin
     affiliations:
@@ -128,7 +128,8 @@ Wire cut data is a type of forensic tool mark data used to identify the source o
 There have been cases where the evidence and testimony on wire cut evidence played a crucial role in the criminal investigation and conviction of a defendant.
 
 However,
-there is a lack of a standardized method to analyze it except for visual comparison. 
+there is a lack of a standardized method to analyze it,
+except for visual comparison. 
 Although the Association of Firearm and Toolmark Examiners (AFTE) developed the Theory of Identification [@afte], which outlines the process of comparing tool marks,
 it is still subjective and relies on the examiner's experience,
 making results hard to reproduce and validate.
@@ -156,7 +157,7 @@ as described in @tbl-data-overview.
 string <- tibble(
   group_type = c(rep("Raw data", 2), rep("Manual derivatives", 1), rep("Computational derivatives", 2), rep("Image files")),
   data_type = c("`scans/`", "`meta.csv`", "`profiles`", "`signals`", "CCF values", "`aligned-signals`"),
-  Description = c("folder containing 120 topographic 3d scans of aluminum wire cuts in x3p format", "meta information for each cut with tool, blade, and location information (csv format)", "folder of files with manually extracted profiles (csv format)", "folder of signals, processed from corresponding profile (csv format)", "CCF values of all pairwise aligned signals in 1 CSV", "pictures of pairwise aligned signals from same sources in PNGs"),
+  Description = c("folder containing 120 topographic 3d scans of aluminum wire cuts in x3p format", "meta information for each cut with tool, blade, and location information (CSV format)", "folder of files with manually extracted profiles (CSV format)", "folder of signals, processed from corresponding profile (CSV format)", "CCF values of all pairwise aligned signals in 1 CSV", "pictures of pairwise aligned signals from the same sources in PNGs"),
   Section = c("[Cutting Wires](#sec-cutting-wires)", "[Cutting Wires](#sec-cutting-wires)", "[Extract Profiles](#sec-extract-profiles)", "[Filtered Signals](#sec-filtered-signals)", "[Align Signals](#sec-align-signals)", "[Align Signals](#sec-align-signals)")
 ) %>%
   gt(rowname_col = "data_type", groupname_col = "group_type") %>%
@@ -204,7 +205,7 @@ string
 ```
 
 For the reproducibility of all our data and alignment results,
-we introduce in detail in [Cutting Wires](#sec-cutting-wires) \tom{hyperlink location incorrect for unnumbered sections} how we cut the wire and collect the 120 scans with 5 tools on 3 locations,
+we introduce in detail in [Cutting Wires](#sec-cutting-wires) \tom{hyperlink location incorrect for unnumbered sections} how we cut the wire and collect the 120 scans with 5 tools,
 in [Extract Profiles](#sec-extract-profiles) how we extract profiles from the scans,
 in [Filtered Signals](#sec-filtered-signals) how we filter signals from the profiles,
 in [Align Signals](#sec-align-signals) how we align signals from different scans and optimize the alignment with the cross-correlation function (CCF) values.
@@ -230,9 +231,10 @@ We hope this pipeline developed using this data set can be further generalized a
 # Methods {#sec-methods .unnumbered}
 
 In this study,
-aluminum wire was used to create an optimal scenario where the most amount of information could be transferred from the tool to the substrate,
-despite the wire in some real cases being made of lead. 
-The physical property of aluminium wire make it an excellent candidate for keeping marks while being relatively easy to bend and non-toxic.
+aluminum wire was used to create an optimal scenario where the most amount of information could be transferred from the tool to the substrate despite the wire,
+in some real cases,
+being made of lead. 
+The physical property of aluminum wire makes it an excellent candidate for keeping marks while being relatively easy to bend and non-toxic.
 
 
 ## Cutting Wires {#sec-cutting-wires .unnumbered}
@@ -292,27 +294,28 @@ with T1AW-LI-R1 being the piece cut by tool 1 on the A edge at the inner locatio
 Numerical comparisons between 2 replicates cannot be done directly on the \texttt{x3p} files.
 We need to extract representative functions from the scans first.
 A representative function with the most information is considered as a signal for one scan,
-which can be used for comparison later.
+which can be used later for comparison.
 To obtain this function,
 we first need a profile of the scan,
 which is a sequence of values along a user-drawn line on the surface.
-The profile should capture most features of the scan,
-and be orthogonal to the striation marks of the scan,
-which are formed by ups and downs of grooves.
+The profile should capture most features of the scan and be orthogonal to the striation marks of the scan,
+which are formed by the ups and downs of grooves.
 So,
 we draw the line across the wide region of the scan to maximize the feature captured,
 as shown in dark blue in @fig-T1AW-LI-R1-profiles.
 We can then investigate the values under this profile line.
-The profile function is along the line is plotted in @fig-T1AW-LI-R1-profiles-plot.
+The profile function along the line is plotted in @fig-T1AW-LI-R1-profiles-plot.
 
 
 ## Filtered Signals {#sec-filtered-signals .unnumbered}
 
 With the profile extracted,
 we can then obtain the signal.
-Two Gaussian filters as discussed in Cleveland et al. [@clevelandLocalRegressionModels1992] are applied to these resulting profiles.
+Two Gaussian filters,
+as discussed in Cleveland et al. [@clevelandLocalRegressionModels1992],
+are applied to these resulting profiles.
 In particular,
-we first used a large low-pass filter with bandwidths of 400 microns to remove large trend,
+we first used a large low-pass filter with bandwidths of 400 microns to remove the large trend,
 as it can overwhelm the signals,
 and then used a small high-pass filter of 40 microns to average across noise and remove spikes,
 as shown in @fig-T1AW-LI-R1-signals-plot.
@@ -344,14 +347,14 @@ the extreme tail values are removed.
 ## Align Signals {#sec-align-signals .unnumbered}
 
 Signals extracted from different scans can be put together for comparison,
-and we maximize the cross-correlation function (CCF) values between the signals to numerically find the best alignment.
+and we maximize the cross-correlation function (CCF) values between the signals to find the best alignment numerically.
 For example,
 we compare T1AW-LI-R1 to T1AW-LI-R2,
 T1CW-LI-R1 to T1CW-LI-R2,
 and so on.
 That is comparing each row in Figure \ref{fig-scans-pair}.
 We know that signals from two replicates with the same tool-edge-location combination should yield similar signals，
-as in the first and second column of Figure \ref{fig-signals-pair-alignment},
+as in the first and second columns of Figure \ref{fig-signals-pair-alignment},
 which will give alignments of massive overlapping and high CCF values close to 1.
 The alignments and values we got in the rightmost column of Figure \ref{fig-signals-pair-alignment} fulfill our expectations.
 
@@ -451,7 +454,8 @@ then one person did the scanning and named according to the naming convention ab
 The data was saved in a consistent format to ensure they could be easily accessed and analyzed.
 A third person then checked the data to ensure that the data was consistent in naming and accurate.
 
-For the validation of the scans and their processing we investigate the correlation scores of pair-wise aligned signals. Large scores between signals are indicative of being made by the same tool. As showed previously in Figure \ref{fig-signals-pair-alignment} in [Align Signals](#sec-align-signals), we would expect a high correlation score between signals from scans of wires cut with the same tool. For signals from scans of wires cut with a different tool, we would expect a low correlation score. For example, we have two scans from different tools, T1AW-LI-R1 and T2AW-LI-R1, as shown in @fig-T1AW-LI-R1 and @fig-T2AW-LI-R1. The alignment is shown in @fig-T1AW-LI-R1-T2AW-LI-R1 with 0.2 CCF value, which is low, as expected.
+For the validation of the scans and their processing,
+we investigate the correlation scores of pairwise aligned signals. Large scores between signals are indicative of being made by the same tool. As shown previously in Figure \ref{fig-signals-pair-alignment} in [Align Signals](#sec-align-signals), we would expect a high correlation score between signals from scans of wires cut with the same tool. For signals from scans of wires cut with a different tool, we would expect a low correlation score. For example, we have two scans from different tools, T1AW-LI-R1 and T2AW-LI-R1, as shown in @fig-T1AW-LI-R1 and @fig-T2AW-LI-R1. The alignment is shown in @fig-T1AW-LI-R1-T2AW-LI-R1 with a 0.2 CCF value, which is low, as expected.
 
 We also put resulting CCFs for all pairwise comparisions in the boxplot,
 together with the receiver operating characteristic (ROC) curve,
@@ -538,7 +542,7 @@ This is consistent with our expectations and validates our data processing pipel
 
 # Usage Notes {#sec-usage-notes .unnumbered}
 
-The \texttt{R} package \texttt{x3ptools}[@hofmannX3ptoolsToolsWorking2018] available from \texttt{CRAN} supports working with files in \texttt{x3p} format. The sample scripts in \texttt{R} for processing scans from \texttt{x3p} format to their signal and alignment are available on \texttt{GitHub} [heike/wirecuts-data](https://github.com/heike/wirecuts-data) in `assessment/code` folder, as described in @tbl-code-overview.
+The \texttt{R} package \texttt{x3ptools}[@hofmannX3ptoolsToolsWorking2018] available from \texttt{CRAN} supports working with files in \texttt{x3p} format. The sample scripts in \texttt{R} for processing scans from \texttt{x3p} format to their signal and alignment are available on \texttt{GitHub} [heike/wirecuts-data](https://github.com/heike/wirecuts-data) in the `assessment/code` folder, as described in @tbl-code-overview.
 
 
 ```{r}
@@ -601,7 +605,7 @@ string
 We already conduct pairwise comparisons and visualize some of the comparison results in [Align Signals](#sec-align-signals) and [Technical Validation](#sec-technical-validation),
 and we can also produce other analysis plots.
 
-Suppose we put the CCF values in a tilemap with different tool, location and edge combinations.
+Suppose we put the CCF values in a tilemap with different tools, locations and edge combinations.
 In that case,
 we expect only the diagonal to have high CCF values,
 close to 1 and marked as orange in the tilemap,
@@ -617,8 +621,8 @@ The overlapping points between the tails of these two distributions can be a rou
 Furthermore,
 the ROC curve in Figure \ref{fig-ccf-ROC} shows the sensitivity / true positive rate against the false positive rate (FPR) (1 - specificity).
 The curve is very close to the upper left corner,
-which is excellent for classification and drawing conclusion.
-It gives us a true threshold of 0.589 to control the FPR to be less than 0.05 with false negative rate (FNR) to be 0,
+which is excellent for classification and drawing conclusions.
+It gives us a true threshold of 0.589 to control the FPR to be less than 0.05 with a false negative rate (FNR) to be 0,
 \tom{(false positive rate (FPR) / false discovery rate (FDR) -> define the H0 or call it false identification rate (FIR)???)},
 and 0.658 to control the FPR to be less than 0.01,
 with FNR to be 0.02.
