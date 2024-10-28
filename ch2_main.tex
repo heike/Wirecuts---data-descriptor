@@ -130,27 +130,29 @@ files.}
 \centering{
 
 \fontsize{12.0pt}{14.4pt}\selectfont
-\begin{tabular*}{0.95\linewidth}{@{\extracolsep{\fill}}>{\raggedright\arraybackslash}p{\dimexpr 0.244\linewidth -2\tabcolsep-1.5\arrayrulewidth}|>{\raggedright\arraybackslash}p{\dimexpr 0.243\linewidth -2\tabcolsep-1.5\arrayrulewidth}>{\raggedright\arraybackslash}p{\dimexpr 0.434\linewidth -2\tabcolsep-1.5\arrayrulewidth}}
+\begin{tabular*}{0.95\linewidth}{@{\extracolsep{\fill}}>{\raggedright\arraybackslash}p{\dimexpr 0.522\linewidth -2\tabcolsep-1.5\arrayrulewidth}|>{\raggedright\arraybackslash}p{\dimexpr 0.244\linewidth -2\tabcolsep-1.5\arrayrulewidth}>{\raggedright\arraybackslash}p{\dimexpr 0.244\linewidth -2\tabcolsep-1.5\arrayrulewidth}}
 \toprule
  & Description & Section \\ 
 \midrule\addlinespace[2.5pt]
 \multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{Raw data} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
-\texttt{scans/} & folder containing 120 topographic 3d scans of aluminum wire cuts in x3p format & \protect\hyperref[sec-cutting-wires]{Cutting Wires} \\ 
+\texttt{scans/} & folder containing 120 topographic 3d scans of aluminum wire cuts (x3p format) & \protect\hyperref[sec-cutting-wires]{Cutting Wires} \\ 
 \texttt{meta.csv} & meta information for each cut with tool, blade, and location information (CSV format) & \protect\hyperref[sec-cutting-wires]{Cutting Wires} \\ 
 \midrule\addlinespace[2.5pt]
 \multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{Manual derivatives} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
-\texttt{profiles} & folder of files with manually extracted profiles (CSV format) & \protect\hyperref[sec-extract-profiles]{Extract Profiles} \\ 
+\texttt{profiles/} & folder of files with manually extracted profiles (CSV format) & \protect\hyperref[sec-extract-profiles]{Extract Profiles} \\ 
 \midrule\addlinespace[2.5pt]
 \multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{Computational derivatives} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
-\texttt{signals} & folder of signals, processed from corresponding profile (CSV format) & \protect\hyperref[sec-filtered-signals]{Filtered Signals} \\ 
-CCF values & CCF values of all pairwise aligned signals in 1 CSV & \protect\hyperref[sec-align-signals]{Align Signals} \\ 
+\texttt{data-derived/wire-signals.csv.zip} & signals processed from corresponding profile (CSV format) & \protect\hyperref[sec-filtered-signals]{Filtered Signals} \\ 
+\texttt{data-derived/ wire\_pairwise\_ccf.csv.zip} & CCF values of all pairwise aligned signals (CSV format) & \protect\hyperref[sec-align-signals]{Align Signals} \\ 
 \midrule\addlinespace[2.5pt]
 \multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{Image files} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
-\texttt{aligned-signals} & pictures of pairwise aligned signals from the same sources in PNGs & \protect\hyperref[sec-align-signals]{Align Signals} \\ 
+\texttt{pngs/} & folder containing pictures of 3d scans of wire cuts (PNG format) & \protect\hyperref[sec-cutting-wires]{Cutting Wires} \\ 
+\texttt{profile-images/} & folder containing pictures of profile extracted from wire cuts (PNG format) & \protect\hyperref[sec-extract-profiles]{Extract Profiles} \\ 
+\texttt{assessment/analysis-manual/ processing-wires.html} & display of pairwise aligned signals from the same sources (HTML format) & \protect\hyperref[sec-align-signals]{Align Signals} \\ 
 \bottomrule
 \end{tabular*}
 

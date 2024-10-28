@@ -155,14 +155,14 @@ as described in @tbl-data-overview.
 #| results: asis
 
 string <- tibble(
-  group_type = c(rep("Raw data", 2), rep("Manual derivatives", 1), rep("Computational derivatives", 2), rep("Image files")),
-  data_type = c("`scans/`", "`meta.csv`", "`profiles`", "`signals`", "CCF values", "`aligned-signals`"),
-  Description = c("folder containing 120 topographic 3d scans of aluminum wire cuts in x3p format", "meta information for each cut with tool, blade, and location information (CSV format)", "folder of files with manually extracted profiles (CSV format)", "folder of signals, processed from corresponding profile (CSV format)", "CCF values of all pairwise aligned signals in 1 CSV", "pictures of pairwise aligned signals from the same sources in PNGs"),
-  Section = c("[Cutting Wires](#sec-cutting-wires)", "[Cutting Wires](#sec-cutting-wires)", "[Extract Profiles](#sec-extract-profiles)", "[Filtered Signals](#sec-filtered-signals)", "[Align Signals](#sec-align-signals)", "[Align Signals](#sec-align-signals)")
+  group_type = c(rep("Raw data", 2), rep("Manual derivatives", 1), rep("Computational derivatives", 2), rep("Image files", 3)),
+  data_type = c("`scans/`", "`meta.csv`", "`profiles/`", "`data-derived/wire-signals.csv.zip`", "`data-derived/\nwire_pairwise_ccf.csv.zip`", "`pngs/`", "`profile-images/`", "`assessment/analysis-manual/\nprocessing-wires.html`"),
+  Description = c("folder containing 120 topographic 3d scans of aluminum wire cuts (x3p format)", "meta information for each cut with tool, blade, and location information (CSV format)", "folder of files with manually extracted profiles (CSV format)", "signals processed from corresponding profile (CSV format)", "CCF values of all pairwise aligned signals (CSV format)", "folder containing pictures of 3d scans of wire cuts (PNG format)", "folder containing pictures of profile extracted from wire cuts (PNG format)", "display of pairwise aligned signals from the same sources (HTML format)"),
+  Section = c("[Cutting Wires](#sec-cutting-wires)", "[Cutting Wires](#sec-cutting-wires)", "[Extract Profiles](#sec-extract-profiles)", "[Filtered Signals](#sec-filtered-signals)", "[Align Signals](#sec-align-signals)", "[Cutting Wires](#sec-cutting-wires)", "[Extract Profiles](#sec-extract-profiles)", "[Align Signals](#sec-align-signals)")
 ) %>%
   gt(rowname_col = "data_type", groupname_col = "group_type") %>%
   tab_options(table.width = pct(95)) %>%
-  cols_width(Description ~ pct(45), everything() ~ pct(25)) %>%
+  cols_width(data_type ~ pct(55), everything() ~ pct(25)) %>%
   fmt_markdown() %>%
   as_latex()
 
