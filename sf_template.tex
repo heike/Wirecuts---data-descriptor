@@ -39,6 +39,8 @@ $endif$
 %\bibliographystyle{jabbr}
 %--------------------------------
 
+\usepackage{subcaption} % for subfigures
+
 \title{$title$}
 
 $for(by-author)$
@@ -46,7 +48,7 @@ $for(by-author)$
 $endfor$
 
 $for(affiliations)$
-\affil[$it.id$]{$it.name$, $it.department$, $it.city$, $it.state.literal$}
+\affil[$it.id$]{$it.name$, $it.department$, $it.city$, $it.country$}
 $endfor$
 
 $for(by-author)$

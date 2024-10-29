@@ -1,5 +1,6 @@
-Data descriptor 
+# Data descriptor for the scans of the wire cuts 
 
+This repository contains the description of the files and folders in the [wirecuts-data](https://github.com/heike/wirecuts-data) repository
 
 File structure:
 
