@@ -124,7 +124,6 @@ rbbt::bbt_write_bib(keys=keys, path='references.bib', overwrite = TRUE, library_
 
 # Background \& Summary {#sec-background-summary .unnumbered}
 
-\hh{Intro sentence needs to describe an action that forensic experts do}
 
 <!-- Source Problem-->
 An important part of a forensic analysis is the investigation of marks left at a crime scene. Forensic examiners are in particular interested in the origin of those marks, ie. in the investigation of their source.  This is known as the Source Identification Problem in Forensic Science \hh{citation?}. We distinguish between a specific source problem, where the examiner is interested in whether a mark was left by a specific tool, and the common source problem, where the focus of the problem is on whether two marks were left by the same source. 
@@ -133,19 +132,12 @@ In this paper we are interested in the second of these problems: in particular, 
 
 When a bladed tool cuts a wire, striation marks are left on the cut surface of the wire. \hh{picture?}
 
-```{r out.width="600px"}
-#| label: fig-mylabel
-#| fig-cap: "..."
+```{r out.width="600px", eval=FALSE}
+#| label: fig-cut-microscope
+#| fig-cap: Microscopic close-up of striations left by a blade on the cut end of a wire.
 knitr::include_graphics("images/IMG_72116.jpg")
 ```
 
-
-```{=latex}
-\begin{figure}[hbt]
-\includegraphics[width='50%']{"images/IMG_72116.jpg"}
-\caption{\label{fig-cut-microscope}Microscopic close-up of striations left by a blade on the cut end of a wire.}
-\end{figure}
-```
 
 
 Wire cut data is a type of forensic tool mark data used to identify the source of a wire cutter based on the striations left on the surface.
