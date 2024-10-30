@@ -130,14 +130,17 @@ An important part of a forensic analysis is the investigation of marks left at a
 
 In this paper we are interested in the second of these problems: in particular, we want to determine whether two marks on cut wires were made by the same tool. 
 
-When a bladed tool cuts a wire, striation marks are left on the cut surface of the wire. \hh{picture?}
+When a bladed tool cuts a wire, striation marks are left on the cut surface of the wire, as shown in @fig-cut-microscope.
 
-```{r out.width="600px", eval=FALSE}
+
+```{r}
+#| echo: false
+#| out.width: "408px"
+#| out.height: "315px"
 #| label: fig-cut-microscope
 #| fig-cap: Microscopic close-up of striations left by a blade on the cut end of a wire.
 knitr::include_graphics("images/IMG_72116.jpg")
 ```
-
 
 
 Wire cut data is a type of forensic tool mark data used to identify the source of a wire cutter based on the striations left on the surface.
