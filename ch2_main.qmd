@@ -135,8 +135,8 @@ When a bladed tool cuts a wire, striation marks are left on the cut surface of t
 
 ```{r}
 #| echo: false
-#| out.width: "408px"
-#| out.height: "315px"
+#| out.width: "400px"
+#| out.height: "300px"
 #| label: fig-cut-microscope
 #| fig-cap: Microscopic close-up of striations left by a blade on the cut end of a wire.
 knitr::include_graphics("images/IMG_72116.jpg")
@@ -384,20 +384,24 @@ which will give alignments of massive overlapping and high CCF values close to 1
 The alignments and values we got in the rightmost column of Figure \ref{fig-signals-pair-alignment} fulfill our expectations.
 
 
-\begin{figure}[ht]
-\centering
-\includegraphics[width=0.8\linewidth]{scans_pair.png}
-\caption{Scans from different sides of tool 1 at the inner location.}
-\label{fig-scans-pair}
-\end{figure}
+```{r}
+#| echo: false
+#| out.width: "600px"
+#| out.height: "750px"
+#| label: fig-scans-pair
+#| fig-cap: Scans from different sides of tool 1 at the inner location.
+knitr::include_graphics("images/scans_pair.png")
+```
 
 
-\begin{figure}[ht]
-\centering
-\includegraphics[width=0.8\linewidth]{signals_pair_alignment.png}
-\caption{The first and second columns show the signals extracted from Figure \ref{fig-scans-pair}, and the third column shows the alignments and CCF values between pairs of signals.}
-\label{fig-signals-pair-alignment}
-\end{figure}
+```{r}
+#| echo: false
+#| out.width: "500px"
+#| out.height: "350px"
+#| label: fig-signals-pair-alignment
+#| fig-cap: The first and second columns show the signals extracted from Figure \ref{fig-scans-pair}, and the third column shows the alignments and CCF values between pairs of signals.
+knitr::include_graphics("images/signals_pair_alignment.png")
+```
 
 
 \ifnum \ifinstruction=1
@@ -503,20 +507,24 @@ This is consistent with our expectations and validates our data processing pipel
 :::
 
 
-\begin{figure}[ht]
-\centering
-\includegraphics[width=0.8\linewidth]{ccf_boxplot.png}
-\caption{The boxplot shows that signals from the same sources have higher CCfs than those from different sources.}
-\label{fig-ccf-boxplot}
-\end{figure}
+```{r}
+#| echo: false
+#| out.width: "650px"
+#| out.height: "300px"
+#| label: fig-ccf-boxplot
+#| fig-cap: The boxplot shows that signals from the same sources have higher CCfs than those from different sources.
+knitr::include_graphics("images/ccf_boxplot.png")
+```
 
 
-\begin{figure}[ht]
-\centering
-\includegraphics[width=0.5\linewidth]{ccf_ROC.png}
-\caption{The ROC curve is bending very close to the upper left corner, which means excellent in classification and drawing conclusions.}
-\label{fig-ccf-ROC}
-\end{figure}
+```{r}
+#| echo: false
+#| out.width: "500px"
+#| out.height: "500px"
+#| label: fig-ccf-ROC
+#| fig-cap: The ROC curve is bending very close to the upper left corner, which means excellent in classification and drawing conclusions.
+knitr::include_graphics("images/ccf_ROC.png")
+```
 
 
 \ifnum \ifinstruction=1
@@ -653,20 +661,24 @@ and 0.658 to control the FPR to be less than 0.01,
 with FNR to be 0.02.
 
 
-\begin{figure}[ht]
-\centering
-\includegraphics[width=0.8\linewidth]{ccf_tilemap.png}
-\caption{The tilemap shows signals from the same source have CCFs close to 1.}
-\label{fig-ccf-tilemap}
-\end{figure}
+```{r}
+#| echo: false
+#| out.width: "600px"
+#| out.height: "400px"
+#| label: fig-ccf-tilemap
+#| fig-cap: The tilemap shows signals from the same source have CCFs close to 1.
+knitr::include_graphics("images/ccf_tilemap.png")
+```
 
 
-\begin{figure}[ht]
-\centering
-\includegraphics[width=0.8\linewidth]{ccf_density.png}
-\caption{The density plot shows tails of distributions overlap, which can be used as a rough threshold for drawing conclusions.}
-\label{fig-ccf-density}
-\end{figure}
+```{r}
+#| echo: false
+#| out.width: "500px"
+#| out.height: "250px"
+#| label: fig-ccf-density
+#| fig-cap: The density plot shows tails of distributions overlap, which can be used as a rough threshold for drawing conclusions.
+knitr::include_graphics("images/ccf_density.png")
+```
 
 
 \ifnum \ifinstruction=1
