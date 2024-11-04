@@ -295,6 +295,19 @@ T(ool) 1/2/3/4/5 (Edge) A/B/C/D W(ire) - L(ocation) I(nner)/M(iddle)/O(uter) -  
 with T1AW-LI-R1 being the piece cut by tool 1 on the A edge at the inner location for the first repetition.
 
 
+```{r out.width=c("150px", "300px", "150px"), out.height=c("100px", "200px", "100px")}
+#| echo: false
+#| fig-ncol: 2
+#| label: fig-cut-tent-scan
+#| fig-cap: \(a) A Kaiweets wire cutter of model KWS-105 was used to cut the wire, with inner, middle and outer locations marked. (b) A confocal microscope was used to scan the wire surfaces. (c) After separating 2 tent structures by the connecting position, we obtained 4 samples - 2 samples from blade A and B, and others from blade C and D. \tom{width and height are tuned manually} \tom{ | full requirements see \href{https://www.nature.com/sdata/publish/submission-guidelines\#figures}{https://www.nature.com/sdata/publish/submission-guidelines\#figures}}
+#| fig-subcap: ""
+
+knitr::include_graphics("images/plier-tip.png")
+knitr::include_graphics("images/T1AW-LI-R2-4edges.png")
+knitr::include_graphics("images/wire-microscope-062524.JPG")
+```
+
+
 :::: {#fig-cut-tent-scan layout="[30, -5, 65]"}
 
 :::{}
