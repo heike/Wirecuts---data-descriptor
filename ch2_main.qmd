@@ -126,9 +126,15 @@ rbbt::bbt_write_bib(keys=keys, path='references.bib', overwrite = TRUE, library_
 
 
 <!-- Source Problem-->
-An important part of a forensic analysis is the investigation of marks left at a crime scene. Forensic examiners are in particular interested in the origin of those marks, ie. in the investigation of their source.  This is known as the Source Identification Problem in Forensic Science \hh{citation?}. We distinguish between a specific source problem, where the examiner is interested in whether a mark was left by a specific tool, and the common source problem, where the focus of the problem is on whether two marks were left by the same source. 
+An important part of a forensic analysis is the investigation of marks left at a crime scene. Forensic examiners are in particular interested in the origin of those marks, ie. in the investigation of their source.  This is known as the Source Identification Problem in Forensic Science \hh{citation?}. The forensic science community generally distinguishes between the **specific source problem**, where the examiner is interested in whether a mark was left by a specific tool, and  **the common source problem**, where the focus of the investigation is on whether two marks were left by the same tool. Current accepted practice in both of these situations is based on a visual inspection of the items under a comparison microscope and results, according to the Theory of Identification [@afte] developed by the Association of Firearm and Toolmark Examiners (AFTE), in a conclusion of the form *identification* (the marks are believed to have been made by the same source), *elimination* (the marks on the two items are believed to have been made by different tools), and *inconclusive* (there are not enough similiarities or dissimilarities between the marks to allow either an identification or an elimination). At its core, this assessment is subjective in its nature and has been criticized in reports by the National Research Council [@nas2009] and the President's Council of Advisors on Science and Technology [@pcast] for its lack of objectivity and the absence of error rates. 
 
-In this paper we are interested in the second of these problems: in particular, we want to determine whether two marks on cut wires were made by the same tool. 
+<!-- We need data to address both of these issues -->
+Both of these issues rely on data with known ground-truth. 
+
+\hh{Biedermann}[@biedermannStrangePersistenceSource2022] \hh{distinguishes between internal and external perspectives in the forensic literature. The external perspective only allows general statements based on (black-box) studies relating examiners' conclusions to ground truth without considering any evidence of a particular case. To allow an internal perspective, there is a need to quantitatively capture  the basis for an evaluation based on specific evidence.   }
+
+
+
 
 When a bladed tool cuts a wire, striation marks are left on the cut surface of the wire, as shown in @fig-cut-microscope.
 
@@ -149,10 +155,11 @@ There have been cases where the evidence and testimony on wire cut evidence play
 However,
 there is a lack of a standardized method to analyze it,
 except for visual comparison. 
-Although the Association of Firearm and Toolmark Examiners (AFTE) developed the Theory of Identification [@afte], which outlines the process of comparing tool marks,
-it is still subjective and relies on the examiner's experience,
-making results hard to reproduce and validate.
-Reports by the National Research Council [@nas2009] and the President's Council of Advisors on Science and Technology [@pcast] criticized this lack of objectivity and called for more automatic and reproducible methods to analyze tool marks that also allow an assessment of error rates in the process.
+
+<!-- previous research -->
+Work on striations made by screwdrivers[@baikerQuantitativeComparisonStriated2014] identified angle of attack[@baikerToolmarkVariabilityQuality2015a], rotational axis[@garciaInfluenceAxialRotation2017], and direction[@cuellarAlgorithmForensicToolmark2024] as the main factors for comparisons. 
+
+
 
 <!-- collect data -->
 Earlier research by Ma et al. [@maNISTBulletSignature2004] and Zheng et al. [@zhengNISTBallisticsToolmark2016] has focused on collecting and distributing datasets for this purpose and providing a foundation for future advancements in tool mark analysis.
