@@ -149,7 +149,7 @@ knitr::include_graphics("images/IMG_72116.jpg")
 ```
 
 
-Wire cut data is a type of forensic tool mark data used to identify the source of a wire cutter based on the striations left on the surface.
+Wire cut data is a type of forensic tool mark data used to assess similarity of striations left on the surface by a wire cutter.
 There have been cases where the evidence and testimony on wire cut evidence played a crucial role in the criminal investigation and conviction of a defendant.
 
 However,
