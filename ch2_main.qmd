@@ -46,7 +46,7 @@ affiliations:
     country: USA
   - id: 2
     name: Iowa State University
-    department: Center for Statistics and Applications in Forensic Evidence (CSAFE)
+    department: Center for Statistics and Applications in Forensic Evidence
     city: Ames, IA, 50011
     country: USA
   - id: 3
@@ -56,12 +56,12 @@ affiliations:
     country: USA
   - id: 4
     name: Iowa State University
-    department: Roy J Carver High Resolution Microscopy Facility (HRMF)
+    department: Roy J Carver High Resolution Microscopy Facility
     city: Ames, IA, 50011
     country: USA
   - id: 5
-    name: University of Central Oklahoma (UCO)
-    department: Forensic Science Institute (FSI)
+    name: University of Central Oklahoma
+    department: Forensic Science Institute
     city: Edmond, OK, 73034
     country: USA
 abstract: |
