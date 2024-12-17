@@ -23,7 +23,7 @@ authors:
   - name: Eden Amin
     affiliations:
       - ref: 5
-    email: eamin@iastate.edu
+    email: Edena75002@gmail.com
     corresponding: false
   - name: Jeff Salyards
     affiliations:
@@ -60,8 +60,8 @@ affiliations:
     city: Ames, IA, 50011
     country: USA
   - id: 5
-    name: University of Central Oklahoma
-    department: Criminal Justice and Forensic Science
+    name: University of Central Oklahoma (UCO)
+    department: Forensic Science Institute (FSI)
     city: Edmond, OK, 73034
     country: USA
 abstract: |
