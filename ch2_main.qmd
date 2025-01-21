@@ -23,7 +23,7 @@ authors:
   - name: Eden Amin
     affiliations:
       - ref: 5
-    email: eamin@iastate.edu
+    email: Edena75002@gmail.com
     corresponding: false
   - name: Jeff Salyards
     affiliations:
@@ -46,7 +46,7 @@ affiliations:
     country: USA
   - id: 2
     name: Iowa State University
-    department: Center for Statistics and Applications in Forensic Evidence (CSAFE)
+    department: Center for Statistics and Applications in Forensic Evidence
     city: Ames, IA, 50011
     country: USA
   - id: 3
@@ -56,12 +56,12 @@ affiliations:
     country: USA
   - id: 4
     name: Iowa State University
-    department: Roy J Carver High Resolution Microscopy Facility (HRMF)
+    department: Roy J Carver High Resolution Microscopy Facility
     city: Ames, IA, 50011
     country: USA
   - id: 5
     name: University of Central Oklahoma
-    department: Criminal Justice and Forensic Science
+    department: Forensic Science Institute
     city: Edmond, OK, 73034
     country: USA
 abstract: |
@@ -153,7 +153,7 @@ knitr::include_graphics("images/IMG_72116.jpg")
 ```
 
 
-Wire cut data is a type of forensic tool mark data used to identify the source of a wire cutter based on the striations left on the surface.
+Wire cut data is a type of forensic tool mark data used to assess similarity of striations left on the surface by a wire cutter.
 There have been cases where the evidence and testimony on wire cut evidence played a crucial role in the criminal investigation and conviction of a defendant.
 
 However,
@@ -490,7 +490,7 @@ The structure of the data set is described before in @tbl-data-overview.
 
 For the data collection process,
 two team members did the cutting and labeling together,
-then one person did the scanning and named according to the naming convention above. The scanning was done in a specific order to ensure consistency across all scans.
+then one person did the scanning and named according to the naming convention introduced in [Cutting Wires](#sec-cutting-wires). The scanning was done in a specific order to ensure consistency across all scans.
 The data was saved in a consistent format to ensure they could be easily accessed and analyzed.
 A third person then checked the data to ensure that the data was consistent in naming and accurate.
 

@@ -53,13 +53,13 @@ confocal microscope (110 character maximum, inc. spaces)}
 \affil[1]{Iowa State University, Department of Statistics, Ames, IA,
 50011, USA}
 \affil[2]{Iowa State University, Center for Statistics and Applications
-in Forensic Evidence (CSAFE), Ames, IA, 50011, USA}
+in Forensic Evidence, Ames, IA, 50011, USA}
 \affil[3]{University of Nebraska-Lincoln, Department of
 Statistics, Lincoln, NE, 68583, USA}
 \affil[4]{Iowa State University, Roy J Carver High Resolution Microscopy
-Facility (HRMF), Ames, IA, 50011, USA}
-\affil[5]{University of Central Oklahoma, Criminal Justice and Forensic
-Science, Edmond, OK, 73034, USA}
+Facility, Ames, IA, 50011, USA}
+\affil[5]{University of Central Oklahoma, Forensic Science
+Institute, Edmond, OK, 73034, USA}
 
       \affil[*]{corresponding author(s): Yuhang Lin (yhlin@iastate.edu)}
             
@@ -93,14 +93,29 @@ An important part of a forensic analysis is the investigation of marks
 left at a crime scene. Forensic examiners are in particular interested
 in the origin of those marks, ie. in the investigation of their source.
 This is known as the Source Identification Problem in Forensic Science
-\hh{citation?}. We distinguish between a specific source problem, where
-the examiner is interested in whether a mark was left by a specific
-tool, and the common source problem, where the focus of the problem is
-on whether two marks were left by the same source.
+\hh{citation?}. The forensic science community generally distinguishes
+between the \textbf{specific source problem}, where the examiner is
+interested in whether a mark was left by a specific tool, and
+\textbf{the common source problem}, where the focus of the investigation
+is on whether two marks were left by the same tool. Current accepted
+practice in both of these situations is based on a visual inspection of
+the items under a comparison microscope and results, according to the
+Theory of Identification \citep{afte} developed by the Association of
+Firearm and Toolmark Examiners (AFTE), in a conclusion of the form
+\emph{identification} (the marks are believed to have been made by the
+same source), \emph{elimination} (the marks on the two items are
+believed to have been made by different tools), and \emph{inconclusive}
+(there are not enough similiarities or dissimilarities between the marks
+to allow either an identification or an elimination). At its core, this
+assessment is subjective in its nature and has been criticized in
+reports by the National Research Council \citep{nas2009} and the
+President's Council of Advisors on Science and Technology \citep{pcast}
+for its lack of objectivity and the absence of error rates.
 
-In this paper we are interested in the second of these problems: in
-particular, we want to determine whether two marks on cut wires were
-made by the same tool.
+Both of these issues rely on data with known ground-truth.
+
+\hh{Biedermann}\citep{biedermannStrangePersistenceSource2022}
+\hh{distinguishes between internal and external perspectives in the forensic literature. The external perspective only allows general statements based on (black-box) studies relating examiners' conclusions to ground truth without considering any evidence of a particular case. To allow an internal perspective, there is a need to quantitatively capture  the basis for an evaluation based on specific evidence.   }
 
 When a bladed tool cuts a wire, striation marks are left on the cut
 surface of the wire, as shown in Figure~\ref{fig-cut-microscope}.
@@ -118,22 +133,21 @@ left by a blade on the cut end of a wire.}
 
 \end{figure}%
 
-Wire cut data is a type of forensic tool mark data used to identify the
-source of a wire cutter based on the striations left on the surface.
-There have been cases where the evidence and testimony on wire cut
-evidence played a crucial role in the criminal investigation and
-conviction of a defendant.
+Wire cut data is a type of forensic tool mark data used to assess
+similarity of striations left on the surface by a wire cutter. There
+have been cases where the evidence and testimony on wire cut evidence
+played a crucial role in the criminal investigation and conviction of a
+defendant.
 
 However, there is a lack of a standardized method to analyze it, except
-for visual comparison. Although the Association of Firearm and Toolmark
-Examiners (AFTE) developed the Theory of Identification \citep{afte},
-which outlines the process of comparing tool marks, it is still
-subjective and relies on the examiner's experience, making results hard
-to reproduce and validate. Reports by the National Research Council
-\citep{nas2009} and the President's Council of Advisors on Science and
-Technology \citep{pcast} criticized this lack of objectivity and called
-for more automatic and reproducible methods to analyze tool marks that
-also allow an assessment of error rates in the process.
+for visual comparison.
+
+Work on striations made by
+screwdrivers\citep{baikerQuantitativeComparisonStriated2014} identified
+angle of attack\citep{baikerToolmarkVariabilityQuality2015a}, rotational
+axis\citep{garciaInfluenceAxialRotation2017}, and
+direction\citep{cuellarAlgorithmForensicToolmark2024} as the main
+factors for comparisons.
 
 Earlier research by Ma et al. \citep{maNISTBulletSignature2004} and
 Zheng et al. \citep{zhengNISTBallisticsToolmark2016} has focused on
@@ -487,11 +501,12 @@ Table~\ref{tbl-data-overview}.
 
 For the data collection process, two team members did the cutting and
 labeling together, then one person did the scanning and named according
-to the naming convention above. The scanning was done in a specific
-order to ensure consistency across all scans. The data was saved in a
-consistent format to ensure they could be easily accessed and analyzed.
-A third person then checked the data to ensure that the data was
-consistent in naming and accurate.
+to the naming convention introduced in
+\hyperref[sec-cutting-wires]{Cutting Wires}. The scanning was done in a
+specific order to ensure consistency across all scans. The data was
+saved in a consistent format to ensure they could be easily accessed and
+analyzed. A third person then checked the data to ensure that the data
+was consistent in naming and accurate.
 
 For the validation of the scans and their processing, we investigate the
 correlation scores of pairwise aligned signals. Large scores between
