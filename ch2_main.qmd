@@ -266,11 +266,11 @@ We hope this pipeline developed using this data set can be further generalized a
 
 # Methods {#sec-methods .unnumbered}
 
-In this study,
-aluminum wire was used to create an optimal scenario where the most amount of information could be transferred from the tool to the substrate despite the wire,
-in some real cases,
-being made of lead. 
-The physical property of aluminum wire makes it an excellent candidate for keeping marks while being relatively easy to bend and non-toxic.
+In this study, we use aluminium wire \hh{more details: thickness, brand?} to create cuts. 
+The physical property of aluminum wire makes it an excellent candidate for keeping marks while being relatively easy to bend and non-toxic, i.e. with a hardness of XXX aluminium is soft enough that tools leave marks, but hard enough to not be affected by handling cut materials under the microscope. 
+
+\hh{XXX look up the hardness value of aluminium, copper and lead. } In real casework, aluminium wires are not seen as often as lead or copper. We avoided using lead in the laboratory setting, because of its toxicity. 
+
 
 
 ## Cutting Wires {#sec-cutting-wires .unnumbered}
@@ -391,7 +391,7 @@ and so on.
 That is comparing each row in Figure \ref{fig-scans-pair}.
 We know that signals from two replicates with the same tool-edge-location combination should yield similar signals，
 as in the first and second columns of Figure \ref{fig-signals-pair-alignment},
-which will give alignments of massive overlapping and high CCF values close to 1.
+which results in alignments of massive overlapping and high CCF values close to 1.
 The alignments and values we got in the rightmost column of Figure \ref{fig-signals-pair-alignment} fulfill our expectations.
 
 
@@ -491,7 +491,7 @@ The structure of the data set is described before in @tbl-data-overview.
 For the data collection process,
 two team members did the cutting and labeling together,
 then one person did the scanning and named according to the naming convention introduced in [Cutting Wires](#sec-cutting-wires). The scanning was done in a specific order to ensure consistency across all scans.
-The data was saved in a consistent format to ensure they could be easily accessed and analyzed.
+The data was saved in a consistent format to ensure easy of access for analysis.
 A third person then checked the data to ensure that the data was consistent in naming and accurate.
 
 For the validation of the scans and their processing,
