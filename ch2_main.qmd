@@ -104,16 +104,20 @@ library(gt) # for tables
 ```
 
 
+
 ```{r eval=FALSE, echo=FALSE}
 # re-run to update references
 # re-run to update citations
-keys <- rbbt::bbt_detect_citations(path="writeup.qmd")
+keys <- rbbt::bbt_detect_citations(path="ch2_main.qmd")
 ignore <- c("^fig-", "^tbl-", "^sec-")
 for (pt in ignore) {
   keys <- grep(pt, keys, invert = TRUE, value = TRUE)
 }
 rbbt::bbt_write_bib(keys=keys, path='references.bib', overwrite = TRUE, library_id=rbbt::bbt_library_id('CSAFE'), translator = "bibtex")
 ```
+
+
+
 
 
 \ifnum \ifinstruction=1
