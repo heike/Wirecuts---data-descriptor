@@ -1,5 +1,5 @@
 ---
-title: "Three-dimensional data of wire-cut surface scans under the confocal microscope (110 character maximum, inc. spaces)"
+title: "Three-dimensional data of wirecut surface scans under the confocal microscope (110 character maximum, inc. spaces)"
 authors: 
   - name: Yuhang Lin
     affiliations:
@@ -67,7 +67,7 @@ affiliations:
 abstract: |
  \tom{Update later: max of 170 words: describe the study, the assay(s) performed,  resulting data, and reuse potential}
  Wire cut data is important in forensic investigations but lacks a systematic way of analyzing the data.
- We created a data set of 120 scans of aluminum wire cut in \texttt{x3p} format,
+ We created a dataset of 120 scans of aluminum wire cut in \texttt{x3p} format,
  using 5 wire cutters and 3 locations along the 4 blades,
  with 2 replicates for each combination.
  A systematic pipeline with multiple analysis plots was developed to analyze the data and draw conclusions based on numerical measures.
@@ -130,17 +130,31 @@ rbbt::bbt_write_bib(keys=keys, path='references.bib', overwrite = TRUE, library_
 
 
 <!-- Source Problem-->
-An important part of a forensic analysis is the investigation of marks left at a crime scene. Forensic examiners are in particular interested in the origin of those marks, ie. in the investigation of their source.  This is known as the Source Identification Problem in Forensic Science \hh{citation?}. The forensic science community generally distinguishes between the **specific source problem**, where the examiner is interested in whether a mark was left by a specific tool, and  **the common source problem**, where the focus of the investigation is on whether two marks were left by the same tool. Current accepted practice in both of these situations is based on a visual inspection of the items under a comparison microscope and results, according to the Theory of Identification [@afte] developed by the Association of Firearm and Toolmark Examiners (AFTE), in a conclusion of the form *identification* (the marks are believed to have been made by the same source), *elimination* (the marks on the two items are believed to have been made by different tools), and *inconclusive* (there are not enough similiarities or dissimilarities between the marks to allow either an identification or an elimination). At its core, this assessment is subjective in its nature and has been criticized in reports by the National Research Council [@nas2009] and the President's Council of Advisors on Science and Technology [@pcast] for its lack of objectivity and the absence of error rates. 
+An important aspect of forensic analysis involves investigating marks left at crime scenes.
+Forensic examiners focus particularly on identifying the origin of these marks, a process known as the Source Identification Problem in Forensic Science \hh{citation?}.
+The forensic science community generally distinguishes between the **specific source problem**, where the examiner seeks to determine whether a mark was left by a particular tool, and **the common source problem**, which focuses on whether two marks were left by the same tool.
+Currently, accepted practice in both of these two problems relies on visual inspection of the items under a comparison microscope.
+The results, according to the Theory of Identification [@afte] developed by the Association of Firearm and Toolmark Examiners (AFTE), are categorized by examiner into three types: *identification*, where the marks are believed to have been made by the same source; *elimination*, where the marks are believed to have been made by different tools; and *inconclusive*, where similiarities or dissimilarities between the marks are insufficient to allow either an identification or an elimination.
+However, this assessment is inherently subjective, which has led to criticism from reports by the National Research Council (NRC) [@nas2009] and the President's Council of Advisors on Science and Technology (PCAST) [@pcast] for lacking quantifiable measures of objectivity and the absence of error rates.
+Such limitations highlight the need for empirical datasets with known ground truth to validate conclusions.
+Addressing this gap requires a structured approach that not only evaluates examiner performance but also considers case-specific evidence in a measurable way.
+To bridge this gap, it is necessary to establish a framework that integrates both empirical validation of examiner performance and measurable analysis of case-specific evidence.
+A crucial aspect of this framework is recognizing different methodological perspectives in forensic science.
 
 <!-- We need data to address both of these issues -->
-Both of these issues rely on data with known ground-truth. 
 
-\hh{Biedermann}[@biedermannStrangePersistenceSource2022] \hh{distinguishes between internal and external perspectives in the forensic literature. The external perspective only allows general statements based on (black-box) studies relating examiners' conclusions to ground truth without considering any evidence of a particular case. To allow an internal perspective, there is a need to quantitatively capture  the basis for an evaluation based on specific evidence.   }
+In this context, Biedermann [@biedermannStrangePersistenceSource2022] differentiates between internal and external perspectives in the forensic literature.
+The external perspective only allows general statements based on (black-box) studies relating examiners' conclusions to ground truth without considering any evidence of a particular case.
+To allow an internal perspective, there is a need to quantitatively capture the basis for an evaluation based on specific evidence.
+To transition toward an internal perspective, similarity comparisons are needed. However, no publicly available dataset currently exists for wirecut marks.
+The closest work is by Baiker et al. [@baikerToolmarkVariabilityQuality2015a], which focuses on screwdriver toolmarks, not wire cutters.
+Thus, there is an urgent need to collect and analyze public datasets specific to wirecut marks.
 
-
-
-
-When a bladed tool cuts a wire, striation marks are left on the cut surface of the wire, as shown in @fig-cut-microscope.
+Understanding the characteristics of toolmarks left by wire cutters is essential.
+When a bladed tool cuts a wire, it leaves striations on the cut surface, as shown in @fig-cut-microscope.
+These striations serve as evidence to assess the similarity.
+There have been cases where the evidence and testimony on wire cut evidence played a crucial role in the criminal investigation and conviction of a defendant.
+However, forensic analysis of these evidence lacks a standardized quantitative approach, except for visual comparisons.
 
 
 ```{r}
@@ -153,30 +167,18 @@ knitr::include_graphics("images/IMG_72116.jpg")
 ```
 
 
-Wire cut data is a type of forensic tool mark data used to assess similarity of striations left on the surface by a wire cutter.
-There have been cases where the evidence and testimony on wire cut evidence played a crucial role in the criminal investigation and conviction of a defendant.
-
-However,
-there is a lack of a standardized method to analyze it,
-except for visual comparison. 
-
 <!-- previous research -->
-Work on striations made by screwdrivers[@baikerQuantitativeComparisonStriated2014] identified angle of attack[@baikerToolmarkVariabilityQuality2015a], rotational axis[@garciaInfluenceAxialRotation2017], and direction[@cuellarAlgorithmForensicToolmark2024] as the main factors for comparisons. 
-
+A growing of research has sought to develop quantitative methods for analyzing forensic toolmarks, particularly those created by different types of tools.
+Prior studies on striated toolmarks provide insights into key comparison factors, including angle of attack [@baikerToolmarkVariabilityQuality2015a], rotational axis [@garciaInfluenceAxialRotation2017], and cutting direction [@cuellarAlgorithmForensicToolmark2024].
+Foundational research in forensic toolmarks has emphasized dataset collection and computational analysis.
+Ma et al. [@maNISTBulletSignature2004] and Zheng et al. [@zhengNISTBallisticsToolmark2016] focused on collecting and distributing datasets for bullet and toolmark analysis for this purpose.
+Chu et al. [@chuAutomaticIdentificationBullet2013] and Vorburger et al. [@vorburgerApplicationsCrosscorrelationFunctions2011] demonstrated numerical methods for improving accuracy and consistency.
+Hare et al. [@hareAutomaticMatchingBullet2017] and Ju et al. [@juJournalOpenSourceImplementation2022] developed similarity quantification techniques, but alignment remains a major challenge.
 
 
 <!-- collect data -->
-Earlier research by Ma et al. [@maNISTBulletSignature2004] and Zheng et al. [@zhengNISTBallisticsToolmark2016] has focused on collecting and distributing datasets for this purpose and providing a foundation for future advancements in tool mark analysis.
-Studies such as those by Chu et al. [@chuAutomaticIdentificationBullet2013] and Vorburger et al. [@vorburgerApplicationsCrosscorrelationFunctions2011] have demonstrated the efficacy of using numerical methods to improve accuracy and consistency in tool mark analysis.
-Hare et al. [@hareAutomaticMatchingBullet2017] and Ju et al. [@juJournalOpenSourceImplementation2022] have explored methods for quantifying the similarity between representative signals, but alignment remains a major hurdle.
-
-
-In this study,
-we follow the same path and provide a data set of wire cut scans,
-and also discuss a systematic pipeline to analyze the data and draw conclusions based on numerical measures.
-Here,
-we provide a data set containing multiple files,
-as described in @tbl-data-overview.
+In this study, we build on these methodologies to provide a publicly available dataset of wirecut scans, develop a systematic pipeline to analyze the data quantitatively, and introduce numerical measures for similarity assessment beyond visual inspection.
+The dataset includes multiple types of files, as summarized in @tbl-data-overview.
 
 
 ```{r}
@@ -240,22 +242,13 @@ string[1] <- string2
 string
 ```
 
-For the reproducibility of all our data and alignment results,
-we introduce in detail in [Cutting Wires](#sec-cutting-wires) \tom{hyperlink location incorrect for unnumbered sections}\hh{it seems that the hyperlinks make sure that the section is on the page} how we cut the wire and collect the 120 scans with 5 tools,
-in [Extract Profiles](#sec-extract-profiles) how we extract profiles from the scans,
-in [Filtered Signals](#sec-filtered-signals) how we filter signals from the profiles,
-in [Align Signals](#sec-align-signals) how we align signals from different scans and optimize the alignment with the cross-correlation function (CCF) values.
-In [Data Records](#sec-data-records),
-we discuss where our data is held.
-Then,
-in [Technical Validation](#sec-technical-validation),
-a technical validation was conducted to further compare signals from different sources also match our assumption,
-together with visual aids for drawing conclusions.
-Finally,
-in [Usage Notes](#sec-usage-notes),
-we provide available codes for creating the data set and conducting technical validation,
-as discussed in [Methods](#sec-methods) and [Technical Validation](#sec-technical-validation). [Code availability](#sec-code-availability) discusses where these codes are available online.
-We hope this pipeline developed using this data set to be further generalized and applied to real crime scenes to help investigators draw conclusions based on real wire cut data.
+
+To ensure full reproducibility, we describe each step in detail, including how we collected and processed the wirecut samples in [Cutting Wires](#sec-cutting-wires) \tom{hyperlink location incorrect for unnumbered sections}\hh{it seems that the hyperlinks make sure that the section is on the page}, profile extraction from scanned surfaces in [Extract Profiles](#sec-extract-profiles) how we extract profiles from the scans, filtering signals from profiles in [Filtered Signals](#sec-filtered-signals), and alignment methodologies using the cross-correlation function (CCF) in [Align Signals](#sec-align-signals).
+The details regarding dataset hosting are discussed in [Data Records](#sec-data-records).
+A technical validation of consistency of assumptions and conclusions is provided in [Technical Validation](#sec-technical-validation).
+[Usage Notes](#sec-usage-notes) includes open-source code for dataset generation and analysis, as discussed in [Methods](#sec-methods) and [Technical Validation](#sec-technical-validation).
+Finally, in [Code availability](#sec-code-availability), we discuss access to our code for reproducibility and future research.
+We anticipate that this dataset and analysis pipeline will serve as a foundation for forensic practitioners and be extended to real-world crime scene investigations involving wirecut evidence.
 
 
 \ifnum \ifinstruction=1
@@ -355,7 +348,6 @@ we first used a large low-pass filter with bandwidths of 400 microns to remove t
 as it overwhelms the signals,
 and then used a small high-pass filter of 40 microns to average across noise and remove spikes,
 as shown in @fig-T1AW-LI-R1-signals-plot.
-\hh{(add reference: W. S. Cleveland, E. Grosse and W. M. Shyu (1992) Local regression models. Chapter 8 of Statistical Models in S eds J.M. Chambers and T.J. Hastie, Wadsworth \& Brooks/Cole.)}.
 Finally,
 the extreme tail values are removed.
 
@@ -473,9 +465,9 @@ Transparent Methods Checklist
 
 # Data Records {#sec-data-records .unnumbered}
 
-The complete data set is available on the ISU DataShare repository at \href{https://iastate.figshare.com/}{https://iastate.figshare.com/},
+The complete dataset is available on the ISU DataShare repository at \href{https://iastate.figshare.com/}{https://iastate.figshare.com/},
 which is public and open access for every interested researcher.
-The structure of the data set is described before in @tbl-data-overview.
+The structure of the dataset is described before in @tbl-data-overview.
 
 
 \ifnum \ifinstruction=1
