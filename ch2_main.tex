@@ -524,6 +524,61 @@ saved in a consistent format to ensure easy of access for analysis. A
 third person then checked the data to ensure that the data was
 consistent in naming and accurate.
 
+We examined how the data acquisition process influences variability in
+the final scans saved in \texttt{x3p}. For this, we arbitrarily selected
+scans from tool 2 at location middle. First, we obtained the average CCF
+between replicates (replicate 1 and replicate 2) through pairwise
+comparison. Then, we rescanned replicate 2 under the confocal
+microscope, introducing a new staging labeled as S. Staging 1 for
+replicate 2 is omitted in the label, resulting in R2(-S1). For all four
+edges of tool 2 at location middle, we created three different stagings:
+R2, R2-S2, and R2-S3, and computed the average CCF between stagings
+using pairwise comparison.
+
+Within each staging, we further examined the effect of different
+acquisitions by keeping the scans on the confocal microscope under
+varying lighting conditions, introducing a new acquisition label as A.
+For edge A at staging 3, we performed four acquisitions in total,
+omitting the first one in the label again, resulting in R2-S3(-A1). For
+the other three edges, we conducted two acquisitions in staging 3,
+denoted as R2-S3 and R2-S3-A2. The average CCF between acquisitions was
+then obtained through pairwise comparison.
+
+With this setup, we expect increasing consistency in the CCF from
+replicate to staging to acquisition, as conditions become progressively
+more stable. Consequently, variability should decrease along this
+sequence. We also computed the differences between replicate, staging,
+and acquisition, expecting smaller differences between acquisition and
+staging compared to those between staging and replicate. The results,
+shown in Table~\ref{tbl-CCF-replicate-staging-acquisition}, confirm our
+expectations.
+
+\begin{table}
+
+\caption{\label{tbl-CCF-replicate-staging-acquisition}Comparison of CCF across different settings.}
+
+\centering{
+
+    \centering
+    \begin{tabular}{c|ccc|cc}
+        \toprule
+        & \multicolumn{3}{c|}{\textbf{Average CCF}} & \multicolumn{2}{c}{\textbf{Difference}} \\
+        \cmidrule(lr){2-4} \cmidrule(lr){5-6}
+        Edge & Replicate & Staging & Acquisition & Staging - Replicate & Acquisition - Staging \\
+        \midrule
+        A & 0.840 & 0.961 & 0.992 & 0.121 & 0.031 \\
+        B & 0.908 & 0.922 & 0.939 & 0.014 & 0.017 \\
+        C & 0.835 & 0.952 & 0.959 & 0.117 & 0.007 \\
+        D & 0.900 & 0.966 & 0.986 & 0.066 & 0.020 \\
+        \bottomrule
+    \end{tabular}
+    
+    
+
+}
+
+\end{table}%
+
 For the validation of the scans and their processing, we investigate the
 correlation scores of pairwise aligned signals. Large scores between
 signals are indicative of being made by the same tool. As shown
