@@ -560,16 +560,24 @@ expectations.
 \centering{
 
     \centering
-    \begin{tabular}{c|ccc|cc}
+    \begin{tabular}{c|c|ccc|cc}
         \toprule
-        & \multicolumn{3}{c|}{\textbf{Average CCF}} & \multicolumn{2}{c}{\textbf{Difference}} \\
-        \cmidrule(lr){2-4} \cmidrule(lr){5-6}
-        Edge & Replicate & Staging & Acquisition & Staging - Replicate & Acquisition - Staging \\
+         & \multicolumn{1}{c|}{\textbf{Replicate}} 
+         & \multicolumn{3}{c|}{\textbf{Staging}} 
+         & \multicolumn{2}{c}{\textbf{Acquisition}} \\
+        \cmidrule(lr){2-2} \cmidrule(lr){3-5} \cmidrule(lr){6-7}
+        \textbf{Edge} 
+         & \textbf{Avg CCF} 
+         & \textbf{Avg CCF} 
+         & \textbf{SD}
+         & \textbf{(Staging - Replicate)} 
+         & \textbf{Avg CCF} 
+         & \textbf{(Acquisition - Staging)} \\
         \midrule
-        A & 0.840 & 0.961 & 0.992 & 0.121 & 0.031 \\
-        B & 0.908 & 0.922 & 0.939 & 0.014 & 0.017 \\
-        C & 0.835 & 0.952 & 0.959 & 0.117 & 0.007 \\
-        D & 0.900 & 0.966 & 0.986 & 0.066 & 0.020 \\
+        A & 0.818 & 0.961 & 0.012 & 0.143 & 0.992 & 0.031 \\
+        B & 0.879 & 0.922 & 0.042 & 0.043 & 0.939 & 0.017 \\
+        C & 0.841 & 0.952 & 0.021 & 0.111 & 0.959 & 0.007 \\
+        D & 0.797 & 0.966 & 0.017 & 0.169 & 0.986 & 0.020 \\
         \bottomrule
     \end{tabular}
     
