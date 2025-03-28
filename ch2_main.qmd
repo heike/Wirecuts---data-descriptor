@@ -495,12 +495,12 @@ With this setup, we expect increasing consistency in the CCF from replicate to s
 
 \begin{table}
     \centering
-    \begin{tabular}{c|cc|ccc|cc}
+    \begin{tabular}{c|cc|ccc|ccc}
         \toprule
          & \multicolumn{2}{c|}{\textbf{Replicate}} 
          & \multicolumn{3}{c|}{\textbf{Staging}} 
-         & \multicolumn{2}{c}{\textbf{Acquisition}} \\
-        \cmidrule(lr){2-3} \cmidrule(lr){4-6} \cmidrule(lr){7-8}
+         & \multicolumn{3}{c}{\textbf{Acquisition}} \\
+        \cmidrule(lr){2-3} \cmidrule(lr){4-6} \cmidrule(lr){7-9}
         \textbf{Edge} 
          & \textbf{Avg CCF}
          & \textbf{SD}
@@ -508,12 +508,13 @@ With this setup, we expect increasing consistency in the CCF from replicate to s
          & \textbf{SD}
          & \textbf{(Staging - Replicate)} 
          & \textbf{Avg CCF} 
+         & \textbf{SD}
          & \textbf{(Acquisition - Staging)} \\
         \midrule
-        A & 0.818 & 0.015 & 0.961 & 0.012 & 0.143 & 0.992 & 0.031 \\
-        B & 0.879 & 0.031 & 0.922 & 0.042 & 0.043 & 0.939 & 0.017 \\
-        C & 0.841 & 0.022 & 0.952 & 0.021 & 0.111 & 0.959 & 0.007 \\
-        D & 0.797 & 0.011 & 0.966 & 0.017 & 0.169 & 0.986 & 0.020 \\
+        A & 0.818 & 0.015 & 0.961 & 0.012 & 0.143 & 0.992 & 0.003 & 0.031 \\
+        B & 0.879 & 0.031 & 0.922 & 0.042 & 0.043 & 0.939 & NA & 0.017 \\
+        C & 0.841 & 0.022 & 0.952 & 0.021 & 0.111 & 0.959 & NA & 0.007 \\
+        D & 0.797 & 0.011 & 0.966 & 0.017 & 0.169 & 0.986 & NA & 0.020 \\
         \bottomrule
     \end{tabular}
     \caption{Comparison of CCF across different settings.}
