@@ -490,8 +490,9 @@ We examined how the data acquisition process influences variability in the final
 
 Within each staging, we further examined the effect of different acquisitions by keeping the scans on the confocal microscope under varying lighting conditions, introducing a new acquisition label as A. For edge A at staging 3, we performed four acquisitions in total, omitting the first one in the label again, resulting in R2-S3(-A1). For the other three edges, we conducted two acquisitions in staging 3, denoted as R2-S3 and R2-S3-A2. The average CCF between acquisitions was then obtained through pairwise comparison.
 
-With this setup, we expect increasing consistency in the CCF from replicate to staging to acquisition, as conditions become progressively more stable. Consequently, variability should decrease along this sequence. We also computed the differences between replicate, staging, and acquisition, expecting smaller differences between acquisition and staging compared to those between staging and replicate. The results, shown in @tbl-CCF-replicate-staging-acquisition, confirm our expectations.
+With this setup, we expect increasing consistency in the CCF from replicate to staging to acquisition, as conditions become progressively more stable. Consequently, variability should decrease along this sequence. We also computed the differences between replicate, staging, and acquisition, expecting smaller differences between acquisition and staging compared to those between staging and replicate. We can visualized the results as scatter plots, as shown in @fig-rep_staging_acquisition. The interval within 2 SD is also shown. There is a increase in the average as shown as orange bar and a decrease in standard deviation (SD) as shown in the interval width in the plot. The detailed numeric results, together with standard deviation and differences in averages, shown in @tbl-CCF-replicate-staging-acquisition, confirm our expectations.
 
+![](images/rep_staging_acquisition.png){#fig-rep_staging_acquisition height=450px width=450px}
 
 \begin{table}
     \centering
