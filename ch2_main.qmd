@@ -128,10 +128,12 @@ rbbt::bbt_write_bib(keys=keys, path='references.bib', overwrite = TRUE, library_
 
 # Background \& Summary {#sec-background-summary .unnumbered}
 
+\tom{Grammarly safe to use, gpt safe to correct grammar and word, no new content}
+
 
 <!-- Source Problem-->
 An important aspect of forensic analysis involves investigating marks left at crime scenes.
-Forensic examiners focus particularly on identifying the origin of these marks, a process known as the Source Identification Problem in Forensic Science [@lindleyProblemForensicScience1977] \hh{citation?}.
+Forensic examiners focus particularly on identifying the origin of these marks, a process known as the Source Identification Problem in Forensic Science [@lindleyProblemForensicScience1977].
 The forensic science community generally distinguishes between the **specific source problem**, where the examiner seeks to determine whether a mark was left by a particular tool, and **the common source problem**, which focuses on whether two marks were left by the same tool.
 Currently, accepted practice in both of these two problems relies on visual inspection of the items under a comparison microscope.
 The results, according to the Theory of Identification [@afte] developed by the Association of Firearm and Toolmark Examiners (AFTE), are categorized by examiner into three types: *identification*, where the marks are believed to have been made by the same source; *elimination*, where the marks are believed to have been made by different tools; and *inconclusive*, where similiarities or dissimilarities between the marks are insufficient to allow either an identification or an elimination.
@@ -180,6 +182,7 @@ Hare et al. [@hareAutomaticMatchingBullet2017] and Ju et al. [@juJournalOpenSour
 In this study, we build on these methodologies to provide a publicly available dataset of wirecut scans, develop a systematic pipeline to analyze the data quantitatively, and introduce numerical measures for similarity assessment beyond visual inspection.
 The dataset includes multiple types of files, as summarized in @tbl-data-overview.
 
+\tom{In github README: renv folder and file provide a technical way to ensure reproducibility in R. In this paper: Folder variability-assessment contains documents for technical validations, the inner structure is mimicing the structure of the main data folder.}
 
 ```{r}
 #| echo: FALSE
@@ -480,58 +483,15 @@ The structure of the dataset is described before in @tbl-data-overview.
 
 # Technical Validation {#sec-technical-validation .unnumbered}
 
-For the data collection process,
-two team members did the cutting and labeling together,
-then one person did the scanning and named according to the naming convention introduced in [Cutting Wires](#sec-cutting-wires). The scanning was done in a specific order to ensure consistency across all scans.
-The data was saved in a consistent format to ensure easy of access for analysis.
-A third person then checked the data to ensure that the data was consistent in naming and accurate.
 
-While the difference between the order of profiles extracted and the person who extracted the profile remains another huge area for research, we leave that for further discussion and only include the difference between staging and acquisitions in this thecnical validation process. We examined how the data acquisition process influences variability in the final scans saved in `x3p`. For this, we arbitrarily selected scans from tool 2 at location middle. First, we obtained the average CCF between replicates (replicate 1 and replicate 2) through pairwise comparison. Then, we rescanned replicate 2 under the confocal microscope, introducing a new staging labeled as S. Staging 1 for replicate 2 is omitted in the label, resulting in R2(-S1). For all four edges of tool 2 at location middle, we created three different stagings: R2, R2-S2, and R2-S3, and computed the average CCF between stagings using pairwise comparison.
+We conducted technical validation in different aspects, including validating the data collection process, processing scans and alignment of signals, and variability assessment.
 
-Within each staging, we further examined the effect of different acquisitions by keeping the scans on the confocal microscope under varying lighting conditions, introducing a new acquisition label as A. For edge A at staging 3, we performed four acquisitions in total, omitting the first one in the label again, resulting in R2-S3(-A1). For the other three edges, we conducted two acquisitions in staging 3, denoted as R2-S3 and R2-S3-A2. The average CCF between acquisitions was then obtained through pairwise comparison.
-
-With this setup, we expect increasing consistency in the CCF from replicate to staging to acquisition, as conditions become progressively more stable. Consequently, variability should decrease along this sequence. We also computed the differences between replicate, staging, and acquisition, expecting smaller differences between acquisition and staging compared to those between staging and replicate. We can visualized the results as scatter plots, as shown in @fig-rep_staging_acquisition. The interval within 2 SD is also shown. There is a increase in the average as shown as orange bar and a decrease in standard deviation (SD) as shown in the interval width in the plot. The detailed numeric results, together with standard deviation and differences in averages, shown in @tbl-CCF-replicate-staging-acquisition, confirm our expectations.
-
-![](images/rep_staging_acquisition.png){#fig-rep_staging_acquisition height=450px width=450px}
-
-\begin{table}
-    \centering
-    \begin{tabular}{c|cc|ccc|ccc}
-        \toprule
-         & \multicolumn{2}{c|}{\textbf{Replicate}} 
-         & \multicolumn{3}{c|}{\textbf{Staging}} 
-         & \multicolumn{3}{c}{\textbf{Acquisition}} \\
-        \cmidrule(lr){2-3} \cmidrule(lr){4-6} \cmidrule(lr){7-9}
-        \textbf{Edge} 
-         & \textbf{Avg CCF}
-         & \textbf{SD}
-         & \textbf{Avg CCF} 
-         & \textbf{SD}
-         & \textbf{(Staging - Replicate)} 
-         & \textbf{Avg CCF} 
-         & \textbf{SD}
-         & \textbf{(Acquisition - Staging)} \\
-        \midrule
-        A & 0.818 & 0.015 & 0.961 & 0.012 & 0.143 & 0.992 & 0.003 & 0.031 \\
-        B & 0.879 & 0.031 & 0.922 & 0.042 & 0.043 & 0.939 & NA & 0.017 \\
-        C & 0.841 & 0.022 & 0.952 & 0.021 & 0.111 & 0.959 & NA & 0.007 \\
-        D & 0.797 & 0.011 & 0.966 & 0.017 & 0.169 & 0.986 & NA & 0.020 \\
-        \bottomrule
-    \end{tabular}
-    \caption{Comparison of CCF across different settings.}
-    \label{tbl-CCF-replicate-staging-acquisition}
-\end{table}
+The first validation we did lies in the data collection process. We have two team members did the cutting and labeling together, and the one person did the scanning and named according to the naming convention introduced in [Cutting Wires](#sec-cutting-wires). The scanning was done in a specific order to ensure consistency across all scans. The data was saved in a consistent format to ensure easy access for analysis. A third person checked the data to ensure everything was correct and accurate.
 
 
-For the validation of the scans and their processing,
-we investigate the correlation scores of pairwise aligned signals. Large scores between signals are indicative of being made by the same tool. As shown previously in Figure \ref{fig-signals-pair-alignment} in [Align Signals](#sec-align-signals), we expect a high correlation score between signals from scans of wires cut with the same tool. For signals from scans of wires cut with a different tool, we expect a low correlation score. For example, we have two scans from different tools, T1AW-LI-R1 and T2AW-LI-R1, as shown in @fig-T1AW-LI-R1 and @fig-T2AW-LI-R1. The alignment is shown in @fig-T1AW-LI-R1-T2AW-LI-R1 with a 0.2 CCF value, which is low, as expected.
-
-We also put resulting CCFs for all pairwise comparisions in the boxplot,
-together with the receiver operating characteristic (ROC) curve,
-as in Figure \ref{fig-ccf-boxplot} and Figure \ref{fig-ccf-ROC}.
-The CCF values for the same sources are close to 1,
-while the CCF values for different sources are much lower than expected.
-This is consistent with our expectations and validates our data processing pipeline.
+The validation for processing scans and alignment of signals was conducted in the following manner. For the CCF scores calculated, we assume large scores between signals from the same source, and low scores between signals from different source. Figure \ref{fig-signals-pair-alignment} shown in [Align Signals](#sec-align-signals) before matches our thought for signals from the same source. For different source, we take T1AW-LI-R1 and T2AW-LI-R1 as an example, as shown in @fig-T1AW-LI-R1 and @fig-T2AW-LI-R1. The alignment is shown in @fig-T1AW-LI-R1-T2AW-LI-R1 with a 0.2 CCF value, which is low, as expected. We also put resulting CCFs for all pairwise comparisions in the boxplot, together with the receiver operating characteristic (ROC) curve, as in Figure \ref{fig-ccf-boxplot} and Figure \ref{fig-ccf-ROC}.
+The CCF values for the same sources are close to 1, while the CCF values for different sources are much lower than expected.
+This is consistent with our expectations and validates our pipeline for processing scans and alignment of signals.
 
 
 ::: {#fig-T1AW-LI-R1-T2AW-LI-R1-alignment layout="[[1, 1], [-0.5, 9, 0.5]]"}
@@ -565,6 +525,48 @@ knitr::include_graphics("images/ccf_boxplot.png")
 #| fig-cap: The ROC curve is bending very close to the upper left corner, which means excellent in classification and drawing conclusions.
 knitr::include_graphics("images/ccf_ROC.png")
 ```
+
+
+The other validation we did is to assess the variability of our results. In particular, we assess the variabilities in different replicates, different staging and different acquisition. We arbitrarily picked scans from tool 2 at location middle for this assessment. The variability in different replicates can be seen as we took two different cuts on the same edge and same position, and it is fully discussed in previous comparison as Figure \ref{fig-signals-pair-alignment} shown in [Align Signals](#sec-align-signals). For staging, we obtained the average CCF between replicates (replicate 1 and replicate 2) through pairwise comparison. Then, we rescanned replicate 2 under the confocal microscope, introducing a new staging labeled as S. Staging 1 for replicate 2 is omitted in the label, resulting in R2(-S1). For all four edges of tool 2 at location middle, we created three different stagings: R2, R2-S2, and R2-S3, and computed the average CCF between stagings using pairwise comparison.
+
+Within each staging, we further examined the effect of different acquisitions by keeping the scans on the confocal microscope under varying lighting conditions, introducing a new acquisition label as A. For edge A at staging 3, we performed four acquisitions in total, omitting the first one in the label again, resulting in R2-S3(-A1). For the other three edges, we conducted two acquisitions in staging 3, denoted as R2-S3 and R2-S3-A2. The average CCF between acquisitions was then obtained through pairwise comparison.
+
+With this setup, we expect increasing consistency in the CCF from replicate to staging to acquisition, as conditions become progressively more stable. Consequently, variability should decrease along this sequence. We also computed the differences between replicate, staging, and acquisition, expecting smaller differences between acquisition and staging compared to those between staging and replicate. We can visualized the results as scatter plots, as shown in @fig-rep_staging_acquisition. The interval within 2 SD is also shown. There is a increase in the average as shown as orange bar and a decrease in standard deviation (SD) as shown in the interval width in the plot. The detailed numeric results, together with standard deviation and differences in averages, shown in @tbl-CCF-replicate-staging-acquisition, confirm our expectations.
+
+While the difference between the order of profiles extracted and the person who extracted the profile remains another huge area for research, we leave that for further discussion.
+
+![](images/rep_staging_acquisition.png){#fig-rep_staging_acquisition height=450px width=450px}
+
+\begin{table}
+    \centering
+    \begin{tabular}{c|cc|ccc|ccc}
+        \toprule
+         & \multicolumn{2}{c|}{\textbf{Replicate (R)}} 
+         & \multicolumn{3}{c|}{\textbf{Staging (S)}} 
+         & \multicolumn{3}{c}{\textbf{Acquisition (A)}} \\
+        \cmidrule(lr){2-3} \cmidrule(lr){4-6} \cmidrule(lr){7-9}
+        \textbf{Edge} 
+         & \textbf{Avg$_R$}
+         & \textbf{SD$_R$}
+         & \textbf{Avg$_S$}
+         & \textbf{SD$_S$}
+         & \textbf{Avg$_S$ - Avg$_R$} 
+         & \textbf{Avg$_A$} 
+         & \textbf{SD$_A$}
+         & \textbf{Avg$_A$ - Avg$_S$} \\
+        \midrule
+        A & 0.818 & 0.015 & 0.961 & 0.012 & 0.143 & 0.992 & 0.003 & 0.031 \\
+        B & 0.879 & 0.031 & 0.922 & 0.042 & 0.043 & 0.939 & --- & 0.017 \\
+        C & 0.841 & 0.022 & 0.952 & 0.021 & 0.111 & 0.959 & --- & 0.007 \\
+        D & 0.797 & 0.011 & 0.966 & 0.017 & 0.169 & 0.986 & --- & 0.020 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Comparison of CCF across different settings.}
+    \label{tbl-CCF-replicate-staging-acquisition}
+\end{table}
+
+\tom{Check if vertical lines are allowed. if not, add empty columns between E / R / S / A.}
+
 
 
 \ifnum \ifinstruction=1
