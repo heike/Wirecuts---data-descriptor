@@ -1,5 +1,5 @@
 ---
-title: "Three-dimensional data of wirecut surface scans under the confocal microscope (110 character maximum, inc. spaces)"
+title: "Three-dimensional data of wire-cut surface scans under the confocal microscope (110 character maximum, inc. spaces)"
 authors: 
   - name: Yuhang Lin
     affiliations:
@@ -65,7 +65,7 @@ affiliations:
     city: Edmond, OK, 73034
     country: USA
 abstract: |
- \tom{Update later: max of 170 words: describe the study, the assay(s) performed,  resulting data, and reuse potential}
+ \tom{Modify later: max of 170 words: describe the study, the assay(s) performed,  resulting data, and reuse potential}
  Wire cut data is important in forensic investigations but lacks a systematic way of analyzing the data.
  We created a dataset of 120 scans of aluminum wire cut in \texttt{x3p} format,
  using 5 wire cutters and 3 locations along the 4 blades,
@@ -104,20 +104,16 @@ library(gt) # for tables
 ```
 
 
-
 ```{r eval=FALSE, echo=FALSE}
 # re-run to update references
 # re-run to update citations
-keys <- rbbt::bbt_detect_citations(path="ch2_main.qmd")
+keys <- rbbt::bbt_detect_citations(path = "ch2_main.qmd")
 ignore <- c("^fig-", "^tbl-", "^sec-")
 for (pt in ignore) {
   keys <- grep(pt, keys, invert = TRUE, value = TRUE)
 }
-rbbt::bbt_write_bib(keys=keys, path='references.bib', overwrite = TRUE, library_id=rbbt::bbt_library_id('CSAFE'), translator = "bibtex")
+rbbt::bbt_write_bib(keys = keys, path = "references.bib", overwrite = TRUE, library_id = rbbt::bbt_library_id("CSAFE"), translator = "bibtex")
 ```
-
-
-
 
 
 \ifnum \ifinstruction=1
@@ -125,38 +121,19 @@ rbbt::bbt_write_bib(keys=keys, path='references.bib', overwrite = TRUE, library_
 \fi
 
 
-
 # Background \& Summary {#sec-background-summary .unnumbered}
-
-\tom{Grammarly safe to use, gpt safe to correct grammar and word, no new content}
 
 
 <!-- Source Problem-->
-An important aspect of forensic analysis involves investigating marks left at crime scenes.
-Forensic examiners focus particularly on identifying the origin of these marks, a process known as the Source Identification Problem in Forensic Science [@lindleyProblemForensicScience1977].
-The forensic science community generally distinguishes between the **specific source problem**, where the examiner seeks to determine whether a mark was left by a particular tool, and **the common source problem**, which focuses on whether two marks were left by the same tool.
-Currently, accepted practice in both of these two problems relies on visual inspection of the items under a comparison microscope.
-The results, according to the Theory of Identification [@afte] developed by the Association of Firearm and Toolmark Examiners (AFTE), are categorized by examiner into three types: *identification*, where the marks are believed to have been made by the same source; *elimination*, where the marks are believed to have been made by different tools; and *inconclusive*, where similiarities or dissimilarities between the marks are insufficient to allow either an identification or an elimination.
-However, this assessment is inherently subjective, which has led to criticism from reports by the National Research Council (NRC) [@nas2009] and the President's Council of Advisors on Science and Technology (PCAST) [@pcast] for lacking quantifiable measures of objectivity and the absence of error rates.
-Such limitations highlight the need for empirical datasets with known ground truth to validate conclusions.
-Addressing this gap requires a structured approach that not only evaluates examiner performance but also considers case-specific evidence in a measurable way.
-To bridge this gap, it is necessary to establish a framework that integrates both empirical validation of examiner performance and measurable analysis of case-specific evidence.
-A crucial aspect of this framework is recognizing different methodological perspectives in forensic science.
+
+
+For forensic analysis, the investigation of marks left at crime scenes always plays an important role, and forensic examiners are particularly interested in identifying the origin of these marks, a process known as the Source Identification Problem in Forensic Science [@lindleyProblemForensicScience1977]. For this problem, the forensic science community focuses on two different problems: **specific source problem**, where examiners aim to determine if a mark was left by a particular tool; **common source problem**, where examiners aim to determine whether two marks were left by the same tool. Currently, the accepted practice in both problems relies on visual inspection of the items under a comparison microscope. The results, according to the Theory of Identification [@afte] developed by the Association of Firearm and Toolmark Examiners (AFTE), are categorized by examiners into three types: *identification*, where the marks are believed to be made by the same source; *elimination*, where the marks are believed to be made by different tools; and *inconclusive*, where similarities or dissimilarities between marks are insufficient to allow either identification or elimination. However, this classification of types is subjective if without similarity measurements. National Research Council (NRC) [@nas2009] and President's Council of Advisors on Science and Technology (PCAST) [@pcast] criticize the absence of objectivity and the absence of quantifiable measurements such as error rates, which highlights the need for datasets with known ground truth for conclusion validation made through similarity comparison.
+
 
 <!-- We need data to address both of these issues -->
 
-In this context, Biedermann [@biedermannStrangePersistenceSource2022] differentiates between internal and external perspectives in the forensic literature.
-The external perspective only allows general statements based on (black-box) studies relating examiners' conclusions to ground truth without considering any evidence of a particular case.
-To allow an internal perspective, there is a need to quantitatively capture the basis for an evaluation based on specific evidence.
-To transition toward an internal perspective, similarity comparisons are needed. However, no publicly available dataset currently exists for wirecut marks.
-The closest work is by Baiker et al. [@baikerToolmarkVariabilityQuality2015a], which focuses on screwdriver toolmarks, not wire cutters.
-Thus, there is an urgent need to collect and analyze public datasets specific to wirecut marks.
 
-Understanding the characteristics of toolmarks left by wire cutters is essential.
-When a bladed tool cuts a wire, it leaves striations on the cut surface, as shown in @fig-cut-microscope.
-These striations serve as evidence to assess the similarity.
-There have been cases where the evidence and testimony on wire cut evidence played a crucial role in the criminal investigation and conviction of a defendant.
-However, forensic analysis of these evidence lacks a standardized quantitative approach, except for visual comparisons.
+In the forensic literature, Biedermann [@biedermannStrangePersistenceSource2022] differentiates between internal and external perspectives, where the external perspective only allows general statements based on black-box studies that relate examiners' conclusions to ground truth without considering any evidence of a particular case. In order to introduce an internal perspective, there is a need for quantitative evaluation based on specific evidence. When analyzing wire-cut scan data, understanding the characteristics of toolmarks left by wire cutters becomes essential. When a blade cuts a wire, it leaves striations on the surface, as shown in @fig-cut-microscope. These striations serve as evidence for similarity assessment. Though there are already cases where the evidence and testimony on wire cut play an important role in the criminal investigation and defendant conviction, no publicly available dataset currently exists for wire-cut scans, with the closest work being done by Baiker et al. [@baikerToolmarkVariabilityQuality2015a], which focuses on screwdrivers, not wire cutters, not to mention a standardized quantitative approach, except for visual comparisons. Thus, there is an urgent need to collect and analyze public datasets specific to wire-cut scans.
 
 
 ```{r}
@@ -170,19 +147,16 @@ knitr::include_graphics("images/IMG_72116.jpg")
 
 
 <!-- previous research -->
-A growing of research has sought to develop quantitative methods for analyzing forensic toolmarks, particularly those created by different types of tools.
-Prior studies on striated toolmarks provide insights into key comparison factors, including angle of attack [@baikerToolmarkVariabilityQuality2015a], rotational axis [@garciaInfluenceAxialRotation2017], and cutting direction [@cuellarAlgorithmForensicToolmark2024].
-Foundational research in forensic toolmarks has emphasized dataset collection and computational analysis.
-Ma et al. [@maNISTBulletSignature2004] and Zheng et al. [@zhengNISTBallisticsToolmark2016] focused on collecting and distributing datasets for bullet and toolmark analysis for this purpose.
-Chu et al. [@chuAutomaticIdentificationBullet2013] and Vorburger et al. [@vorburgerApplicationsCrosscorrelationFunctions2011] demonstrated numerical methods for improving accuracy and consistency.
-Hare et al. [@hareAutomaticMatchingBullet2017] and Ju et al. [@juJournalOpenSourceImplementation2022] developed similarity quantification techniques, but alignment remains a major challenge.
+
+
+Growing research has sought to develop quantitative methods for analyzing forensic toolmarks, particularly those created by different tools. Prior studies on striated toolmarks provide some insights into key comparison factors, including angles of attack [@baikerToolmarkVariabilityQuality2015a], rotational axes [@garciaInfluenceAxialRotation2017], and cutting directions [@cuellarAlgorithmForensicToolmark2024]. There is also foundational research in forensic toolmarks emphasizing data collection and analysis, including collecting and distributing datasets for bullet and toolmark analysis [@maNISTBulletSignature2004; @zhengNISTBallisticsToolmark2016], numerical methods for improving accuracy and consistency [@chuAutomaticIdentificationBullet2013; @vorburgerApplicationsCrosscorrelationFunctions2011], similarity quantification techniques [@hareAutomaticMatchingBullet2017; @juJournalOpenSourceImplementation2022], but alignment remains a significant challenge.
 
 
 <!-- collect data -->
-In this study, we build on these methodologies to provide a publicly available dataset of wirecut scans, develop a systematic pipeline to analyze the data quantitatively, and introduce numerical measures for similarity assessment beyond visual inspection.
-The dataset includes multiple types of files, as summarized in @tbl-data-overview.
 
-\tom{In github README: renv folder and file provide a technical way to ensure reproducibility in R. In this paper: Folder variability-assessment contains documents for technical validations, the inner structure is mimicing the structure of the main data folder.}
+
+In this study, we provide a publicly available dataset of wire-cut scans, develop a systematic pipeline to analyze the data quantitatively, and introduce numerical measures for similarity assessment beyond visual inspection. The dataset includes multiple types of files, as summarized in @tbl-data-overview.
+
 
 ```{r}
 #| echo: FALSE
@@ -191,15 +165,16 @@ The dataset includes multiple types of files, as summarized in @tbl-data-overvie
 #| results: asis
 
 gt_table <- tibble(
-  group_type = c(rep("Raw data", 2), rep("Manual derivatives", 1), rep("Computational derivatives in folder 'data-derived/'", 2), rep("Image files", 2), "Visual Inventory in folder 'assessment/analysis-manual/'"),
-  data_type = c("`scans/`", "`meta.csv`", "`profiles/`", "`wire-signals`", "`wire_pairwise_ccf`", "`pngs/`", "`profile-images/`", "`processing-wires`"),
-  Description = c("folder containing 120 topographic 3d scans corresponding to 30 aluminum wire cuts (x3p format)", "meta information for each cut with tool, blade, and location information (CSV format)", "folder of files with manually extracted profiles (CSV format)", "signals processed from corresponding profile (zipped CSV format)", "CCF values of all pairwise aligned signals (zipped CSV format)", "folder containing pictures of 3d scans of wire cuts (PNG format)", "folder containing pictures of profile extracted from wire cuts (PNG format)", "display of pairwise aligned signals from the same sources (HTML format)"),
-  Section = c("[Cutting Wires](#sec-cutting-wires)", "[Cutting Wires](#sec-cutting-wires)", "[Extract Profiles](#sec-extract-profiles)", "[Filtered Signals](#sec-filtered-signals)", "[Align Signals](#sec-align-signals)", "[Cutting Wires](#sec-cutting-wires)", "[Extract Profiles](#sec-extract-profiles)", "[Align Signals](#sec-align-signals)")
-) %>% group_by(group_type) %>%
+  group_type = c(rep("Raw data", 2), rep("Manual derivatives", 1), rep("Computational derivatives in the folder 'data-derived/'", 2), rep("Image files", 2), "Visual inventory in the folder 'assessment/analysis-manual/'", "Technical validation"),
+  data_type = c("`scans/`", "`meta.csv`", "`profiles/`", "`wire-signals`", "`wire_pairwise_ccf`", "`pngs/`", "`profile-images/`", "`processing-wires`", "`variability-`\n`assessment/`"),
+  Description = c("folder containing 120 topographic 3d scans corresponding to 30 aluminum wire cuts (x3p format)", "meta information for each cut with tool, blade, and location information (CSV format)", "folder of files with manually extracted profiles (CSV format)", "signals processed from corresponding profile (zipped CSV format)", "CCF values of all pairwise aligned signals (zipped CSV format)", "folder containing pictures of 3d scans of wire cuts (PNG format)", "folder containing pictures of profile extracted from wire cuts (PNG format)", "display of pairwise aligned signals from the same sources (HTML format)", "folder containing related documents for technical validations with the inner folder structure mimicking the structure of the main folder"),
+  Section = c("[Cutting Wires](#sec-cutting-wires)", "[Cutting Wires](#sec-cutting-wires)", "[Extract Profiles](#sec-extract-profiles)", "[Filtered Signals](#sec-filtered-signals)", "[Align Signals](#sec-align-signals)", "[Cutting Wires](#sec-cutting-wires)", "[Extract Profiles](#sec-extract-profiles)", "[Align Signals](#sec-align-signals)", "[Technical Validation](#sec-technical-validation)")
+) %>%
+  group_by(group_type) %>%
   gt(rowname_col = "data_type") %>%
   tab_options(table.width = pct(97)) %>%
-  cols_width(data_type~ pct(25), Description ~ pct(60), Section~pct(15), everything() ~ pct(20)) %>%
-  fmt_markdown() 
+  cols_width(data_type ~ pct(25), Description ~ pct(60), Section ~ pct(15), everything() ~ pct(20)) %>%
+  fmt_markdown()
 # gt_table contains the markdown version of the table the way it is supposed to look.
 # the errors get introduced in the as_latex function
 
@@ -207,14 +182,14 @@ string <- gt_table %>% as_latex()
 
 # # column widths code - start
 # # has bug: column Description is not being recognized, last section is the widest
-# # bug fix: it seems, that this is a shift in the column numbers: 
+# # bug fix: it seems, that this is a shift in the column numbers:
 # # - description width is controlled by data_type.
-# # - Section width is controlled by Description. 
+# # - Section width is controlled by Description.
 dimexprs <- str_extract_all(pattern = "dimexpr 0.[0-9]+", string[1])[[1]]
-# the dimension expressions have now changed to 
+# the dimension expressions have now changed to
 # "dimexpr 0.19" "dimexpr 0.24" "dimexpr 0.58"
-# replace these with 
-replacement = paste("dimexpr", c(0.26, 0.56, 0.18))
+# replace these with
+replacement <- paste("dimexpr", c(0.26, 0.56, 0.18))
 string[1] <- str_replace_all(pattern = "dimexpr 0.[0-9]+", replacement = "dimexpr FIX", string[1])
 # replace one by one
 for (i in seq_along(dimexprs)) {
@@ -246,12 +221,8 @@ string
 ```
 
 
-To ensure full reproducibility, we describe each step in detail, including how we collected and processed the wirecut samples in [Cutting Wires](#sec-cutting-wires) \tom{hyperlink location incorrect for unnumbered sections}\hh{it seems that the hyperlinks make sure that the section is on the page}, profile extraction from scanned surfaces in [Extract Profiles](#sec-extract-profiles) how we extract profiles from the scans, filtering signals from profiles in [Filtered Signals](#sec-filtered-signals), and alignment methodologies using the cross-correlation function (CCF) in [Align Signals](#sec-align-signals).
-The details regarding dataset hosting are discussed in [Data Records](#sec-data-records).
-A technical validation of consistency of assumptions and conclusions is provided in [Technical Validation](#sec-technical-validation).
-[Usage Notes](#sec-usage-notes) includes open-source code for dataset generation and analysis, as discussed in [Methods](#sec-methods) and [Technical Validation](#sec-technical-validation).
-Finally, in [Code availability](#sec-code-availability), we discuss access to our code for reproducibility and future research.
-We anticipate that this dataset and analysis pipeline will serve as a foundation for forensic practitioners and be extended to real-world crime scene investigations involving wirecut evidence.
+To ensure full reproducibility, we describe each step in detail, including how we collected and processed the wire-cut samples in [Cutting Wires](#sec-cutting-wires), how we extract profiles from scanned wire cuts in [Extract Profiles](#sec-extract-profiles), how we filtering signals from profiles in [Filtered Signals](#sec-filtered-signals), and alignment methodologies using the cross-correlation function (CCF) as similarity measurement in [Align Signals](#sec-align-signals). [Data Records](#sec-data-records) discusses the details regarding hosting this dataset. Technical validations of the consistency of assumptions and conclusions and variability assessment are provided in [Technical Validation](#sec-technical-validation). [Usage Notes](#sec-usage-notes) includes how to use our codes for signal creation, alignment, analysis, validation, and visualization, as discussed in [Methods](#sec-methods) and [Technical Validation](#sec-technical-validation). [Code availability](#sec-code-availability) discusses the availability of codes for reproducibility and future research as a list. We anticipate that this dataset and analysis pipeline will serve as a foundation for problems involving wire-cut evidence and be extended to real-world crime scene investigations.
+\tom{hyperlink location incorrect for unnumbered sections}\hh{it seems that the hyperlinks make sure that the section is on the page}
 
 
 \ifnum \ifinstruction=1
@@ -259,47 +230,16 @@ We anticipate that this dataset and analysis pipeline will serve as a foundation
 \fi
 
 
-
 # Methods {#sec-methods .unnumbered}
 
-In this study, we use aluminium wire \hh{more details: thickness, brand?} to create cuts. 
-The physical property of aluminum wire makes it an excellent candidate for keeping marks while being relatively easy to bend and non-toxic, i.e. with a hardness of XXX aluminium is soft enough that tools leave marks, but hard enough to not be affected by handling cut materials under the microscope. 
 
-\hh{XXX look up the hardness value of aluminium, copper and lead. } In real casework, aluminium wires are not seen as often as lead or copper. We avoided using lead in the laboratory setting, because of its toxicity. 
-
+In this study, we use aluminum wire to create cuts. \hh{more details: thickness, brand?} The physical property of aluminum wire makes it an excellent candidate for keeping marks while being relatively easy to bend and non-toxic, i.e., with a hardness of \hh{XXX}, aluminum is soft enough that tools leave marks but hard enough to not be affected by handling cut materials under the microscope. In real casework, aluminum wires are not seen as often as lead or copper. We avoided using lead in the laboratory setting because of its toxicity. \hh{XXX look up the hardness value of aluminum, copper, and lead.}
 
 
 ## Cutting Wires {#sec-cutting-wires .unnumbered}
 
-The aluminum wire used was 16 Gauge/1.5 mm, anodized.
-In order to cut the wire,
-4-inch pieces were unspooled and cut using Kaiweets wire cutters,
-model KWS-105,
-as shown in @fig-plier-tip,
-for 1 blade location,
-either inner, middle, or outer,
-which gives us 1 replicate.
-Each piece was then cut into half to create 2-inch pieces for each side,
-AB and CD,
-with a sharpie line marking the cut ends,
-giving us 4 samples.
-Then,
-we use the standard scanning protocols for the confocal microscope,
-shown in Figure @fig-wire-microscope,
-to scan the wire tip surfaces.
-The scanned surfaces are saved in a resolution of $0.645 \mu m \times 0.645 \mu m$ per square pixel in an \texttt{x3p} file format.
-Here,
-we are showing AB and CD sides in @fig-T1AW-LI-R2-4edges,
-with the back of A being C and the back of B being D.
-Both AB and CD sides form tent structures on the tips of the wire,
-and we separate each side of the tent into 2 pieces along the bending position,
-resulting in 8 scans.
-We repeated this process for all 3 locations along the blade and 5 wire cutters,
-with 2 replicates for each tool-edge-location combination,
-resulting in 120 scans.
-Each piece was labeled with the naming conventions,
-T(ool) 1/2/3/4/5 (Edge) A/B/C/D W(ire) - L(ocation) I(nner)/M(iddle)/O(uter) -  R(epetition) 1/2,
-with T1AW-LI-R1 being the piece cut by tool 1 on the A edge at the inner location for the first repetition.
+
+We used 16 Gauge/1.5 mm, anodized aluminum wire to create this wire-cut dataset. In order to cut the wire, 4-inch pieces were unspooled and cut using model KWS-105 Kaiweets wire cutters as shown in @fig-plier-tip for 1 blade location, either inner, middle, or outer, which gives us 1 replicate. Each piece was then cut into half to create 2-inch pieces for each edge, AB and CD, with a sharpie line marking the cut ends, giving us 4 samples. Then, we follow the standard scanning protocols for the confocal microscope, shown in @fig-wire-microscope, to scan the wire tip surfaces. The scanned surfaces are saved in a resolution of $0.645 \mu m \times 0.645 \mu m$ per square pixel in an \texttt{x3p} file format. Here, we are showing AB and CD sides in @fig-T1AW-LI-R2-4edges, with the back of A being C and the back of B being D. We separate AB and CD sides into 2 pieces along the bending position, resulting in 8 scans. Then, we repeated this process for all 3 locations along the blade and 5 wire cutters, with 2 replicates for each tool-edge-location combination, resulting in 120 scans as our sample. Each piece was labeled following the naming conventions: T(ool) 1/2/3/4/5 (Edge) A/B/C/D W(ire) - L(ocation) I(nner)/M(iddle)/O(uter) -  R(epetition) 1/2, with T1AW-LI-R1 being the piece cut by tool 1 on the A edge at the inner location for the first repetition. In order to have the sampling protocol conducted properly without mistakes, we have two team members cut and label wires together, and one of them scans in a specific order to ensure consistency across all scans, and name scans by the naming convention. In the end, we have another member checked the saved data to ensure everything was correct.
 
 
 :::: {#fig-cut-tent-scan layout="[30, -5, 65]"}
@@ -316,43 +256,21 @@ with T1AW-LI-R1 being the piece cut by tool 1 on the A edge at the inner locatio
 ![](images/T1AW-LI-R2-4edges.png){#fig-T1AW-LI-R2-4edges height=33%}
 :::
 
-\(a) A Kaiweets wire cutter of model KWS-105 was used to cut the wire, with inner, middle and outer locations marked. (b) A confocal microscope was used to scan the wire surfaces. (c) After separating 2 tent structures by the connecting position, we obtained 4 samples - 2 samples from blade A and B, and others from blade C and D. \tom{width and height are tuned manually} \tom{ | full requirements see \href{https://www.nature.com/sdata/publish/submission-guidelines\#figures}{https://www.nature.com/sdata/publish/submission-guidelines\#figures}}
+\(a) A Kaiweets wire cutter of model KWS-105 was used to cut the wire, with inner, middle, and outer locations marked. (b) A confocal microscope was used to scan the wire-cut surfaces. (c) After separating edges by the connecting position, we obtained 4 samples - 2 samples from blade A and B, and others from blade C and D. \tom{width and height are tuned manually} \tom{ | full requirements see \href{https://www.nature.com/sdata/publish/submission-guidelines\#figures}{https://www.nature.com/sdata/publish/submission-guidelines\#figures}}
 
 ::::
 
 
 ## Extract Profiles {#sec-extract-profiles .unnumbered}
 
-Numerical comparisons between 2 replicates cannot be done directly on the \texttt{x3p} files.
-We need to extract representative functions from the scans first.
-A representative function with the most information is considered as a signal for one scan,
-which is used later for comparison.
-To obtain this function,
-we first need a profile of the scan,
-which is a sequence of values along a user-drawn line on the surface.
-The profile captures most features of the scan and be orthogonal to the striation marks of the scan,
-which are formed by the ups and downs of grooves.
-So,
-we draw the line across the wide region of the scan to maximize the feature captured,
-as shown in dark blue in @fig-T1AW-LI-R1-profiles.
-We then investigate the values under this profile line.
-The profile function along the line is plotted in @fig-T1AW-LI-R1-profiles-plot.
+
+Numerical comparisons between 2 replicates cannot be done directly on the \texttt{x3p} files. We need to extract representative functions from the scans first. A representative function with the most information is considered a signal for one scan, which is used later for comparison. To obtain this function, we first need a profile of the scan, which is a sequence of values along a user-drawn line on the surface. The profile captures most features of the scan and is orthogonal to the striation marks of the scan, which are formed by the ups and downs of grooves. So, we draw the line across the scan region to maximize the feature captured, as shown in dark blue in @fig-T1AW-LI-R1-profiles. We then investigate the values under this profile line. The profile function along the line is plotted in @fig-T1AW-LI-R1-profiles-plot. This function still has to be processed before turning into a useful signal.
 
 
 ## Filtered Signals {#sec-filtered-signals .unnumbered}
 
-With the profile extracted,
-we then obtain the signal.
-Two Gaussian filters,
-as discussed in Cleveland et al. [@clevelandLocalRegressionModels1992],
-are applied to these resulting profiles.
-In particular,
-we first used a large low-pass filter with bandwidths of 400 microns to remove the large trend,
-as it overwhelms the signals,
-and then used a small high-pass filter of 40 microns to average across noise and remove spikes,
-as shown in @fig-T1AW-LI-R1-signals-plot.
-Finally,
-the extreme tail values are removed.
+
+With the profile extracted, we then obtain the signal. Two Gaussian filters, as discussed in Cleveland et al. [@clevelandLocalRegressionModels1992], are applied to these resulting profiles. In particular, we first used a large low-pass filter with bandwidths of 400 microns to remove the large trend, as this trend overwhelms the signals, and then used a small high-pass filter of 40 microns to average across noise and remove spikes. Finally, the extreme tail values are removed, and the resulting signal is used for later comparison, as shown in @fig-T1AW-LI-R1-signals-plot.
 
 
 :::: {#fig-T1AW-LI-R1-profiles-signals layout="[1, 1]"}
@@ -370,24 +288,15 @@ the extreme tail values are removed.
 ![](images/T1AW-LI-R1-signals-plot.png){#fig-T1AW-LI-R1-signals-plot height=13%}
 :::
 
-\(a) A profile line in dark blue was drawn across the striations of the scan. (b) The profile function extracted along the profile line in (a). (c) The raw signal in light blue is obtained by using the low-pass filter on the profile function in (b) and the filtered signal is obtained by using the high-pass filter on the raw signal.
+\(a) A profile line in dark blue is drawn across the striations of the scan. (b) The profile function is extracted along the profile line in (a). (c) The raw signal in light blue is obtained by using the low-pass filter on the profile function in (b), and the filtered signal is obtained by using the high-pass filter on the raw signal.
 
 ::::
 
 
 ## Align Signals {#sec-align-signals .unnumbered}
 
-Signals extracted from different scans are put together for comparison,
-and we maximize the cross-correlation function (CCF) values between the signals to find the best alignment numerically.
-For example,
-we compare T1AW-LI-R1 to T1AW-LI-R2,
-T1CW-LI-R1 to T1CW-LI-R2,
-and so on.
-That is comparing each row in Figure \ref{fig-scans-pair}.
-We know that signals from two replicates with the same tool-edge-location combination yield similar signals，
-as in the first and second columns of Figure \ref{fig-signals-pair-alignment},
-which results in alignments of massive overlapping and high CCF values close to 1.
-The alignments and values we got in the rightmost column of Figure \ref{fig-signals-pair-alignment} fulfill our expectations.
+
+After extracting signals from different scans, they are put together for comparison, and we maximize CCF values between the signals to find the best alignment numerically. We compare all possible pairs, for example, T1AW-LI-R1 to T1AW-LI-R2, which is comparing each row in @fig-scans-pair. We assume that signals from two replicates with the same tool-edge-location combination yield relatively similar signals, as in the first two columns of @fig-signals-pair-alignment, which results in alignments of massive overlapping signals and high CCF values close to 1. The alignments and values in the rightmost column of @fig-signals-pair-alignment fulfill our expectations.
 
 
 ```{r}
@@ -405,7 +314,7 @@ knitr::include_graphics("images/scans_pair.png")
 #| out.width: "500px"
 #| out.height: "350px"
 #| label: fig-signals-pair-alignment
-#| fig-cap: The first and second columns show the signals extracted from Figure \ref{fig-scans-pair}, and the third column shows the alignments and CCF values between pairs of signals.
+#| fig-cap: The first and second columns show the signals extracted from @fig-scans-pair, and the third column shows the alignments and CCF values between pairs of signals.
 knitr::include_graphics("images/signals_pair_alignment.png")
 ```
 
@@ -465,12 +374,13 @@ Transparent Methods Checklist
 <!-- Topical subheadings are allowed. -->
 
 
-
 # Data Records {#sec-data-records .unnumbered}
+
 
 The complete dataset is available on the ISU DataShare repository at \href{https://iastate.figshare.com/}{https://iastate.figshare.com/},
 which is public and open access for every interested researcher.
 The structure of the dataset is described before in @tbl-data-overview.
+\tom{need to upload when finish}
 
 
 \ifnum \ifinstruction=1
@@ -480,18 +390,13 @@ The structure of the dataset is described before in @tbl-data-overview.
 \fi
 
 
-
 # Technical Validation {#sec-technical-validation .unnumbered}
 
 
-We conducted technical validation in different aspects, including validating the data collection process, processing scans and alignment of signals, and variability assessment.
-
-The first validation we did lies in the data collection process. We have two team members did the cutting and labeling together, and the one person did the scanning and named according to the naming convention introduced in [Cutting Wires](#sec-cutting-wires). The scanning was done in a specific order to ensure consistency across all scans. The data was saved in a consistent format to ensure easy access for analysis. A third person checked the data to ensure everything was correct and accurate.
+We conducted technical validation in different aspects, including processing and alignment of signals, and variability assessment.
 
 
-The validation for processing scans and alignment of signals was conducted in the following manner. For the CCF scores calculated, we assume large scores between signals from the same source, and low scores between signals from different source. Figure \ref{fig-signals-pair-alignment} shown in [Align Signals](#sec-align-signals) before matches our thought for signals from the same source. For different source, we take T1AW-LI-R1 and T2AW-LI-R1 as an example, as shown in @fig-T1AW-LI-R1 and @fig-T2AW-LI-R1. The alignment is shown in @fig-T1AW-LI-R1-T2AW-LI-R1 with a 0.2 CCF value, which is low, as expected. We also put resulting CCFs for all pairwise comparisions in the boxplot, together with the receiver operating characteristic (ROC) curve, as in Figure \ref{fig-ccf-boxplot} and Figure \ref{fig-ccf-ROC}.
-The CCF values for the same sources are close to 1, while the CCF values for different sources are much lower than expected.
-This is consistent with our expectations and validates our pipeline for processing scans and alignment of signals.
+The validation for processing scans and alignment of signals was conducted in the following manner. For the CCF values calculated, we assume large values between signals from the same source and low scores between signals from different sources. @fig-signals-pair-alignment shown in [Align Signals](#sec-align-signals) before matches our thought for signals from same sources. For different sources, we arbitrarily take T1AW-LI-R1 and T2AW-LI-R1 as an example, as shown in @fig-T1AW-LI-R1 and @fig-T2AW-LI-R1. The signal alignment is shown in @fig-T1AW-LI-R1-T2AW-LI-R1 with a 0.2 CCF value, which is as low as expected. We also put resulting CCFs for all pairwise comparisons in the boxplot, together with the receiver operating characteristic (ROC) curve, as in @fig-ccf-boxplot and @fig-ccf-ROC. The ROC curve shows the sensitivity, or the true positive rate, against the false positive rate (FPR) (1 - specificity). This curve is very close to the upper left corner, which is excellent for classification and drawing conclusions. It gives us a threshold of 0.589 to control the FPR to be less than 0.05 with a false negative rate (FNR) to be 0, \tom{(false positive rate (FPR) / false discovery rate (FDR) -> define the H0 or call it false identification rate (FIR)???)}, and 0.658 to control the FPR to be less than 0.01, with FNR to be 0.02. All these results are consistent with our expectations and validate our pipeline for processing scans and alignment of signals.
 
 
 ::: {#fig-T1AW-LI-R1-T2AW-LI-R1-alignment layout="[[1, 1], [-0.5, 9, 0.5]]"}
@@ -527,46 +432,58 @@ knitr::include_graphics("images/ccf_ROC.png")
 ```
 
 
-The other validation we did is to assess the variability of our results. In particular, we assess the variabilities in different replicates, different staging and different acquisition. We arbitrarily picked scans from tool 2 at location middle for this assessment. The variability in different replicates can be seen as we took two different cuts on the same edge and same position, and it is fully discussed in previous comparison as Figure \ref{fig-signals-pair-alignment} shown in [Align Signals](#sec-align-signals). For staging, we obtained the average CCF between replicates (replicate 1 and replicate 2) through pairwise comparison. Then, we rescanned replicate 2 under the confocal microscope, introducing a new staging labeled as S. Staging 1 for replicate 2 is omitted in the label, resulting in R2(-S1). For all four edges of tool 2 at location middle, we created three different stagings: R2, R2-S2, and R2-S3, and computed the average CCF between stagings using pairwise comparison.
+The other validation we did was to assess the variability of our pipeline. In particular, we assess the variabilities in different replicates, staging, and acquisition. We arbitrarily picked scans from tool 2 at the middle location for this assessment. The variability in different replicates was shown when we took two different cuts on the same edge and position, as fully discussed in the previous comparison as @fig-signals-pair-alignment shown in [Align Signals](#sec-align-signals). For staging, we rescanned replicate 2 under the confocal microscope, introducing a new staging labeled as S in our naming protocol. All scans with staging 1 are omitted in the label, resulting in R2(-S1). For all four edges of tool 2 at the middle location, we created three different stagings, R2, R2-S2, and R2-S3, computed the CCF between stagings with pairwise comparison, and computed the CCF average and standard deviation (SD).
 
-Within each staging, we further examined the effect of different acquisitions by keeping the scans on the confocal microscope under varying lighting conditions, introducing a new acquisition label as A. For edge A at staging 3, we performed four acquisitions in total, omitting the first one in the label again, resulting in R2-S3(-A1). For the other three edges, we conducted two acquisitions in staging 3, denoted as R2-S3 and R2-S3-A2. The average CCF between acquisitions was then obtained through pairwise comparison.
 
-With this setup, we expect increasing consistency in the CCF from replicate to staging to acquisition, as conditions become progressively more stable. Consequently, variability should decrease along this sequence. We also computed the differences between replicate, staging, and acquisition, expecting smaller differences between acquisition and staging compared to those between staging and replicate. We can visualized the results as scatter plots, as shown in @fig-rep_staging_acquisition. The interval within 2 SD is also shown. There is a increase in the average as shown as orange bar and a decrease in standard deviation (SD) as shown in the interval width in the plot. The detailed numeric results, together with standard deviation and differences in averages, shown in @tbl-CCF-replicate-staging-acquisition, confirm our expectations.
+Within each staging, we further examined the effect of different acquisitions by keeping the scans on the confocal microscope under varying lighting conditions, introducing a new acquisition label as A. For edge A at staging 3, we performed 4 acquisitions in total, omitting the first one in the label again, resulting in R2-S3(-A1). For the other three edges, we conducted two acquisitions in staging 3, denoted as R2-S3 and R2-S3-A2. Again, we computed the CCF between stagings with pairwise comparison and the CCF average and standard deviation (SD).
 
-While the difference between the order of profiles extracted and the person who extracted the profile remains another huge area for research, we leave that for further discussion.
 
-![](images/rep_staging_acquisition.png){#fig-rep_staging_acquisition height=450px width=450px}
+With this setup, we expect an increasing consistency in the CCF from replicate to staging to acquisition as conditions become progressively more stable when scanning. Consequently, variability should decrease along this sequence. We also computed the differences between replicate, staging, and acquisition, expecting more minor differences between acquisition and staging than between staging and replicate. We visualized the results as scatter plots, as shown in @fig-rep_staging_acquisition. The interval within 2 standard deviations is also shown. There is an increase in the average, as shown in higher orange bars, and a decrease in standard deviation (SD), as shown in the shorter interval width in the plot. The detailed numeric results, including means, standard deviation, and differences in averages, are shown in @tbl-CCF-replicate-staging-acquisition, confirming our expectations.
+
+
+One thing to note is that our variability assessment does not include variability in the CCFs due to differences in manually extracting profiles from scans. For the purpose of reproducibility of the results stated here, we have included the extraction location and values for each scan.
+
+
+```{r}
+#| echo: false
+#| out.width: "450px"
+#| out.height: "450px"
+#| label: fig-rep_staging_acquisition
+#| fig-cap: Scatter plots of CCF under different replicate, staging, and acquisition conditions with means and 2 standard deviation intervals.
+knitr::include_graphics("images/rep_staging_acquisition.png")
+```
+
 
 \begin{table}
     \centering
-    \begin{tabular}{c|cc|ccc|ccc}
+    \begin{tabular}{c c c c c c c c c c c c}
         \toprule
-         & \multicolumn{2}{c|}{\textbf{Replicate (R)}} 
-         & \multicolumn{3}{c|}{\textbf{Staging (S)}} 
-         & \multicolumn{3}{c}{\textbf{Acquisition (A)}} \\
-        \cmidrule(lr){2-3} \cmidrule(lr){4-6} \cmidrule(lr){7-9}
+         & & \multicolumn{2}{c}{\textbf{Replicate (R)}} 
+         & & \multicolumn{3}{c}{\textbf{Staging (S)}} 
+         & & \multicolumn{3}{c}{\textbf{Acquisition (A)}} \\
+        \cmidrule(lr){3-4} \cmidrule(lr){6-8} \cmidrule(lr){10-12}
         \textbf{Edge} 
+         & 
          & \textbf{Avg$_R$}
          & \textbf{SD$_R$}
+         & 
          & \textbf{Avg$_S$}
          & \textbf{SD$_S$}
          & \textbf{Avg$_S$ - Avg$_R$} 
+         & 
          & \textbf{Avg$_A$} 
          & \textbf{SD$_A$}
          & \textbf{Avg$_A$ - Avg$_S$} \\
         \midrule
-        A & 0.818 & 0.015 & 0.961 & 0.012 & 0.143 & 0.992 & 0.003 & 0.031 \\
-        B & 0.879 & 0.031 & 0.922 & 0.042 & 0.043 & 0.939 & --- & 0.017 \\
-        C & 0.841 & 0.022 & 0.952 & 0.021 & 0.111 & 0.959 & --- & 0.007 \\
-        D & 0.797 & 0.011 & 0.966 & 0.017 & 0.169 & 0.986 & --- & 0.020 \\
+        A & & 0.818 & 0.015 & & 0.961 & 0.012 & 0.143 & & 0.992 & 0.003 & 0.031 \\
+        B & & 0.879 & 0.031 & & 0.922 & 0.042 & 0.043 & & 0.939 & --- & 0.017 \\
+        C & & 0.841 & 0.022 & & 0.952 & 0.021 & 0.111 & & 0.959 & --- & 0.007 \\
+        D & & 0.797 & 0.011 & & 0.966 & 0.017 & 0.169 & & 0.986 & --- & 0.020 \\
         \bottomrule
     \end{tabular}
-    \caption{Comparison of CCF across different settings.}
+    \caption{Comparison of CCF means and standard deviations across different replicates, stagings, and acquisition settings.}
     \label{tbl-CCF-replicate-staging-acquisition}
 \end{table}
-
-\tom{Check if vertical lines are allowed. if not, add empty columns between E / R / S / A.}
-
 
 
 \ifnum \ifinstruction=1
@@ -614,8 +531,8 @@ While the difference between the order of profiles extracted and the person who 
 \fi
 
 
-
 # Usage Notes {#sec-usage-notes .unnumbered}
+
 
 The \texttt{R} package \texttt{x3ptools}[@hofmannX3ptoolsToolsWorking2018] available from \texttt{CRAN} supports working with files in \texttt{x3p} format. The sample scripts in \texttt{R} for processing scans from \texttt{x3p} format to their signal and alignment are available on \texttt{GitHub} [heike/wirecuts-data](https://github.com/heike/wirecuts-data) in the `assessment/code` folder, as described in @tbl-code-overview.
 
@@ -677,30 +594,7 @@ string
 ```
 
 
-We already conduct pairwise comparisons and visualize some of the comparison results in [Align Signals](#sec-align-signals) and [Technical Validation](#sec-technical-validation),
-and other analysis plots as well.
-
-Suppose we put the CCF values in a tilemap with different tools, locations and edge combinations.
-In that case,
-we expect only the diagonal to have high CCF values,
-close to 1 and marked as orange in the tilemap,
-as the diagonal represents the same source,
-and the rest of the matrix to have low CCF values,
-close to 0 and marked as gray.
-In Figure \ref{fig-ccf-tilemap},
-the behavior is consistent with our expectation overall,
-except for some rare cases with tool 5 edge D.
-The density plot in Figure \ref{fig-ccf-density} shows the distribution of the CCF values with the same sources and different sources.
-The overlapping points between the tails of these two distributions to be a rough threshold.
-
-Furthermore,
-the ROC curve in Figure \ref{fig-ccf-ROC} shows the sensitivity / true positive rate against the false positive rate (FPR) (1 - specificity).
-The curve is very close to the upper left corner,
-which is excellent for classification and drawing conclusions.
-It gives us a true threshold of 0.589 to control the FPR to be less than 0.05 with a false negative rate (FNR) to be 0,
-\tom{(false positive rate (FPR) / false discovery rate (FDR) -> define the H0 or call it false identification rate (FIR)???)},
-and 0.658 to control the FPR to be less than 0.01,
-with FNR to be 0.02.
+We already conduct pairwise comparisons and visualize some of the comparison results in [Align Signals](#sec-align-signals) and [Technical Validation](#sec-technical-validation). Here, we introduce some other analysis plots. Suppose we put the CCF values in a tilemap with different tools, locations, and edge combinations. In that case, we expect only the diagonal to have high CCF values, close to 1 and marked as orange in the tilemap, as the diagonal represents the same source, and the rest of the matrix to have low CCF values, close to 0 and marked as gray. In @fig-ccf-tilemap, the behavior is consistent with our expectation overall, except for some rare cases with tool 5 edge D. The density plot in @fig-ccf-density shows the distribution of the CCF values with the same sources and different sources. The overlapping points between the tails of these two distributions are a rough threshold for drawing conclusions.
 
 
 ```{r}
@@ -730,18 +624,13 @@ knitr::include_graphics("images/ccf_density.png")
 \fi
 
 
-
 # Code availability {#sec-code-availability .unnumbered}
 
 
-We made available all codes we used for inspecting raw scans, extracting profiles, derving signals, aligning signals, and visualizing comparison results discussed in [Methods](#sec-methods) and [Technical Validation](#sec-technical-validation), as described in @tbl-code-overview. All results are reproducible using these codes provided.
+We made available all codes we used for inspecting raw scans, extracting profiles, deriving signals, aligning signals, and visualizing comparison results discussed in [Methods](#sec-methods) and [Technical Validation](#sec-technical-validation), as described in @tbl-code-overview. All results are reproducible using these codes provided.
 
 
 \ifnum \ifinstruction=1
 \textcolor{gray}{For all studies using custom code in the generation or processing of datasets, a statement must be included under the heading "Code availability", indicating whether and how the code can be accessed, including any restrictions to access. This section should also include information on the versions of any software used, if relevant, and any specific variables or parameters used to generate, test, or process the current dataset.}
 \fi
-
-
-
-
 
