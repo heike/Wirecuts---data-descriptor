@@ -90,51 +90,82 @@ analyze the data and draw conclusions based on numerical measures.
 \addcontentsline{toc}{section}{Background \& Summary}
 
 For forensic analysis, the investigation of marks left at crime scenes
-always plays an important role, and forensic examiners are particularly
+plays an important role, and forensic examiners are particularly
 interested in identifying the origin of these marks, a process known as
 the Source Identification Problem in Forensic Science
 \citep{lindleyProblemForensicScience1977}. For this problem, the
-forensic science community focuses on two different problems:
+forensic science community focuses on two different problems. The
 \textbf{specific source problem}, where examiners aim to determine if a
-mark was left by a particular tool; \textbf{common source problem},
-where examiners aim to determine whether two marks were left by the same
-tool. Currently, the accepted practice in both problems relies on visual
-inspection of the items under a comparison microscope. The results,
-according to the Theory of Identification \citep{afte} developed by the
-Association of Firearm and Toolmark Examiners (AFTE), are categorized by
-examiners into three types: \emph{identification}, where the marks are
-believed to be made by the same source; \emph{elimination}, where the
-marks are believed to be made by different tools; and
-\emph{inconclusive}, where similarities or dissimilarities between marks
-are insufficient to allow either identification or elimination. However,
-this classification of types is subjective if without similarity
-measurements. National Research Council (NRC) \citep{nas2009} and
-President's Council of Advisors on Science and Technology (PCAST)
-\citep{pcast} criticize the absence of objectivity and the absence of
-quantifiable measurements such as error rates, which highlights the need
-for datasets with known ground truth for conclusion validation made
-through similarity comparison.
+mark was left by a particular tool, and the \textbf{common source
+problem}, where examiners aim to determine whether two marks were left
+by the same tool. Currently, accepted practice for both problems relies
+on a visual inspection of the (physical) items under a comparison
+microscope. Examiners then report their conclusions according to the
+Theory of Identification \citep{afte} developed by the Association of
+Firearm and Toolmark Examiners (AFTE), as one of three types:
+\emph{identification}, where the marks are believed to be made by the
+same source; \emph{elimination}, where the marks are believed to be made
+by different tools; and \emph{inconclusive}, where similarities or
+dissimilarities between marks are insufficient to allow either
+identification or elimination. This process has been criticized by the
+National Research Council (NRC) \citep{nas2009} and the President's
+Council of Advisors on Science and Technology (PCAST) \citep{pcast} for
+its lack of objectivity and the absence of quantifiable measurements,
+such as error rates.
 
-In the forensic literature, Biedermann
+In the discussion of error rates, Biedermann
 \citep{biedermannStrangePersistenceSource2022} differentiates between
-internal and external perspectives, where the external perspective only
+internal and external perspectives, where the external perspective
 allows general statements based on black-box studies that relate
-examiners' conclusions to ground truth without considering any evidence
-of a particular case. In order to introduce an internal perspective,
-there is a need for quantitative evaluation based on specific evidence.
-When analyzing wire-cut scan data, understanding the characteristics of
-toolmarks left by wire cutters becomes essential. When a blade cuts a
-wire, it leaves striations on the surface, as shown in
-Figure~\ref{fig-cut-microscope}. These striations serve as evidence for
-similarity assessment. Though there are already cases where the evidence
-and testimony on wire cut play an important role in the criminal
-investigation and defendant conviction, no publicly available dataset
-currently exists for wire-cut scans, with the closest work being done by
-Baiker et al. \citep{baikerToolmarkVariabilityQuality2015a}, which
-focuses on screwdrivers, not wire cutters, not to mention a standardized
-quantitative approach, except for visual comparisons. Thus, there is an
-urgent need to collect and analyze public datasets specific to wire-cut
-scans.
+examiners' conclusions to ground truth. However, this external
+perspective does not consider any evidence of a particular case. In
+order to introduce an internal perspective, there is a need for a
+quantitative evaluation of the similarity of specific evidence, and in
+particular, the need for (objective) algorithmic evaluations.
+
+In order to train algorithms we need data from scenarios with known
+ground truth. While the data collected from the crime scene does not
+help for this purpose, we cut and left marks using specific tools under
+specific conditions and collect these data for training. This approach
+enables the possibility of comparing the ground truth with the
+classification results using the trained algorithm, where the similarity
+is quantified using error rates.
+
+Advances in microscopy technology have made this data collection and
+evaluation process possible to move from mere optical 2d imaging to
+digital 3d topographic scans to allow for algorithmic assessment of the
+similarity between pairs of forensic pattern evidence
+\citep{bonfantiVisualisationConfocalMicroscopy2000}. There have already
+been successful and practical cases for bullets and cartridge
+comparisons, where visual inspections of bullet line scans from 3d
+topographic images \citep{smithLinescanImagingBallistics2002}, features
+extracted from FFT suggested as the basis of an AI system
+\citep{liBallisticsProjectileImage2006}, an automated pilot study based
+on consecutively matching striae \citep{chuPilotStudyAutomated2010} (a
+feature also used by some labs in casework), 3d imaging incorporated in
+routine casework at the Alabama Department of Forensic Sciences (ADFS)
+\citep{mcclarinAddingObjectiveComponent2015}.
+
+When cut wires are found at a crime scene, understanding the
+characteristics of marks left by bladed tools becomes essential. When a
+blade cuts a wire, it leaves striations on the surface, as shown in
+Figure~\ref{fig-cut-microscope}. These striations serve as the basis for
+a similarity assessment and source identification. These kinds of scans
+have been successful in developing quantitative methods for analyzing
+firearms evidence and (other) tools. For example, Baiker et al
+\citep{baikerToolmarkVariabilityQuality2015a} investigate striations
+made by screwdrivers for key factors in making comparisons: including
+angles of attack, rotational axes
+\citep{garciaInfluenceAxialRotation2017}, and cutting directions
+\citep{cuellarAlgorithmForensicToolmark2024}. There is also foundational
+research in forensic toolmarks emphasizing data collection and analysis,
+including collecting and distributing datasets for bullet and toolmark
+analysis
+\citep{maNISTBulletSignature2004, zhengNISTBallisticsToolmark2016},
+numerical methods for improving accuracy and consistency
+\citep{chuAutomaticIdentificationBullet2013, vorburgerApplicationsCrosscorrelationFunctions2011},
+and similarity quantification techniques
+\citep{hareAutomaticMatchingBullet2017, juJournalOpenSourceImplementation2022}.
 
 \begin{figure}
 
@@ -149,28 +180,20 @@ left by a blade on the cut end of a wire.}
 
 \end{figure}%
 
-Growing research has sought to develop quantitative methods for
-analyzing forensic toolmarks, particularly those created by different
-tools. Prior studies on striated toolmarks provide some insights into
-key comparison factors, including angles of attack
-\citep{baikerToolmarkVariabilityQuality2015a}, rotational axes
-\citep{garciaInfluenceAxialRotation2017}, and cutting directions
-\citep{cuellarAlgorithmForensicToolmark2024}. There is also foundational
-research in forensic toolmarks emphasizing data collection and analysis,
-including collecting and distributing datasets for bullet and toolmark
-analysis
-\citep{maNISTBulletSignature2004, zhengNISTBallisticsToolmark2016},
-numerical methods for improving accuracy and consistency
-\citep{chuAutomaticIdentificationBullet2013, vorburgerApplicationsCrosscorrelationFunctions2011},
-similarity quantification techniques
-\citep{hareAutomaticMatchingBullet2017, juJournalOpenSourceImplementation2022},
-but alignment remains a significant challenge.
+There are currently criminal cases where defendants were convicted based
+on evidence and testimony on cut wires. However, no publicly available
+database exists that would allow an assessment of (1) the similarity
+between striations on wires cut with the same tool or (2) any error
+rates when identifying the source. Thus, there is an urgent need to
+collect and analyze public datasets specific to wire-cuts.
 
 In this study, we provide a publicly available dataset of wire-cut
 scans, develop a systematic pipeline to analyze the data quantitatively,
 and introduce numerical measures for similarity assessment beyond visual
 inspection. The dataset includes multiple types of files, as summarized
 in Table~\ref{tbl-data-overview}.
+
+\tom{check current repo structure correspond again}
 
 \begin{table}
 
