@@ -169,8 +169,6 @@ There are currently criminal cases where defendants were convicted based on evid
 
 In this study, we provide a publicly available dataset of wire-cut scans, develop a systematic pipeline to analyze the data quantitatively, and introduce numerical measures for similarity assessment beyond visual inspection. The dataset includes multiple types of files, as summarized in @tbl-data-overview.
 
-\tom{check current repo structure correspond again}
-
 
 ```{r}
 #| echo: FALSE
