@@ -1,70 +1,73 @@
-\documentclass[fleqn,10pt]{wlscirep}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{lineno}
-\graphicspath{{./img/}{./pictures/}{./images/}}
-\linenumbers
+\documentclass[11pt,a4paper]{article}
 
-\usepackage[dvipsnames]{xcolor} % colors
-\newcommand{\tom}[1]{{\textcolor{RedOrange}{#1}}}
-\newcommand{\hh}[1]{{\textcolor{Green}{#1}}}
-\usepackage{framed}
-
-\newcommand{\ifinstruction}{0} % 1 for instruction, 0 for no instruction
-
-
-
-
-% for gt tables
-%--------------------------------
-% gt packages - see gt_latex_dependencies()
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{caption}
+\usepackage{subcaption}
 \usepackage{longtable}
 \usepackage{colortbl}
 \usepackage{array}
 \usepackage{anyfontsize}
 \usepackage{multirow}
-%--------------------------------
-
-
-% cite-method must be defined in the pre-amble as natbib. 
-% any natbib options are overwritten by quarto processing somewhere, so 
-% hard code them here
-%--------------------------------
+\usepackage{float}
+\usepackage{url}
+\usepackage{lineno}
+\usepackage[dvipsnames]{xcolor}
 \usepackage[super,sort&compress,comma,numbers]{natbib}
-%\bibliographystyle{jabbr}
-%--------------------------------
 
-\usepackage{subcaption} % for subfigures
+\graphicspath{{./images/}}
+\captionsetup{font=small,labelfont=bf,labelsep=period}
+\captionsetup[subfigure]{font={normalsize,sf},labelfont=bf}
+\setlength{\parindent}{1.5em}
+\setlength{\parskip}{0pt}
+\setlength{\emergencystretch}{3em}
 
-\usepackage{float} % for knitr::include_graphics
+% Editorial notes remain visible while the manuscript is being prepared.
+\newcommand{\tom}[1]{{\textcolor{RedOrange}{#1}}}
+\newcommand{\hh}[1]{{\textcolor{ForestGreen}{#1}}}
+\newcommand{\agent}[1]{{\textcolor{Purple}{\textbf{[AGENT: #1]}}}}
 
-\title{THREE-DIMENSIONAL DATA OF WIRE-CUT SURFACE SCANS UNDER THE
-CONFOCAL MICROSCOPE}
+% Scientific Data asks authors not to supply internal hyperlink markup.
+\newcommand{\href}[2]{#2}
+\newcommand{\hyperlink}[2]{#2}
+\newcommand{\hypertarget}[2]{#2}
+\newcommand{\JournalTitle}[1]{#1}
 
-\author[1,2,*]{Yuhang Lin}
-\author[2,3]{Heike Hofmann}
-\author[4]{Curtis Mosher}
-\author[5]{Eden Amin}
-\author[2]{Jeff Salyards}
-\author[1,2]{Alicia Carriquiry}
 
-\affil[1]{Iowa State University, Department of Statistics, Ames, IA,
-50011, USA}
-\affil[2]{Iowa State University, Center for Statistics and Applications
-in Forensic Evidence, Ames, IA, 50011, USA}
-\affil[3]{University of Nebraska-Lincoln, Department of
-Statistics, Lincoln, NE, 68583, USA}
-\affil[4]{Iowa State University, Roy J Carver High Resolution Microscopy
-Facility, Ames, IA, 50011, USA}
-\affil[5]{University of Central Oklahoma, Forensic Science
-Institute, Edmond, OK, 73034, USA}
+\begin{document}
+\linenumbers
 
-      \affil[*]{corresponding author(s): Yuhang Lin (yhlin@iastate.edu)}
-            
+\begin{center}
+{\LARGE\bfseries Three-dimensional data of wire-cut surface scans under
+the confocal microscope\par}
+\vspace{1em}
+{\large
+\mbox{Yuhang Lin\textsuperscript{1,2,*}}, %
+\mbox{Heike Hofmann\textsuperscript{2,3}}, %
+\mbox{Curtis Mosher\textsuperscript{4}}, %
+\mbox{Eden Amin\textsuperscript{5}}, %
+\mbox{Jeff Salyards\textsuperscript{2}}, %
+\mbox{Alicia Carriquiry\textsuperscript{1,2}}\par}
+\vspace{0.75em}
+{\small
+\textsuperscript{1}Department of Statistics, Iowa State
+University, USA\\
+\textsuperscript{2}Center for Statistics and Applications in Forensic
+Evidence, Iowa State University, USA\\
+\textsuperscript{3}Department of Statistics, University of
+Nebraska-Lincoln, USA\\
+\textsuperscript{4}Roy J. Carver High Resolution Microscopy
+Facility, Iowa State University, USA\\
+\textsuperscript{5}Forensic Science Institute, University of Central
+Oklahoma, USA\\\textsuperscript{*}Corresponding author: Yuhang
+Lin (yhlin@iastate.edu)
+\par}
+\end{center}
+\vspace{1em}
+
 \begin{abstract}
-\tom{Modify later: max of 170 words: describe the study, the assay(s) performed,  resulting data, and reuse potential}
+\agent{For a Data Descriptor, revise the abstract sentence reporting higher same-source correlations and decreasing variability so it describes the data and reuse without making a claim about a scientific finding.}
 
 Wire-cut striation marks can provide evidence for forensic source
 identification, but publicly available datasets and reproducible
@@ -84,18 +87,6 @@ conditions become more consistent. The dataset and workflow support the
 development, evaluation, and reproducible comparison of quantitative
 methods for wire-cut evidence.
 \end{abstract}
-\begin{document}
-
-\flushbottom
-\maketitle
-%  Click the title above to edit the author information and abstract
-
-\thispagestyle{empty}
-
-\ifnum \ifinstruction=1
-
-\noindent \textcolor{gray}{Please note: Abbreviations should be introduced at the first mention in the main text – no abbreviations lists or tables should be included. Structure of the main text is provided below.}
-\fi
 
 \section*{Background \& Summary}\label{sec-background-summary}
 \addcontentsline{toc}{section}{Background \& Summary}
@@ -188,8 +179,8 @@ and similarity quantification techniques
 
 }
 
-\caption{\label{fig-cut-microscope}Microscopic close-up of striations
-left by a blade on the cut end of a wire.}
+\caption{\label{fig-cut-microscope}Microscopic wire-cut striations.
+Close-up of striations left by a blade on the cut end of a wire.}
 
 \end{figure}%
 
@@ -213,38 +204,37 @@ files.}
 
 \centering{
 
-\fontsize{12.0pt}{14.0pt}\selectfont
 \begin{tabular*}{0.97\linewidth}{@{\extracolsep{\fill}}>{\raggedright\arraybackslash}p{\dimexpr 0.26\linewidth -2\tabcolsep-1.5\arrayrulewidth}|>{\raggedright\arraybackslash}p{\dimexpr 0.56\linewidth -2\tabcolsep-1.5\arrayrulewidth}>{\raggedright\arraybackslash}p{\dimexpr 0.18\linewidth -2\tabcolsep-1.5\arrayrulewidth}}
 \toprule
  & Description & Section \\ 
 \midrule\addlinespace[2.5pt]
 \multicolumn{3}{>{\raggedright\arraybackslash}m{0.97\linewidth}}{\parbox{\linewidth}{Raw data}} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
-\texttt{scans/} & folder containing 120 topographic 3d scans corresponding to 30 aluminum wire cuts (x3p format) & \protect\hyperref[sec-cutting-wires]{Cutting Wires} \\ 
-\texttt{meta.csv} & meta information for each cut with tool, blade, and location information (CSV format) & \protect\hyperref[sec-cutting-wires]{Cutting Wires} \\ 
+\texttt{scans/} & folder containing 120 topographic 3d scans corresponding to 30 aluminum wire cuts (x3p format) & Cutting wires \\ 
+\texttt{meta.csv} & meta information for each cut with tool, blade, and location information (CSV format) & Cutting wires \\ 
 \midrule\addlinespace[2.5pt]
 \multicolumn{3}{>{\raggedright\arraybackslash}m{0.97\linewidth}}{\parbox{\linewidth}{Manual derivatives}} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
-\texttt{profiles/} & folder of files with manually extracted profiles (CSV format) & \protect\hyperref[sec-extract-profiles]{Extract Profiles} \\ 
+\texttt{profiles/} & folder of files with manually extracted profiles (CSV format) & Extract profiles \\ 
 \midrule\addlinespace[2.5pt]
 \multicolumn{3}{>{\raggedright\arraybackslash}m{0.97\linewidth}}{\parbox{\linewidth}{Computational derivatives in the folder 'data-derived/'}} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
-\texttt{wire-signals} & signals processed from corresponding profile (zipped CSV format) & \protect\hyperref[sec-filtered-signals]{Filtered Signals} \\ 
-\texttt{wire\_pairwise\_ccf} & CCF values of all pairwise aligned signals (zipped CSV format) & \protect\hyperref[sec-align-signals]{Align Signals} \\ 
+\texttt{wire-signals} & signals processed from corresponding profile (zipped CSV format) & Filtered signals \\ 
+\texttt{wire\_pairwise\_ccf} & CCF values of all pairwise aligned signals (zipped CSV format) & Align signals \\ 
 \midrule\addlinespace[2.5pt]
 \multicolumn{3}{>{\raggedright\arraybackslash}m{0.97\linewidth}}{\parbox{\linewidth}{Image files}} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
-\texttt{pngs/} & folder containing pictures of 3d scans of wire cuts (PNG format) & \protect\hyperref[sec-cutting-wires]{Cutting Wires} \\ 
-\texttt{profile-images/} & folder containing pictures of profile extracted from wire cuts (PNG format) & \protect\hyperref[sec-extract-profiles]{Extract Profiles} \\ 
+\texttt{pngs/} & folder containing pictures of 3d scans of wire cuts (PNG format) & Cutting wires \\ 
+\texttt{profile-images/} & folder containing pictures of profile extracted from wire cuts (PNG format) & Extract profiles \\ 
 \midrule\addlinespace[2.5pt]
 \multicolumn{3}{>{\raggedright\arraybackslash}m{0.97\linewidth}}{\parbox{\linewidth}{Visual inventory in the folder 'assessment/analysis-manual/'}} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
-\texttt{processing-wires} & display of pairwise aligned signals from the same sources (HTML format) & \protect\hyperref[sec-align-signals]{Align Signals} \\ 
+\texttt{processing-wires} & display of pairwise aligned signals from the same sources (HTML format) & Align signals \\ 
 \midrule\addlinespace[2.5pt]
 \multicolumn{3}{>{\raggedright\arraybackslash}m{0.97\linewidth}}{\parbox{\linewidth}{Technical validation}} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
 \texttt{variability-}
-\texttt{assessment/} & folder containing related documents for technical validations with the inner folder structure mimicking the structure of the main folder & \protect\hyperref[sec-technical-validation]{Technical Validation} \\ 
+\texttt{assessment/} & folder containing related documents for technical validations with the inner folder structure mimicking the structure of the main folder & Technical Validation \\ 
 \bottomrule
 \end{tabular*}
 
@@ -253,32 +243,20 @@ files.}
 \end{table}%
 
 To ensure full reproducibility, we describe each step in detail,
-including how we collected and processed the wire-cut samples in
-\hyperref[sec-cutting-wires]{Cutting Wires}, how we extract profiles
-from scanned wire cuts in \hyperref[sec-extract-profiles]{Extract
-Profiles}, how we filter signals from profiles in
-\hyperref[sec-filtered-signals]{Filtered Signals}, and alignment
-methodologies using the cross-correlation function (CCF) as similarity
-measurement in \hyperref[sec-align-signals]{Align Signals}.
-\hyperref[sec-data-records]{Data Records} discusses the details
-regarding hosting this dataset. Technical validations of the consistency
-of assumptions and conclusions and variability assessment are provided
-in \hyperref[sec-technical-validation]{Technical Validation}.
-\hyperref[sec-usage-notes]{Usage Notes} includes how to use our codes
-for signal creation, alignment, analysis, validation, and visualization,
-as discussed in \hyperref[sec-methods]{Methods} and
-\hyperref[sec-technical-validation]{Technical Validation}.
-\hyperref[sec-code-availability]{Code availability} discusses the
-availability of codes for reproducibility and future research as a list.
-We anticipate that this dataset and analysis pipeline will serve as a
-foundation for problems involving wire-cut evidence and be extended to
-real-world crime scene investigations.
-\tom{Hyperlink location is incorrect for unnumbered sections.}\hh{It seems that the hyperlinks ensure the section starts on the linked page.}
-
-\ifnum \ifinstruction=1
-
-\textcolor{gray}{(unlimited length) An overview of the study design, the assay(s) performed, and the created data, including any background information needed to put this study in the context of previous work and the literature. The section should also briefly outline the broader goals that motivated the creation of this dataset and the potential reuse value. We also encourage authors to include a figure that provides a schematic overview of the study and assay(s) design. The Background \& Summary should not include subheadings. This section and the other main body sections of the manuscript should include citations to the literature as needed.}
-\fi
+including how we collected and processed the wire-cut samples in Cutting
+wires, how we extract profiles from scanned wire cuts in Extract
+profiles, how we filter signals from profiles in Filtered signals, and
+alignment methodologies using the cross-correlation function (CCF) as
+similarity measurement in Align signals. Data Records discusses the
+details regarding hosting this dataset. Technical validations of the
+consistency of assumptions and conclusions and variability assessment
+are provided in Technical Validation. Usage Notes includes how to use
+our codes for signal creation, alignment, analysis, validation, and
+visualization, as discussed in Methods and Technical Validation. Code
+Availability discusses the availability of codes for reproducibility and
+future research as a list. We anticipate that this dataset and analysis
+pipeline will serve as a foundation for problems involving wire-cut
+evidence and be extended to real-world crime scene investigations.
 
 \section*{Methods}\label{sec-methods}
 \addcontentsline{toc}{section}{Methods}
@@ -294,8 +272,8 @@ often as lead or copper. We avoided using lead in the laboratory setting
 because of its toxicity.
 \hh{XXX look up the hardness value of aluminum, copper, and lead.}
 
-\subsection*{Cutting Wires}\label{sec-cutting-wires}
-\addcontentsline{toc}{subsection}{Cutting Wires}
+\subsection*{Cutting wires}\label{sec-cutting-wires}
+\addcontentsline{toc}{subsection}{Cutting wires}
 
 We used 16 Gauge/1.5 mm, anodized aluminum wire to create this wire-cut
 dataset. In order to cut the wire, 4-inch pieces were unspooled and cut
@@ -324,13 +302,15 @@ to ensure consistency across all scans, and name scans by the naming
 convention. In the end, we had another member check the saved data to
 ensure everything was correct.
 
-\begin{figure}
+\begin{figure}[H]
 
-\begin{minipage}[t]{0.30\linewidth}
+\begin{minipage}[t]{0.29\linewidth}
+
+\vspace{0pt}
 
 \centering{
 
-\includegraphics[width=\linewidth,height=0.15\textheight,keepaspectratio]{images/plier-tip.png}
+\includegraphics[width=\linewidth,height=0.16\textheight,keepaspectratio]{images/plier-tip.png}
 
 }
 
@@ -338,7 +318,7 @@ ensure everything was correct.
 
 \centering{
 
-\includegraphics[width=\linewidth,height=0.15\textheight,keepaspectratio]{images/wire-microscope-062524.JPG}
+\includegraphics[width=\linewidth,height=0.16\textheight,keepaspectratio]{images/wire-microscope-062524.JPG}
 
 }
 
@@ -346,14 +326,16 @@ ensure everything was correct.
 
 \end{minipage}%
 %
-\begin{minipage}[t]{0.05\linewidth}
+\begin{minipage}[t]{0.02\linewidth}
 ~\end{minipage}%
 %
-\begin{minipage}[t]{0.65\linewidth}
+\begin{minipage}[t]{0.69\linewidth}
+
+\vspace{0pt}
 
 \centering{
 
-\includegraphics[width=\linewidth,height=0.33\textheight,keepaspectratio]{images/T1AW-LI-R2-4edges.png}
+\includegraphics[width=\linewidth,height=0.46\textheight,keepaspectratio]{images/T1AW-LI-R2-4edges.png}
 
 }
 
@@ -361,17 +343,16 @@ ensure everything was correct.
 
 \end{minipage}%
 
-\caption{\label{fig-cut-tent-scan}(a) A Kaiweets KWS-105 wire cutter
-with inner, middle, and outer locations marked. (b) A confocal
-microscope used to scan wire-cut surfaces. (c) Four samples obtained
-from blades A, B, C, and D after separating the cut edges.
-\tom{Figure width and height are tuned manually.}
-\tom{For full figure requirements, see \href{https://www.nature.com/sdata/publish/submission-guidelines\#figures}{https://www.nature.com/sdata/publish/submission-guidelines\#figures}.}}
+\caption{\label{fig-cut-tent-scan}Wire-cut sampling and scanning
+workflow. (a) A Kaiweets KWS-105 wire cutter with inner, middle, and
+outer locations marked. (b) A confocal microscope used to scan wire-cut
+surfaces. (c) Four samples obtained from blades A, B, C, and D after
+separating the cut edges.}
 
 \end{figure}%
 
-\subsection*{Extract Profiles}\label{sec-extract-profiles}
-\addcontentsline{toc}{subsection}{Extract Profiles}
+\subsection*{Extract profiles}\label{sec-extract-profiles}
+\addcontentsline{toc}{subsection}{Extract profiles}
 
 Numerical comparisons between 2 replicates cannot be done directly on
 the \texttt{x3p} files. We need to extract representative functions from
@@ -388,8 +369,8 @@ the values under this profile line. The profile function is plotted in
 Figure~\ref{fig-T1AW-LI-R1-profiles-signals} (b). This function still
 has to be processed before turning into a useful signal.
 
-\subsection*{Filtered Signals}\label{sec-filtered-signals}
-\addcontentsline{toc}{subsection}{Filtered Signals}
+\subsection*{Filtered signals}\label{sec-filtered-signals}
+\addcontentsline{toc}{subsection}{Filtered signals}
 
 With the profile extracted, we then obtain the signal. Two Gaussian
 filters, as discussed by Cleveland et al.
@@ -402,13 +383,15 @@ tail values are removed, and the resulting signal is used for later
 comparison, as shown in Figure~\ref{fig-T1AW-LI-R1-profiles-signals}
 (c).
 
-\begin{figure}
+\begin{figure}[H]
 
-\begin{minipage}[t]{0.50\linewidth}
+\begin{minipage}[t]{0.45\linewidth}
+
+\vspace{0pt}
 
 \centering{
 
-\includegraphics[width=\linewidth,height=0.28\textheight,keepaspectratio]{images/T1AW-LI-R1-profiles.png}
+\includegraphics[width=\linewidth,height=0.37\textheight,keepaspectratio]{images/T1AW-LI-R1-profiles.png}
 
 }
 
@@ -416,11 +399,13 @@ comparison, as shown in Figure~\ref{fig-T1AW-LI-R1-profiles-signals}
 
 \end{minipage}%
 %
-\begin{minipage}[t]{0.50\linewidth}
+\begin{minipage}[t]{0.55\linewidth}
+
+\vspace{0pt}
 
 \centering{
 
-\includegraphics[width=\linewidth,height=0.13\textheight,keepaspectratio]{images/T1AW-LI-R1-profiles-plot.png}
+\includegraphics[width=\linewidth,height=0.16\textheight,keepaspectratio]{images/T1AW-LI-R1-profiles-plot.png}
 
 }
 
@@ -428,7 +413,7 @@ comparison, as shown in Figure~\ref{fig-T1AW-LI-R1-profiles-signals}
 
 \centering{
 
-\includegraphics[width=\linewidth,height=0.13\textheight,keepaspectratio]{images/T1AW-LI-R1-signals-plot.png}
+\includegraphics[width=\linewidth,height=0.16\textheight,keepaspectratio]{images/T1AW-LI-R1-signals-plot.png}
 
 }
 
@@ -436,15 +421,15 @@ comparison, as shown in Figure~\ref{fig-T1AW-LI-R1-profiles-signals}
 
 \end{minipage}%
 
-\caption{\label{fig-T1AW-LI-R1-profiles-signals}(a) A dark-blue profile
-line drawn across the scan striations. (b) The profile function
-extracted along the line in (a). (c) Raw and filtered signals obtained
-from the profile function in (b).}
+\caption{\label{fig-T1AW-LI-R1-profiles-signals}Profile and signal
+extraction. (a) A dark-blue profile line drawn across the scan
+striations. (b) The profile function extracted along the line in (a).
+(c) Raw and filtered signals obtained from the profile function in (b).}
 
 \end{figure}%
 
-\subsection*{Align Signals}\label{sec-align-signals}
-\addcontentsline{toc}{subsection}{Align Signals}
+\subsection*{Align signals}\label{sec-align-signals}
+\addcontentsline{toc}{subsection}{Align signals}
 
 After extracting signals from different scans, they are put together for
 comparison, and we maximize CCF values between the signals to find the
@@ -466,8 +451,8 @@ Figure~\ref{fig-signals-pair-alignment} fulfill our expectations.
 
 }
 
-\caption{\label{fig-scans-pair}Scans from different sides of tool 1 at
-the inner location.}
+\caption{\label{fig-scans-pair}Same-source scan pairs. Scans from
+different sides of tool 1 at the inner location.}
 
 \end{figure}%
 
@@ -479,54 +464,12 @@ the inner location.}
 
 }
 
-\caption{\label{fig-signals-pair-alignment}The first and second columns
-show the signals extracted from Figure~\ref{fig-scans-pair}, and the
-third column shows the alignments and CCF values between pairs of
-signals.}
+\caption{\label{fig-signals-pair-alignment}Same-source signal alignment.
+The first and second columns show the signals extracted from
+Figure~\ref{fig-scans-pair}, and the third column shows the alignments
+and CCF values between pairs of signals.}
 
 \end{figure}%
-
-\ifnum \ifinstruction=1
-
-\textcolor{gray}{(unlimited length) The Methods should include detailed text describing any steps or procedures used in producing the data, including full descriptions of the experimental design, data acquisition assays, and any computational processing (e.g. normalization, image feature extraction). See the detailed section in our submission guidelines for advice on writing a transparent and reproducible methods section. Related methods should be grouped under corresponding subheadings where possible, and methods should be described in enough detail to allow other researchers to interpret and repeat, if required, the full study. Specific data outputs should be explicitly referenced via data citation (see Data Records and Citing Data, below).}
-
-\textcolor{gray}{Authors should cite previous descriptions of the methods under use, but ideally the method descriptions should be complete enough for others to understand and reproduce the methods and processing steps without referring to associated publications. There is no limit to the length of the Methods section. Subheadings should not be numbered.}
-
-\textcolor{gray}{Authors should review the transparent methods checklist below, and ensure that their manuscript complies with any relevant points. Authors are also encouraged to search FAIRsharing.org for community reporting standards that may be relevant to their specific data-type.}
-
-Transparent Methods Checklist
-
-\begin{itemize}
-  \item
-  Materials \& reagents:
-  Identify commercial suppliers of reagents, instrumentation or kits, when the source is critical to the outcome of the experiments.
-  Declare any restrictions on the availability of unique materials (more information here).
-  Provide catalogue or clone numbers for all antibodies (if available). For primary antibodies, provide proof of validation for the relevant species and applications.
-  
-  \item
-  Exclusion criteria: If any data or samples were excluded, explain the exclusion criteria and state in the methods whether the criteria were established before the study was conducted.
-  
-  \item
-  Randomization \& blinding: For any studies that involve assigning samples, animals or participants into different groups:
-  State clearly whether randomization methods were used. If randomization was not employed, this should be clearly stated.
-  State clearly whether blinding was employed during data collection. If blinding was not employed, this should be clearly stated.
-  
-  \item
-  Animal \& human studies (full journal policies here):
-  Experiments involving human participants must identify the committee approving the experiments, and include a statement confirming that informed consent was obtained from all participants.
-  Studies employing nonhuman animals should ensure that methods descriptions comply with the ARRIVE checklist.
-  
-  \item
-  Cell lines:
-  For each eukaryotic cell line used, state the source and whether the cell line has been authenticated or otherwise tested for integrity.
-  If any commonly misidentified cell lines were used (see ICLAC or NCBI Biosample), justify their use.
-  Report whether the cell lines were tested for mycoplasma contamination.
-  
-  \item
-  Chemistry \& materials science: Manuscripts describing chemical syntheses, or characterizing new chemicals or materials should refer to the guidance at Nature Chemistry.
-  
-\end{itemize}
-\fi
 
 \section*{Data Records}\label{sec-data-records}
 \addcontentsline{toc}{section}{Data Records}
@@ -535,14 +478,8 @@ The complete dataset is available on the ISU DataShare repository at
 \href{https://iastate.figshare.com/}{https://iastate.figshare.com/},
 which is public and open access for every interested researcher. The
 structure of the dataset is described earlier in
-Table~\ref{tbl-data-overview}. \tom{need to upload when finish}
-
-\ifnum \ifinstruction=1
-
-\textcolor{gray}{(unlimited length) The Data Records section should be used to explain each data record associated with this work, including the repository where this information is stored, and to provide an overview of the data files and their formats. Each external data record should be cited numerically in the text of this section, for example \cite{Hao:gidmaps:2014}, and included in the main reference list as described below. A data citation should also be placed in the subsection of the Methods containing the data-collection or analytical procedure(s) used to derive the corresponding record. Providing a direct link to the dataset may also be helpful to readers (\hyperlink{https://doi.org/10.6084/m9.figshare.853801}{https://doi.org/10.6084/m9.figshare.853801}).}
-
-\textcolor{gray}{Tables should be used to support the data records, and should clearly indicate the samples and subjects (study inputs), their provenance, and the experimental manipulations performed on each (please see 'Tables' below). They should also specify the data output resulting from each data-collection or analytical step, should these form part of the archived record.}
-\fi
+Table~\ref{tbl-data-overview}.
+\agent{Replace the repository homepage with the final dataset landing-page URL or DOI and add a formal data citation before submission.}
 
 \section*{Technical Validation}\label{sec-technical-validation}
 \addcontentsline{toc}{section}{Technical Validation}
@@ -554,21 +491,20 @@ The validation for processing scans and alignment of signals was
 conducted in the following manner. For the CCF values calculated, we
 assume large values between signals from the same source and low scores
 between signals from different sources.
-Figure~\ref{fig-signals-pair-alignment}, shown earlier in
-\hyperref[sec-align-signals]{Align Signals}, matches our expectation for
-signals from the same sources. For different sources, we arbitrarily
-take T1AW-LI-R1 and T2AW-LI-R1 as an example, as shown in
-Figure~\ref{fig-T1AW-LI-R1} and Figure~\ref{fig-T2AW-LI-R1}. The signal
-alignment is shown in Figure~\ref{fig-T1AW-LI-R1-T2AW-LI-R1} with a 0.2
-CCF value, which is as low as expected. We also put resulting CCFs for
-all pairwise comparisons in the boxplot, together with the receiver
-operating characteristic (ROC) curve, as in Figure~\ref{fig-ccf-boxplot}
-and Figure~\ref{fig-ccf-ROC}. The ROC curve shows the sensitivity, or
-the true positive rate, against the false positive rate (FPR) (1 -
-specificity). This curve is very close to the upper left corner, which
-is excellent for classification and drawing conclusions. It gives us a
-threshold of 0.589 to control the FPR to be less than 0.05 with a false
-negative rate (FNR) to be 0,
+Figure~\ref{fig-signals-pair-alignment}, shown earlier in Align signals,
+matches our expectation for signals from the same sources. For different
+sources, we arbitrarily take T1AW-LI-R1 and T2AW-LI-R1 as an example, as
+shown in Figure~\ref{fig-T1AW-LI-R1} and Figure~\ref{fig-T2AW-LI-R1}.
+The signal alignment is shown in Figure~\ref{fig-T1AW-LI-R1-T2AW-LI-R1}
+with a 0.2 CCF value, which is as low as expected. We also put resulting
+CCFs for all pairwise comparisons in the boxplot, together with the
+receiver operating characteristic (ROC) curve, as in
+Figure~\ref{fig-ccf-boxplot} and Figure~\ref{fig-ccf-ROC}. The ROC curve
+shows the sensitivity, or the true positive rate, against the false
+positive rate (FPR) (1 - specificity). This curve is very close to the
+upper left corner, which is excellent for classification and drawing
+conclusions. It gives us a threshold of 0.589 to control the FPR to be
+less than 0.05 with a false negative rate (FNR) to be 0,
 \tom{(false positive rate (FPR) / false discovery rate (FDR) -> define the H0 or call it false identification rate (FIR)???)},
 and 0.658 to control the FPR to be less than 0.01, with FNR to be 0.02.
 All these results are consistent with our expectations and validate our
@@ -615,9 +551,10 @@ pipeline for processing scans and alignment of signals.
 
 \end{minipage}%
 
-\caption{\label{fig-T1AW-LI-R1-T2AW-LI-R1-alignment}(a) Scan T1AW-LI-R1
-cut by tool 1. (b) Scan T2AW-LI-R1 cut by tool 2. (c) Alignment of
-signals from T1AW-LI-R1 and T2AW-LI-R1.}
+\caption{\label{fig-T1AW-LI-R1-T2AW-LI-R1-alignment}Different-source
+scan and signal comparison. (a) Scan T1AW-LI-R1 cut by tool 1. (b) Scan
+T2AW-LI-R1 cut by tool 2. (c) Alignment of signals from T1AW-LI-R1 and
+T2AW-LI-R1.}
 
 \end{figure}%
 
@@ -625,12 +562,13 @@ signals from T1AW-LI-R1 and T2AW-LI-R1.}
 
 \centering{
 
-\includegraphics[width=6.77083in,height=3.125in]{images/ccf_boxplot.png}
+\includegraphics[width=1\linewidth,height=3.125in]{images/ccf_boxplot.png}
 
 }
 
-\caption{\label{fig-ccf-boxplot}The boxplot shows that signals from the
-same sources have higher CCfs than those from different sources.}
+\caption{\label{fig-ccf-boxplot}Same- and different-source CCF
+distributions. Signals from the same sources have higher CCFs than those
+from different sources.}
 
 \end{figure}%
 
@@ -642,9 +580,8 @@ same sources have higher CCfs than those from different sources.}
 
 }
 
-\caption{\label{fig-ccf-ROC}The ROC curve is bending very close to the
-upper left corner, which means excellent in classification and drawing
-conclusions.}
+\caption{\label{fig-ccf-ROC}Classification performance of CCF. The ROC
+curve bends close to the upper-left corner.}
 
 \end{figure}%
 
@@ -654,14 +591,14 @@ replicates, staging, and acquisition. We arbitrarily picked scans from
 tool 2 at the middle location for this assessment. The variability in
 different replicates was shown when we took two different cuts on the
 same edge and position, as fully discussed in the previous comparison as
-Figure~\ref{fig-signals-pair-alignment} shown in
-\hyperref[sec-align-signals]{Align Signals}. For staging, we rescanned
-replicate 2 under the confocal microscope, introducing a new staging
-labeled as S in our naming protocol. All scans with staging 1 are
-omitted in the label, resulting in R2(-S1). For all four edges of tool 2
-at the middle location, we created three different stagings, R2, R2-S2,
-and R2-S3, computed the CCF between stagings with pairwise comparison,
-and computed the CCF average and standard deviation (SD).
+Figure~\ref{fig-signals-pair-alignment} shown in Align signals. For
+staging, we rescanned replicate 2 under the confocal microscope,
+introducing a new staging labeled as S in our naming protocol. All scans
+with staging 1 are omitted in the label, resulting in R2(-S1). For all
+four edges of tool 2 at the middle location, we created three different
+stagings, R2, R2-S2, and R2-S3, computed the CCF between stagings with
+pairwise comparison, and computed the CCF average and standard deviation
+(SD).
 
 Within each staging, we further examined the effect of different
 acquisitions by keeping the scans on the confocal microscope under
@@ -684,7 +621,7 @@ deviations is also shown. There is an increase in the average, as shown
 in higher orange bars, and a decrease in standard deviation, as shown in
 the shorter interval width in the plot. The detailed numeric results,
 including means, standard deviation, and differences in averages, are
-shown in Table~\ref{tbl-CCF-replicate-staging-acquisition}, confirming
+shown in Table \ref{tbl-CCF-replicate-staging-acquisition}, confirming
 our expectations.
 
 One thing to note is that our variability assessment does not include
@@ -701,95 +638,39 @@ each scan.
 
 }
 
-\caption{\label{fig-rep_staging_acquisition}Scatter plots of CCF under
-different replicate, staging, and acquisition conditions with means and
-2 standard deviation intervals.}
+\caption{\label{fig-rep_staging_acquisition}Variability across scanning
+conditions. Scatter plots of CCF under different replicate, staging, and
+acquisition conditions with means and 2 standard deviation intervals.}
 
 \end{figure}%
 
 \begin{table}
-
-\caption{\label{tbl-CCF-replicate-staging-acquisition}Comparison of CCF means and standard deviations across different replicates, stagings, and acquisition settings.}
-
-\centering{
-
+    \caption{Comparison of CCF means and standard deviations across different replicates, stagings, and acquisition settings.}
+    \label{tbl-CCF-replicate-staging-acquisition}
     \centering
-    \begin{tabular}{c c c c c c c c c c c c}
+    \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrrrrrrr@{}}
         \toprule
-         & & \multicolumn{2}{c}{\textbf{Replicate (R)}} 
-         & & \multicolumn{3}{c}{\textbf{Staging (S)}} 
-         & & \multicolumn{3}{c}{\textbf{Acquisition (A)}} \\
-        \cmidrule(lr){3-4} \cmidrule(lr){6-8} \cmidrule(lr){10-12}
+         & \multicolumn{2}{c}{\textbf{Replicate (R)}} 
+         & \multicolumn{3}{c}{\textbf{Staging (S)}} 
+         & \multicolumn{3}{c}{\textbf{Acquisition (A)}} \\
+        \cmidrule(lr){2-3} \cmidrule(lr){4-6} \cmidrule(lr){7-9}
         \textbf{Edge} 
-         & 
          & \textbf{Avg$_R$}
          & \textbf{SD$_R$}
-         & 
          & \textbf{Avg$_S$}
          & \textbf{SD$_S$}
          & \textbf{Avg$_S$ - Avg$_R$} 
-         & 
          & \textbf{Avg$_A$} 
          & \textbf{SD$_A$}
          & \textbf{Avg$_A$ - Avg$_S$} \\
         \midrule
-        A & & 0.818 & 0.015 & & 0.961 & 0.012 & 0.143 & & 0.992 & 0.003 & 0.031 \\
-        B & & 0.879 & 0.031 & & 0.922 & 0.042 & 0.043 & & 0.939 & --- & 0.017 \\
-        C & & 0.841 & 0.022 & & 0.952 & 0.021 & 0.111 & & 0.959 & --- & 0.007 \\
-        D & & 0.797 & 0.011 & & 0.966 & 0.017 & 0.169 & & 0.986 & --- & 0.020 \\
+        A & 0.818 & 0.015 & 0.961 & 0.012 & 0.143 & 0.992 & 0.003 & 0.031 \\
+        B & 0.879 & 0.031 & 0.922 & 0.042 & 0.043 & 0.939 & --- & 0.017 \\
+        C & 0.841 & 0.022 & 0.952 & 0.021 & 0.111 & 0.959 & --- & 0.007 \\
+        D & 0.797 & 0.011 & 0.966 & 0.017 & 0.169 & 0.986 & --- & 0.020 \\
         \bottomrule
-    \end{tabular}
-    
-    
-
-}
-
-\end{table}%
-
-\ifnum \ifinstruction=1
-
-\textcolor{gray}{(unlimited length) This section presents any experiments or analyses that are needed to support the technical quality of the dataset. This section may be supported by figures and tables, as needed. This is a required section; authors must present information justifying the reliability of their data.}
-
-\begin{itemize}
-  \item
-  Measurement of data quality?
-  
-  \begin{itemize}
-    \item
-    Numeric measurements / tests: ?
-    
-    \item
-    Visualizations: ?
-    
-    \item
-    Check with existing data: ?
-    
-    \item
-    Questionable / slur procedures:
-      
-      \begin{itemize}
-      \item
-      \href{https://www.nature.com/articles/s41597-024-03341-w?_gl=1*5ya8g2*_up*MQ..&gclid=EAIaIQobChMInOXO84DVhgMViewWBR3vWQJAEAAYASAAEgJICfD_BwE#Sec28}{AidData’s Geospatial Global Chinese Development Finance Dataset}: \textcolor{gray}{Second, all data collected is reviewed by at least two individuals. Although this is not a double-blind review procedure, the use of satellite imagery to verify project locations results in far less uncertainty when compared to previous approaches to geocoding where locations were selected entirely based on text descriptions.}
-      
-      \item
-      \href{https://www.nature.com/articles/s41597-024-03021-9?_gl=1*1u1zppx*_up*MQ..&gclid=EAIaIQobChMInOXO84DVhgMViewWBR3vWQJAEAAYASAAEgJICfD_BwE#Sec9}{A large open access dataset of brain metastasis 3D segmentations on MRI with clinical and imaging information}: \textcolor{gray}{A medical student (D.R.) double checked and adjusted the revised NIfTI segmentation masks and manually counted the number of lesions with contrast-enhancement, necrosis, and peritumoral edema for each patient.}
-      
-      \item
-      \href{https://www.nature.com/articles/s41597-024-03445-3?_gl=1*1ikco52*_up*MQ..&gclid=EAIaIQobChMInOXO84DVhgMViewWBR3vWQJAEAAYASAAEgJICfD_BwE#Sec11}{Time series of freshwater macroinvertebrate abundances and site characteristics of European streams and rivers}: \textcolor{gray}{Technical validation of the TREAM dataset was achieved through exclusion of time series data that did not match our inclusion criteria and data standardisation steps (outlined in Methods above). Any noted issues that did not adhere to the outlined standardisation within the datasets from the 41 independent projects included in this dataset were checked with data providers and corrected or removed when standardisation was not achievable (e.g., when collection methods changed over the course of the time series).}
-      
-      \item
-      \href{https://www.nature.com/articles/s41597-023-02684-0?_gl=1*1t69zgo*_up*MQ..&gclid=EAIaIQobChMInOXO84DVhgMViewWBR3vWQJAEAAYASAAEgJICfD_BwE#Sec12}{3D surgical instrument collection for computer vision and extended reality}: \textcolor{gray}{The main issue...Since we store our models in a standard format (STL), they are compatible with a large variety of visualisation and processing software.}
-      
-      \item
-      \href{https://www.nature.com/articles/s41597-024-03396-9?_gl=1*1ikco52*_up*MQ..&gclid=EAIaIQobChMInOXO84DVhgMViewWBR3vWQJAEAAYASAAEgJICfD_BwE#Sec4}{Three-dimensional reconstruction of high latitude bamboo coral via X-ray microfocus Computed Tomography
-}: \textcolor{gray}{Regular quality assurance inspections are carried out on the µ-CT scanner to verify its metrological and geometrical (alignments) accuracy for conducting the scans. The geometry of source to object and source to detector distances are verified whenever there is any significant physical interaction with the source such as re-alignment, change of filament, or source anode change. This calibration process involves scanning a specially designed phantom known as an ‘hourglass’36, which consists of three pairs of high-sphericity spheres. The sphere sizes are as follows: two spheres with a diameter of 3.000 mm, two spheres with a diameter of 6.000 mm, and two spheres with a diameter of 9.525 mm, and each sphere is kept in contact with its size-counterpart. By using this phantom, it becomes possible to accurately determine a known distance, specifically the centre-to-centre distance of the spheres, in a threshold-independent manner. If the measured distance deviates beyond the acceptable limits of metrological accuracy, the system’s calibration parameters are adjusted to ensure agreement between the measured distance and the actual distance.}
-      
-      \end{itemize}
-      
-    \end{itemize}
-  
-\end{itemize}
-\fi
+    \end{tabular*}
+\end{table}
 
 \section*{Usage Notes}\label{sec-usage-notes}
 \addcontentsline{toc}{section}{Usage Notes}
@@ -809,29 +690,28 @@ Table~\ref{tbl-code-overview}.
 
 \centering{
 
-\fontsize{12.0pt}{14.0pt}\selectfont
-\begin{tabular*}{0.95\linewidth}{@{\extracolsep{\fill}}>{\raggedright\arraybackslash}p{\dimexpr 0.522\linewidth -2\tabcolsep-1.5\arrayrulewidth}|>{\raggedright\arraybackslash}p{\dimexpr 0.283\linewidth -2\tabcolsep-1.5\arrayrulewidth}>{\raggedright\arraybackslash}p{\dimexpr 0.438\linewidth -2\tabcolsep-1.5\arrayrulewidth}}
+\begin{tabular*}{0.95\linewidth}{@{\extracolsep{\fill}}>{\raggedright\arraybackslash}p{\dimexpr 0.43\linewidth -2\tabcolsep-1.5\arrayrulewidth}|>{\raggedright\arraybackslash}p{\dimexpr 0.31\linewidth -2\tabcolsep-1.5\arrayrulewidth}>{\raggedright\arraybackslash}p{\dimexpr 0.21\linewidth -2\tabcolsep-1.5\arrayrulewidth}}
 \toprule
  & Description & Section \\ 
 \midrule\addlinespace[2.5pt]
 \multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{\parbox{\linewidth}{Inspect raw scans}} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
-\texttt{1-create\_pngs\_from\_x3p.R} & obtain images of \texttt{x3p}s in \texttt{scans/} & \protect\hyperref[sec-cutting-wires]{Cutting Wires} \\ 
+\path{1-create_pngs_from_x3p.R} & obtain images of \texttt{x3p}s in \texttt{scans/} & Cutting wires \\ 
 \midrule\addlinespace[2.5pt]
 \multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{\parbox{\linewidth}{Extract profiles}} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
-\texttt{2-create\_profiles\_from\_x3p.R} & manually extract profiles from each scan & \protect\hyperref[sec-extract-profiles]{Extract Profiles} \\ 
-\texttt{3-create-single-profile-file.R} & create meta profile information & \protect\hyperref[sec-extract-profiles]{Extract Profiles} \\ 
+\path{2-create_profiles_from_x3p.R} & manually extract profiles from each scan & Extract profiles \\ 
+\path{3-create-single-profile-file.R} & create meta profile information & Extract profiles \\ 
 \midrule\addlinespace[2.5pt]
 \multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{\parbox{\linewidth}{Derive signals}} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
-\texttt{4-create\_signals\_from\_profiles.R} & derive signals from each profile & \protect\hyperref[sec-filtered-signals]{Filtered Signals} \\ 
+\path{4-create_signals_from_profiles.R} & derive signals from each profile & Filtered signals \\ 
 \midrule\addlinespace[2.5pt]
 \multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{\parbox{\linewidth}{Align signals}} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
-\texttt{5-create-images.R} & create images for pairwise alignment & \protect\hyperref[sec-align-signals]{Align Signals} \\ 
-\texttt{6-align-pairwise.R} & compute pairwise alignment CCF values & \protect\hyperref[sec-align-signals]{Align Signals} \\ 
-\texttt{7-all-comparison-results.R} & visualize comparison results & \protect\hyperref[sec-align-signals]{Align Signals} \\ 
+\path{5-create-images.R} & create images for pairwise alignment & Align signals \\ 
+\path{6-align-pairwise.R} & compute pairwise alignment CCF values & Align signals \\ 
+\path{7-all-comparison-results.R} & visualize comparison results & Align signals \\ 
 \bottomrule
 \end{tabular*}
 
@@ -840,8 +720,7 @@ Table~\ref{tbl-code-overview}.
 \end{table}%
 
 We already conduct pairwise comparisons and visualize some of the
-comparison results in \hyperref[sec-align-signals]{Align Signals} and
-\hyperref[sec-technical-validation]{Technical Validation}. Here, we
+comparison results in Align signals and Technical Validation. Here, we
 introduce some other analysis plots. Suppose we put the CCF values in a
 tilemap with different tools, locations, and edge combinations. In that
 case, we expect only the diagonal to have high CCF values, close to 1
@@ -854,6 +733,8 @@ the distribution of the CCF values with the same sources and different
 sources. The overlapping points between the tails of these two
 distributions are a rough threshold for drawing conclusions.
 
+\agent{Scientific Data limits Usage Notes to practical reuse guidance and does not allow analysis or conclusions there. Decide whether to remove this analysis paragraph and Figures 10--11 or move them to the optional Data Overview section, which is limited to one paragraph and one or two figures or tables.}
+
 \begin{figure}
 
 \centering{
@@ -862,8 +743,8 @@ distributions are a rough threshold for drawing conclusions.
 
 }
 
-\caption{\label{fig-ccf-tilemap}The tilemap shows signals from the same
-source have CCFs close to 1.}
+\caption{\label{fig-ccf-tilemap}Pairwise CCF tile map. Signals from the
+same source have CCFs close to 1.}
 
 \end{figure}%
 
@@ -875,64 +756,40 @@ source have CCFs close to 1.}
 
 }
 
-\caption{\label{fig-ccf-density}The density plot shows tails of
-distributions overlap, which to be used as a rough threshold for drawing
-conclusions.}
+\caption{\label{fig-ccf-density}CCF density distributions. The
+overlapping distribution tails can be used as a rough threshold for
+drawing conclusions.}
 
 \end{figure}%
 
-\ifnum \ifinstruction=1
+\section*{Data Availability}\label{sec-data-availability}
+\addcontentsline{toc}{section}{Data Availability}
 
-\textcolor{gray}{(unlimited length) The Usage Notes should contain brief instructions to assist other researchers with reuse of the data. This may include discussion of software packages that are suitable for analysing the assay data files, suggested downstream processing steps (e.g. normalization, etc.), or tips for integrating or comparing the data records with other datasets. Authors are encouraged to provide code, programs or data-processing workflows if they may help others understand or use the data. Please see our code availability policy for advice on supplying custom code alongside Data Descriptor manuscripts.}
-
-\textcolor{gray}{For studies involving privacy or safety controls on public access to the data, this section should describe in detail these controls, including how authors can apply to access the data, what criteria will be used to determine who may access the data, and any limitations on data use.}
-\fi
+\agent{A short Data Availability statement is mandatory. Repeat the final repository URL or DOI and the principal accession or dataset identifiers already described in Data Records.}
 
 \section*{Code Availability}\label{sec-code-availability}
 \addcontentsline{toc}{section}{Code Availability}
 
 We made all code used for inspecting raw scans, extracting profiles,
 deriving signals, aligning signals, and visualizing comparison results
-discussed in \hyperref[sec-methods]{Methods} and
-\hyperref[sec-technical-validation]{Technical Validation}, as described
-in Table~\ref{tbl-code-overview}. All results are reproducible using the
+discussed in Methods and Technical Validation, as described in
+Table~\ref{tbl-code-overview}. All results are reproducible using the
 provided code.
 
-\ifnum \ifinstruction=1
-
-\textcolor{gray}{For all studies using custom code in the generation or processing of datasets, a statement must be included under the heading "Code availability", indicating whether and how the code can be accessed, including any restrictions to access. This section should also include information on the versions of any software used, if relevant, and any specific variables or parameters used to generate, test, or process the current dataset.}
-\fi
-
+\bibliographystyle{naturemag-doi}
 \bibliography{references}
 
-%\noindent LaTeX formats citations and references automatically using the bibliography records in your .bib file, which you can edit via the project menu. Use the cite command for an inline citation, %e.g. \cite{Kaufman2020, Figueredo:2009dg, Babichev2002, behringer2014manipulating}. 
-%For data citations of datasets uploaded to e.g. \emph{figshare}, please use the \verb|howpublished| option in the bib entry to specify the platform and the link, as in the \verb|Hao:gidmaps:2014| example in the sample bibliography file. For journal articles, DOIs should be included for works in press that do not yet have volume or page numbers. For other journal articles, DOIs should be included uniformly for all articles or not at all. We recommend that you encode all DOIs in your bibtex database as full URLs, e.g. https://doi.org/10.1007/s12110-009-9068-2.
-
-\section*{Acknowledgements} 
-This work was partially funded by the Center for Statistics and
-Applications in Forensic Evidence (CSAFE) through Cooperative Agreement
-70NANB20H019 between NIST and Iowa State University, which includes
-activities carried out at Carnegie Mellon University, Duke University,
-University of California Irvine, University of Virginia, West Virginia
-University, University of Pennsylvania, Swarthmore College and the
-University of Nebraska-Lincoln.
-
-\section*{Author contributions statement}
-
-\hh{Let's follow the Elsevier definitions: https://www.elsevier.com/researcher/author/policies-and-guidelines/credit-author-statement}
+\section*{Author Contributions}
+\agent{Confirm whether to use the CRediT taxonomy for the Author Contributions statement; Scientific Data does not require the linked Elsevier wording.}
 
 Y.L.: Methodology, Software, Validation, Data Curation, Writing - Draft;
 H.H.: Conceptualization, Methodology, Validation, Writing - Review \&
 Editing; C.M.: Lab supervision; E.A.: Physical Specimen, Scanning; J.S:
 Forensic advice; A.C.: Funding acquisition.
-%Must include all authors, identified by initials, for example:
-%A.A. conceived the experiment(s), A.A. and B.A. conducted the experiment(s), C.A. and D.A. analysed the results.
 
-\noindent
-All authors reviewed the manuscript. 
+All authors reviewed the manuscript.
 
-\section*{Competing interests} (mandatory statement)
-
+\section*{Competing Interests}
 H.H. is a technical advisor to AFTE (Association of Firearms and
 Toolmarks Examiners), fellow of the ASA (American Statistical
 Association), and committee member of the ASA Forensic Science
@@ -940,39 +797,14 @@ Committee. H.H. has testified as court witness on behalf of judge April
 Neubauer, NY State Supreme Court Criminal Term in New York City.
 \hh{other competing interests - Alicia?}
 
-% XXX Delete the section below later
-% \ifnum \ifinstruction=1
-% \section*{Figures \& Tables}
-% 
-% 
-% Figures, tables, and their legends, should be included at the end of the document. Figures and tables can be referenced in \LaTeX{} using the ref command, e.g. Figure \ref{fig:stream} and Table \ref{tab:example}. 
-% 
-% Authors are encouraged to provide one or more tables that provide basic information on the main ‘inputs’ to the study (e.g. samples, participants, or information sources) and the main data outputs of the study. Tables in the manuscript should generally not be used to present primary data (i.e. measurements). Tables containing primary data should be submitted to an appropriate data repository.
-% 
-% Tables may be provided within the \LaTeX{} document or as separate files (tab-delimited text or Excel files). Legends, where needed, should be included here. Generally, a Data Descriptor should have fewer than ten Tables, but more may be allowed when needed. Tables may be of any size, but only Tables which fit onto a single printed page will be included in the PDF version of the article (up to a maximum of three). 
-% 
-% Due to typesetting constraints, tables that do not fit onto a single A4 page cannot be included in the PDF version of the article and will be made available in the online version only. Any such tables must be labelled in the text as ‘Online-only’ tables and numbered separately from the main table list e.g. ‘Table 1, Table 2, Online-only Table 1’ etc.
-% 
-% \begin{figure}[ht]
-% \centering
-% \includegraphics[width=\linewidth]{stream}
-% \caption{Legend (350 words max). Example legend text.}
-% \label{fig:stream}
-% \end{figure}
-% 
-% \begin{table}[ht]
-% \centering
-% \begin{tabular}{|l|l|l|}
-% \hline
-% Condition & n & p \\
-% \hline
-% A & 5 & 0.1 \\
-% \hline
-% B & 10 & 0.01 \\
-% \hline
-% \end{tabular}
-% \caption{\label{tab:example}Legend (350 words max). Example legend text.}
-% \end{table}
-% \fi
+
+\section*{Funding}
+This work was partially funded by the Center for Statistics and
+Applications in Forensic Evidence (CSAFE) through Cooperative Agreement
+70NANB20H019 between NIST and Iowa State University, which includes
+activities carried out at Carnegie Mellon University, Duke University,
+University of California Irvine, University of Virginia, West Virginia
+University, University of Pennsylvania, Swarthmore College and the
+University of Nebraska-Lincoln.
 
 \end{document}
