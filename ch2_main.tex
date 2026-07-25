@@ -40,8 +40,8 @@
 
 \usepackage{float} % for knitr::include_graphics
 
-\title{Three-dimensional data of wire-cut surface scans under the
-confocal microscope (110 character maximum, inc. spaces)}
+\title{THREE-DIMENSIONAL DATA OF WIRE-CUT SURFACE SCANS UNDER THE
+CONFOCAL MICROSCOPE}
 
 \author[1,2,*]{Yuhang Lin}
 \author[2,3]{Heike Hofmann}
@@ -66,12 +66,23 @@ Institute, Edmond, OK, 73034, USA}
 \begin{abstract}
 \tom{Modify later: max of 170 words: describe the study, the assay(s) performed,  resulting data, and reuse potential}
 
-Wire cut data is important in forensic investigations but lacks a
-systematic way of analyzing the data. We created a dataset of 120 scans
-of aluminum wire cut in \texttt{x3p} format, using 5 wire cutters and 3
-locations along the 4 blades, with 2 replicates for each combination. A
-systematic pipeline with multiple analysis plots was developed to
-analyze the data and draw conclusions based on numerical measures.
+Wire-cut striation marks can provide evidence for forensic source
+identification, but publicly available datasets and reproducible
+quantitative workflows for analyzing these marks are limited. We present
+120 three-dimensional topographic scans in \texttt{x3p} format from
+aluminum wires cut with five KWS-105 wire cutters. The study includes
+four edges, three locations along each tool, and two replicates for
+every tool-edge-location combination. We provide scan metadata, manually
+extracted profiles, processed signals, pairwise cross-correlation
+values, images, and analysis code. The accompanying workflow covers scan
+inspection, profile and signal extraction, cross-correlation-based
+alignment, pairwise similarity visualization, and variability assessment
+across replicates, stagings, and acquisitions. Technical validation
+shows higher cross-correlations for same-source comparisons than for
+different-source comparisons and decreasing variability as scanning
+conditions become more consistent. The dataset and workflow support the
+development, evaluation, and reproducible comparison of quantitative
+methods for wire-cut evidence.
 \end{abstract}
 \begin{document}
 
@@ -101,17 +112,19 @@ problem}, where examiners aim to determine whether two marks were left
 by the same tool. Currently, accepted practice for both problems relies
 on a visual inspection of the (physical) items under a comparison
 microscope. Examiners then report their conclusions according to the
-Theory of Identification \citep{afte} developed by the Association of
-Firearm and Toolmark Examiners (AFTE), as one of three types:
-\emph{identification}, where the marks are believed to be made by the
-same source; \emph{elimination}, where the marks are believed to be made
-by different tools; and \emph{inconclusive}, where similarities or
-dissimilarities between marks are insufficient to allow either
-identification or elimination. This process has been criticized by the
-National Research Council (NRC) \citep{nas2009} and the President's
-Council of Advisors on Science and Technology (PCAST) \citep{pcast} for
-its lack of objectivity and the absence of quantifiable measurements,
-such as error rates.
+Theory of Identification \citep{afteAssociationFirearmTool1998}
+developed by the Association of Firearm and Toolmark Examiners (AFTE),
+as one of three types: \emph{identification}, where the marks are
+believed to be made by the same source; \emph{elimination}, where the
+marks are believed to be made by different tools; and
+\emph{inconclusive}, where similarities or dissimilarities between marks
+are insufficient to allow either identification or elimination. This
+process has been criticized by the National Research Council (NRC)
+\citep{nationalresearchcouncilu.s.StrengtheningForensicScience2009a} and
+the President's Council of Advisors on Science and Technology (PCAST)
+\citep{presidentscouncilofadvisorsonscienceandtechnologyForensicScienceCriminal2016}
+for its lack of objectivity and the absence of quantifiable
+measurements, such as error rates.
 
 In the discussion of error rates, Biedermann
 \citep{biedermannStrangePersistenceSource2022} differentiates between
@@ -152,7 +165,7 @@ blade cuts a wire, it leaves striations on the surface, as shown in
 Figure~\ref{fig-cut-microscope}. These striations serve as the basis for
 a similarity assessment and source identification. These kinds of scans
 have been successful in developing quantitative methods for analyzing
-firearms evidence and (other) tools. For example, Baiker et al
+firearms evidence and (other) tools. For example, Baiker et al.
 \citep{baikerToolmarkVariabilityQuality2015a} investigate striations
 made by screwdrivers for key factors in making comparisons: including
 angles of attack, rotational axes
@@ -165,7 +178,7 @@ analysis
 numerical methods for improving accuracy and consistency
 \citep{chuAutomaticIdentificationBullet2013, vorburgerApplicationsCrosscorrelationFunctions2011},
 and similarity quantification techniques
-\citep{hareAutomaticMatchingBullet2017, juJournalOpenSourceImplementation2022}.
+\citep{hareAutomaticMatchingBullet2017, juOpenSourceImplementationCMPS2022}.
 
 \begin{figure}
 
@@ -200,35 +213,35 @@ files.}
 
 \centering{
 
-\fontsize{12.0pt}{14.4pt}\selectfont
+\fontsize{12.0pt}{14.0pt}\selectfont
 \begin{tabular*}{0.97\linewidth}{@{\extracolsep{\fill}}>{\raggedright\arraybackslash}p{\dimexpr 0.26\linewidth -2\tabcolsep-1.5\arrayrulewidth}|>{\raggedright\arraybackslash}p{\dimexpr 0.56\linewidth -2\tabcolsep-1.5\arrayrulewidth}>{\raggedright\arraybackslash}p{\dimexpr 0.18\linewidth -2\tabcolsep-1.5\arrayrulewidth}}
 \toprule
  & Description & Section \\ 
 \midrule\addlinespace[2.5pt]
-\multicolumn{3}{>{\raggedright\arraybackslash}m{0.97\linewidth}}{Raw data} \\[2.5pt] 
+\multicolumn{3}{>{\raggedright\arraybackslash}m{0.97\linewidth}}{\parbox{\linewidth}{Raw data}} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
 \texttt{scans/} & folder containing 120 topographic 3d scans corresponding to 30 aluminum wire cuts (x3p format) & \protect\hyperref[sec-cutting-wires]{Cutting Wires} \\ 
 \texttt{meta.csv} & meta information for each cut with tool, blade, and location information (CSV format) & \protect\hyperref[sec-cutting-wires]{Cutting Wires} \\ 
 \midrule\addlinespace[2.5pt]
-\multicolumn{3}{>{\raggedright\arraybackslash}m{0.97\linewidth}}{Manual derivatives} \\[2.5pt] 
+\multicolumn{3}{>{\raggedright\arraybackslash}m{0.97\linewidth}}{\parbox{\linewidth}{Manual derivatives}} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
 \texttt{profiles/} & folder of files with manually extracted profiles (CSV format) & \protect\hyperref[sec-extract-profiles]{Extract Profiles} \\ 
 \midrule\addlinespace[2.5pt]
-\multicolumn{3}{>{\raggedright\arraybackslash}m{0.97\linewidth}}{Computational derivatives in the folder 'data-derived/'} \\[2.5pt] 
+\multicolumn{3}{>{\raggedright\arraybackslash}m{0.97\linewidth}}{\parbox{\linewidth}{Computational derivatives in the folder 'data-derived/'}} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
 \texttt{wire-signals} & signals processed from corresponding profile (zipped CSV format) & \protect\hyperref[sec-filtered-signals]{Filtered Signals} \\ 
 \texttt{wire\_pairwise\_ccf} & CCF values of all pairwise aligned signals (zipped CSV format) & \protect\hyperref[sec-align-signals]{Align Signals} \\ 
 \midrule\addlinespace[2.5pt]
-\multicolumn{3}{>{\raggedright\arraybackslash}m{0.97\linewidth}}{Image files} \\[2.5pt] 
+\multicolumn{3}{>{\raggedright\arraybackslash}m{0.97\linewidth}}{\parbox{\linewidth}{Image files}} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
 \texttt{pngs/} & folder containing pictures of 3d scans of wire cuts (PNG format) & \protect\hyperref[sec-cutting-wires]{Cutting Wires} \\ 
 \texttt{profile-images/} & folder containing pictures of profile extracted from wire cuts (PNG format) & \protect\hyperref[sec-extract-profiles]{Extract Profiles} \\ 
 \midrule\addlinespace[2.5pt]
-\multicolumn{3}{>{\raggedright\arraybackslash}m{0.97\linewidth}}{Visual inventory in the folder 'assessment/analysis-manual/'} \\[2.5pt] 
+\multicolumn{3}{>{\raggedright\arraybackslash}m{0.97\linewidth}}{\parbox{\linewidth}{Visual inventory in the folder 'assessment/analysis-manual/'}} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
 \texttt{processing-wires} & display of pairwise aligned signals from the same sources (HTML format) & \protect\hyperref[sec-align-signals]{Align Signals} \\ 
 \midrule\addlinespace[2.5pt]
-\multicolumn{3}{>{\raggedright\arraybackslash}m{0.97\linewidth}}{Technical validation} \\[2.5pt] 
+\multicolumn{3}{>{\raggedright\arraybackslash}m{0.97\linewidth}}{\parbox{\linewidth}{Technical validation}} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
 \texttt{variability-}
 \texttt{assessment/} & folder containing related documents for technical validations with the inner folder structure mimicking the structure of the main folder & \protect\hyperref[sec-technical-validation]{Technical Validation} \\ 
@@ -243,7 +256,7 @@ To ensure full reproducibility, we describe each step in detail,
 including how we collected and processed the wire-cut samples in
 \hyperref[sec-cutting-wires]{Cutting Wires}, how we extract profiles
 from scanned wire cuts in \hyperref[sec-extract-profiles]{Extract
-Profiles}, how we filtering signals from profiles in
+Profiles}, how we filter signals from profiles in
 \hyperref[sec-filtered-signals]{Filtered Signals}, and alignment
 methodologies using the cross-correlation function (CCF) as similarity
 measurement in \hyperref[sec-align-signals]{Align Signals}.
@@ -260,7 +273,7 @@ availability of codes for reproducibility and future research as a list.
 We anticipate that this dataset and analysis pipeline will serve as a
 foundation for problems involving wire-cut evidence and be extended to
 real-world crime scene investigations.
-\tom{hyperlink location incorrect for unnumbered sections}\hh{it seems that the hyperlinks make sure that the section is on the page}
+\tom{Hyperlink location is incorrect for unnumbered sections.}\hh{It seems that the hyperlinks ensure the section starts on the linked page.}
 
 \ifnum \ifinstruction=1
 
@@ -273,11 +286,12 @@ real-world crime scene investigations.
 In this study, we use aluminum wire to create cuts.
 \hh{more details: thickness, brand?} The physical property of aluminum
 wire makes it an excellent candidate for keeping marks while being
-relatively easy to bend and non-toxic, i.e., with a hardness of
-\hh{XXX}, aluminum is soft enough that tools leave marks but hard enough
-to not be affected by handling cut materials under the microscope. In
-real casework, aluminum wires are not seen as often as lead or copper.
-We avoided using lead in the laboratory setting because of its toxicity.
+relatively easy to bend and non-toxic,
+\hh{i.e., with a hardness of XXX,} aluminum is soft enough that tools
+leave marks but hard enough to not be affected by handling cut materials
+under the microscope. In real casework, aluminum wires are not seen as
+often as lead or copper. We avoided using lead in the laboratory setting
+because of its toxicity.
 \hh{XXX look up the hardness value of aluminum, copper, and lead.}
 
 \subsection*{Cutting Wires}\label{sec-cutting-wires}
@@ -285,38 +299,38 @@ We avoided using lead in the laboratory setting because of its toxicity.
 
 We used 16 Gauge/1.5 mm, anodized aluminum wire to create this wire-cut
 dataset. In order to cut the wire, 4-inch pieces were unspooled and cut
-using model KWS-105 Kaiweets wire cutters as shown in
-Figure~\ref{fig-plier-tip} for 1 blade location, either inner, middle,
-or outer, which gives us 1 replicate. Each piece was then cut into half
-to create 2-inch pieces for each edge, AB and CD, with a sharpie line
+using model KWS-105 Kaiweets wire cutters at 1 blade location, either
+inner, middle, or outer, which gives us 1 replicate, as shown in
+Figure~\ref{fig-cut-tent-scan} (a). Each piece was then cut into half to
+create 2-inch pieces for each edge, AB and CD, with a sharpie line
 marking the cut ends, giving us 4 samples. Then, we follow the standard
-scanning protocols for the confocal microscope, shown in
-Figure~\ref{fig-wire-microscope}, to scan the wire tip surfaces. The
+scanning protocols for the confocal microscope shown in
+Figure~\ref{fig-cut-tent-scan} (b) to scan the wire tip surfaces. The
 scanned surfaces are saved in a resolution of
 \(0.645 \mu m \times 0.645 \mu m\) per square pixel in an \texttt{x3p}
-file format. Here, we are showing AB and CD sides in
-Figure~\ref{fig-T1AW-LI-R2-4edges}, with the back of A being C and the
-back of B being D. We separate AB and CD sides into 2 pieces along the
-bending position, resulting in 8 scans. Then, we repeated this process
-for all 3 locations along the blade and 5 wire cutters, with 2
-replicates for each tool-edge-location combination, resulting in 120
-scans as our sample. Each piece was labeled following the naming
-conventions: T(ool) 1/2/3/4/5 (Edge) A/B/C/D W(ire) - L(ocation)
-I(nner)/M(iddle)/O(uter) - R(epetition) 1/2, with T1AW-LI-R1 being the
-piece cut by tool 1 on the A edge at the inner location for the first
-repetition. In order to have the sampling protocol conducted properly
-without mistakes, we have two team members cut and label wires together,
-and one of them scans in a specific order to ensure consistency across
-all scans, and name scans by the naming convention. In the end, we have
-another member checked the saved data to ensure everything was correct.
+file format. Figure~\ref{fig-cut-tent-scan} (c) shows the AB and CD
+sides, with the back of A being C and the back of B being D. We separate
+AB and CD sides into 2 pieces along the bending position, resulting in 8
+scans. Then, we repeated this process for all 3 locations along the
+blade and 5 wire cutters, with 2 replicates for each tool-edge-location
+combination, resulting in 120 scans as our sample. Each piece was
+labeled following the naming conventions: T(ool) 1/2/3/4/5 (Edge)
+A/B/C/D W(ire) - L(ocation) I(nner)/M(iddle)/O(uter) - R(epetition) 1/2,
+with T1AW-LI-R1 being the piece cut by tool 1 on the A edge at the inner
+location for the first repetition. In order to have the sampling
+protocol conducted properly without mistakes, we have two team members
+cut and label wires together, and one of them scans in a specific order
+to ensure consistency across all scans, and name scans by the naming
+convention. In the end, we had another member check the saved data to
+ensure everything was correct.
 
 \begin{figure}
 
-\begin{minipage}{0.30\linewidth}
+\begin{minipage}[t]{0.30\linewidth}
 
 \centering{
 
-\includegraphics[width=\textwidth,height=0.15\textheight]{images/plier-tip.png}
+\includegraphics[width=\linewidth,height=0.15\textheight,keepaspectratio]{images/plier-tip.png}
 
 }
 
@@ -324,7 +338,7 @@ another member checked the saved data to ensure everything was correct.
 
 \centering{
 
-\includegraphics[width=\textwidth,height=0.15\textheight]{images/wire-microscope-062524.JPG}
+\includegraphics[width=\linewidth,height=0.15\textheight,keepaspectratio]{images/wire-microscope-062524.JPG}
 
 }
 
@@ -332,14 +346,14 @@ another member checked the saved data to ensure everything was correct.
 
 \end{minipage}%
 %
-\begin{minipage}{0.05\linewidth}
+\begin{minipage}[t]{0.05\linewidth}
 ~\end{minipage}%
 %
-\begin{minipage}{0.65\linewidth}
+\begin{minipage}[t]{0.65\linewidth}
 
 \centering{
 
-\includegraphics[width=\textwidth,height=0.33\textheight]{images/T1AW-LI-R2-4edges.png}
+\includegraphics[width=\linewidth,height=0.33\textheight,keepaspectratio]{images/T1AW-LI-R2-4edges.png}
 
 }
 
@@ -347,13 +361,12 @@ another member checked the saved data to ensure everything was correct.
 
 \end{minipage}%
 
-\caption{\label{fig-cut-tent-scan}(a) A Kaiweets wire cutter of model
-KWS-105 was used to cut the wire, with inner, middle, and outer
-locations marked. (b) A confocal microscope was used to scan the
-wire-cut surfaces. (c) After separating edges by the connecting
-position, we obtained 4 samples - 2 samples from blade A and B, and
-others from blade C and D. \tom{width and height are tuned manually}
-\tom{ | full requirements see \href{https://www.nature.com/sdata/publish/submission-guidelines\#figures}{https://www.nature.com/sdata/publish/submission-guidelines\#figures}}}
+\caption{\label{fig-cut-tent-scan}(a) A Kaiweets KWS-105 wire cutter
+with inner, middle, and outer locations marked. (b) A confocal
+microscope used to scan wire-cut surfaces. (c) Four samples obtained
+from blades A, B, C, and D after separating the cut edges.
+\tom{Figure width and height are tuned manually.}
+\tom{For full figure requirements, see \href{https://www.nature.com/sdata/publish/submission-guidelines\#figures}{https://www.nature.com/sdata/publish/submission-guidelines\#figures}.}}
 
 \end{figure}%
 
@@ -369,32 +382,33 @@ sequence of values along a user-drawn line on the surface. The profile
 captures most features of the scan and is orthogonal to the striation
 marks of the scan, which are formed by the ups and downs of grooves. So,
 we draw the line across the scan region to maximize the feature
-captured, as shown in dark blue in Figure~\ref{fig-T1AW-LI-R1-profiles}.
-We then investigate the values under this profile line. The profile
-function along the line is plotted in
-Figure~\ref{fig-T1AW-LI-R1-profiles-plot}. This function still has to be
-processed before turning into a useful signal.
+captured, as shown in dark blue in
+Figure~\ref{fig-T1AW-LI-R1-profiles-signals} (a). We then investigate
+the values under this profile line. The profile function is plotted in
+Figure~\ref{fig-T1AW-LI-R1-profiles-signals} (b). This function still
+has to be processed before turning into a useful signal.
 
 \subsection*{Filtered Signals}\label{sec-filtered-signals}
 \addcontentsline{toc}{subsection}{Filtered Signals}
 
 With the profile extracted, we then obtain the signal. Two Gaussian
-filters, as discussed in Cleveland et al.
+filters, as discussed by Cleveland et al.
 \citep{clevelandLocalRegressionModels1992}, are applied to these
 resulting profiles. In particular, we first used a large low-pass filter
 with bandwidths of 400 microns to remove the large trend, as this trend
 overwhelms the signals, and then used a small high-pass filter of 40
 microns to average across noise and remove spikes. Finally, the extreme
 tail values are removed, and the resulting signal is used for later
-comparison, as shown in Figure~\ref{fig-T1AW-LI-R1-signals-plot}.
+comparison, as shown in Figure~\ref{fig-T1AW-LI-R1-profiles-signals}
+(c).
 
 \begin{figure}
 
-\begin{minipage}{0.50\linewidth}
+\begin{minipage}[t]{0.50\linewidth}
 
 \centering{
 
-\includegraphics[width=\textwidth,height=0.28\textheight]{images/T1AW-LI-R1-profiles.png}
+\includegraphics[width=\linewidth,height=0.28\textheight,keepaspectratio]{images/T1AW-LI-R1-profiles.png}
 
 }
 
@@ -402,11 +416,11 @@ comparison, as shown in Figure~\ref{fig-T1AW-LI-R1-signals-plot}.
 
 \end{minipage}%
 %
-\begin{minipage}{0.50\linewidth}
+\begin{minipage}[t]{0.50\linewidth}
 
 \centering{
 
-\includegraphics[width=\textwidth,height=0.13\textheight]{images/T1AW-LI-R1-profiles-plot.png}
+\includegraphics[width=\linewidth,height=0.13\textheight,keepaspectratio]{images/T1AW-LI-R1-profiles-plot.png}
 
 }
 
@@ -414,7 +428,7 @@ comparison, as shown in Figure~\ref{fig-T1AW-LI-R1-signals-plot}.
 
 \centering{
 
-\includegraphics[width=\textwidth,height=0.13\textheight]{images/T1AW-LI-R1-signals-plot.png}
+\includegraphics[width=\linewidth,height=0.13\textheight,keepaspectratio]{images/T1AW-LI-R1-signals-plot.png}
 
 }
 
@@ -422,12 +436,10 @@ comparison, as shown in Figure~\ref{fig-T1AW-LI-R1-signals-plot}.
 
 \end{minipage}%
 
-\caption{\label{fig-T1AW-LI-R1-profiles-signals}(a) A profile line in
-dark blue is drawn across the striations of the scan. (b) The profile
-function is extracted along the profile line in (a). (c) The raw signal
-in light blue is obtained by using the low-pass filter on the profile
-function in (b), and the filtered signal is obtained by using the
-high-pass filter on the raw signal.}
+\caption{\label{fig-T1AW-LI-R1-profiles-signals}(a) A dark-blue profile
+line drawn across the scan striations. (b) The profile function
+extracted along the line in (a). (c) Raw and filtered signals obtained
+from the profile function in (b).}
 
 \end{figure}%
 
@@ -522,7 +534,7 @@ Transparent Methods Checklist
 The complete dataset is available on the ISU DataShare repository at
 \href{https://iastate.figshare.com/}{https://iastate.figshare.com/},
 which is public and open access for every interested researcher. The
-structure of the dataset is described before in
+structure of the dataset is described earlier in
 Table~\ref{tbl-data-overview}. \tom{need to upload when finish}
 
 \ifnum \ifinstruction=1
@@ -542,9 +554,9 @@ The validation for processing scans and alignment of signals was
 conducted in the following manner. For the CCF values calculated, we
 assume large values between signals from the same source and low scores
 between signals from different sources.
-Figure~\ref{fig-signals-pair-alignment} shown in
-\hyperref[sec-align-signals]{Align Signals} before matches our thought
-for signals from same sources. For different sources, we arbitrarily
+Figure~\ref{fig-signals-pair-alignment}, shown earlier in
+\hyperref[sec-align-signals]{Align Signals}, matches our expectation for
+signals from the same sources. For different sources, we arbitrarily
 take T1AW-LI-R1 and T2AW-LI-R1 as an example, as shown in
 Figure~\ref{fig-T1AW-LI-R1} and Figure~\ref{fig-T2AW-LI-R1}. The signal
 alignment is shown in Figure~\ref{fig-T1AW-LI-R1-T2AW-LI-R1} with a 0.2
@@ -564,11 +576,11 @@ pipeline for processing scans and alignment of signals.
 
 \begin{figure}
 
-\begin{minipage}{0.50\linewidth}
+\begin{minipage}[t]{0.50\linewidth}
 
 \centering{
 
-\includegraphics[width=\textwidth,height=5.5cm]{images/T1AW-LI-R1.png}
+\includegraphics[width=\linewidth,height=5.5cm,keepaspectratio]{images/T1AW-LI-R1.png}
 
 }
 
@@ -576,11 +588,11 @@ pipeline for processing scans and alignment of signals.
 
 \end{minipage}%
 %
-\begin{minipage}{0.50\linewidth}
+\begin{minipage}[t]{0.50\linewidth}
 
 \centering{
 
-\includegraphics[width=\textwidth,height=5.5cm]{images/T2AW-LI-R1.png}
+\includegraphics[width=\linewidth,height=5.5cm,keepaspectratio]{images/T2AW-LI-R1.png}
 
 }
 
@@ -588,14 +600,14 @@ pipeline for processing scans and alignment of signals.
 
 \end{minipage}%
 \newline
-\begin{minipage}{0.05\linewidth}
+\begin{minipage}[t]{0.05\linewidth}
 ~\end{minipage}%
 %
-\begin{minipage}{0.90\linewidth}
+\begin{minipage}[t]{0.90\linewidth}
 
 \centering{
 
-\includegraphics[width=\textwidth,height=5cm]{images/T1AW-LI-R1-T2AW-LI-R1.png}
+\includegraphics[width=\linewidth,height=5cm,keepaspectratio]{images/T1AW-LI-R1-T2AW-LI-R1.png}
 
 }
 
@@ -782,11 +794,11 @@ different replicate, staging, and acquisition conditions with means and
 \section*{Usage Notes}\label{sec-usage-notes}
 \addcontentsline{toc}{section}{Usage Notes}
 
-The \texttt{R} package
-\texttt{x3ptools}\citep{hofmannX3ptoolsToolsWorking2018} available from
-\texttt{CRAN} supports working with files in \texttt{x3p} format. The
-sample scripts in \texttt{R} for processing scans from \texttt{x3p}
-format to their signal and alignment are available on \texttt{GitHub}
+The \texttt{R} package \texttt{x3ptools}
+\citep{hofmannX3ptoolsToolsWorking2018} available from \texttt{CRAN}
+supports working with files in \texttt{x3p} format. The sample scripts
+in \texttt{R} for processing scans from \texttt{x3p} format to their
+signal and alignment are available on \texttt{GitHub}
 \href{https://github.com/heike/wirecuts-data}{heike/wirecuts-data} in
 the \texttt{assessment/code} folder, as described in
 Table~\ref{tbl-code-overview}.
@@ -797,25 +809,25 @@ Table~\ref{tbl-code-overview}.
 
 \centering{
 
-\fontsize{12.0pt}{14.4pt}\selectfont
+\fontsize{12.0pt}{14.0pt}\selectfont
 \begin{tabular*}{0.95\linewidth}{@{\extracolsep{\fill}}>{\raggedright\arraybackslash}p{\dimexpr 0.522\linewidth -2\tabcolsep-1.5\arrayrulewidth}|>{\raggedright\arraybackslash}p{\dimexpr 0.283\linewidth -2\tabcolsep-1.5\arrayrulewidth}>{\raggedright\arraybackslash}p{\dimexpr 0.438\linewidth -2\tabcolsep-1.5\arrayrulewidth}}
 \toprule
  & Description & Section \\ 
 \midrule\addlinespace[2.5pt]
-\multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{Inspect raw scans} \\[2.5pt] 
+\multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{\parbox{\linewidth}{Inspect raw scans}} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
 \texttt{1-create\_pngs\_from\_x3p.R} & obtain images of \texttt{x3p}s in \texttt{scans/} & \protect\hyperref[sec-cutting-wires]{Cutting Wires} \\ 
 \midrule\addlinespace[2.5pt]
-\multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{Extract profiles} \\[2.5pt] 
+\multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{\parbox{\linewidth}{Extract profiles}} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
 \texttt{2-create\_profiles\_from\_x3p.R} & manually extract profiles from each scan & \protect\hyperref[sec-extract-profiles]{Extract Profiles} \\ 
 \texttt{3-create-single-profile-file.R} & create meta profile information & \protect\hyperref[sec-extract-profiles]{Extract Profiles} \\ 
 \midrule\addlinespace[2.5pt]
-\multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{Derive signals} \\[2.5pt] 
+\multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{\parbox{\linewidth}{Derive signals}} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
 \texttt{4-create\_signals\_from\_profiles.R} & derive signals from each profile & \protect\hyperref[sec-filtered-signals]{Filtered Signals} \\ 
 \midrule\addlinespace[2.5pt]
-\multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{Align signals} \\[2.5pt] 
+\multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{\parbox{\linewidth}{Align signals}} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
 \texttt{5-create-images.R} & create images for pairwise alignment & \protect\hyperref[sec-align-signals]{Align Signals} \\ 
 \texttt{6-align-pairwise.R} & compute pairwise alignment CCF values & \protect\hyperref[sec-align-signals]{Align Signals} \\ 
@@ -876,15 +888,15 @@ conclusions.}
 \textcolor{gray}{For studies involving privacy or safety controls on public access to the data, this section should describe in detail these controls, including how authors can apply to access the data, what criteria will be used to determine who may access the data, and any limitations on data use.}
 \fi
 
-\section*{Code availability}\label{sec-code-availability}
-\addcontentsline{toc}{section}{Code availability}
+\section*{Code Availability}\label{sec-code-availability}
+\addcontentsline{toc}{section}{Code Availability}
 
-We made available all codes we used for inspecting raw scans, extracting
-profiles, deriving signals, aligning signals, and visualizing comparison
-results discussed in \hyperref[sec-methods]{Methods} and
+We made all code used for inspecting raw scans, extracting profiles,
+deriving signals, aligning signals, and visualizing comparison results
+discussed in \hyperref[sec-methods]{Methods} and
 \hyperref[sec-technical-validation]{Technical Validation}, as described
-in Table~\ref{tbl-code-overview}. All results are reproducible using
-these codes provided.
+in Table~\ref{tbl-code-overview}. All results are reproducible using the
+provided code.
 
 \ifnum \ifinstruction=1
 
