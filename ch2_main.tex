@@ -11,6 +11,7 @@
 \usepackage{anyfontsize}
 \usepackage{multirow}
 \usepackage{float}
+\usepackage[section]{placeins}
 \usepackage{url}
 \usepackage{lineno}
 \usepackage[dvipsnames]{xcolor}
@@ -29,6 +30,7 @@
 \newcommand{\heike}[1]{\hh{#1}}
 \newcommand{\agentformat}[1]{{\textcolor{Purple}{\textbf{[Agent: #1]}}}}
 \newcommand{\agentreview}[1]{{\textcolor{RoyalBlue}{\textbf{[Agent: #1]}}}}
+\newcommand{\agentrevision}[1]{{\textcolor{TealBlue}{\textbf{#1}}}}
 
 % Scientific Data asks authors not to supply internal hyperlink markup.
 \newcommand{\href}[2]{#2}
@@ -69,8 +71,6 @@ Lin (yhlin@iastate.edu)
 \vspace{1em}
 
 \begin{abstract}
-\agentformat{For a Data Descriptor, revise the abstract sentence reporting higher same-source correlations and decreasing variability so it describes the data and reuse without making a claim about a scientific finding.}
-
 Wire-cut striation marks can provide evidence for forensic source
 identification, but publicly available datasets and reproducible
 quantitative workflows for analyzing these marks are limited. We present
@@ -81,13 +81,11 @@ every tool-edge-location combination. We provide scan metadata, manually
 extracted profiles, processed signals, pairwise cross-correlation
 values, images, and analysis code. The accompanying workflow covers scan
 inspection, profile and signal extraction, cross-correlation-based
-alignment, pairwise similarity visualization, and variability assessment
-across replicates, stagings, and acquisitions. Technical validation
-shows higher cross-correlations for same-source comparisons than for
-different-source comparisons and decreasing variability as scanning
-conditions become more consistent. The dataset and workflow support the
-development, evaluation, and reproducible comparison of quantitative
-methods for wire-cut evidence.
+alignment, pairwise similarity visualization, CCF distributions for
+same-source and different-source comparisons, and variability assessment
+across replicates, stagings, and acquisitions. The dataset and workflow
+support the development, evaluation, and reproducible comparison of
+quantitative methods for wire-cut evidence.
 \end{abstract}
 
 \section*{Background \& Summary}\label{sec-background-summary}
@@ -128,13 +126,13 @@ quantitative evaluation of the similarity of specific evidence and, in
 particular, objective algorithmic evaluations.
 
 To train algorithms, we need data from scenarios with known ground
-truth. Because data collected at crime scenes are not suitable for this
-purpose, we used specific tools to cut wires under controlled conditions
-and collected the resulting marks for training. This approach enables
-comparisons between ground truth and the classification results produced
-by trained algorithms, with similarity quantified using error rates.
-
-\agentreview{Clarify whether the error rates quantify similarity or the performance of the resulting classifications. The current sentence states that similarity itself is quantified using error rates.}
+truth. Because data collected at crime scenes generally lack the known
+ground truth needed for this purpose, we used specific tools to cut
+wires under controlled conditions and collected the resulting marks for
+training. This approach enables comparisons between ground truth and
+results produced by our algorithms. Similarity is quantified using the
+cross-correlation function (CCF), whereas error rates measure the
+performance of the resulting comparisons.
 
 Advances in microscopy have made it possible to move from optical
 two-dimensional imaging to digital three-dimensional topographic
@@ -187,110 +185,63 @@ Close-up of striations left by a blade on the cut end of a wire.}
 \end{figure}%
 
 Criminal convictions have relied on cut-wire evidence and related
-testimony. However, no public database supports assessment of (1) the
-similarity between striations on wires cut with the same tool or (2)
-error rates in source identification. Public wire-cut datasets are
-therefore urgently needed.
+testimony.
+\agentreview{Add a supporting citation or case reference for the statement about convictions based on cut-wire evidence.}
+However, to our knowledge, no public database supports assessment of (1)
+the similarity between striations on wires cut with the same tool or (2)
+error rates in source identification. A public wire-cut dataset would
+support quantitative study of both questions.
 
-In this study, we provide a publicly available dataset of wire-cut
-scans, develop a systematic pipeline to analyze the data quantitatively,
-and introduce numerical measures for similarity assessment beyond visual
-inspection. The dataset includes multiple types of files, as summarized
-in Table~\ref{tbl-data-overview}.
+In this study, we provide a publicly available dataset of wire-cut scans
+together with a systematic quantitative processing and comparison
+workflow. The shared materials include raw scans, metadata, manually
+extracted profiles, processed signals, pairwise CCF values, derived
+images, and analysis code.
 
-\begin{table}
-
-\caption{\label{tbl-data-overview}Structure of available data and
-files.}
-
-\centering{
-
-\begin{tabular*}{0.97\linewidth}{@{\extracolsep{\fill}}>{\raggedright\arraybackslash}p{\dimexpr 0.26\linewidth -2\tabcolsep-1.5\arrayrulewidth}|>{\raggedright\arraybackslash}p{\dimexpr 0.56\linewidth -2\tabcolsep-1.5\arrayrulewidth}>{\raggedright\arraybackslash}p{\dimexpr 0.18\linewidth -2\tabcolsep-1.5\arrayrulewidth}}
-\toprule
- & Description & Section \\ 
-\midrule\addlinespace[2.5pt]
-\multicolumn{3}{>{\raggedright\arraybackslash}m{0.97\linewidth}}{\parbox{\linewidth}{Raw data}} \\[2.5pt] 
-\midrule\addlinespace[2.5pt]
-\texttt{scans/} & folder containing 120 topographic 3d scans corresponding to 30 aluminum wire cuts (x3p format) & Cutting wires \\ 
-\texttt{meta.csv} & meta information for each cut with tool, blade, and location information (CSV format) & Cutting wires \\ 
-\midrule\addlinespace[2.5pt]
-\multicolumn{3}{>{\raggedright\arraybackslash}m{0.97\linewidth}}{\parbox{\linewidth}{Manual derivatives}} \\[2.5pt] 
-\midrule\addlinespace[2.5pt]
-\texttt{profiles/} & folder of files with manually extracted profiles (CSV format) & Extract profiles \\ 
-\midrule\addlinespace[2.5pt]
-\multicolumn{3}{>{\raggedright\arraybackslash}m{0.97\linewidth}}{\parbox{\linewidth}{Computational derivatives in the folder 'data-derived/'}} \\[2.5pt] 
-\midrule\addlinespace[2.5pt]
-\texttt{wire-signals} & signals processed from corresponding profile (zipped CSV format) & Filtered signals \\ 
-\texttt{wire\_pairwise\_ccf} & CCF values of all pairwise aligned signals (zipped CSV format) & Align signals \\ 
-\midrule\addlinespace[2.5pt]
-\multicolumn{3}{>{\raggedright\arraybackslash}m{0.97\linewidth}}{\parbox{\linewidth}{Image files}} \\[2.5pt] 
-\midrule\addlinespace[2.5pt]
-\texttt{pngs/} & folder containing pictures of 3d scans of wire cuts (PNG format) & Cutting wires \\ 
-\texttt{profile-images/} & folder containing pictures of profile extracted from wire cuts (PNG format) & Extract profiles \\ 
-\midrule\addlinespace[2.5pt]
-\multicolumn{3}{>{\raggedright\arraybackslash}m{0.97\linewidth}}{\parbox{\linewidth}{Visual inventory in the folder 'assessment/analysis-manual/'}} \\[2.5pt] 
-\midrule\addlinespace[2.5pt]
-\texttt{processing-wires} & display of pairwise aligned signals from the same sources (HTML format) & Align signals \\ 
-\midrule\addlinespace[2.5pt]
-\multicolumn{3}{>{\raggedright\arraybackslash}m{0.97\linewidth}}{\parbox{\linewidth}{Technical validation}} \\[2.5pt] 
-\midrule\addlinespace[2.5pt]
-\texttt{variability-}
-\texttt{assessment/} & folder containing related documents for technical validations with the inner folder structure mimicking the structure of the main folder & Technical Validation \\ 
-\bottomrule
-\end{tabular*}
-
-}
-
-\end{table}%
-
-To ensure full reproducibility, we describe each step in detail,
-including how we collected and processed the wire-cut samples in Cutting
-wires, extracted profiles from the scanned wire cuts in Extract
-profiles, filtered signals from the profiles in Filtered signals, and
-aligned signals using the cross-correlation function (CCF) as a
-similarity measure in Align signals. Data Records describes where the
-dataset is hosted. Technical Validation evaluates the consistency of the
-assumptions and results and assesses variability. Usage Notes explains
-how to use the code for signal creation, alignment, analysis,
-validation, and visualization described in Methods and Technical
-Validation. Code Availability lists the code provided for
-reproducibility and future research. We anticipate that this dataset and
-analysis pipeline will support research on wire-cut evidence, including
-future studies of real-world crime-scene evidence.
+The Methods section describes sample collection, scanning, profile
+extraction, signal processing, and CCF-based alignment. Data Records
+describes the shared files and repository organization. Data Overview
+presents descriptive summaries of pairwise CCF values. Technical
+Validation assesses signal-processing and alignment behavior and
+variability across replicates, stagings, and acquisitions. Usage Notes
+provides practical guidance for working with the shared files, and Code
+Availability identifies the custom processing and validation code. The
+dataset and workflow may support future quantitative research on
+wire-cut evidence.
 
 \section*{Methods}\label{sec-methods}
 \addcontentsline{toc}{section}{Methods}
 
-In this study, we used aluminum wire to create cuts.
-\hh{more details: thickness, brand?} The physical properties of aluminum
-wire make it an excellent material for retaining marks while remaining
-relatively easy to bend and nontoxic; \hh{i.e., with a hardness of XXX,}
-aluminum is soft enough for tools to leave marks but hard enough to
-resist damage when cut samples are handled under the microscope. In
-casework, aluminum wire is less common than lead or copper wire. We
+\agentrevision{The wire was manufactured by [brand or manufacturer] and had the 16-gauge, 1.5-mm dimensions reported below.}
+\agentformat{Replace the wire brand or manufacturer placeholder.} The
+physical properties of aluminum wire make it suitable for retaining
+marks while remaining relatively easy to bend and nontoxic.
+\agentrevision{The aluminum wire had a hardness of [value] on the [hardness scale].}
+\agentformat{Replace the aluminum hardness value and scale placeholders.}
+This hardness allowed the tools to leave marks while helping the cut
+samples resist damage during handling under the microscope.
+\agentrevision{For comparison, the hardness values of aluminum, copper, and lead are [aluminum value], [copper value], and [lead value], respectively, on the [hardness scale].}
+\agentformat{Replace the comparative hardness values and scale placeholders and add a supporting citation.}
+In casework, aluminum wire is less common than lead or copper wire. We
 avoided using lead in the laboratory because of its toxicity.
-\hh{XXX look up the hardness value of aluminum, copper, and lead.}
 
 \subsection*{Cutting wires}\label{sec-cutting-wires}
 \addcontentsline{toc}{subsection}{Cutting wires}
 
 We used 16-gauge, 1.5-mm anodized aluminum wire to create this wire-cut
-dataset. For each cut, a 4-inch piece was unspooled and cut with a model
-KWS-105 Kaiweets wire cutter at one of three blade locations (inner,
-middle, or outer) to produce one replicate, as shown in
-Figure~\ref{fig-cut-tent-scan} (a). Each piece was then cut in half to
-create 2-inch pieces for each pair of edges, AB and CD. A Sharpie line
-marked the cut ends, yielding four samples. We then followed the
-standard scanning protocol for the confocal microscope shown in
-Figure~\ref{fig-cut-tent-scan} (b) to scan the wire-tip surfaces. The
-surfaces were scanned at a resolution of
-\(0.645 \mu m \times 0.645 \mu m\) per square pixel and saved in
-\texttt{x3p} format. Figure~\ref{fig-cut-tent-scan} (c) shows the AB and
-CD sides, with C on the reverse of A and D on the reverse of B. We
-separated the AB and CD sides into two pieces along the bend, resulting
-in eight scans. We repeated this process for all three blade locations
-and five wire cutters, with two replicates for each tool-edge-location
-combination, resulting in a sample of 120 scans. Each piece was labeled
+dataset. For each of the five wire cutters, we made two replicate cuts
+at each of three blade locations (inner, middle, and outer), as shown in
+Figure~\ref{fig-cut-tent-scan} (a). A 4-inch wire segment was used for
+each replicate and divided into two 2-inch sides, AB and CD. Each side
+was separated along the bend into two pieces, yielding four cut surfaces
+(A, B, C, D). As shown in Figure~\ref{fig-cut-tent-scan} (c), C is the
+reverse of A and D is the reverse of B. The complete design therefore
+yielded 5 tools \(\times\) 3 locations \(\times\) 2 replicates
+\(\times\) 4 cut surfaces = 120 scans.
+\agentrevision{We scanned each cut surface using a [manufacturer and model] confocal microscope with [objective or magnification]. Each scan covered [scan area or pixel dimensions] at a lateral sampling interval of 0.645 micrometers per pixel and a vertical resolution of [value].}
+\agentformat{Replace the bracketed microscope, magnification, scan-size, and vertical-resolution placeholders.}
+The microscope is shown in Figure~\ref{fig-cut-tent-scan} (b), and the
+scans were saved in \texttt{x3p} format. Each piece was labeled
 according to the following naming convention: T(ool) 1/2/3/4/5, (Edge)
 A/B/C/D, W(ire), L(ocation) I(nner)/M(iddle)/O(uter), and R(epetition)
 1/2. For example, T1AW-LI-R1 denotes the first repetition of a piece cut
@@ -299,8 +250,6 @@ sampling protocol, two team members cut and labeled the wires together.
 One team member then scanned the samples in a specified order and named
 the scans according to the naming convention, and a third team member
 checked the saved data.
-
-\agentreview{The sequence from one 4-inch wire piece to four samples and then eight scans is difficult to reconcile. Clarify what constitutes a cut, piece, sample, edge, and scan, and show explicitly how the procedure yields 120 scans.}
 
 \begin{figure}[H]
 
@@ -335,7 +284,7 @@ checked the saved data.
 
 \centering{
 
-\includegraphics[width=\linewidth,height=0.46\textheight,keepaspectratio]{images/T1AW-LI-R2-4edges.png}
+\includegraphics[width=\linewidth,height=0.44\textheight,keepaspectratio]{images/T1AW-LI-R2-4edges.png}
 
 }
 
@@ -346,8 +295,8 @@ checked the saved data.
 \caption{\label{fig-cut-tent-scan}Wire-cut sampling and scanning
 workflow. (a) A Kaiweets KWS-105 wire cutter with inner, middle, and
 outer locations marked. (b) A confocal microscope used to scan wire-cut
-surfaces. (c) Four samples obtained from blades A, B, C, and D after
-separating the cut edges.}
+surfaces. (c) Four cut-surface samples labeled A, B, C, and D after
+separation.}
 
 \end{figure}%
 
@@ -358,31 +307,29 @@ Numerical comparisons between two replicates cannot be performed
 directly on the \texttt{x3p} files. We must first extract representative
 profiles from the scans. A profile is a sequence of surface-height
 values along a user-drawn line. After processing, this profile becomes a
-signal representing one scan and is used for subsequent comparisons. The
-profile captures most features of the scan and is drawn orthogonally to
-the striation marks, which are characterized by variations in groove
-height. We therefore draw a line across the scan region to capture as
-much striation information as possible, as shown in dark blue in
-Figure~\ref{fig-T1AW-LI-R1-profiles-signals} (a). We then examine the
-height values along this line. The resulting profile function is plotted
-in Figure~\ref{fig-T1AW-LI-R1-profiles-signals} (b) and must be
-processed before it becomes a useful signal.
+signal representing one scan and is used for subsequent comparisons.
+Using \texttt{x3ptools::x3p\_extract\_profile}, we manually drew one
+line across each scan, perpendicular to the dominant striation
+direction, and exported the surface-height values and extraction
+coordinates. An example profile line is shown in dark blue in
+Figure~\ref{fig-T1AW-LI-R1-profiles-signals} (a), and the resulting
+profile function is plotted in
+Figure~\ref{fig-T1AW-LI-R1-profiles-signals} (b).
 
 \subsection*{Filtered signals}\label{sec-filtered-signals}
 \addcontentsline{toc}{subsection}{Filtered signals}
 
-After extracting the profile, we process it to obtain the signal. Two
-Gaussian filters, as discussed by Cleveland et al.
-\citep{clevelandLocalRegressionModels1992}, are applied to each profile.
-First, we use a large low-pass filter with a bandwidth of 400 microns to
-remove the large-scale trend, which would otherwise overwhelm the
-signal. We then use a small high-pass filter with a bandwidth of 40
-microns to average noise and remove spikes. Finally, we remove the
-extreme tail values and use the resulting signal for subsequent
-comparisons, as shown in Figure~\ref{fig-T1AW-LI-R1-profiles-signals}
-(c).
-
-\agentreview{Clarify the filtering operations. A low-pass filter normally retains a large-scale trend rather than removing it, whereas a high-pass filter does not normally average noise. State whether the filtered components are subtracted or whether “low-pass” and “high-pass” refer to different operations here.}
+After extracting each profile, we applied a two-span smoothing
+procedure, with span parameters of 400 and 40 controlling removal of the
+broad trend and smoothing of local variation, respectively
+\citep{clevelandLocalRegressionModels1992}. We then checked for extreme
+deviations at the ends of the signal. The horizontal coordinates were
+divided at the 0\%, 2.5\%, 5\%, 95\%, 97.5\%, and 100\% quantiles. At
+each end, a two-sample t-test compared the outermost 2.5\% interval with
+the adjacent interval. When the boundary two-sample t-test produced a
+p-value below 0.01, values in the outermost interval were removed. The
+resulting smoothed signal was used for subsequent comparisons, as shown
+in Figure~\ref{fig-T1AW-LI-R1-profiles-signals} (c).
 
 \begin{figure}[H]
 
@@ -432,17 +379,14 @@ striations. (b) The profile function extracted along the line in (a).
 \subsection*{Align signals}\label{sec-align-signals}
 \addcontentsline{toc}{subsection}{Align signals}
 
-After extracting signals from different scans, we compare them by
-maximizing the CCF between each pair to determine their optimal
-numerical alignment. We compare all possible pairs; for example, the
-comparison between T1AW-LI-R1 and T1AW-LI-R2 corresponds to a row in
-Figure~\ref{fig-scans-pair}. We expect signals from two replicates with
-the same tool-edge-location combination, as shown in the first two
-columns of Figure~\ref{fig-signals-pair-alignment}, to be relatively
-similar. Their alignments should therefore show substantial overlap and
-yield high CCF values close to 1. The alignments and values in the
-rightmost column of Figure~\ref{fig-signals-pair-alignment} meet these
-expectations.
+After extracting signals from different scans, we compared all possible
+signal pairs. For each pair, we calculated the CCF across relative
+shifts and retained the shift with the maximum CCF as the optimal
+alignment. The comparison between T1AW-LI-R1 and T1AW-LI-R2, for
+example, corresponds to a row in Figure~\ref{fig-scans-pair}. The first
+two columns of Figure~\ref{fig-signals-pair-alignment} show the
+extracted signals, and the rightmost column shows their alignment and
+CCF value.
 
 \begin{figure}
 
@@ -452,8 +396,9 @@ expectations.
 
 }
 
-\caption{\label{fig-scans-pair}Same-source scan pairs. Scans from
-different sides of tool 1 at the inner location.}
+\caption{\label{fig-scans-pair}Same-source replicate scan pairs. Each
+row shows the two replicate scans for one cut surface (A, C, B, or D)
+from tool 1 at the inner blade location.}
 
 \end{figure}%
 
@@ -466,20 +411,107 @@ different sides of tool 1 at the inner location.}
 }
 
 \caption{\label{fig-signals-pair-alignment}Same-source signal alignment.
-The first and second columns show the signals extracted from
-Figure~\ref{fig-scans-pair}, and the third column shows the alignments
-and CCF values between pairs of signals.}
+Rows correspond to cut surfaces A, C, B, and D. The first two columns
+show signals extracted from the replicate scans in
+Figure~\ref{fig-scans-pair}; the third column overlays the aligned
+signals and reports their CCF values.}
 
 \end{figure}%
 
 \section*{Data Records}\label{sec-data-records}
 \addcontentsline{toc}{section}{Data Records}
 
-The complete dataset is publicly available to interested researchers
-through the ISU DataShare repository at
-\href{https://iastate.figshare.com/}{https://iastate.figshare.com/}. The
-structure of the dataset is described in Table~\ref{tbl-data-overview}.
-\agentformat{Replace the repository homepage with the final dataset landing-page URL or DOI and add a formal data citation before submission.}
+\agentrevision{The complete dataset, including the X3P scans, metadata, extracted profiles, processed signals, pairwise CCF values, and derived images, is available from Iowa State University DataShare [DATASET CITATION] at \url{https://doi.org/[DOI]}.}
+\agentformat{Replace the dataset citation and DOI placeholders. For first-round review, the destination must permit anonymous download; from the second round onward, it must be a public formal repository record. Add the full dataset reference to References.}
+The repository contents, formats, and folder organization are summarized
+in Table~\ref{tbl-data-overview}.
+
+\begin{table}
+
+\caption{\label{tbl-data-overview}Structure of available data and
+files.}
+
+\centering{
+
+\begin{tabular*}{0.97\linewidth}{@{\extracolsep{\fill}}>{\raggedright\arraybackslash}p{\dimexpr 0.26\linewidth -2\tabcolsep-1.5\arrayrulewidth}|>{\raggedright\arraybackslash}p{\dimexpr 0.56\linewidth -2\tabcolsep-1.5\arrayrulewidth}>{\raggedright\arraybackslash}p{\dimexpr 0.18\linewidth -2\tabcolsep-1.5\arrayrulewidth}}
+\toprule
+Data type & Description & Section \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{3}{>{\raggedright\arraybackslash}m{0.97\linewidth}}{\parbox{\linewidth}{Raw data}} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+\texttt{scans/} & folder containing 120 topographic 3D scans corresponding to 30 aluminum wire cuts (X3P format) & Cutting wires \\ 
+\texttt{meta.csv} & metadata for each cut, including tool, blade, and location information (CSV format) & Cutting wires \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{3}{>{\raggedright\arraybackslash}m{0.97\linewidth}}{\parbox{\linewidth}{Manual derivatives}} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+\texttt{profiles/} & folder containing manually extracted profiles (CSV format) & Extract profiles \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{3}{>{\raggedright\arraybackslash}m{0.97\linewidth}}{\parbox{\linewidth}{Computational derivatives in the folder 'data-derived/'}} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+\texttt{wire-signals} & signals processed from the corresponding profiles (zipped CSV format) & Filtered signals \\ 
+\texttt{wire\_pairwise\_ccf} & CCF values for all pairwise aligned signals (zipped CSV format) & Align signals \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{3}{>{\raggedright\arraybackslash}m{0.97\linewidth}}{\parbox{\linewidth}{Image files}} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+\texttt{pngs/} & folder containing images of 3D wire-cut scans (PNG format) & Cutting wires \\ 
+\texttt{profile-images/} & folder containing images of profiles extracted from wire cuts (PNG format) & Extract profiles \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{3}{>{\raggedright\arraybackslash}m{0.97\linewidth}}{\parbox{\linewidth}{Visual inventory in the folder 'assessment/analysis-manual/'}} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+\texttt{processing-wires} & display of pairwise aligned signals from the same sources (HTML format) & Align signals \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{3}{>{\raggedright\arraybackslash}m{0.97\linewidth}}{\parbox{\linewidth}{Technical validation}} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+\texttt{variability-}
+\texttt{assessment/} & folder containing technical-validation documents, with an internal structure that mirrors the main folder & Technical Validation \\ 
+\bottomrule
+\end{tabular*}
+
+}
+
+\end{table}%
+
+\agentrevision{A data dictionary defining non-obvious columns in \texttt{meta.csv}, the profile and signal files, and the pairwise-CCF file is provided in [repository documentation path]. The dataset is available under the [license] license.}
+\agentformat{Verify Table 1 against the deposited record and replace the documentation-path and data-license placeholders. For this non-sensitive original dataset, use CC0 or CC BY rather than a license containing NC or SA restrictions.}
+
+\section*{Data Overview}\label{sec-data-overview}
+\addcontentsline{toc}{section}{Data Overview}
+
+As descriptive summaries of comparison behavior across the dataset,
+Figure~\ref{fig-ccf-tilemap} displays pairwise CCF values organized by
+tool, cut surface, blade location, and replicate. The main diagonal
+contains self-comparisons, whereas the off-diagonal cells compare
+distinct signals. Figure~\ref{fig-ccf-density} displays the CCF
+distributions for same-source and different-source comparisons.
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=6.25in,height=4.16667in]{images/ccf_tilemap.png}
+
+}
+
+\caption{\label{fig-ccf-tilemap}Pairwise CCF tile map. Rows and columns
+group scans by tool, cut surface, blade location, and replicate. Orange
+cells indicate larger CCF values and gray cells indicate smaller values;
+the inset enlarges the boxed edge-to-edge comparison block.}
+
+\end{figure}%
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=5.20833in,height=2.60417in]{images/ccf_density.png}
+
+}
+
+\caption{\label{fig-ccf-density}CCF density distributions. Kernel
+density estimates are shown for different-source comparisons in gray and
+same-source comparisons in orange.}
+
+\end{figure}%
 
 \section*{Technical Validation}\label{sec-technical-validation}
 \addcontentsline{toc}{section}{Technical Validation}
@@ -493,21 +525,23 @@ values between signals from different sources.
 Figure~\ref{fig-signals-pair-alignment}, shown earlier in Align signals,
 meets our expectation for same-source signals. As an example of a
 different-source comparison, we selected T1AW-LI-R1 and T2AW-LI-R1,
-shown in Figure~\ref{fig-T1AW-LI-R1} and Figure~\ref{fig-T2AW-LI-R1}.
-Their signal alignment, shown in Figure~\ref{fig-T1AW-LI-R1-T2AW-LI-R1},
-has a CCF value of 0.2, which is as low as expected. We also summarized
-the resulting CCFs for all pairwise comparisons in a boxplot and a
-receiver operating characteristic (ROC) curve, shown in
-Figure~\ref{fig-ccf-boxplot} and Figure~\ref{fig-ccf-ROC}. The ROC curve
-plots sensitivity, or the true positive rate, against the false positive
-rate (FPR; 1 - specificity). The curve is close to the upper-left
-corner, indicating strong classification performance. A threshold of
-0.589 controls the FPR below 0.05 with a false negative rate (FNR) of 0,
-whereas a threshold of 0.658 controls the FPR below 0.01 with an FNR of
-0.02.
-\tom{(false positive rate (FPR) / false discovery rate (FDR) -> define the H0 or call it false identification rate (FIR)???)}
-These results are consistent with our expectations and validate our
-pipeline for processing and aligning signals.
+shown in Figure~\ref{fig-T1AW-LI-R1-T2AW-LI-R1-alignment} (a) and (b).
+Their signal alignment, shown in
+Figure~\ref{fig-T1AW-LI-R1-T2AW-LI-R1-alignment} (c), has a CCF value of
+0.2, which is as low as expected. For the following summaries, edges A
+and C were categorized as long, edges B and D as short, and comparisons
+pairing one long edge with one short edge as mixed. We also summarized
+the resulting CCFs for all pairwise comparisons in boxplots and receiver
+operating characteristic (ROC) curves, shown in
+Figure~\ref{fig-ccf-boxplot} and Figure~\ref{fig-ccf-ROC}. The ROC
+curves plot sensitivity, or the true positive rate, against the false
+positive rate (FPR; 1 - specificity). The curves are close to the
+upper-left corner, indicating strong classification performance. For the
+combined comparison set, a threshold of 0.589 controls the FPR below
+0.05 with a false negative rate (FNR) of 0, whereas a threshold of 0.658
+controls the FPR below 0.01 with an FNR of 0.02. These results are
+consistent with our expectations and validate our pipeline for
+processing and aligning signals.
 
 \begin{figure}
 
@@ -565,9 +599,10 @@ T2AW-LI-R1.}
 
 }
 
-\caption{\label{fig-ccf-boxplot}Same- and different-source CCF
-distributions. Signals from the same sources have higher CCFs than those
-from different sources.}
+\caption{\label{fig-ccf-boxplot}CCF distributions across comparison
+classes. Gray boxplots show different-source comparisons grouped by
+different edge, location, or tool; orange boxplots show same-source
+comparisons. Rows distinguish long, mixed, and short edge comparisons.}
 
 \end{figure}%
 
@@ -579,8 +614,9 @@ from different sources.}
 
 }
 
-\caption{\label{fig-ccf-ROC}Classification performance based on CCF
-values. The ROC curve bends close to the upper-left corner.}
+\caption{\label{fig-ccf-ROC}ROC curves for CCF-based classification.
+Curves are shown separately for long and short edge classes; the dotted
+diagonal indicates chance-level classification.}
 
 \end{figure}%
 
@@ -603,11 +639,10 @@ varying the lighting conditions. We introduced A as the acquisition
 label. For edge A at staging 3, we performed four acquisitions and
 omitted the A1 designation from the first acquisition label, so R2-S3 is
 equivalent to R2-S3-A1. For the other three edges, we conducted two
-acquisitions at staging 3, denoted by R2-S3 and R2-S3-A2. We again
-computed pairwise CCFs between stagings and calculated their mean and
-standard deviation.
-
-\agentreview{This paragraph describes acquisition variability, but its final sentence says that CCFs were computed between stagings. Confirm whether “stagings” should be “acquisitions.”}
+acquisitions at staging 3, denoted by R2-S3 and R2-S3-A2. Within staging
+3, we computed pairwise CCFs between acquisitions and calculated their
+mean and standard deviation. Variability between distinct stagings was
+assessed separately through the staging comparisons described above.
 
 With this setup, we expected CCF values to become more consistent from
 replicate to staging to acquisition as the scanning conditions became
@@ -616,12 +651,13 @@ along this sequence. We also compared replicates, stagings, and
 acquisitions, expecting smaller differences between acquisitions and
 stagings than between stagings and replicates. We visualized the results
 as scatter plots in Figure~\ref{fig-rep_staging_acquisition}, which also
-shows intervals spanning two standard deviations. The higher orange bars
-indicate an increase in the mean, and the narrower intervals indicate a
-decrease in the standard deviation. The detailed numerical results,
-including means, standard deviations, and differences between means, are
-shown in Table \ref{tbl-CCF-replicate-staging-acquisition} and confirm
-our expectations.
+shows intervals extending two standard deviations above and below the
+mean. Higher orange mean lines indicate an increase in the mean CCF, and
+narrower shaded intervals indicate a decrease in the standard deviation.
+The detailed numerical results, including means, standard deviations,
+and differences between means, are shown in
+Table~\ref{tbl-CCF-replicate-staging-acquisition} and confirm our
+expectations.
 
 Our variability assessment does not include variation in CCF values
 caused by differences in the manual extraction of profiles from scans.
@@ -637,51 +673,87 @@ the extraction locations and values for each scan.
 }
 
 \caption{\label{fig-rep_staging_acquisition}Variability across scanning
-conditions. Scatter plots of CCF values across replicate, staging, and
-acquisition conditions, with means and two-standard-deviation
-intervals.}
+conditions. Panels A, B, C, and D correspond to the four cut surfaces.
+Gray points show pairwise CCF values, orange horizontal lines show
+means, and shaded intervals extend two standard deviations above and
+below each mean.}
 
 \end{figure}%
 
+\agentformat{The manuscript contains 11 figures. Scientific Data recommends no more than eight but does not mandate this limit. Confirm with the coauthors or professor whether any logically connected pairs should be combined for revised submission; do not remove a figure or its discussion without an author decision.}
+
 \begin{table}
-    \caption{Comparison of CCF means and standard deviations across different replicates, stagings, and acquisition settings.}
-    \label{tbl-CCF-replicate-staging-acquisition}
-    \centering
-    \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrrrrrrr@{}}
-        \toprule
-         & \multicolumn{2}{c}{\textbf{Replicate (R)}} 
-         & \multicolumn{3}{c}{\textbf{Staging (S)}} 
-         & \multicolumn{3}{c}{\textbf{Acquisition (A)}} \\
-        \cmidrule(lr){2-3} \cmidrule(lr){4-6} \cmidrule(lr){7-9}
-        \textbf{Edge} 
-         & \textbf{Avg$_R$}
-         & \textbf{SD$_R$}
-         & \textbf{Avg$_S$}
-         & \textbf{SD$_S$}
-         & \textbf{Avg$_S$ - Avg$_R$} 
-         & \textbf{Avg$_A$} 
-         & \textbf{SD$_A$}
-         & \textbf{Avg$_A$ - Avg$_S$} \\
-        \midrule
-        A & 0.818 & 0.015 & 0.961 & 0.012 & 0.143 & 0.992 & 0.003 & 0.031 \\
-        B & 0.879 & 0.031 & 0.922 & 0.042 & 0.043 & 0.939 & --- & 0.017 \\
-        C & 0.841 & 0.022 & 0.952 & 0.021 & 0.111 & 0.959 & --- & 0.007 \\
-        D & 0.797 & 0.011 & 0.966 & 0.017 & 0.169 & 0.986 & --- & 0.020 \\
-        \bottomrule
-    \end{tabular*}
-\end{table}
+
+\caption{\label{tbl-CCF-replicate-staging-acquisition}Comparison of CCF
+means and standard deviations across different replicates, stagings, and
+acquisition settings. Dashes indicate that the standard deviation could
+not be calculated because only one CCF value was available.}
+
+\centering{
+
+\centering
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrrrrrrr@{}}
+\toprule
+ & \multicolumn{2}{c}{\textbf{Replicate (R)}} 
+ & \multicolumn{3}{c}{\textbf{Staging (S)}} 
+ & \multicolumn{3}{c}{\textbf{Acquisition (A)}} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-6} \cmidrule(lr){7-9}
+\textbf{Edge} 
+ & \textbf{Avg$_R$}
+ & \textbf{SD$_R$}
+ & \textbf{Avg$_S$}
+ & \textbf{SD$_S$}
+ & \textbf{Avg$_S$ - Avg$_R$} 
+ & \textbf{Avg$_A$} 
+ & \textbf{SD$_A$}
+ & \textbf{Avg$_A$ - Avg$_S$} \\
+\midrule
+A & 0.818 & 0.015 & 0.961 & 0.012 & 0.143 & 0.992 & 0.003 & 0.031 \\
+B & 0.879 & 0.031 & 0.922 & 0.042 & 0.043 & 0.939 & --- & 0.017 \\
+C & 0.841 & 0.022 & 0.952 & 0.021 & 0.111 & 0.959 & --- & 0.007 \\
+D & 0.797 & 0.011 & 0.966 & 0.017 & 0.169 & 0.986 & --- & 0.020 \\
+\bottomrule
+\end{tabular*}
+
+}
+
+\end{table}%
 
 \section*{Usage Notes}\label{sec-usage-notes}
 \addcontentsline{toc}{section}{Usage Notes}
 
-The \texttt{R} package \texttt{x3ptools}
-\citep{hofmannX3ptoolsToolsWorking2018}, available from \texttt{CRAN},
-supports working with files in \texttt{x3p} format. Sample \texttt{R}
-scripts for converting \texttt{x3p} scans into signals and aligning
-those signals are available in the \texttt{assessment/code} folder of
-the \texttt{GitHub} repository
-\href{https://github.com/heike/wirecuts-data}{heike/wirecuts-data}, as
-described in Table~\ref{tbl-code-overview}.
+The raw surface scans are provided in X3P format. Users who wish to
+inspect or process these files in R can use the \texttt{x3ptools}
+package and its reference manual, available from CRAN
+\citep{hofmannX3ptoolsToolsWorking2018}. The \texttt{meta.csv} file
+links each scan to its tool, edge, blade location, and replicate
+identifiers. Users who do not wish to repeat manual profile extraction
+can begin with the supplied profiles and processed signals. The supplied
+extraction coordinates allow these derived files to be related back to
+the corresponding scans. Because each supplied signal is based on a
+manually selected profile, users assessing sensitivity to profile
+placement should re-extract profiles from the raw X3P scans using
+alternative documented locations.
+
+\section*{Data Availability}\label{sec-data-availability}
+\addcontentsline{toc}{section}{Data Availability}
+
+\agentrevision{The data described in this Data Descriptor are available from Iowa State University DataShare [DATASET CITATION] at \url{https://doi.org/[DOI]}.}
+\agentformat{Replace the dataset citation and DOI placeholders with the same record used in Data Records.}
+
+\section*{Code Availability}\label{sec-code-availability}
+\addcontentsline{toc}{section}{Code Availability}
+
+Custom R code used to inspect raw scans, extract profiles, derive
+signals, align signals, and generate the validation outputs is available
+in the \texttt{assessment/code} folder at
+\url{https://github.com/heike/wirecuts-data}.
+\agentformat{For permanent access, archive the exact code release in a DOI-providing repository and cite it if feasible; Scientific Data recommends combining GitHub with a DOI archive.}
+The files and their roles are described in
+Table~\ref{tbl-code-overview}.
+
+\agentrevision{The workflow was run using R [version] and \texttt{x3ptools} [version]; versions of additional R packages are recorded in [environment file or repository documentation path].}
+\agentformat{Replace the R, \texttt{x3ptools}, and environment-record placeholders after checking the analysis environment.}
 
 \begin{table}
 
@@ -691,7 +763,7 @@ described in Table~\ref{tbl-code-overview}.
 
 \begin{tabular*}{0.95\linewidth}{@{\extracolsep{\fill}}>{\raggedright\arraybackslash}p{\dimexpr 0.43\linewidth -2\tabcolsep-1.5\arrayrulewidth}|>{\raggedright\arraybackslash}p{\dimexpr 0.31\linewidth -2\tabcolsep-1.5\arrayrulewidth}>{\raggedright\arraybackslash}p{\dimexpr 0.21\linewidth -2\tabcolsep-1.5\arrayrulewidth}}
 \toprule
- & Description & Section \\ 
+Code & Description & Section \\ 
 \midrule\addlinespace[2.5pt]
 \multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{\parbox{\linewidth}{Inspect raw scans}} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
@@ -718,83 +790,26 @@ described in Table~\ref{tbl-code-overview}.
 
 \end{table}%
 
-We conducted pairwise comparisons and visualized some of the results in
-Align signals and Technical Validation. Here, we present additional
-analysis plots. When the CCF values are displayed in a tile map across
-tools, locations, and edge combinations, we expect only the diagonal to
-contain high values close to 1, shown in orange, because the diagonal
-represents same-source comparisons. We expect the rest of the matrix to
-contain low values close to 0, shown in gray. The pattern in
-Figure~\ref{fig-ccf-tilemap} is generally consistent with this
-expectation, except for a few cases involving edge D of tool 5. The
-density plot in Figure~\ref{fig-ccf-density} shows the distributions of
-CCF values for same-source and different-source comparisons. The overlap
-between the tails of these distributions provides a rough threshold for
-drawing conclusions.
-
-\agentformat{Scientific Data limits Usage Notes to practical reuse guidance and does not allow analysis or conclusions there. Decide whether to remove this analysis paragraph and Figures 10--11 or move them to the optional Data Overview section, which is limited to one paragraph and one or two figures or tables.}
-
-\begin{figure}
-
-\centering{
-
-\includegraphics[width=6.25in,height=4.16667in]{images/ccf_tilemap.png}
-
-}
-
-\caption{\label{fig-ccf-tilemap}Pairwise CCF tile map. Signals from the
-same source have CCFs close to 1.}
-
-\end{figure}%
-
-\begin{figure}
-
-\centering{
-
-\includegraphics[width=5.20833in,height=2.60417in]{images/ccf_density.png}
-
-}
-
-\caption{\label{fig-ccf-density}CCF density distributions. The
-overlapping distribution tails can be used as a rough threshold for
-drawing conclusions.}
-
-\end{figure}%
-
-\section*{Data Availability}\label{sec-data-availability}
-\addcontentsline{toc}{section}{Data Availability}
-
-\agentformat{A short Data Availability statement is mandatory. Repeat the final repository URL or DOI and the principal accession or dataset identifiers already described in Data Records.}
-
-\section*{Code Availability}\label{sec-code-availability}
-\addcontentsline{toc}{section}{Code Availability}
-
-We made available all code used to inspect raw scans, extract profiles,
-derive signals, align signals, and visualize the comparison results
-discussed in Methods and Technical Validation. The files are described
-in Table~\ref{tbl-code-overview}. All results can be reproduced using
-the provided code.
-
 \bibliographystyle{naturemag-doi}
 \bibliography{references}
 
 \section*{Author Contributions}
-\agentformat{Confirm whether to use the CRediT taxonomy for the Author Contributions statement; Scientific Data does not require the linked Elsevier wording.}
-
 Y.L.: Methodology, Software, Validation, Data Curation, Writing: Draft;
 H.H.: Conceptualization, Methodology, Validation, Writing: Review and
 Editing; C.M.: Laboratory Supervision; E.A.: Physical Specimen,
 Scanning; J.S.: Forensic Advice; A.C.: Funding Acquisition.
+\agentformat{Confirm whether all authors approve conversion of this statement to the CRediT taxonomy before revising the contributor roles.}
 
 All authors reviewed the manuscript.
 
 \section*{Competing Interests}
-H.H. is a technical advisor to the Association of Firearm and Toolmark
-Examiners (AFTE), a fellow of the American Statistical Association
-(ASA), and a member of the ASA Forensic Science Committee. H.H. has
-testified as a court witness on behalf of Judge April Neubauer in the
-New York State Supreme Court, Criminal Term, in New York City.
-\hh{other competing interests - Alicia?}
+The authors declare the following competing interests: H.H. is a
+technical advisor to the Association of Firearm and Toolmark Examiners
+(AFTE), a fellow of the American Statistical Association (ASA), and a
+member of the ASA Forensic Science Committee. H.H. has testified as a
+court witness on behalf of Judge April Neubauer in the New York State
+Supreme Court, Criminal Term, in New York City.
+\agentformat{Confirm that the declaration covers every author and replace Alicia's declaration, if any.}
 
 
 \section*{Funding}
