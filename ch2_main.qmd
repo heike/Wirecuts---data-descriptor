@@ -65,7 +65,7 @@ affiliations:
     city: Edmond, OK, 73034
     country: USA
 abstract: |
- Wire-cut striation marks can provide evidence for forensic source identification, but publicly available datasets and reproducible quantitative workflows for analyzing these marks are limited. We present 120 three-dimensional topographic scans in \texttt{x3p} format from aluminum wires cut with five KWS-105 wire cutters. The study includes four edges, three locations along each tool, and two replicates for every tool-edge-location combination. We provide scan metadata, manually extracted profiles, processed signals, pairwise cross-correlation values, images, and analysis code. The accompanying workflow covers scan inspection, profile and signal extraction, cross-correlation-based alignment, pairwise similarity visualization, CCF distributions for same-source and different-source comparisons, and variability assessment across replicates, stagings, and acquisitions. The dataset and workflow support the development, evaluation, and reproducible comparison of quantitative methods for wire-cut evidence.
+ Wire-cut striation marks can provide evidence for forensic source identification, but publicly available datasets and reproducible quantitative workflows for analyzing these marks are limited. We present a dataset of 120 three-dimensional topographic scans in \texttt{x3p} format from aluminum wires cut with five KWS-105 wire cutters. The study contains two replicates of each of three cutting locations along the blade of each wire cutter yielding six scans for every one of the twenty tool-edge-location combination. We provide additional scan metadata, manually extracted profiles, processed signals, cross-correlation values for pairwise aligned signals, images, and analysis code. The accompanying workflow covers scan inspection, profile and signal extraction, alignment, pairwise similarity visualization, CCF distributions for same-source and different-source comparisons, and variability assessment across replicates, stagings, and acquisitions. The dataset and workflow support the development, evaluation, and reproducible comparison of quantitative methods for wire-cut evidence.
 number-sections: false
 format:
   pdf:
@@ -74,13 +74,13 @@ format:
     keep-tex: true
 bibliography: "`r rbbt::bbt_write_bib('references.bib', ignore = stringr::str_subset(rbbt::bbt_detect_citations(), '(^fig-|^tbl-|^eq-|^sec-|^lst-|^thm-|^lem-|^cor-|^prp-|^cnj-|^def-|^exm-|^exr-)'), overwrite = TRUE, library_id=rbbt::bbt_library_id('CSAFE'), translator='bibtex')`"
 contributions: |
+ \agentformat{Confirm whether all authors approve conversion of this statement to the CRediT taxonomy before revising the contributor roles.}
  Y.L.: Methodology, Software, Validation, Data Curation, Writing: Draft; H.H.: Conceptualization, Methodology, Validation, Writing: Review and Editing; C.M.: Laboratory Supervision;
  E.A.: Physical Specimen, Scanning; J.S.: Forensic Advice; A.C.: Funding Acquisition.
- \agentformat{Confirm whether all authors approve conversion of this statement to the CRediT taxonomy before revising the contributor roles.}
 competing: |
- The authors declare the following competing interests:
  H.H. is a technical advisor to the Association of Firearm and Toolmark Examiners (AFTE), a fellow of the American Statistical Association (ASA), and a member of the ASA Forensic Science Committee. H.H. has testified as a court witness on behalf of Judge April Neubauer in the New York State Supreme Court, Criminal Term, in New York City.
  \agentformat{Confirm that the declaration covers every author and replace Alicia's declaration, if any.}
+ The authors declare the following competing interests:
 funding-statement: |
  This work was partially funded by the Center for Statistics and Applications in Forensic Evidence (CSAFE) through Cooperative Agreement 70NANB20H019 between NIST and Iowa State University, which includes activities carried out at Carnegie Mellon University, Duke University, the University of California, Irvine, the University of Virginia, West Virginia University, the University of Pennsylvania, Swarthmore College, and the University of Nebraska-Lincoln.
 editor_options: 
@@ -103,6 +103,7 @@ library(gt) # for tables
 ```{r eval=FALSE, echo=FALSE}
 # re-run to update references
 # re-run to update citations
+# remotes::install_github("paleolimbot/rbbt")
 keys <- rbbt::bbt_detect_citations(path = "ch2_main.qmd")
 ignore <- c("^fig-", "^tbl-", "^sec-")
 for (pt in ignore) {
@@ -117,15 +118,7 @@ rbbt::bbt_write_bib(keys = keys, path = "references.bib", overwrite = TRUE, libr
 
 In forensic analysis, marks left at crime scenes play an important role, and forensic examiners are particularly interested in identifying their origin, a process known as the Source Identification Problem in Forensic Science [@lindleyProblemForensicScience1977]. The forensic science community focuses on two distinct problems: the **specific source problem**, in which examiners aim to determine whether a mark was left by a particular tool, and the **common source problem**, in which examiners aim to determine whether two marks were left by the same tool. Currently, accepted practice for both problems relies on visual inspection of physical items under a comparison microscope. Examiners then report their conclusions according to the Theory of Identification [@afteAssociationFirearmTool1998], developed by the Association of Firearm and Toolmark Examiners (AFTE), using one of three categories: *identification*, in which the marks are believed to have been made by the same source; *elimination*, in which the marks are believed to have been made by different tools; and *inconclusive*, in which the similarities or dissimilarities between marks are insufficient to support either identification or elimination. This process has been criticized by the National Research Council (NRC) [@nationalresearchcouncilu.s.StrengtheningForensicScience2009a] and the President's Council of Advisors on Science and Technology (PCAST) [@presidentscouncilofadvisorsonscienceandtechnologyForensicScienceCriminal2016] for its lack of objectivity and absence of quantifiable measurements, such as error rates.
 
-In discussing error rates, Biedermann [@biedermannStrangePersistenceSource2022] differentiates between internal and external perspectives. The external perspective allows general statements based on black-box studies that relate examiners' conclusions to ground truth; however, it does not consider the evidence in a particular case. Introducing an internal perspective requires a quantitative evaluation of the similarity of specific evidence and, in particular, objective algorithmic evaluations.
-
-
-<!-- the data here comes out of the blue - needs more motivation
-, which highlights the need for datasets with known ground truth for conclusion validation made through similarity comparison. -->
-
-
-To train algorithms, we need data from scenarios with known ground truth. Because data collected at crime scenes generally lack the known ground truth needed for this purpose, we used specific tools to cut wires under controlled conditions and collected the resulting marks for training. This approach enables comparisons between ground truth and results produced by our algorithms. Similarity is quantified using the cross-correlation function (CCF), whereas error rates measure the performance of the resulting comparisons.
-
+In discussing error rates, Biedermann [@biedermannStrangePersistenceSource2022] differentiates between internal and external perspectives. The external perspective allows general statements based on black-box studies that relate examiners' conclusions to ground truth; however, it does not consider the evidence in a particular case. Introducing an internal perspective requires an evaluation of the similarity of pairwise specimen with known ground truth. Algorithms allow  a quantification of these similarities that are objective and reproducible.
 
 Advances in microscopy have made it possible to move from optical two-dimensional imaging to digital three-dimensional topographic scanning, allowing algorithmic assessment of the similarity between pairs of forensic pattern evidence [@bonfantiVisualisationConfocalMicroscopy2000]. This transition has already supported practical advances in bullet and cartridge comparisons, including visual inspection of bullet line scans from three-dimensional topographic images [@smithLinescanImagingBallistics2002], the use of features extracted by fast Fourier transform (FFT) as the basis of an artificial intelligence system [@liBallisticsProjectileImage2006], an automated pilot study based on consecutively matching striae [@chuPilotStudyAutomated2010] (a feature also used by some laboratories in casework), and the incorporation of three-dimensional imaging into routine casework at the Alabama Department of Forensic Sciences (ADFS) [@mcclarinAddingObjectiveComponent2015].
 
@@ -141,8 +134,9 @@ When cut wires are found at a crime scene, understanding the characteristics of 
 knitr::include_graphics("images/IMG_72116.jpg")
 ```
 
+Data collected at crime scenes lacks the known ground truth needed for establishing error rates, making controlled studies with data collected under controlled conditions an absolute necessity. 
 
-Criminal convictions have relied on cut-wire evidence and related testimony. \agentreview{Add a supporting citation or case reference for the statement about convictions based on cut-wire evidence.} However, to our knowledge, no public database supports assessment of (1) the similarity between striations on wires cut with the same tool or (2) error rates in source identification. A public wire-cut dataset would support quantitative study of both questions.
+<!-- Criminal convictions have relied on cut-wire evidence and related testimony. \agentreview{Add a supporting citation or case reference for the statement about convictions based on cut-wire evidence.} However, to our knowledge, no public database supports assessment of (1) the similarity between striations on wires cut with the same tool or (2) error rates in source identification. A public wire-cut dataset would support quantitative study of both questions. -->
 
 In this study, we provide a publicly available dataset of wire-cut scans together with a systematic quantitative processing and comparison workflow. The shared materials include raw scans, metadata, manually extracted profiles, processed signals, pairwise CCF values, derived images, and analysis code.
 
@@ -152,6 +146,11 @@ The Methods section describes sample collection, scanning, profile extraction, s
 
 # Methods {#sec-methods .unnumbered}
 
+\hh{We need to first introduce the wire cutters: }
+
+\hh{Info on the aluminum wire: general purpose 16 gauge anodized pure aluminum wire as used for crafting. }
+
+\hh{On Brinell Hardness scale, pure lead ~ 5 HB, aluminum ~ 15 HB, Copper ~ 35 HB. }
 
 \agentrevision{The wire was manufactured by [brand or manufacturer] and had the 16-gauge, 1.5-mm dimensions reported below.} \agentformat{Replace the wire brand or manufacturer placeholder.} The physical properties of aluminum wire make it suitable for retaining marks while remaining relatively easy to bend and nontoxic. \agentrevision{The aluminum wire had a hardness of [value] on the [hardness scale].} \agentformat{Replace the aluminum hardness value and scale placeholders.} This hardness allowed the tools to leave marks while helping the cut samples resist damage during handling under the microscope. \agentrevision{For comparison, the hardness values of aluminum, copper, and lead are [aluminum value], [copper value], and [lead value], respectively, on the [hardness scale].} \agentformat{Replace the comparative hardness values and scale placeholders and add a supporting citation.} In casework, aluminum wire is less common than lead or copper wire. We avoided using lead in the laboratory because of its toxicity.
 
