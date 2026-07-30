@@ -239,25 +239,6 @@ The microscope is shown in Figure~\ref{fig-cut-tent-scan} (b), and the
 scans were saved in \texttt{x3p} format. Each piece was labeled
 according to the following naming convention:
 
-\begin{verbatim}
-T..W-L.-R.
- ^^   ^  ^
- ||   |  |
- ||   |  +── Replicate: 1, 2
- ||   +───── Location: I, M, O
- |+───────── Edge: A, B, C, D
- +────────── Tool: 1, 2, 3, 4, or 5
-\end{verbatim}
-
-The filename components are T(ool) 1/2/3/4/5, (Edge) A/B/C/D, W(ire),
-L(ocation) I(nner)/M(iddle)/O(uter), and R(eplicate) 1/2. For example,
-T1AW-LI-R1 denotes the first replicate of a piece cut by tool 1 on edge
-A at the inner location. To minimize errors in the sampling protocol,
-two team members cut and labeled the wires together. One team member
-then scanned the samples in a specified order and named the scans
-according to the naming convention, and a third team member checked the
-saved data.
-
 \begin{figure}[H]
 
 \begin{minipage}[t]{0.29\linewidth}
@@ -307,6 +288,25 @@ separation.}
 
 \end{figure}%
 
+\begin{verbatim}
+T..W-L.-R.
+ ^^   ^  ^
+ ||   |  |
+ ||   |  +── Replicate: 1, 2
+ ||   +───── Location: I, M, O
+ |+───────── Edge: A, B, C, D
+ +────────── Tool: 1, 2, 3, 4, or 5
+\end{verbatim}
+
+The filename components are T(ool) 1/2/3/4/5, (Edge) A/B/C/D, W(ire),
+L(ocation) I(nner)/M(iddle)/O(uter), and R(eplicate) 1/2. For example,
+T1AW-LI-R1 denotes the first replicate of a piece cut by tool 1 on edge
+A at the inner location. To minimize errors in the sampling protocol,
+two team members cut and labeled the wires together. One team member
+then scanned the samples in a specified order and named the scans
+according to the naming convention, and a third team member checked the
+saved data.
+
 \subsection*{Extract profiles}\label{sec-extract-profiles}
 \addcontentsline{toc}{subsection}{Extract profiles}
 
@@ -322,21 +322,6 @@ coordinates. An example profile line is shown in dark blue in
 Figure~\ref{fig-T1AW-LI-R1-profiles-signals} (a), and the resulting
 profile function is plotted in
 Figure~\ref{fig-T1AW-LI-R1-profiles-signals} (b).
-
-\subsection*{Filtered signals}\label{sec-filtered-signals}
-\addcontentsline{toc}{subsection}{Filtered signals}
-
-After extracting each profile, we applied a two-span smoothing
-procedure, with span parameters of 400 and 40 controlling removal of the
-broad trend and smoothing of local variation, respectively
-\citep{clevelandLocalRegressionModels1992}. We then checked for extreme
-deviations at the ends of the signal. The horizontal coordinates were
-divided at the 0\%, 2.5\%, 5\%, 95\%, 97.5\%, and 100\% quantiles. At
-each end, a two-sample t-test compared the outermost 2.5\% interval with
-the adjacent interval. When the boundary two-sample t-test produced a
-p-value below 0.01, values in the outermost interval were removed. The
-resulting smoothed signal was used for subsequent comparisons, as shown
-in Figure~\ref{fig-T1AW-LI-R1-profiles-signals} (c).
 
 \begin{figure}[H]
 
@@ -382,6 +367,21 @@ striations. (b) The profile function extracted along the line in (a).
 (c) Raw and filtered signals obtained from the profile function in (b).}
 
 \end{figure}%
+
+\subsection*{Filtered signals}\label{sec-filtered-signals}
+\addcontentsline{toc}{subsection}{Filtered signals}
+
+After extracting each profile, we applied a two-span smoothing
+procedure, with span parameters of 400 and 40 controlling removal of the
+broad trend and smoothing of local variation, respectively
+\citep{clevelandLocalRegressionModels1992}. We then checked for extreme
+deviations at the ends of the signal. The horizontal coordinates were
+divided at the 0\%, 2.5\%, 5\%, 95\%, 97.5\%, and 100\% quantiles. At
+each end, a two-sample t-test compared the outermost 2.5\% interval with
+the adjacent interval. When the boundary two-sample t-test produced a
+p-value below 0.01, values in the outermost interval were removed. The
+resulting smoothed signal was used for subsequent comparisons, as shown
+in Figure~\ref{fig-T1AW-LI-R1-profiles-signals} (c).
 
 \subsection*{Align signals}\label{sec-align-signals}
 \addcontentsline{toc}{subsection}{Align signals}
@@ -671,11 +671,6 @@ and differences between means, are shown in
 Table~\ref{tbl-CCF-replicate-staging-acquisition} and confirm our
 expectations.
 
-Our variability assessment does not include variation in CCF values
-caused by differences in the manual extraction of profiles from scans.
-To support reproduction of the results reported here, we have included
-the extraction locations and values for each scan.
-
 \begin{figure}
 
 \centering{
@@ -733,6 +728,11 @@ D & 0.797 & 0.011 & 0.966 & 0.017 & 0.169 & 0.986 & --- & 0.020 \\
 
 \end{table}%
 
+Our variability assessment does not include variation in CCF values
+caused by differences in the manual extraction of profiles from scans.
+To support reproduction of the results reported here, we have included
+the extraction locations and values for each scan.
+
 \section*{Usage Notes}\label{sec-usage-notes}
 \addcontentsline{toc}{section}{Usage Notes}
 
@@ -765,11 +765,6 @@ in the \texttt{assessment/code} folder at
 \agentformat{For permanent access, archive the exact code release in a DOI-providing repository and cite it if feasible; Scientific Data recommends combining GitHub with a DOI archive.}
 The files and their roles are described in
 Table~\ref{tbl-code-overview}.
-
-The provided code reproduces the processing, comparison, validation, and
-visualization outputs described in Methods and Technical Validation.
-\agentrevision{The workflow was run using R [version] and \texttt{x3ptools} [version]; versions of additional R packages are recorded in [environment file or repository documentation path].}
-\agentformat{Replace the R, \texttt{x3ptools}, and environment-record placeholders after checking the analysis environment.}
 
 \begin{table}
 
@@ -805,6 +800,11 @@ Code & Description & Section \\
 }
 
 \end{table}%
+
+The provided code reproduces the processing, comparison, validation, and
+visualization outputs described in Methods and Technical Validation.
+\agentrevision{The workflow was run using R [version] and \texttt{x3ptools} [version]; versions of additional R packages are recorded in [environment file or repository documentation path].}
+\agentformat{Replace the R, \texttt{x3ptools}, and environment-record placeholders after checking the analysis environment.}
 
 \bibliographystyle{naturemag-doi}
 \bibliography{references}

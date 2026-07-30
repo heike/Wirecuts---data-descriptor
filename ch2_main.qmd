@@ -203,22 +203,6 @@ Each scan covered [scan area or pixel dimensions] at a lateral sampling interval
 The microscope is shown in @fig-cut-tent-scan (b), and the scans were saved in \texttt{x3p} format.
 Each piece was labeled according to the following naming convention:
 
-```
-T..W-L.-R.
- ^^   ^  ^
- ||   |  |
- ||   |  +── Replicate: 1, 2
- ||   +───── Location: I, M, O
- |+───────── Edge: A, B, C, D
- +────────── Tool: 1, 2, 3, 4, or 5
-```
-
-The filename components are T(ool) 1/2/3/4/5, (Edge) A/B/C/D, W(ire), L(ocation) I(nner)/M(iddle)/O(uter), and R(eplicate) 1/2.
-For example, T1AW-LI-R1 denotes the first replicate of a piece cut by tool 1 on edge A at the inner location.
-To minimize errors in the sampling protocol, two team members cut and labeled the wires together.
-One team member then scanned the samples in a specified order and named the scans according to the naming convention, and a third team member checked the saved data.
-
-
 :::: {#fig-cut-tent-scan layout="[29, -2, 69]" fig-pos="H"}
 
 :::{}
@@ -245,6 +229,21 @@ Wire-cut sampling and scanning workflow.
 
 ::::
 
+```
+T..W-L.-R.
+ ^^   ^  ^
+ ||   |  |
+ ||   |  +── Replicate: 1, 2
+ ||   +───── Location: I, M, O
+ |+───────── Edge: A, B, C, D
+ +────────── Tool: 1, 2, 3, 4, or 5
+```
+
+The filename components are T(ool) 1/2/3/4/5, (Edge) A/B/C/D, W(ire), L(ocation) I(nner)/M(iddle)/O(uter), and R(eplicate) 1/2.
+For example, T1AW-LI-R1 denotes the first replicate of a piece cut by tool 1 on edge A at the inner location.
+To minimize errors in the sampling protocol, two team members cut and labeled the wires together.
+One team member then scanned the samples in a specified order and named the scans according to the naming convention, and a third team member checked the saved data.
+
 
 ## Extract profiles {#sec-extract-profiles .unnumbered}
 
@@ -255,18 +254,6 @@ A profile is a sequence of surface-height values along a user-drawn line.
 After processing, this profile becomes a signal representing one scan and is used for subsequent comparisons.
 Using `x3ptools::x3p_extract_profile`, we manually drew one line across each scan, perpendicular to the dominant striation direction, and exported the surface-height values and extraction coordinates.
 An example profile line is shown in dark blue in @fig-T1AW-LI-R1-profiles-signals (a), and the resulting profile function is plotted in @fig-T1AW-LI-R1-profiles-signals (b).
-
-
-## Filtered signals {#sec-filtered-signals .unnumbered}
-
-
-After extracting each profile, we applied a two-span smoothing procedure, with span parameters of 400 and 40 controlling removal of the broad trend and smoothing of local variation, respectively [@clevelandLocalRegressionModels1992].
-We then checked for extreme deviations at the ends of the signal.
-The horizontal coordinates were divided at the 0\%, 2.5\%, 5\%, 95\%, 97.5\%, and 100\% quantiles.
-At each end, a two-sample t-test compared the outermost 2.5\% interval with the adjacent interval.
-When the boundary two-sample t-test produced a p-value below 0.01, values in the outermost interval were removed.
-The resulting smoothed signal was used for subsequent comparisons, as shown in @fig-T1AW-LI-R1-profiles-signals (c).
-
 
 :::: {#fig-T1AW-LI-R1-profiles-signals layout="[45, 55]" fig-pos="H"}
 
@@ -293,6 +280,17 @@ Profile and signal extraction.
 (c) Raw and filtered signals obtained from the profile function in (b).
 
 ::::
+
+
+## Filtered signals {#sec-filtered-signals .unnumbered}
+
+
+After extracting each profile, we applied a two-span smoothing procedure, with span parameters of 400 and 40 controlling removal of the broad trend and smoothing of local variation, respectively [@clevelandLocalRegressionModels1992].
+We then checked for extreme deviations at the ends of the signal.
+The horizontal coordinates were divided at the 0\%, 2.5\%, 5\%, 95\%, 97.5\%, and 100\% quantiles.
+At each end, a two-sample t-test compared the outermost 2.5\% interval with the adjacent interval.
+When the boundary two-sample t-test produced a p-value below 0.01, values in the outermost interval were removed.
+The resulting smoothed signal was used for subsequent comparisons, as shown in @fig-T1AW-LI-R1-profiles-signals (c).
 
 
 ## Align signals {#sec-align-signals .unnumbered}
@@ -506,10 +504,6 @@ Higher orange mean lines indicate an increase in the mean CCF, and narrower shad
 The detailed numerical results, including means, standard deviations, and differences between means, are shown in @tbl-CCF-replicate-staging-acquisition and confirm our expectations.
 
 
-Our variability assessment does not include variation in CCF values caused by differences in the manual extraction of profiles from scans.
-To support reproduction of the results reported here, we have included the extraction locations and values for each scan.
-
-
 ```{r}
 #| echo: false
 #| out.width: "450px"
@@ -557,6 +551,10 @@ D & 0.797 & 0.011 & 0.966 & 0.017 & 0.169 & 0.986 & --- & 0.020 \\
 :::
 
 
+Our variability assessment does not include variation in CCF values caused by differences in the manual extraction of profiles from scans.
+To support reproduction of the results reported here, we have included the extraction locations and values for each scan.
+
+
 # Usage Notes {#sec-usage-notes .unnumbered}
 
 
@@ -580,11 +578,6 @@ Because each supplied signal is based on a manually selected profile, users asse
 Custom R code used to inspect raw scans, extract profiles, derive signals, align signals, and generate the validation outputs is available in the \texttt{assessment/code} folder at \url{https://github.com/heike/wirecuts-data}.
 \agentformat{For permanent access, archive the exact code release in a DOI-providing repository and cite it if feasible; Scientific Data recommends combining GitHub with a DOI archive.}
 The files and their roles are described in @tbl-code-overview.
-
-The provided code reproduces the processing, comparison, validation, and visualization outputs described in Methods and Technical Validation.
-\agentrevision{The workflow was run using R [version] and \texttt{x3ptools} [version]; versions of additional R packages are recorded in [environment file or repository documentation path].}
-\agentformat{Replace the R, \texttt{x3ptools}, and environment-record placeholders after checking the analysis environment.}
-
 
 ```{r}
 #| echo: FALSE
@@ -641,3 +634,7 @@ for (code_file in code_files) {
 
 string
 ```
+
+The provided code reproduces the processing, comparison, validation, and visualization outputs described in Methods and Technical Validation.
+\agentrevision{The workflow was run using R [version] and \texttt{x3ptools} [version]; versions of additional R packages are recorded in [environment file or repository documentation path].}
+\agentformat{Replace the R, \texttt{x3ptools}, and environment-record placeholders after checking the analysis environment.}
