@@ -74,18 +74,19 @@ Lin (yhlin@iastate.edu)
 Wire-cut striation marks can provide evidence for forensic source
 identification, but publicly available datasets and reproducible
 quantitative workflows for analyzing these marks are limited. We present
-120 three-dimensional topographic scans in \texttt{x3p} format from
-aluminum wires cut with five KWS-105 wire cutters. The study includes
-four edges, three locations along each tool, and two replicates for
-every tool-edge-location combination. We provide scan metadata, manually
-extracted profiles, processed signals, pairwise cross-correlation
-values, images, and analysis code. The accompanying workflow covers scan
-inspection, profile and signal extraction, cross-correlation-based
-alignment, pairwise similarity visualization, CCF distributions for
-same-source and different-source comparisons, and variability assessment
-across replicates, stagings, and acquisitions. The dataset and workflow
-support the development, evaluation, and reproducible comparison of
-quantitative methods for wire-cut evidence.
+a dataset of 120 three-dimensional topographic scans in \texttt{x3p}
+format from aluminum wires cut with five KWS-105 wire cutters. The study
+contains two replicates of each of three cutting locations along the
+blade of each wire cutter yielding six scans for every one of the twenty
+tool-edge-location combination. We provide additional scan metadata,
+manually extracted profiles, processed signals, cross-correlation values
+for pairwise aligned signals, images, and analysis code. The
+accompanying workflow covers scan inspection, profile and signal
+extraction, alignment, pairwise similarity visualization, CCF
+distributions for same-source and different-source comparisons, and
+variability assessment across replicates, stagings, and acquisitions.
+The dataset and workflow support the development, evaluation, and
+reproducible comparison of quantitative methods for wire-cut evidence.
 \end{abstract}
 
 \section*{Background \& Summary}\label{sec-background-summary}
@@ -121,18 +122,10 @@ In discussing error rates, Biedermann
 internal and external perspectives. The external perspective allows
 general statements based on black-box studies that relate examiners'
 conclusions to ground truth; however, it does not consider the evidence
-in a particular case. Introducing an internal perspective requires a
-quantitative evaluation of the similarity of specific evidence and, in
-particular, objective algorithmic evaluations.
-
-To train algorithms, we need data from scenarios with known ground
-truth. Because data collected at crime scenes generally lack the known
-ground truth needed for this purpose, we used specific tools to cut
-wires under controlled conditions and collected the resulting marks for
-training. This approach enables comparisons between ground truth and
-results produced by our algorithms. Similarity is quantified using the
-cross-correlation function (CCF), whereas error rates measure the
-performance of the resulting comparisons.
+in a particular case. Introducing an internal perspective requires an
+evaluation of the similarity of pairwise specimen with known ground
+truth. Algorithms allow a quantification of these similarities that are
+objective and reproducible.
 
 Advances in microscopy have made it possible to move from optical
 two-dimensional imaging to digital three-dimensional topographic
@@ -184,13 +177,9 @@ Close-up of striations left by a blade on the cut end of a wire.}
 
 \end{figure}%
 
-Criminal convictions have relied on cut-wire evidence and related
-testimony.
-\agentreview{Add a supporting citation or case reference for the statement about convictions based on cut-wire evidence.}
-However, to our knowledge, no public database supports assessment of (1)
-the similarity between striations on wires cut with the same tool or (2)
-error rates in source identification. A public wire-cut dataset would
-support quantitative study of both questions.
+Data collected at crime scenes lacks the known ground truth needed for
+establishing error rates, making controlled studies with data collected
+under controlled conditions an absolute necessity.
 
 In this study, we provide a publicly available dataset of wire-cut scans
 together with a systematic quantitative processing and comparison
@@ -211,6 +200,12 @@ wire-cut evidence.
 
 \section*{Methods}\label{sec-methods}
 \addcontentsline{toc}{section}{Methods}
+
+\hh{We need to first introduce the wire cutters: }
+
+\hh{Info on the aluminum wire: general purpose 16 gauge anodized pure aluminum wire as used for crafting. }
+
+\hh{On Brinell Hardness scale, pure lead ~ 5 HB, aluminum ~ 15 HB, Copper ~ 35 HB. }
 
 \agentrevision{The wire was manufactured by [brand or manufacturer] and had the 16-gauge, 1.5-mm dimensions reported below.}
 \agentformat{Replace the wire brand or manufacturer placeholder.} The
@@ -242,14 +237,25 @@ yielded 5 tools \(\times\) 3 locations \(\times\) 2 replicates
 \agentformat{Replace the bracketed microscope, magnification, scan-size, and vertical-resolution placeholders.}
 The microscope is shown in Figure~\ref{fig-cut-tent-scan} (b), and the
 scans were saved in \texttt{x3p} format. Each piece was labeled
-according to the following naming convention: T(ool) 1/2/3/4/5, (Edge)
-A/B/C/D, W(ire), L(ocation) I(nner)/M(iddle)/O(uter), and R(epetition)
-1/2. For example, T1AW-LI-R1 denotes the first repetition of a piece cut
-by tool 1 on edge A at the inner location. To minimize errors in the
-sampling protocol, two team members cut and labeled the wires together.
-One team member then scanned the samples in a specified order and named
-the scans according to the naming convention, and a third team member
-checked the saved data.
+according to the following naming convention:
+
+\begin{verbatim}
+T..W-L.-R.
+ ^^   ^  ^
+ ||   |  |
+ ||   |  +── Replicate: 1, 2
+ ||   +───── Location: I, M, O
+ |+───────── Edge: A, B, C, D
+ +────────── Tool: 1, 2, 3, 4, or 5
+\end{verbatim}
+
+T(ool) 1/2/3/4/5, (Edge) A/B/C/D, W(ire), L(ocation)
+I(nner)/M(iddle)/O(uter), and R(epetition) 1/2. For example, T1AW-LI-R1
+denotes the first repetition of a piece cut by tool 1 on edge A at the
+inner location. To minimize errors in the sampling protocol, two team
+members cut and labeled the wires together. One team member then scanned
+the samples in a specified order and named the scans according to the
+naming convention, and a third team member checked the saved data.
 
 \begin{figure}[H]
 
@@ -794,22 +800,23 @@ Code & Description & Section \\
 \bibliography{references}
 
 \section*{Author Contributions}
+\agentformat{Confirm whether all authors approve conversion of this statement to the CRediT taxonomy before revising the contributor roles.}
+
 Y.L.: Methodology, Software, Validation, Data Curation, Writing: Draft;
 H.H.: Conceptualization, Methodology, Validation, Writing: Review and
 Editing; C.M.: Laboratory Supervision; E.A.: Physical Specimen,
 Scanning; J.S.: Forensic Advice; A.C.: Funding Acquisition.
-\agentformat{Confirm whether all authors approve conversion of this statement to the CRediT taxonomy before revising the contributor roles.}
 
 All authors reviewed the manuscript.
 
 \section*{Competing Interests}
-The authors declare the following competing interests: H.H. is a
-technical advisor to the Association of Firearm and Toolmark Examiners
-(AFTE), a fellow of the American Statistical Association (ASA), and a
-member of the ASA Forensic Science Committee. H.H. has testified as a
-court witness on behalf of Judge April Neubauer in the New York State
-Supreme Court, Criminal Term, in New York City.
+H.H. is a technical advisor to the Association of Firearm and Toolmark
+Examiners (AFTE), a fellow of the American Statistical Association
+(ASA), and a member of the ASA Forensic Science Committee. H.H. has
+testified as a court witness on behalf of Judge April Neubauer in the
+New York State Supreme Court, Criminal Term, in New York City.
 \agentformat{Confirm that the declaration covers every author and replace Alicia's declaration, if any.}
+The authors declare the following competing interests:
 
 
 \section*{Funding}

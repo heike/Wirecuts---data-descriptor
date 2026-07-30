@@ -158,7 +158,19 @@ The Methods section describes sample collection, scanning, profile extraction, s
 ## Cutting wires {#sec-cutting-wires .unnumbered}
 
 
-We used 16-gauge, 1.5-mm anodized aluminum wire to create this wire-cut dataset. For each of the five wire cutters, we made two replicate cuts at each of three blade locations (inner, middle, and outer), as shown in @fig-cut-tent-scan (a). A 4-inch wire segment was used for each replicate and divided into two 2-inch sides, AB and CD. Each side was separated along the bend into two pieces, yielding four cut surfaces (A, B, C, D). As shown in @fig-cut-tent-scan (c), C is the reverse of A and D is the reverse of B. The complete design therefore yielded 5 tools $\times$ 3 locations $\times$ 2 replicates $\times$ 4 cut surfaces = 120 scans. \agentrevision{We scanned each cut surface using a [manufacturer and model] confocal microscope with [objective or magnification]. Each scan covered [scan area or pixel dimensions] at a lateral sampling interval of 0.645 micrometers per pixel and a vertical resolution of [value].} \agentformat{Replace the bracketed microscope, magnification, scan-size, and vertical-resolution placeholders.} The microscope is shown in @fig-cut-tent-scan (b), and the scans were saved in \texttt{x3p} format. Each piece was labeled according to the following naming convention: T(ool) 1/2/3/4/5, (Edge) A/B/C/D, W(ire), L(ocation) I(nner)/M(iddle)/O(uter), and R(epetition) 1/2. For example, T1AW-LI-R1 denotes the first repetition of a piece cut by tool 1 on edge A at the inner location. To minimize errors in the sampling protocol, two team members cut and labeled the wires together. One team member then scanned the samples in a specified order and named the scans according to the naming convention, and a third team member checked the saved data.
+We used 16-gauge, 1.5-mm anodized aluminum wire to create this wire-cut dataset. For each of the five wire cutters, we made two replicate cuts at each of three blade locations (inner, middle, and outer), as shown in @fig-cut-tent-scan (a). A 4-inch wire segment was used for each replicate and divided into two 2-inch sides, AB and CD. Each side was separated along the bend into two pieces, yielding four cut surfaces (A, B, C, D). As shown in @fig-cut-tent-scan (c), C is the reverse of A and D is the reverse of B. The complete design therefore yielded 5 tools $\times$ 3 locations $\times$ 2 replicates $\times$ 4 cut surfaces = 120 scans. \agentrevision{We scanned each cut surface using a [manufacturer and model] confocal microscope with [objective or magnification]. Each scan covered [scan area or pixel dimensions] at a lateral sampling interval of 0.645 micrometers per pixel and a vertical resolution of [value].} \agentformat{Replace the bracketed microscope, magnification, scan-size, and vertical-resolution placeholders.} The microscope is shown in @fig-cut-tent-scan (b), and the scans were saved in \texttt{x3p} format. Each piece was labeled according to the following naming convention:
+
+```
+T..W-L.-R.
+ ^^   ^  ^
+ ||   |  |
+ ||   |  +── Replicate: 1, 2
+ ||   +───── Location: I, M, O
+ |+───────── Edge: A, B, C, D
+ +────────── Tool: 1, 2, 3, 4, or 5
+```
+
+T(ool) 1/2/3/4/5, (Edge) A/B/C/D, W(ire), L(ocation) I(nner)/M(iddle)/O(uter), and R(epetition) 1/2. For example, T1AW-LI-R1 denotes the first repetition of a piece cut by tool 1 on edge A at the inner location. To minimize errors in the sampling protocol, two team members cut and labeled the wires together. One team member then scanned the samples in a specified order and named the scans according to the naming convention, and a third team member checked the saved data.
 
 
 :::: {#fig-cut-tent-scan layout="[29, -2, 69]" fig-pos="H"}
