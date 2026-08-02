@@ -223,21 +223,22 @@ We avoided using lead in the laboratory because of its toxicity.
 
 We used 16-gauge, 1.5-mm anodized aluminum wire to create this wire-cut
 dataset. For each of the five wire cutters, we made two replicate cuts
-at each of three blade locations (inner, middle, and outer), as shown in
-Figure~\ref{fig-cut-tent-scan} (a).
+at each of three blade locations (inner, middle, and outer).
 \agentformat{State how the inner, middle, and outer cutting locations were selected or marked, if this information was recorded.}
-A 4-inch wire segment was used for each replicate and divided into two
+Figure~\ref{fig-cut-tent-scan} (a) shows the three blade locations. A
+4-inch wire segment was used for each replicate and divided into two
 2-inch sides, AB and CD. Each side was separated along the bend into two
-pieces, yielding four cut surfaces (A, B, C, D). As shown in
-Figure~\ref{fig-cut-tent-scan} (c), C is the reverse of A and D is the
-reverse of B. The complete design therefore yields 5 tools \(\times\) 3
-locations \(\times\) 2 replicates \(\times\) 4 cut surfaces = 120 scans.
+pieces. The resulting pieces comprise four cut surfaces (A, B, C, D). As
+shown in Figure~\ref{fig-cut-tent-scan} (c), C is the reverse of A and D
+is the reverse of B. The complete design therefore yields 5 tools
+\(\times\) 3 locations \(\times\) 2 replicates \(\times\) 4 cut surfaces
+= 120 scans.
 \agentrevision{We scanned each cut surface using a [manufacturer and model] confocal microscope with [objective or magnification].
 Each scan covered [scan area or pixel dimensions] at a lateral sampling interval of 0.645 micrometers per pixel and a vertical resolution of [value].}
 \agentformat{Replace the bracketed microscope, magnification, scan-size, and vertical-resolution placeholders.}
-The microscope is shown in Figure~\ref{fig-cut-tent-scan} (b), and the
-scans were saved in \texttt{x3p} format. Each piece was labeled
-according to the following naming convention:
+The scans were saved in \texttt{x3p} format. The microscope is shown in
+Figure~\ref{fig-cut-tent-scan} (b). Each piece was labeled according to
+the following naming convention:
 
 \begin{figure}[H]
 
@@ -379,8 +380,9 @@ divided at the 0\%, 2.5\%, 5\%, 95\%, 97.5\%, and 100\% quantiles. At
 each end, a two-sample t-test compared the outermost 2.5\% interval with
 the adjacent interval. When the boundary two-sample t-test produced a
 p-value below 0.01, values in the outermost interval were removed. The
-resulting smoothed signal was used for subsequent comparisons, as shown
-in Figure~\ref{fig-T1AW-LI-R1-profiles-signals} (c).
+resulting smoothed signal was used for subsequent comparisons.
+Figure~\ref{fig-T1AW-LI-R1-profiles-signals} (c) shows the resulting
+smoothed signal.
 
 \subsection*{Align signals}\label{sec-align-signals}
 \addcontentsline{toc}{subsection}{Align signals}
@@ -535,24 +537,24 @@ expected high CCF values between signals from the same source and low
 values between signals from different sources.
 Figure~\ref{fig-signals-pair-alignment}, shown earlier in Align signals,
 meets our expectation for same-source signals. As an example of a
-different-source comparison, we selected T1AW-LI-R1 and T2AW-LI-R1,
-shown in Figure~\ref{fig-T1AW-LI-R1-T2AW-LI-R1-alignment} (a) and (b).
-Their signal alignment, shown in
+different-source comparison, we selected T1AW-LI-R1 and T2AW-LI-R1.
+Figure~\ref{fig-T1AW-LI-R1-T2AW-LI-R1-alignment} (a) and (b) show the
+selected scans. Their signal alignment, shown in
 Figure~\ref{fig-T1AW-LI-R1-T2AW-LI-R1-alignment} (c), has a CCF value of
 0.2, which is as low as expected. For the following summaries, edges A
 and C were categorized as long, edges B and D as short, and comparisons
 pairing one long edge with one short edge as mixed. We also summarized
-the resulting CCFs for all pairwise comparisons in boxplots and receiver
-operating characteristic (ROC) curves, shown in
-Figure~\ref{fig-ccf-boxplot} and Figure~\ref{fig-ccf-ROC}. The ROC
-curves plot sensitivity, or the true positive rate, against the false
-positive rate (FPR; 1 - specificity). The curves are close to the
-upper-left corner, indicating strong classification performance. For the
-combined comparison set, a threshold of 0.589 controls the FPR below
-0.05 with a false negative rate (FNR) of 0, whereas a threshold of 0.658
-controls the FPR below 0.01 with an FNR of 0.02. These results are
-consistent with our expectations and validate our pipeline for
-processing and aligning signals.
+the resulting CCFs for all pairwise comparisons using boxplots and
+receiver operating characteristic (ROC) curves.
+Figure~\ref{fig-ccf-boxplot} and Figure~\ref{fig-ccf-ROC} show these
+summaries. The ROC curves plot sensitivity, or the true positive rate,
+against the false positive rate (FPR; 1 - specificity). The curves are
+close to the upper-left corner, indicating strong classification
+performance. For the combined comparison set, a threshold of 0.589
+controls the FPR below 0.05 with a false negative rate (FNR) of 0,
+whereas a threshold of 0.658 controls the FPR below 0.01 with an FNR of
+0.02. These results are consistent with our expectations and validate
+our pipeline for processing and aligning signals.
 
 \begin{figure}
 
@@ -634,26 +636,27 @@ diagonal indicates chance-level classification.}
 The second validation assessed variability in the pipeline across
 replicates, stagings, and acquisitions. We selected scans from tool 2 at
 the middle location for this assessment. Replicate variability was
-assessed using two different cuts at the same edge and position, as
-illustrated by the comparison in Figure~\ref{fig-signals-pair-alignment}
-in Align signals. To assess staging variability, we rescanned replicate
-2 under the confocal microscope and introduced the staging label S into
-the naming protocol. The S1 designation is omitted from labels, so R2 is
-equivalent to R2-S1. For all four edges of tool 2 at the middle
-location, we created three stagings (R2, R2-S2, and R2-S3), computed
-pairwise CCFs between stagings, and calculated their mean and standard
-deviation (SD).
+assessed using two different cuts at the same edge and position. The
+comparison in Figure~\ref{fig-signals-pair-alignment} in Align signals
+illustrates this assessment. To assess staging variability, we rescanned
+replicate 2 under the confocal microscope and introduced the staging
+label S into the naming protocol. The S1 designation is omitted from
+labels, so R2 is equivalent to R2-S1. For all four edges of tool 2 at
+the middle location, we created three stagings (R2, R2-S2, and R2-S3),
+computed pairwise CCFs between stagings, and calculated their mean and
+standard deviation (SD).
 
 Within each staging, we further examined the effect of different
 acquisitions by keeping the samples on the confocal microscope while
 varying the lighting conditions. We introduced A as the acquisition
 label. For edge A at staging 3, we performed four acquisitions and
-omitted the A1 designation from the first acquisition label, so R2-S3 is
-equivalent to R2-S3-A1. For the other three edges, we conducted two
-acquisitions at staging 3, denoted by R2-S3 and R2-S3-A2. Within staging
-3, we computed pairwise CCFs between acquisitions and calculated their
-mean and standard deviation. Variability between distinct stagings was
-assessed separately through the staging comparisons described above.
+omitted the A1 designation from the first acquisition label. Therefore,
+R2-S3 is equivalent to R2-S3-A1. For the other three edges, we conducted
+two acquisitions at staging 3. These acquisitions are denoted by R2-S3
+and R2-S3-A2. Within staging 3, we computed pairwise CCFs between
+acquisitions and calculated their mean and standard deviation.
+Variability between distinct stagings was assessed separately through
+the staging comparisons described above.
 
 With this setup, we expected CCF values to become more consistent from
 replicate to staging to acquisition as the scanning conditions became
@@ -661,12 +664,12 @@ progressively more stable. Consequently, variability was expected to
 decrease along this sequence. We also compared replicates, stagings, and
 acquisitions, expecting smaller differences between acquisitions and
 stagings than between stagings and replicates. We visualized the results
-as scatter plots in Figure~\ref{fig-rep_staging_acquisition}, which also
-shows intervals extending two standard deviations above and below the
-mean. Higher orange mean lines indicate an increase in the mean CCF, and
-narrower shaded intervals indicate a decrease in the standard deviation.
-The detailed numerical results, including means, standard deviations,
-and differences between means, are shown in
+as scatter plots. Figure~\ref{fig-rep_staging_acquisition} shows the
+scatter plots and intervals extending two standard deviations above and
+below the mean. Higher orange mean lines indicate an increase in the
+mean CCF, and narrower shaded intervals indicate a decrease in the
+standard deviation. The detailed numerical results, including means,
+standard deviations, and differences between means, are shown in
 Table~\ref{tbl-CCF-replicate-staging-acquisition} and confirm our
 expectations.
 
@@ -757,9 +760,9 @@ using alternative documented locations.
 \section*{Code Availability}\label{sec-code-availability}
 \addcontentsline{toc}{section}{Code Availability}
 
-Custom R code used to inspect raw scans, extract profiles, derive
-signals, align signals, and generate the validation outputs is available
-in the \texttt{assessment/code} folder at
+We used custom R code to inspect raw scans, extract profiles, derive
+signals, align signals, and generate the validation outputs. The code is
+available in the \texttt{assessment/code} folder at
 \url{https://github.com/heike/wirecuts-data}.
 \agentformat{For permanent access, archive the exact code release in a DOI-providing repository and cite it if feasible; Scientific Data recommends combining GitHub with a DOI archive.}
 The files and their roles are described in
@@ -802,7 +805,8 @@ Code & Description & Section \\
 
 The provided code reproduces the processing, comparison, validation, and
 visualization outputs described in Methods and Technical Validation.
-\agentrevision{The workflow was run using R [version] and \texttt{x3ptools} [version]; versions of additional R packages are recorded in [environment file or repository documentation path].}
+\agentrevision{The workflow was run using R [version] and \texttt{x3ptools} [version].
+Versions of additional R packages are recorded in [environment file or repository documentation path].}
 \agentformat{Replace the R, \texttt{x3ptools}, and environment-record placeholders after checking the analysis environment.}
 
 \bibliographystyle{naturemag-doi}
@@ -831,10 +835,10 @@ The authors declare the following competing interests:
 \section*{Funding}
 This work was partially funded by the Center for Statistics and
 Applications in Forensic Evidence (CSAFE) through Cooperative Agreement
-70NANB20H019 between NIST and Iowa State University, which includes
-activities carried out at Carnegie Mellon University, Duke University,
-the University of California, Irvine, the University of Virginia, West
-Virginia University, the University of Pennsylvania, Swarthmore College,
-and the University of Nebraska-Lincoln.
+70NANB20H019 between NIST and Iowa State University. The agreement
+includes activities carried out at Carnegie Mellon University, Duke
+University, the University of California, Irvine, the University of
+Virginia, West Virginia University, the University of Pennsylvania,
+Swarthmore College, and the University of Nebraska-Lincoln.
 
 \end{document}
