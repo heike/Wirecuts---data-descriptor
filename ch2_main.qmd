@@ -65,7 +65,7 @@ affiliations:
     city: Edmond, OK, 73034
     country: USA
 abstract: |
- Wire-cut striation marks can provide evidence for forensic source identification, but publicly available datasets and reproducible quantitative workflows for analyzing these marks are limited.
+ Wire-cut striation marks provide evidence for forensic source identification, but publicly available datasets and reproducible quantitative workflows for analyzing these marks are limited.
  We present a dataset of 120 three-dimensional topographic scans in \texttt{x3p} format from aluminum wires cut with five KWS-105 wire cutters.
  The study contains six scans---two replicates at each of three cutting locations---for each of the 20 tool-edge combinations.
  We provide additional scan metadata, manually extracted profiles, processed signals, cross-correlation function (CCF) values for pairwise aligned signals, images, and analysis code.
@@ -174,7 +174,7 @@ The dataset and workflow may support future quantitative research on wire-cut ev
 
 The cutting tools were five Kaiweets KWS-105 wire cutters.
 The material was general-purpose, 16-gauge, 1.5-mm anodized pure aluminum wire sold for crafting.
-\agentformat{Provide the wire manufacturer, product name, or another source identifier if available so readers can identify the material used.}
+\agentformat{Provide the wire manufacturer, product name, or another source identifier if available to enable readers to identify the material used.}
 The physical properties of aluminum wire make it suitable for retaining marks while remaining relatively easy to bend and nontoxic.
 \agentreview{Confirm or qualify the statement that the wire was nontoxic; if this is a comparative safety claim rather than a measured material property, revise it and cite an appropriate source.}
 The aluminum wire has a hardness of 15 HB on the Brinell Hardness scale.
@@ -532,7 +532,7 @@ Confirm with the coauthors or professor whether any logically connected pairs sh
 
 
 ::: {#tbl-CCF-replicate-staging-acquisition tbl-cap="Comparison of CCF means and standard deviations across different replicates, stagings, and acquisition settings.
-Dashes indicate that the standard deviation could not be calculated because only one CCF value was available."}
+Dashes indicate that the standard deviation is undefined because only one CCF value is available."}
 
 \centering
 \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrrrrrrr@{}}
@@ -569,9 +569,9 @@ To support reproduction of the results reported here, we have included the extra
 
 
 The raw surface scans are provided in \texttt{x3p} format.
-Users who wish to inspect or process these files in R can use the \texttt{x3ptools} package and its reference manual, available from CRAN [@hofmannX3ptoolsToolsWorking2018].
+To inspect or process these files in R, use the \texttt{x3ptools} package and its reference manual, available from CRAN [@hofmannX3ptoolsToolsWorking2018].
 The \texttt{meta.csv} file links each scan to its tool, edge, blade location, and replicate identifiers.
-Users who do not wish to repeat manual profile extraction can begin with the supplied profiles and processed signals.
+The supplied profiles and processed signals provide a starting point for users who do not wish to repeat manual profile extraction.
 The supplied extraction coordinates allow these derived files to be related back to the corresponding scans.
 Because each supplied signal is based on a manually selected profile, users assessing sensitivity to profile placement should re-extract profiles from the raw \texttt{x3p} scans using alternative documented locations.
 

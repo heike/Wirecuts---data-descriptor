@@ -71,7 +71,7 @@ Lin (yhlin@iastate.edu)
 \vspace{1em}
 
 \begin{abstract}
-Wire-cut striation marks can provide evidence for forensic source
+Wire-cut striation marks provide evidence for forensic source
 identification, but publicly available datasets and reproducible
 quantitative workflows for analyzing these marks are limited. We present
 a dataset of 120 three-dimensional topographic scans in \texttt{x3p}
@@ -202,7 +202,7 @@ wire-cut evidence.
 The cutting tools were five Kaiweets KWS-105 wire cutters. The material
 was general-purpose, 16-gauge, 1.5-mm anodized pure aluminum wire sold
 for crafting.
-\agentformat{Provide the wire manufacturer, product name, or another source identifier if available so readers can identify the material used.}
+\agentformat{Provide the wire manufacturer, product name, or another source identifier if available to enable readers to identify the material used.}
 The physical properties of aluminum wire make it suitable for retaining
 marks while remaining relatively easy to bend and nontoxic.
 \agentreview{Confirm or qualify the statement that the wire was nontoxic; if this is a comparative safety claim rather than a measured material property, revise it and cite an appropriate source.}
@@ -697,8 +697,8 @@ Confirm with the coauthors or professor whether any logically connected pairs sh
 
 \caption{\label{tbl-CCF-replicate-staging-acquisition}Comparison of CCF
 means and standard deviations across different replicates, stagings, and
-acquisition settings. Dashes indicate that the standard deviation could
-not be calculated because only one CCF value was available.}
+acquisition settings. Dashes indicate that the standard deviation is
+undefined because only one CCF value is available.}
 
 \centering{
 
@@ -738,18 +738,18 @@ the extraction locations and values for each scan.
 \section*{Usage Notes}\label{sec-usage-notes}
 \addcontentsline{toc}{section}{Usage Notes}
 
-The raw surface scans are provided in \texttt{x3p} format. Users who
-wish to inspect or process these files in R can use the
-\texttt{x3ptools} package and its reference manual, available from CRAN
+The raw surface scans are provided in \texttt{x3p} format. To inspect or
+process these files in R, use the \texttt{x3ptools} package and its
+reference manual, available from CRAN
 \citep{hofmannX3ptoolsToolsWorking2018}. The \texttt{meta.csv} file
 links each scan to its tool, edge, blade location, and replicate
-identifiers. Users who do not wish to repeat manual profile extraction
-can begin with the supplied profiles and processed signals. The supplied
-extraction coordinates allow these derived files to be related back to
-the corresponding scans. Because each supplied signal is based on a
-manually selected profile, users assessing sensitivity to profile
-placement should re-extract profiles from the raw \texttt{x3p} scans
-using alternative documented locations.
+identifiers. The supplied profiles and processed signals provide a
+starting point for users who do not wish to repeat manual profile
+extraction. The supplied extraction coordinates allow these derived
+files to be related back to the corresponding scans. Because each
+supplied signal is based on a manually selected profile, users assessing
+sensitivity to profile placement should re-extract profiles from the raw
+\texttt{x3p} scans using alternative documented locations.
 
 \section*{Data Availability}\label{sec-data-availability}
 \addcontentsline{toc}{section}{Data Availability}
