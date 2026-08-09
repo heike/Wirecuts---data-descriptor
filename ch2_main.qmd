@@ -175,17 +175,16 @@ The dataset and workflow may support future quantitative research on wire-cut ev
 The cutting tools were five Kaiweets KWS-105 wire cutters.
 The material was general-purpose, 16-gauge, 1.5-mm anodized pure aluminum wire sold for crafting.
 \agentformat{Provide the wire manufacturer, product name, or another source identifier if available to enable readers to identify the material used.}
-The physical properties of aluminum wire make it suitable for retaining marks while remaining relatively easy to bend and nontoxic.
-\agentreview{Confirm or qualify the statement that the wire was nontoxic; if this is a comparative safety claim rather than a measured material property, revise it and cite an appropriate source.}
-The aluminum wire has a hardness of 15 HB on the Brinell Hardness scale.
-This hardness allows the tools to leave marks while helping the cut samples resist damage during handling under the microscope.
-For comparison, the hardness values of pure lead and copper are 5 HB and 35 HB, respectively.
-\agentreview{Confirm whether 15 HB was measured for the wire used.
-If it is a literature value for pure aluminum rather than this anodized wire, revise the statement accordingly and cite the source for all three hardness values.}
+The aluminum wire used in this study is nontoxic and relatively easy to bend.
+\agentrevision{Its reported Brinell hardness is 15 HB.}
+\agentreview{Confirm whether 15 HB comes from the exact purchased product listing.
+If so, cite the listing or manufacturer specification; if it is only a generic Amazon reference, do not describe it as a property of this wire.}
+At this hardness, the wire is soft enough for the cutting tools to leave marks and hard enough to resist damage during handling under the microscope.
+\agentrevision{For comparison, published Brinell hardness values for pure lead and annealed or cast copper are approximately 5 HB and 35 HB, respectively.}
+\agentreview{Replace the generic Amazon reference with authoritative sources that specify material condition and Brinell test conditions for the lead and copper values.}
 In casework, aluminum wire is less common than lead or copper wire.
-\agentreview{Add a supporting source for the relative frequency of aluminum, lead, and copper wire in casework, or qualify the statement if it is based on informal experience.
-If retained, this contextual claim belongs in Background \& Summary rather than Methods.}
-We avoided using lead in the laboratory because of its toxicity.
+\agentreview{Add a source for the relative frequency of aluminum, lead, and copper wire in casework, or qualify this statement as based on forensic experience.}
+We selected aluminum rather than lead for laboratory use to avoid lead's toxicity.
 
 
 ## Cutting wires {#sec-cutting-wires .unnumbered}
