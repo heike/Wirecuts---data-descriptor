@@ -146,19 +146,55 @@ The Methods section describes sample collection, scanning, profile extraction, s
 
 # Methods {#sec-methods .unnumbered}
 
-\hh{We need to first introduce the wire cutters: }
+We used Kaiweets KWS-105 Multipurpose tools with 0.5" Carbon steel cutting blades for making the wire cuts from 16-gauge anodized pure aluminum.
 
-\hh{Info on the aluminum wire: general purpose 16 gauge anodized pure aluminum wire as used for crafting. }
+While aluminum is not commonly used for electric wiring because of its poor conductivity, we chose aluminum for its non-toxicity and suitability to receive marks from cutting while retaining marks during further handling. Pure aluminum has a hardness of about 15 HB (Brinell hardness scale), which places it between lead (~5 HB) and copper (~35 HB). 
 
-\hh{On Brinell Hardness scale, pure lead ~ 5 HB, aluminum ~ 15 HB, Copper ~ 35 HB. }
+<!-- <!-- \hh{KAIWEETS Wire Stripper 10-22 AWG Wire Splicer Cable Stripper Multipurpose Wire Stripping Tool Electrical Wire Pliers with Screw Cutter; Carbon Steel, 0.5" cutting blade} --> -->
 
-\agentrevision{The wire was manufactured by [brand or manufacturer] and had the 16-gauge, 1.5-mm dimensions reported below.} \agentformat{Replace the wire brand or manufacturer placeholder.} The physical properties of aluminum wire make it suitable for retaining marks while remaining relatively easy to bend and nontoxic. \agentrevision{The aluminum wire had a hardness of [value] on the [hardness scale].} \agentformat{Replace the aluminum hardness value and scale placeholders.} This hardness allowed the tools to leave marks while helping the cut samples resist damage during handling under the microscope. \agentrevision{For comparison, the hardness values of aluminum, copper, and lead are [aluminum value], [copper value], and [lead value], respectively, on the [hardness scale].} \agentformat{Replace the comparative hardness values and scale placeholders and add a supporting citation.} In casework, aluminum wire is less common than lead or copper wire. We avoided using lead in the laboratory because of its toxicity.
+<!-- \hh{Info on the aluminum wire: general purpose 16-gauge anodized pure aluminum wire as used for crafting. } -->
+
+<!-- \hh{On Brinell Hardness scale, pure lead ~ 5 HB, aluminum ~ 15 HB, Copper ~ 35 HB. } -->
+
+<!-- \agentrevision{The wire was manufactured by [brand or manufacturer] and had the 16-gauge, 1.5-mm dimensions reported below.} \agentformat{Replace the wire brand or manufacturer placeholder.} The physical properties of aluminum wire make it suitable for retaining marks while remaining relatively easy to bend and nontoxic. \agentrevision{The aluminum wire had a hardness of [value] on the [hardness scale].} \agentformat{Replace the aluminum hardness value and scale placeholders.} This hardness allowed the tools to leave marks while helping the cut samples resist damage during handling under the microscope. \agentrevision{For comparison, the hardness values of aluminum, copper, and lead are [aluminum value], [copper value], and [lead value], respectively, on the [hardness scale].} \agentformat{Replace the comparative hardness values and scale placeholders and add a supporting citation.} 
+We avoided using lead in the laboratory because of its toxicity. -->
 
 
 ## Cutting wires {#sec-cutting-wires .unnumbered}
 
+<!-- We used 16-gauge, 1.5-mm anodized aluminum wire to create this wire-cut dataset. -->
 
-We used 16-gauge, 1.5-mm anodized aluminum wire to create this wire-cut dataset. For each of the five wire cutters, we made two replicate cuts at each of three blade locations (inner, middle, and outer), as shown in @fig-cut-tent-scan (a). A 4-inch wire segment was used for each replicate and divided into two 2-inch sides, AB and CD. Each side was separated along the bend into two pieces, yielding four cut surfaces (A, B, C, D). As shown in @fig-cut-tent-scan (c), C is the reverse of A and D is the reverse of B. The complete design therefore yielded 5 tools $\times$ 3 locations $\times$ 2 replicates $\times$ 4 cut surfaces = 120 scans. \agentrevision{We scanned each cut surface using a [manufacturer and model] confocal microscope with [objective or magnification]. Each scan covered [scan area or pixel dimensions] at a lateral sampling interval of 0.645 micrometers per pixel and a vertical resolution of [value].} \agentformat{Replace the bracketed microscope, magnification, scan-size, and vertical-resolution placeholders.} The microscope is shown in @fig-cut-tent-scan (b), and the scans were saved in \texttt{x3p} format. Each piece was labeled according to the following naming convention: T(ool) 1/2/3/4/5, (Edge) A/B/C/D, W(ire), L(ocation) I(nner)/M(iddle)/O(uter), and R(epetition) 1/2. For example, T1AW-LI-R1 denotes the first repetition of a piece cut by tool 1 on edge A at the inner location. To minimize errors in the sampling protocol, two team members cut and labeled the wires together. One team member then scanned the samples in a specified order and named the scans according to the naming convention, and a third team member checked the saved data.
+The blades for each of the five wire cutters were labelled A, B, C, and D (see @fig-cut-tent-scan a). B opposes A, the back sides are labelled D (for A) and C (for B). Three locations on each blade were marked (inner, middle, and outer)  as shown in @fig-cut-tent-scan (a).
+4-inch wire segments were cut in half, resulting in four cut sides as shown in @fig-cut-tent-scan (c).
+
+Cut surfaces were scanned at 20x magnification using a Confocal Sensofar Microscope [@fig-cut-tent-scan b] and exported to \texttt{x3p} format (ISO 25178-72:2017/Amd 1:2020) with a resolution of 0.645 x 0.645 micrometers per pixel.
+<!-- \agentrevision{We scanned each cut surface using a [manufacturer and model] confocal microscope with [objective or magnification]. Each scan covered [scan area or pixel dimensions] at a lateral sampling interval of 0.645 micrometers per pixel and a vertical resolution of [value].}  -->
+<!-- \agentformat{Replace the bracketed microscope, magnification, scan-size, and vertical-resolution placeholders.}  -->
+<!-- The microscope is shown in @fig-cut-tent-scan (b), and the scans were saved in \texttt{x3p} format.  -->
+<!-- Each side was separated along the bend into two pieces, yielding four cut surfaces (A, B, C, D). As shown in @fig-cut-tent-scan (c), C is the reverse of A and D is the reverse of B. -->
+
+The complete design therefore yielded 5 tools $\times$ 3 locations $\times$ 2 replicates $\times$ 4 cut surfaces = 120 scans.
+
+
+Each piece was labeled according to the following naming convention:
+
+```
+T..W-L.-R.1
+```
+
+
+```
+  1        I    1
+T[2][A]W-L[M]-R[2].x3p
+  3  B     O
+  4  C
+  5  D
+```
+
+T(ool) 1/2/3/4/5, (Edge) A/B/C/D, W(ire), L(ocation) I(nner)/M(iddle)/O(uter), and R(epetition) 1/2. 
+For example, T1AW-LI-R1 denotes the first repetition of a piece cut by tool 1 on edge A at the inner location. 
+To minimize errors in the sampling protocol, two team members cut and labeled the wires together. 
+One team member then scanned the samples in a specified order and named the scans according to the naming convention, and a third team member checked the saved data. 
 
 
 :::: {#fig-cut-tent-scan layout="[29, -2, 69]" fig-pos="H"}
