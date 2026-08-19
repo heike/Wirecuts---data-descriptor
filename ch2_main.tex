@@ -20,7 +20,12 @@
 \graphicspath{{./images/}}
 \captionsetup{font=small,labelfont=bf,labelsep=period}
 \captionsetup[subfigure]{font={normalsize,sf},labelfont=bf}
-\setlength{\parindent}{1.5em}
+% Author-review layout settings are centralized here rather than in QMD metadata.
+\renewcommand{\textfraction}{0}
+\renewcommand{\bottomfraction}{1}
+\renewcommand{\topfraction}{1}
+\renewcommand{\floatpagefraction}{1}
+\setlength{\parindent}{0pt}
 \setlength{\parskip}{0pt}
 \setlength{\emergencystretch}{3em}
 
@@ -30,6 +35,7 @@
 \newcommand{\heike}[1]{\hh{#1}}
 \newcommand{\agentformat}[1]{{\textcolor{Purple}{\textbf{[Agent: #1]}}}}
 \newcommand{\agentreview}[1]{{\textcolor{RoyalBlue}{\textbf{[Agent: #1]}}}}
+\newcommand{\agentremovedreview}[1]{{\textcolor{BrickRed}{\textbf{[Agent: #1]}}}}
 \newcommand{\agentrevision}[1]{{\textcolor{TealBlue}{\textbf{#1}}}}
 
 % Scientific Data asks authors not to supply internal hyperlink markup.
@@ -164,11 +170,11 @@ numerical methods for improving accuracy and consistency
 and techniques for quantifying similarity
 \citep{hareAutomaticMatchingBullet2017, juOpenSourceImplementationCMPS2022}.
 
-\begin{figure}
+\begin{figure}[hbt]
 
 \centering{
 
-\includegraphics[width=4.16667in,height=3.125in]{images/IMG_72116.jpg}
+\includegraphics[width=4.16667in,height=\textheight,keepaspectratio]{images/IMG_72116.jpg}
 
 }
 
@@ -199,47 +205,41 @@ wire-cut evidence.
 \section*{Methods}\label{sec-methods}
 \addcontentsline{toc}{section}{Methods}
 
-The cutting tools were five Kaiweets KWS-105 wire cutters. The material
-was general-purpose, 16-gauge, 1.5-mm anodized pure aluminum wire sold
-for crafting.
-\agentformat{Provide the wire manufacturer, product name, or another source identifier if available to enable readers to identify the material used.}
-The aluminum wire used in this study is nontoxic and relatively easy to
-bend. \agentrevision{Its reported Brinell hardness is 15 HB.}
-\agentreview{Confirm whether 15 HB comes from the exact purchased product listing.
-If so, cite the listing or manufacturer specification; if it is only a generic Amazon reference, do not describe it as a property of this wire.}
-At this hardness, the wire is soft enough for the cutting tools to leave
-marks and hard enough to resist damage during handling under the
-microscope.
-\agentrevision{For comparison, published Brinell hardness values for pure lead and annealed or cast copper are approximately 5 HB and 35 HB, respectively.}
-\agentreview{Replace the generic Amazon reference with authoritative sources that specify material condition and Brinell test conditions for the lead and copper values.}
-In casework, aluminum wire is less common than lead or copper wire.
-\agentreview{Add a source for the relative frequency of aluminum, lead, and copper wire in casework, or qualify this statement as based on forensic experience.}
-We selected aluminum rather than lead for laboratory use to avoid lead's
-toxicity.
+We used five Kaiweets KWS-105 multipurpose tools with 0.5-inch
+carbon-steel cutting blades to cut 16-gauge anodized pure-aluminum wire.
+
+While aluminum is not commonly used for electric wiring because of its
+poor conductivity, we chose aluminum for its nontoxicity and suitability
+for receiving cutting marks and retaining them during subsequent
+handling. Pure aluminum has a Brinell hardness of approximately 15 HB,
+which places it between lead (approximately 5 HB) and copper
+(approximately 35 HB).
 
 \subsection*{Cutting wires}\label{sec-cutting-wires}
 \addcontentsline{toc}{subsection}{Cutting wires}
 
-We used 16-gauge, 1.5-mm anodized aluminum wire to create this wire-cut
-dataset. For each of the five wire cutters, we made two replicate cuts
-at each of three blade locations (inner, middle, and outer).
-\agentformat{State how the inner, middle, and outer cutting locations were selected or marked, if this information was recorded.}
-Figure~\ref{fig-cut-tent-scan} (a) shows the three blade locations. A
-4-inch wire segment was used for each replicate and divided into two
-2-inch sides, AB and CD. Each side was separated along the bend into two
-pieces. The resulting pieces comprise four cut surfaces (A, B, C, D). As
-shown in Figure~\ref{fig-cut-tent-scan} (c), C is the reverse of A and D
-is the reverse of B. The complete design therefore yields 5 tools
-\(\times\) 3 locations \(\times\) 2 replicates \(\times\) 4 cut surfaces
-= 120 scans.
-\agentrevision{We scanned each cut surface using a [manufacturer and model] confocal microscope with [objective or magnification].
-Each scan covered [scan area or pixel dimensions] at a lateral sampling interval of 0.645 micrometers per pixel and a vertical resolution of [value].}
-\agentformat{Replace the bracketed microscope, magnification, scan-size, and vertical-resolution placeholders.}
-The scans were saved in \texttt{x3p} format. The microscope is shown in
-Figure~\ref{fig-cut-tent-scan} (b). Each piece was labeled according to
-the following naming convention:
+The blades for each of the five wire cutters were labeled A, B, C, and D
+(see Figure~\ref{fig-cut-tent-scan} (a)). B opposes A; the reverse sides
+are labeled D for A and C for B.
+\agentreview{Confirm the reverse-side mapping. This sentence states that D is the reverse of A and C is the reverse of B, whereas the pre-merge manuscript stated that C is the reverse of A and D is the reverse of B.}
+Three locations on each blade were marked (inner, middle, and outer), as
+shown in Figure~\ref{fig-cut-tent-scan} (a).
+\agentrevision{Each four-inch wire segment was cut in half, creating two cut sides, AB and CD.}
+\agentrevision{Each side was then separated into two pieces, yielding cut surfaces A and B from side AB and C and D from side CD.}
+The resulting four cut surfaces are shown in
+Figure~\ref{fig-cut-tent-scan} (c).
 
-\begin{figure}[H]
+We scanned the cut surfaces at 20\(\times\) magnification using a
+Sensofar confocal microscope, shown in Figure~\ref{fig-cut-tent-scan}
+(b). The scans were exported in \texttt{x3p} format (ISO
+25178-72:2017/Amd 1:2020) with a lateral sampling interval of 0.645
+\(\times\) 0.645 micrometers per pixel and a vertical resolution of 0.1
+micrometer.
+
+The complete design therefore yielded 5 tools \(\times\) 3 locations
+\(\times\) 2 replicates \(\times\) 4 cut surfaces = 120 scans.
+
+\begin{figure}[hbt]
 
 \begin{minipage}[t]{0.29\linewidth}
 
@@ -272,7 +272,7 @@ the following naming convention:
 
 \centering{
 
-\includegraphics[width=\linewidth,height=0.44\textheight,keepaspectratio]{images/T1AW-LI-R2-4edges.png}
+\includegraphics[width=\linewidth,height=0.4\textheight,keepaspectratio]{images/T1AW-LI-R2-4edges.png}
 
 }
 
@@ -288,6 +288,9 @@ separation.}
 
 \end{figure}%
 
+Each piece was labeled according to the following naming convention:
+
+\begin{samepage}
 \begin{verbatim}
 T__W-L_-R_
  ||   |  |
@@ -296,15 +299,17 @@ T__W-L_-R_
  |+--------- Edge: A, B, C, or D
  +---------- Tool: 1, 2, 3, 4, or 5
 \end{verbatim}
+\end{samepage}
 
 The filename components are T(ool) 1/2/3/4/5, (Edge) A/B/C/D, W(ire),
 L(ocation) I(nner)/M(iddle)/O(uter), and R(eplicate) 1/2. For example,
-T1AW-LI-R1 denotes the first replicate of a piece cut by tool 1 on edge
-A at the inner location. To minimize errors in the sampling protocol,
-two team members cut and labeled the wires together. One team member
-then scanned the samples in a specified order and named the scans
-according to the naming convention, and a third team member checked the
-saved data.
+T1AW-LI-R1 denotes the first replicate of a piece cut with edge A of
+tool 1 at the inner location.
+
+To minimize errors in the sampling protocol, two team members cut and
+labeled the wires together. One team member then scanned the samples in
+a specified order and assigned names to the scans according to the above
+convention.
 
 \subsection*{Extract profiles}\label{sec-extract-profiles}
 \addcontentsline{toc}{subsection}{Extract profiles}
@@ -322,7 +327,7 @@ Figure~\ref{fig-T1AW-LI-R1-profiles-signals} (a), and the resulting
 profile function is plotted in
 Figure~\ref{fig-T1AW-LI-R1-profiles-signals} (b).
 
-\begin{figure}[H]
+\begin{figure}[hbt]
 
 \begin{minipage}[t]{0.45\linewidth}
 
@@ -395,11 +400,11 @@ two columns of Figure~\ref{fig-signals-pair-alignment} show the
 extracted signals, and the rightmost column shows their alignment and
 CCF value.
 
-\begin{figure}
+\begin{figure}[hbt]
 
 \centering{
 
-\includegraphics[width=6.25in,height=7.8125in]{images/scans_pair.png}
+\includegraphics[width=5.80208in,height=\textheight,keepaspectratio]{images/scans_pair.png}
 
 }
 
@@ -409,11 +414,11 @@ from tool 1 at the inner blade location.}
 
 \end{figure}%
 
-\begin{figure}
+\begin{figure}[hbt]
 
 \centering{
 
-\includegraphics[width=5.20833in,height=3.64583in]{images/signals_pair_alignment.png}
+\includegraphics[width=5.20833in,height=\textheight,keepaspectratio]{images/signals_pair_alignment.png}
 
 }
 
@@ -449,7 +454,7 @@ Data type & Description & Section \\
 \midrule\addlinespace[2.5pt]
 \multicolumn{3}{>{\raggedright\arraybackslash}m{0.97\linewidth}}{\parbox{\linewidth}{Raw data}} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
-\texttt{scans/} & folder containing 120 topographic 3D scans corresponding to 30 aluminum wire cuts (   exttt\{x3p\} format) & Cutting wires \\ 
+\texttt{scans/} & folder containing 120 topographic 3D scans corresponding to 30 aluminum wire cuts (\texttt{x3p} format) & Cutting wires \\ 
 \texttt{meta.csv} & metadata for each cut, including tool, blade, and location information (CSV format) & Cutting wires \\ 
 \midrule\addlinespace[2.5pt]
 \multicolumn{3}{>{\raggedright\arraybackslash}m{0.97\linewidth}}{\parbox{\linewidth}{Manual derivatives}} \\[2.5pt] 
@@ -496,11 +501,11 @@ contains self-comparisons, whereas the off-diagonal cells compare
 distinct signals. Figure~\ref{fig-ccf-density} displays the CCF
 distributions for same-source and different-source comparisons.
 
-\begin{figure}[H]
+\begin{figure}[hbt]
 
 \centering{
 
-\includegraphics[width=6.25in,height=4.16667in]{images/ccf_tilemap.png}
+\includegraphics[width=6.25in,height=\textheight,keepaspectratio]{images/ccf_tilemap.png}
 
 }
 
@@ -511,11 +516,11 @@ the inset enlarges the boxed edge-to-edge comparison block.}
 
 \end{figure}%
 
-\begin{figure}[H]
+\begin{figure}[hbt]
 
 \centering{
 
-\includegraphics[width=5.20833in,height=2.60417in]{images/ccf_density.png}
+\includegraphics[width=5.20833in,height=\textheight,keepaspectratio]{images/ccf_density.png}
 
 }
 
@@ -555,7 +560,7 @@ whereas a threshold of 0.658 controls the FPR below 0.01 with an FNR of
 0.02. These results are consistent with our expectations and validate
 our pipeline for processing and aligning signals.
 
-\begin{figure}
+\begin{figure}[hbt]
 
 \begin{minipage}[t]{0.50\linewidth}
 
@@ -603,11 +608,11 @@ T2AW-LI-R1.}
 
 \end{figure}%
 
-\begin{figure}
+\begin{figure}[hbt]
 
 \centering{
 
-\includegraphics[width=1\linewidth,height=3.125in]{images/ccf_boxplot.png}
+\includegraphics[width=1\linewidth,height=\textheight,keepaspectratio]{images/ccf_boxplot.png}
 
 }
 
@@ -618,11 +623,11 @@ comparisons. Rows distinguish long, mixed, and short edge comparisons.}
 
 \end{figure}%
 
-\begin{figure}
+\begin{figure}[hbt]
 
 \centering{
 
-\includegraphics[width=5.20833in,height=5.20833in]{images/ccf_ROC.png}
+\includegraphics[width=5.20833in,height=\textheight,keepaspectratio]{images/ccf_ROC.png}
 
 }
 
@@ -672,11 +677,11 @@ standard deviations, and differences between means, are shown in
 Table~\ref{tbl-CCF-replicate-staging-acquisition} and confirm our
 expectations.
 
-\begin{figure}
+\begin{figure}[hbt]
 
 \centering{
 
-\includegraphics[width=4.6875in,height=4.6875in]{images/rep_staging_acquisition.png}
+\includegraphics[width=4.6875in,height=\textheight,keepaspectratio]{images/rep_staging_acquisition.png}
 
 }
 
@@ -779,7 +784,7 @@ Code & Description & Section \\
 \midrule\addlinespace[2.5pt]
 \multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{\parbox{\linewidth}{Inspect raw scans}} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
-\path{1-create_pngs_from_x3p.R} & obtain images of \texttt{x3p}s in \texttt{scans/} & Cutting wires \\ 
+\path{1-create_pngs_from_x3p.R} & obtain images of \texttt{x3p} files in \texttt{scans/} & Cutting wires \\ 
 \midrule\addlinespace[2.5pt]
 \multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{\parbox{\linewidth}{Extract profiles}} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]

@@ -20,7 +20,12 @@
 \graphicspath{{./images/}}
 \captionsetup{font=small,labelfont=bf,labelsep=period}
 \captionsetup[subfigure]{font={normalsize,sf},labelfont=bf}
-\setlength{\parindent}{1.5em}
+% Author-review layout settings are centralized here rather than in QMD metadata.
+\renewcommand{\textfraction}{0}
+\renewcommand{\bottomfraction}{1}
+\renewcommand{\topfraction}{1}
+\renewcommand{\floatpagefraction}{1}
+\setlength{\parindent}{0pt}
 \setlength{\parskip}{0pt}
 \setlength{\emergencystretch}{3em}
 
@@ -30,6 +35,7 @@
 \newcommand{\heike}[1]{\hh{#1}}
 \newcommand{\agentformat}[1]{{\textcolor{Purple}{\textbf{[Agent: #1]}}}}
 \newcommand{\agentreview}[1]{{\textcolor{RoyalBlue}{\textbf{[Agent: #1]}}}}
+\newcommand{\agentremovedreview}[1]{{\textcolor{BrickRed}{\textbf{[Agent: #1]}}}}
 \newcommand{\agentrevision}[1]{{\textcolor{TealBlue}{\textbf{#1}}}}
 
 % Scientific Data asks authors not to supply internal hyperlink markup.

@@ -77,13 +77,6 @@ format:
     cite-method: natbib
     template: sf_template.tex
     keep-tex: true
-    header-includes: |
-      % I am text content
-      \renewcommand{\textfraction} {0}
-      \renewcommand{\bottomfraction} {1}
-      \renewcommand{\topfraction} {1}
-      \renewcommand{\floatpagefraction} {1}
-      \setlength{\parindent}{0pt}
 bibliography: "`r rbbt::bbt_write_bib('references.bib', ignore = stringr::str_subset(rbbt::bbt_detect_citations(), '(^fig-|^tbl-|^eq-|^sec-|^lst-|^thm-|^lem-|^cor-|^prp-|^cnj-|^def-|^exm-|^exr-)'), overwrite = TRUE, library_id=rbbt::bbt_library_id('CSAFE'), translator='bibtex')`"
 contributions: |
  \agentformat{Confirm whether all authors approve conversion of this statement to the CRediT taxonomy before revising the contributor roles.}
@@ -155,8 +148,8 @@ Foundational research on forensic toolmarks has also emphasized data collection 
 ```{r}
 #| echo: false
 #| out.width: "400px"
-#| out.height: "300px"
 #| label: fig-cut-microscope
+#| fig-pos: hbt
 #| fig-cap: >-
 #|   Microscopic wire-cut striations.
 #|   Close-up of striations left by a blade on the cut end of a wire.
@@ -178,19 +171,26 @@ The dataset and workflow may support future quantitative research on wire-cut ev
 
 # Methods {#sec-methods .unnumbered}
 
-We used Kaiweets KWS-105 Multipurpose tools with 0.5" Carbon steel cutting blades for making the wire cuts from 16-gauge anodized pure aluminum.
+We used five Kaiweets KWS-105 multipurpose tools with 0.5-inch carbon-steel cutting blades to cut 16-gauge anodized pure-aluminum wire.
 
-While aluminum is not commonly used for electric wiring because of its poor conductivity, we chose aluminum for its non-toxicity and suitability to receive marks from cutting while retaining marks during further handling. Pure aluminum has a hardness of about 15 HB (Brinell hardness scale), which places it between lead (~5 HB) and copper (~35 HB). 
+While aluminum is not commonly used for electric wiring because of its poor conductivity, we chose aluminum for its nontoxicity and suitability for receiving cutting marks and retaining them during subsequent handling.
+Pure aluminum has a Brinell hardness of approximately 15 HB, which places it between lead (approximately 5 HB) and copper (approximately 35 HB).
 
 
 
 
 ## Cutting wires {#sec-cutting-wires .unnumbered}
 
-The blades for each of the five wire cutters were labelled A, B, C, and D (see @fig-cut-tent-scan a). B opposes A, the back sides are labelled D (for A) and C (for B). Three locations on each blade were marked (inner, middle, and outer)  as shown in @fig-cut-tent-scan (a).
-4-inch wire segments were cut in half, resulting in four cut sides as shown in @fig-cut-tent-scan (c).
+The blades for each of the five wire cutters were labeled A, B, C, and D (see @fig-cut-tent-scan (a)).
+B opposes A; the reverse sides are labeled D for A and C for B.
+\agentreview{Confirm the reverse-side mapping. This sentence states that D is the reverse of A and C is the reverse of B, whereas the pre-merge manuscript stated that C is the reverse of A and D is the reverse of B.}
+Three locations on each blade were marked (inner, middle, and outer), as shown in @fig-cut-tent-scan (a).
+\agentrevision{Each four-inch wire segment was cut in half, creating two cut sides, AB and CD.}
+\agentrevision{Each side was then separated into two pieces, yielding cut surfaces A and B from side AB and C and D from side CD.}
+The resulting four cut surfaces are shown in @fig-cut-tent-scan (c).
 
-Cut surfaces were scanned at 20x magnification using a Confocal Sensofar Microscope [@fig-cut-tent-scan b] and exported to \texttt{x3p} format (ISO 25178-72:2017/Amd 1:2020) with a lateral resolution of 0.645 x 0.645 micrometers per pixel and a vertical resolution of 0.1 micron.
+We scanned the cut surfaces at 20$\times$ magnification using a Sensofar confocal microscope, shown in @fig-cut-tent-scan (b).
+The scans were exported in \texttt{x3p} format (ISO 25178-72:2017/Amd 1:2020) with a lateral sampling interval of 0.645 $\times$ 0.645 micrometers per pixel and a vertical resolution of 0.1 micrometer.
 
 The complete design therefore yielded 5 tools $\times$ 3 locations $\times$ 2 replicates $\times$ 4 cut surfaces = 120 scans.
 
@@ -222,15 +222,20 @@ Wire-cut sampling and scanning workflow.
 
 Each piece was labeled according to the following naming convention:
 
-```
+\begin{samepage}
+\begin{verbatim}
 T__W-L_-R_
  ||   |  |
  ||   |  +-- Replicate: 1 or 2
  ||   +----- Location: I (inner), M (middle), or O (outer)
  |+--------- Edge: A, B, C, or D
  +---------- Tool: 1, 2, 3, 4, or 5
-```
-For example, T1AW-LI-R1 denotes the first replicate of a piece cut by edge A with tool 1 at the inner location.
+\end{verbatim}
+\end{samepage}
+
+The filename components are T(ool) 1/2/3/4/5, (Edge) A/B/C/D, W(ire), L(ocation) I(nner)/M(iddle)/O(uter), and R(eplicate) 1/2.
+For example, T1AW-LI-R1 denotes the first replicate of a piece cut with edge A of tool 1 at the inner location.
+
 To minimize errors in the sampling protocol, two team members cut and labeled the wires together.
 One team member then scanned the samples in a specified order and assigned names to the scans according to the above convention.
 
@@ -295,7 +300,6 @@ The first two columns of @fig-signals-pair-alignment show the extracted signals,
 
 ```{r}
 #| echo: false
-#| out.height: "650px"
 #| out.width: "557px"
 #| label: fig-scans-pair
 #| fig-pos: hbt
@@ -310,7 +314,6 @@ knitr::include_graphics("images/scans_pair.png")
 ```{r}
 #| echo: false
 #| out.width: "500px"
-#| out.height: "350px"
 #| fig-pos: hbt
 #| label: fig-signals-pair-alignment
 #| fig-cap: >-
@@ -340,7 +343,7 @@ The repository contents, formats, and folder organization are summarized in @tbl
 gt_table <- tibble(
   group_type = c(rep("Raw data", 2), rep("Manual derivatives", 1), rep("Computational derivatives in the folder 'data-derived/'", 2), rep("Image files", 2), "Visual inventory in the folder 'assessment/analysis-manual/'", "Technical validation"),
   data_type = c("`scans/`", "`meta.csv`", "`profiles/`", "`wire-signals`", "`wire_pairwise_ccf`", "`pngs/`", "`profile-images/`", "`processing-wires`", "`variability-`\n`assessment/`"),
-  Description = c("folder containing 120 topographic 3D scans corresponding to 30 aluminum wire cuts (\texttt{x3p} format)", "metadata for each cut, including tool, blade, and location information (CSV format)", "folder containing manually extracted profiles (CSV format)", "signals processed from the corresponding profiles (zipped CSV format)", "CCF values for all pairwise aligned signals (zipped CSV format)", "folder containing images of 3D wire-cut scans (PNG format)", "folder containing images of profiles extracted from wire cuts (PNG format)", "display of pairwise aligned signals from the same sources (HTML format)", "folder containing technical-validation documents, with an internal structure that mirrors the main folder"),
+  Description = c("folder containing 120 topographic 3D scans corresponding to 30 aluminum wire cuts (`x3p` format)", "metadata for each cut, including tool, blade, and location information (CSV format)", "folder containing manually extracted profiles (CSV format)", "signals processed from the corresponding profiles (zipped CSV format)", "CCF values for all pairwise aligned signals (zipped CSV format)", "folder containing images of 3D wire-cut scans (PNG format)", "folder containing images of profiles extracted from wire cuts (PNG format)", "display of pairwise aligned signals from the same sources (HTML format)", "folder containing technical-validation documents, with an internal structure that mirrors the main folder"),
   Section = c("Cutting wires", "Cutting wires", "Extract profiles", "Filtered signals", "Align signals", "Cutting wires", "Extract profiles", "Align signals", "Technical Validation")
 ) %>%
   group_by(group_type) %>%
@@ -391,7 +394,6 @@ The main diagonal contains self-comparisons, whereas the off-diagonal cells comp
 ```{r}
 #| echo: false
 #| out.width: "600px"
-#| out.height: "400px"
 #| label: fig-ccf-tilemap
 #| fig-cap: >-
 #|   Pairwise CCF tile map.
@@ -405,7 +407,6 @@ knitr::include_graphics("images/ccf_tilemap.png")
 ```{r}
 #| echo: false
 #| out.width: "500px"
-#| out.height: "250px"
 #| label: fig-ccf-density
 #| fig-cap: >-
 #|   CCF density distributions.
@@ -436,7 +437,7 @@ For the combined comparison set, a threshold of 0.589 controls the FPR below 0.0
 These results are consistent with our expectations and validate our pipeline for processing and aligning signals.
 
 
-::: {#fig-T1AW-LI-R1-T2AW-LI-R1-alignment layout="[[1, 1], [-0.5, 9, 0.5]]"}
+::: {#fig-T1AW-LI-R1-T2AW-LI-R1-alignment layout="[[1, 1], [-0.5, 9, 0.5]]" fig-pos="hbt"}
 
 ![](images/T1AW-LI-R1.png){#fig-T1AW-LI-R1 height=5.5cm}
 
@@ -455,8 +456,8 @@ Different-source scan and signal comparison.
 ```{r}
 #| echo: false
 #| out.width: "100%"
-#| out.height: "300px"
 #| label: fig-ccf-boxplot
+#| fig-pos: hbt
 #| fig-cap: >-
 #|   CCF distributions across comparison classes.
 #|   Gray boxplots show different-source comparisons grouped by different edge, location, or tool; orange boxplots show same-source comparisons.
@@ -468,8 +469,8 @@ knitr::include_graphics("images/ccf_boxplot.png")
 ```{r}
 #| echo: false
 #| out.width: "500px"
-#| out.height: "500px"
 #| label: fig-ccf-ROC
+#| fig-pos: hbt
 #| fig-cap: >-
 #|   ROC curves for CCF-based classification.
 #|   Curves are shown separately for long and short edge classes; the dotted diagonal indicates chance-level classification.
@@ -508,8 +509,8 @@ The detailed numerical results, including means, standard deviations, and differ
 ```{r}
 #| echo: false
 #| out.width: "450px"
-#| out.height: "450px"
 #| label: fig-rep_staging_acquisition
+#| fig-pos: hbt
 #| fig-cap: >-
 #|   Variability across scanning conditions.
 #|   Panels A, B, C, and D correspond to the four cut surfaces.
@@ -600,7 +601,7 @@ code_files <- c(
 string <- tibble(
   group_type = c(rep("Inspect raw scans", 1), rep("Extract profiles", 2), rep("Derive signals", 1), rep("Align signals", 3)),
   code_type = paste0("`", code_files, "`"),
-  Description = c("obtain images of `x3p`s in `scans/`", "manually extract profiles from each scan", "create meta profile information", "derive signals from each profile", "create images for pairwise alignment", "compute pairwise alignment CCF values", "visualize comparison results"),
+  Description = c("obtain images of `x3p` files in `scans/`", "manually extract profiles from each scan", "create meta profile information", "derive signals from each profile", "create images for pairwise alignment", "compute pairwise alignment CCF values", "visualize comparison results"),
   Section = c("Cutting wires", "Extract profiles", "Extract profiles", "Filtered signals", "Align signals", "Align signals", "Align signals")
 ) %>%
   gt(rowname_col = "code_type", groupname_col = "group_type") %>%
