@@ -289,7 +289,8 @@ cutting edges A, B, C, and D.}
 
 \end{figure}%
 
-Each piece was labeled according to the following naming convention:
+The naming of each piece included the specific tool, its edge, location,
+and replicate according to the following convention:
 
 \begin{samepage}
 \begin{verbatim}
@@ -302,28 +303,24 @@ T__W-L_-R_
 \end{verbatim}
 \end{samepage}
 
-The filename components are T(ool) 1/2/3/4/5, (Edge) A/B/C/D, W(ire),
-L(ocation) I(nner)/M(iddle)/O(uter), and R(eplicate) 1/2. For example,
-T1AW-LI-R1 denotes the first replicate of a piece cut with edge A of
-tool 1 at the inner location.
+For example, T1AW-LI-R1 denotes the first replicate of a piece cut with
+edge A of tool 1 at the inner location.
 
-To minimize errors in the sampling protocol, two team members cut and
-labeled the wires together. One team member then scanned the samples in
-a specified order and assigned names to the scans according to the above
-convention.
+To minimize errors during data collection, two team members cut and
+labeled the wire pieces together. One team member then scanned the wire
+cuts and assigned names to the scans as described.
 
 \subsection*{Extract profiles}\label{sec-extract-profiles}
 \addcontentsline{toc}{subsection}{Extract profiles}
 
-Numerical comparisons between two replicates cannot be performed
-directly on the \texttt{x3p} files. We first extracted representative
-profiles from the scans. A profile is a sequence of surface-height
-values along a user-drawn line. After processing, each profile became a
-signal representing one scan and was used for subsequent comparisons.
-Using \texttt{x3ptools::x3p\_extract\_profile}, we manually drew one
-line across each scan, perpendicular to the dominant striation
-direction, and exported the surface-height values and extraction
-coordinates. An example profile line is shown in dark blue in
+Based on the \texttt{x3p} files, representative profiles from the scans
+were extracted. A profile is a sequence of surface-height values along a
+user-drawn line. After processing, each profile became a signal
+representing one scan and was used for subsequent comparisons. Using
+\texttt{x3ptools::x3p\_extract\_profile}, we manually drew one line
+across each scan, perpendicular to the dominant striation direction, and
+exported the surface-height values and extraction coordinates. An
+example profile line is shown in dark blue in
 Figure~\ref{fig-T1AW-LI-R1-profiles-signals} (a), and the resulting
 profile function is plotted in
 Figure~\ref{fig-T1AW-LI-R1-profiles-signals} (b).
