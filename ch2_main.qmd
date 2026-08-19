@@ -183,16 +183,16 @@ Pure aluminum has a Brinell hardness of approximately 15 HB, which places it bet
 
 The blades for each of the five wire cutters were labeled A, B, C, and D (see @fig-cut-tent-scan (a)).
 B opposes A; the reverse sides are labeled D for A and C for B.
-\agentreview{Confirm the reverse-side mapping. This sentence states that D is the reverse of A and C is the reverse of B, whereas the pre-merge manuscript stated that C is the reverse of A and D is the reverse of B.}
 Three locations on each blade were marked (inner, middle, and outer), as shown in @fig-cut-tent-scan (a).
-\agentrevision{Each four-inch wire segment was cut in half, creating two cut sides, AB and CD.}
-\agentrevision{Each side was then separated into two pieces, yielding cut surfaces A and B from side AB and C and D from side CD.}
-The resulting four cut surfaces are shown in @fig-cut-tent-scan (c).
+Each four-inch wire segment was cut in half, creating two cut sides, AB and CD.
+Note that the cut surface of the wire is not flat, but reveals under the microscope a roof-like structure with the ridge separating the markings from each blade, see @fig-cut-microscope.
+Each roof side was then scanned twice separately, yielding scans A and B from cut side AB and C and D from cut side CD.
+An example of the four scans resulting from cut 1 by tool 1 are shown in @fig-cut-tent-scan (c).
 
 We scanned the cut surfaces at 20$\times$ magnification using a Sensofar confocal microscope, shown in @fig-cut-tent-scan (b).
-The scans were exported in \texttt{x3p} format (ISO 25178-72:2017/Amd 1:2020) with a lateral sampling interval of 0.645 $\times$ 0.645 micrometers per pixel and a vertical resolution of 0.1 micrometer.
+The scans were exported in \texttt{x3p} format (ISO 25178-72:2017/Amd 1:2020) with a lateral resolution of 0.645 $\times$ 0.645 micrometers per pixel and a vertical resolution of 0.1 micrometer.
 
-The complete design therefore yielded 5 tools $\times$ 3 locations $\times$ 2 replicates $\times$ 4 cut surfaces = 120 scans.
+The complete design therefore consists of 5 tools $\times$ 3 locations $\times$ 2 replicates $\times$ 4 cut surfaces = 120 scans.
 
 :::: {#fig-cut-tent-scan layout="[29, -2, 69]" fig-pos="hbt"}
 
@@ -216,7 +216,7 @@ The complete design therefore yielded 5 tools $\times$ 3 locations $\times$ 2 re
 Wire-cut sampling and scanning workflow.
 \(a) A Kaiweets KWS-105 wire cutter with inner, middle, and outer locations marked.
 (b) A confocal microscope used to scan wire-cut surfaces.
-(c) Four cut-surface samples labeled A, B, C, and D after separation.
+(c) Four scans of cutting marks labeled corresponding to cutting edges A, B, C, and D.
 
 ::::
 
