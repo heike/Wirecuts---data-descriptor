@@ -313,7 +313,7 @@ Using `x3ptools::x3p_extract_profile`, we manually drew one line across each sca
 One profile for each scan is included as a csv file in the repository using the same naming convention as the scans, with the precursor of `profiles-`. 
 \hh{More details on the exact format of these files are provided below.}
 
-\hh{Code to create signals from profiles is available in code/4-create\_signals\_from_profiles.R}
+\hh{Code to create signals from profiles is available in \\ code/4-create\_signals\_from\_profiles.R}
 
 
 <!-- ## Filtered signals {#sec-filtered-signals .unnumbered} -->
