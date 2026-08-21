@@ -202,8 +202,8 @@ Availability identifies the custom processing and validation code. The
 dataset and workflow may support future quantitative research on
 wire-cut evidence.
 
-\section*{Methods}\label{sec-methods}
-\addcontentsline{toc}{section}{Methods}
+\section*{Data Acquisition and Processing}\label{sec-methods}
+\addcontentsline{toc}{section}{Data Acquisition and Processing}
 
 We used five Kaiweets KWS-105 multipurpose tools with 0.5-inch
 carbon-steel cutting blades to cut 16-gauge anodized pure-aluminum wire.
@@ -215,8 +215,8 @@ handling. Pure aluminum has a Brinell hardness of approximately 15 HB,
 which places it between lead (approximately 5 HB) and copper
 (approximately 35 HB).
 
-\subsection*{Cutting wires}\label{sec-cutting-wires}
-\addcontentsline{toc}{subsection}{Cutting wires}
+\subsection*{Scan acquisition}\label{sec-cutting-wires}
+\addcontentsline{toc}{subsection}{Scan acquisition}
 
 The blades for each of the five wire cutters were labeled A, B, C, and D
 (see Figure~\ref{fig-cut-tent-scan} (a)). B opposes A; the reverse sides
@@ -310,20 +310,16 @@ To minimize errors during data collection, two team members cut and
 labeled the wire pieces together. One team member then scanned the wire
 cuts and assigned names to the scans as described.
 
-\subsection*{Extract profiles}\label{sec-extract-profiles}
-\addcontentsline{toc}{subsection}{Extract profiles}
+\subsection*{Signal extraction}\label{sec-extract-profiles}
+\addcontentsline{toc}{subsection}{Signal extraction}
 
-Based on the \texttt{x3p} files, representative profiles from the scans
-were extracted. A profile is a sequence of surface-height values along a
-user-drawn line. After processing, each profile became a signal
-representing one scan and was used for subsequent comparisons. Using
-\texttt{x3ptools::x3p\_extract\_profile}, we manually drew one line
-across each scan, perpendicular to the dominant striation direction, and
-exported the surface-height values and extraction coordinates. An
-example profile line is shown in dark blue in
-Figure~\ref{fig-T1AW-LI-R1-profiles-signals} (a), and the resulting
-profile function is plotted in
-Figure~\ref{fig-T1AW-LI-R1-profiles-signals} (b).
+Signals are extracted from each surface scan using a two-step procedure.
+First, a representative profile is identified along a line across the
+surface perpendicular to the dominant striation direction. This line is
+chosen manually such that it avoids artifacts from the scanning
+(e.g.~holes) and cutting (e.g.~rips from rolling wires). Along this line
+surface values are assigned at equi-spaced positions corresponding to
+the observed value at the closest position on the surface grid.
 
 \begin{figure}[hbt]
 
@@ -370,47 +366,52 @@ striations. (b) The profile function extracted along the line in (a).
 
 \end{figure}%
 
-\subsection*{Filtered signals}\label{sec-filtered-signals}
-\addcontentsline{toc}{subsection}{Filtered signals}
+In a second step, we extract the scan's signal by removing trends and
+outliers from the surface values of the profile with the help of two
+LOWESS filters with bandwidths of \(400 \mu m\) and \(40 \mu m\),
+respectively \citep{clevelandLocalRegressionModels1992}. All smoothers
+are susceptible to boundary issues, particularly, when outliers are
+present. Steep changes at the end of a signal have a high potential to
+attract another signal causing mis-alignments. To avoid the potential of
+artificial `hooks' at either end of a signal, we use a two-sample
+\(t\)-test over the surface values for the two outermost intervals of
+2.5\% along the horizontal axis, ie we create summary statistics (sample
+size, mean, and standard deviation) of the signals within the intervals
+\([0, 2.5)\%, [2.5, 5)\%\) and \((95, 97.5]\%, (97.5, 100]\%\) and only
+keep the signal of the outermost intervals if the corresponding
+\(t\)-statistics stays above a \(p\)-value of 0.01, ie does not indicate
+a significant shift.
 
-After extracting each profile, we applied a two-span smoothing
-procedure, with span parameters of 400 and 40 controlling removal of the
-broad trend and smoothing of local variation, respectively
-\citep{clevelandLocalRegressionModels1992}. We then checked for extreme
-deviations at the ends of the signal. The horizontal coordinates were
-divided at the 0\%, 2.5\%, 5\%, 95\%, 97.5\%, and 100\% quantiles. At
-each end, a two-sample t-test compared the outermost 2.5\% interval with
-the adjacent interval. When the boundary two-sample t-test produced a
-p-value below 0.01, values in the outermost interval were removed. The
-resulting smoothed signal was used for subsequent comparisons.
-Figure~\ref{fig-T1AW-LI-R1-profiles-signals} (c) shows the resulting
-smoothed signal.
+The widths of these intervals correspond to the choice of bandwidths and
+the length of the signal and were determined using cross-validation.
 
-\subsection*{Align signals}\label{sec-align-signals}
-\addcontentsline{toc}{subsection}{Align signals}
+The resulting signals are used for subsequent comparisons with other
+signals.
 
-After extracting signals from different scans, we compared all possible
-signal pairs. For each pair, we calculated the CCF across relative
-shifts and retained the shift with the maximum CCF as the optimal
-alignment. The comparison between T1AW-LI-R1 and T1AW-LI-R2, for
-example, corresponds to a row in Figure~\ref{fig-scans-pair}. The first
-two columns of Figure~\ref{fig-signals-pair-alignment} show the
-extracted signals, and the rightmost column shows their alignment and
-CCF value.
+Figure~\ref{fig-T1AW-LI-R1-profiles-signals} shows a scan on the left
+(a) with the location of the manually chosen profile line in yellow. The
+corresponding profile and signal are plotted in (b) and (c).
 
-\begin{figure}[hbt]
+One profile for each scan is included in folder \texttt{profiles/} as a
+csv file in the repository using the same naming convention as the
+scans, with the precursor of \texttt{profiles-}. More details on the
+exact format of these files are provided below.
 
-\centering{
+The code to create signals from profiles is available in
+\texttt{code/4-create\_signals\_from\_profiles.R} and a single file
+containing all 120 signals is available as
+\texttt{data-derived/wire-signals.csv.zip}.
 
-\includegraphics[width=5.80208in,height=\textheight,keepaspectratio]{images/scans_pair.png}
+\subsection*{Pairwise alignment of signals}\label{sec-align-signals}
+\addcontentsline{toc}{subsection}{Pairwise alignment of signals}
 
-}
-
-\caption{\label{fig-scans-pair}Same-source replicate scan pairs. Each
-row shows the two replicate scans for one cut surface (A, C, B, or D)
-from tool 1 at the inner blade location.}
-
-\end{figure}%
+Before signals from different scans can be compared, they need to be
+aligned. For each pair of signals, we calculate the value of the
+cross-correlation function (CCF) across relative shifts. We retain the
+shift corresponding to the maximum CCF as the alignment position while
+the maximized cross-correlation function, \(CCF_{max}\), gives a measure
+of the similarity of the signals, with 1 being completely similar (apart
+from linear scaling) and 0 being (statistically) independent.
 
 \begin{figure}[hbt]
 
@@ -422,11 +423,24 @@ from tool 1 at the inner blade location.}
 
 \caption{\label{fig-signals-pair-alignment}Same-source signal alignment.
 Rows correspond to cut surfaces A, C, B, and D. The first two columns
-show signals extracted from the replicate scans in
-Figure~\ref{fig-scans-pair}; the third column overlays the aligned
-signals and reports their CCF values.}
+show signals extracted from scans corresponding to the replicate cuts of
+tool 1 at location I; the third column overlays the aligned signals and
+reports their CCF values.}
 
 \end{figure}%
+
+Figure~\ref{fig-signals-pair-alignment} shows all signals corresponding
+to cuts 1 and 2 with tool 1 closest to the pivot area (inner location).
+Each of the four edges correspond to one row in the figure. The lines in
+the first two columns correspond to the extracted signals for cuts 1 and
+2, respectively. The third column shows the two signals aligned in the
+location of the maximal CCF. The cross-correlation value for each pair
+is included as part of the title of the chart.
+
+The code to align signals pairwise is available in
+\texttt{code/6-align-pairwise.R} and
+\texttt{data-derived/wire\_pairwise\_ccf.csv} is the file with the CCF
+similarity scores of all pairwise aligned signals.
 
 \section*{Data Records}\label{sec-data-records}
 \addcontentsline{toc}{section}{Data Records}
@@ -452,26 +466,26 @@ Data type & Description & Section \\
 \midrule\addlinespace[2.5pt]
 \multicolumn{3}{>{\raggedright\arraybackslash}m{0.97\linewidth}}{\parbox{\linewidth}{Raw data}} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
-\texttt{scans/} & folder containing 120 topographic 3D scans corresponding to 30 aluminum wire cuts (\texttt{x3p} format) & Cutting wires \\ 
-\texttt{meta.csv} & metadata for each cut, including tool, blade, and location information (CSV format) & Cutting wires \\ 
+\texttt{scans/} & folder containing 120 topographic 3D scans corresponding to 30 aluminum wire cuts (\texttt{x3p} format) & Scan acquisition \\ 
+\texttt{meta.csv} & metadata for each cut, including tool, blade, and location information (CSV format) & Scan acquisition \\ 
 \midrule\addlinespace[2.5pt]
 \multicolumn{3}{>{\raggedright\arraybackslash}m{0.97\linewidth}}{\parbox{\linewidth}{Manual derivatives}} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
-\texttt{profiles/} & folder containing manually extracted profiles (CSV format) & Extract profiles \\ 
+\texttt{profiles/} & folder containing manually extracted profiles (CSV format) & Signal Extraction \\ 
 \midrule\addlinespace[2.5pt]
 \multicolumn{3}{>{\raggedright\arraybackslash}m{0.97\linewidth}}{\parbox{\linewidth}{Computational derivatives in the folder 'data-derived/'}} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
-\texttt{wire-signals} & signals processed from the corresponding profiles (zipped CSV format) & Filtered signals \\ 
-\texttt{wire\_pairwise\_ccf} & CCF values for all pairwise aligned signals (zipped CSV format) & Align signals \\ 
+\texttt{wire-signals} & signals processed from the corresponding profiles (zipped CSV format) & Signal Extraction \\ 
+\texttt{wire\_pairwise\_ccf} & CCF values for all pairwise aligned signals (zipped CSV format) & Signal Alignment \\ 
 \midrule\addlinespace[2.5pt]
 \multicolumn{3}{>{\raggedright\arraybackslash}m{0.97\linewidth}}{\parbox{\linewidth}{Image files}} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
-\texttt{pngs/} & folder containing images of 3D wire-cut scans (PNG format) & Cutting wires \\ 
-\texttt{profile-images/} & folder containing images of profiles extracted from wire cuts (PNG format) & Extract profiles \\ 
+\texttt{pngs/} & folder containing images of 3D wire-cut scans (PNG format) & Scan acquisition \\ 
+\texttt{profile-images/} & folder containing images of profiles extracted from wire cuts (PNG format) & Signal Extraction \\ 
 \midrule\addlinespace[2.5pt]
 \multicolumn{3}{>{\raggedright\arraybackslash}m{0.97\linewidth}}{\parbox{\linewidth}{Visual inventory in the folder 'assessment/analysis-manual/'}} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
-\texttt{processing-wires} & display of pairwise aligned signals from the same sources (HTML format) & Align signals \\ 
+\texttt{processing-wires} & display of pairwise aligned signals from the same sources (HTML format) & Signal Alignment \\ 
 \midrule\addlinespace[2.5pt]
 \multicolumn{3}{>{\raggedright\arraybackslash}m{0.97\linewidth}}{\parbox{\linewidth}{Technical validation}} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
@@ -806,7 +820,8 @@ Code & Description & Section \\
 \end{table}%
 
 The provided code reproduces the processing, comparison, validation, and
-visualization outputs described in Methods and Technical Validation.
+visualization outputs described in Data Acquisition and Processing and
+Technical Validation.
 \agentrevision{The workflow was run using R [version] and \texttt{x3ptools} [version].
 Versions of additional R packages are recorded in [environment file or repository documentation path].}
 \agentformat{Replace the R, \texttt{x3ptools}, and environment-record placeholders after checking the analysis environment.}
