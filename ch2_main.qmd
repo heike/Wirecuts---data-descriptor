@@ -119,6 +119,10 @@ for (pt in ignore) {
 rbbt::bbt_write_bib(keys = keys, path = "references.bib", overwrite = TRUE, library_id = rbbt::bbt_library_id("CSAFE"), translator = "bibtex")
 ```
 
+\agentformat{Remove the table of contents before preparing the clean Scientific Data submission. The journal's Data Descriptor outline does not include a table of contents; this one is included only as an internal review aid.}
+
+\tableofcontents
+
 
 # Background \& Summary {#sec-background-summary .unnumbered}
 
@@ -171,9 +175,9 @@ The dataset and workflow may support future quantitative research on wire-cut ev
 
 # Data Acquisition and Processing {#sec-methods .unnumbered}
 
-We used five Kaiweets KWS-105 multipurpose tools with 0.5-inch carbon-steel cutting blades to cut 16-gauge anodized pure-aluminum wire.
+Five Kaiweets KWS-105 multipurpose tools with 0.5-inch carbon-steel cutting blades were used to cut 16-gauge anodized pure-aluminum wire.
 
-While aluminum is not commonly used for electric wiring because of its poor conductivity, we chose aluminum for its nontoxicity and suitability for receiving cutting marks and retaining them during subsequent handling.
+While aluminum is not commonly used for electric wiring because of its poor conductivity, it was selected for its nontoxicity and suitability for receiving cutting marks and retaining them during subsequent handling.
 Pure aluminum has a Brinell hardness of approximately 15 HB, which places it between lead (approximately 5 HB) and copper (approximately 35 HB).
 
 
@@ -181,15 +185,15 @@ Pure aluminum has a Brinell hardness of approximately 15 HB, which places it bet
 
 ## Scan acquisition {#sec-cutting-wires .unnumbered}
 
-The blades for each of the five wire cutters were labeled A, B, C, and D (see @fig-cut-tent-scan (a)).
+The blades of each of the five wire cutters were labeled A, B, C, and D (see @fig-cut-tent-scan (a)).
 B opposes A; the reverse sides are labeled D for A and C for B.
 Three locations on each blade were marked (inner, middle, and outer), as shown in @fig-cut-tent-scan (a).
 Each four-inch wire segment was cut in half, creating two cut sides, AB and CD.
-Note that the cut surface of the wire is not flat, but reveals under the microscope a roof-like structure with the ridge separating the markings from each blade, see @fig-cut-microscope.
-Each roof side was then scanned twice separately, yielding scans A and B from cut side AB and C and D from cut side CD.
-An example of the four scans resulting from cut 1 by tool 1 are shown in @fig-cut-tent-scan (c).
+The cut surface of the wire is not flat; under the microscope, it reveals a roof-like structure with a ridge separating the markings made by each blade (see @fig-cut-microscope).
+The two roof sides of each cut surface were scanned separately, yielding scans A and B from cut side AB and scans C and D from cut side CD.
+As an example, the four scans resulting from cut 1 by tool 1 are shown in @fig-cut-tent-scan (c).
 
-We scanned the cut surfaces at 20$\times$ magnification using a Sensofar confocal microscope, shown in @fig-cut-tent-scan (b).
+The cut surfaces were scanned at 20$\times$ magnification using a Sensofar confocal microscope, shown in @fig-cut-tent-scan (b).
 The scans were exported in \texttt{x3p} format (ISO 25178-72:2017/Amd 1:2020) with a lateral resolution of 0.645 $\times$ 0.645 micrometers per pixel and a vertical resolution of 0.1 micrometer.
 
 The complete design therefore consists of 5 tools $\times$ 3 locations $\times$ 2 replicates $\times$ 4 cut surfaces = 120 scans.
@@ -216,7 +220,7 @@ The complete design therefore consists of 5 tools $\times$ 3 locations $\times$ 
 Wire-cut sampling and scanning workflow.
 \(a) A Kaiweets KWS-105 wire cutter with inner, middle, and outer locations marked.
 (b) A confocal microscope used to scan wire-cut surfaces.
-(c) Four scans of cutting marks labeled corresponding to cutting edges A, B, C, and D.
+(c) Four scans of cutting marks labeled according to the corresponding cutting edges A, B, C, and D.
 
 ::::
 
@@ -236,14 +240,16 @@ T__W-L_-R_
 For example, T1AW-LI-R1 denotes the first replicate of a piece cut with edge A of tool 1 at the inner location.
 
 To minimize errors during data collection, two team members cut and labeled the wire pieces together.
-One team member then scanned the wire cuts and assigned names to the scans as described.
+One team member scanned the wire cuts and assigned names to the scans as described.
 
 
 
 ## Signal extraction {#sec-extract-profiles .unnumbered}
 
-Signals are extracted from each surface scan using a two-step procedure. First, a representative profile is identified along a line across the surface perpendicular to the dominant striation direction. This line is chosen manually such that it avoids artifacts from the scanning (e.g. holes) and cutting (e.g. rips from rolling wires).
-Along this line surface values are assigned at equi-spaced positions corresponding to the observed value at the closest position on the surface grid.
+Signals were extracted from each surface scan using a two-step procedure.
+First, a representative profile was identified along a line across the surface perpendicular to the dominant striation direction.
+This line was chosen manually to avoid scanning artifacts (e.g., holes) and cutting artifacts (e.g., rips caused by rolling the wire).
+Along this line, surface values were assigned at equally spaced positions using the observed surface value at the nearest position on the surface grid.
 
 <!-- (see sketch at images/extract-profile-line.png).  -->
 
@@ -275,39 +281,24 @@ Profile and signal extraction.
 
 ::::
 
-
 In a second step, we extract the scan's signal by removing trends and outliers from the surface values of the profile with the help of two LOWESS filters with bandwidths of $400 \mu m$ and $40 \mu m$, respectively [@clevelandLocalRegressionModels1992].
-All smoothers are susceptible to boundary issues, particularly, when outliers are present.
-Steep changes at the end of a signal have a high potential to attract another signal causing mis-alignments.
-To avoid the potential of artificial 'hooks' at either end of a signal, we use a two-sample $t$-test over the surface values for the two outermost intervals of 2.5\% along the horizontal axis, ie we create summary statistics (sample size, mean, and standard deviation) of the signals within the intervals $[0, 2.5)\%, [2.5, 5)\%$ and $(95, 97.5]\%, (97.5, 100]\%$ and only keep the signal of the outermost  intervals if the corresponding $t$-statistics stays above a $p$-value of 0.01, ie does not indicate a significant shift.
+All smoothers are susceptible to boundary issues, particularly when outliers are present.
+Steep changes at the end of a signal have a high potential to attract another signal during alignment, causing misalignments.
+To avoid potential artificial ``hooks'' at either end of a signal, two-sample $t$-tests were applied to the surface values in the outermost 2.5\% intervals along the horizontal axis.
+Specifically, the summary statistics (sample size, mean, and standard deviation) of the signal values within the intervals $[0, 2.5)\%$, $[2.5, 5)\%$, $(95, 97.5]\%$, and $(97.5, 100]\%$ were calculated.
+At each end, the test compared the outermost 2.5\% interval with the adjacent interval.
+The signal values in the outermost interval were retained only when the corresponding $p$-value was above 0.01, indicating no significant shift.
 
-The widths of these intervals correspond to the choice of bandwidths and the length of the signal and were determined using cross-validation. 
+>>>>>>> 0faaa91f091132480283ae9bd3cdaea62529efc7
+
+The widths of these intervals correspond to the choice of bandwidths and the length of the signal.
+The interval widths were determined using cross-validation.
 
 <!-- the diameter of a 16-gauge wire corresponds to 1.2 $mm$ or 1200 $\mu m$. At a lateral resolution of 0.645 $\mu m$ per pixel, 2.5% of the signal correspond to a length of about 20-30 $\mu m$. Since this is well within the number of values used for the outlier filter, trend removal and outlier filter can create artificial hooks.    -->
-
-
-
-<!-- To prevent subsequent issues with extreme deviations at either end of the signal, we -->
-<!-- created summaries (sample size, mean, and standard deviation) of the signals for the two outermost intervals of 2.5\% along the horizontal axis.  -->
-<!-- We then checked for extreme deviations at the ends of the signal. -->
-<!-- The horizontal coordinates were divided at the 0\%, 2.5\%, 5\%, 95\%, 97.5\%, and 100\% quantiles. -->
-<!-- At each end, a two-sample t-test compared the outermost 2.5\% interval with the adjacent interval. -->
-<!-- When the boundary two-sample t-test produced a p-value below 0.01, values in the outermost interval were removed. -->
 
 The resulting signals are used for subsequent comparisons with other signals.
 
 @fig-T1AW-LI-R1-profiles-signals shows a scan on the left (a) with the location of the manually chosen profile line in yellow. The corresponding profile and signal are plotted in (b) and (c).
-
-<!-- The example profile line is shown in dark blue in @fig-T1AW-LI-R1-profiles-signals (a), and the resulting profile function is plotted in @fig-T1AW-LI-R1-profiles-signals (b). -->
-
-<!-- @fig-T1AW-LI-R1-profiles-signals (c) shows the resulting smoothed signal. -->
-
-
-
-<!-- Based on the \texttt{x3p} files, representative profiles from the scans were extracted. -->
-<!-- A profile is a sequence of surface-height values along a user-drawn line. -->
-<!-- After processing, each profile became a signal representing one scan and was used for subsequent comparisons. -->
-
 
 <!-- Using `x3ptools::x3p_extract_profile`, we manually drew one line across each scan, perpendicular to the dominant striation direction, and exported the surface-height values and extraction coordinates. -->
 
@@ -316,7 +307,6 @@ More details on the exact format of these files are provided below.
 
 The code to create signals from profiles is available in `code/4-create_signals_from_profiles.R` and a single file containing all 120 signals is 
 available as `data-derived/wire-signals.csv.zip`.
-
 
 <!-- ## Filtered signals {#sec-filtered-signals .unnumbered} -->
 
@@ -466,22 +456,22 @@ knitr::include_graphics("images/ccf_density.png")
 # Technical Validation {#sec-technical-validation .unnumbered}
 
 
-We conducted technical validation in two areas: (1) signal processing and alignment and (2) variability assessment.
+Technical validation was conducted in two areas: (1) signal processing and alignment and (2) variability assessment.
 
 
-We validated scan processing and signal alignment as follows.
-We expected high CCF values between signals from the same source and low values between signals from different sources.
-@fig-signals-pair-alignment, shown earlier in Align signals, meets our expectation for same-source signals.
-As an example of a different-source comparison, we selected T1AW-LI-R1 and T2AW-LI-R1.
+Scan processing and signal alignment were validated as follows.
+High CCF values were expected between signals from the same source and low values between signals from different sources.
+@fig-signals-pair-alignment, shown earlier in Align signals, meets the expected pattern for same-source signals.
+As an example of a different-source comparison, T1AW-LI-R1 and T2AW-LI-R1 were selected.
 @fig-T1AW-LI-R1-T2AW-LI-R1-alignment (a) and (b) show the selected scans.
 Their signal alignment, shown in @fig-T1AW-LI-R1-T2AW-LI-R1-alignment (c), has a CCF value of 0.2, which is as low as expected.
 For the following summaries, edges A and C were categorized as long, edges B and D as short, and comparisons pairing one long edge with one short edge as mixed.
-We also summarized the resulting CCFs for all pairwise comparisons using boxplots and receiver operating characteristic (ROC) curves.
+The resulting CCFs for all pairwise comparisons were also summarized using boxplots and receiver operating characteristic (ROC) curves.
 @fig-ccf-boxplot and @fig-ccf-ROC show these summaries.
 The ROC curves plot sensitivity, or the true positive rate, against the false positive rate (FPR; 1 - specificity).
 The curves are close to the upper-left corner, indicating strong classification performance.
 For the combined comparison set, a threshold of 0.589 controls the FPR below 0.05 with a false negative rate (FNR) of 0, whereas a threshold of 0.658 controls the FPR below 0.01 with an FNR of 0.02.
-These results are consistent with our expectations and validate our pipeline for processing and aligning signals.
+These results are consistent with the expected pattern and validate the pipeline for processing and aligning signals.
 
 
 ::: {#fig-T1AW-LI-R1-T2AW-LI-R1-alignment layout="[[1, 1], [-0.5, 9, 0.5]]" fig-pos="hbt"}
@@ -526,31 +516,31 @@ knitr::include_graphics("images/ccf_ROC.png")
 
 
 The second validation assessed variability in the pipeline across replicates, stagings, and acquisitions.
-We selected scans from tool 2 at the middle location for this assessment.
+Scans from tool 2 at the middle location were selected for this assessment.
 Replicate variability was assessed using two different cuts at the same edge and position.
 The comparison in @fig-signals-pair-alignment in Align signals illustrates this assessment.
-To assess staging variability, we rescanned replicate 2 under the confocal microscope and introduced the staging label S into the naming protocol.
+To assess staging variability, replicate 2 was rescanned under the confocal microscope, and the staging label S was introduced into the naming protocol.
 The S1 designation is omitted from labels, so R2 is equivalent to R2-S1.
-For all four edges of tool 2 at the middle location, we created three stagings (R2, R2-S2, and R2-S3), computed pairwise CCFs between stagings, and calculated their mean and standard deviation (SD).
+For all four edges of tool 2 at the middle location, three stagings (R2, R2-S2, and R2-S3) were created, pairwise CCFs between stagings were computed, and their mean and standard deviation (SD) were calculated.
 
 
-Within each staging, we further examined the effect of different acquisitions by keeping the samples on the confocal microscope while varying the lighting conditions.
-We introduced A as the acquisition label.
-For edge A at staging 3, we performed four acquisitions and omitted the A1 designation from the first acquisition label.
+Within each staging, the effect of different acquisitions was further examined by keeping the samples on the confocal microscope while varying the lighting conditions.
+A was introduced as the acquisition label.
+For edge A at staging 3, four acquisitions were performed, and the A1 designation was omitted from the first acquisition label.
 Therefore, R2-S3 is equivalent to R2-S3-A1.
-For the other three edges, we conducted two acquisitions at staging 3.
+For the other three edges, two acquisitions were conducted at staging 3.
 These acquisitions are denoted by R2-S3 and R2-S3-A2.
-Within staging 3, we computed pairwise CCFs between acquisitions and calculated their mean and standard deviation.
+Within staging 3, pairwise CCFs between acquisitions were computed, and their mean and standard deviation were calculated.
 Variability between distinct stagings was assessed separately through the staging comparisons described above.
 
 
-With this setup, we expected CCF values to become more consistent from replicate to staging to acquisition as the scanning conditions became progressively more stable.
+With this setup, CCF values were expected to become more consistent from replicate to staging to acquisition as the scanning conditions became progressively more stable.
 Consequently, variability was expected to decrease along this sequence.
-We also compared replicates, stagings, and acquisitions, expecting smaller differences between acquisitions and stagings than between stagings and replicates.
-We visualized the results as scatter plots.
+Replicates, stagings, and acquisitions were also compared, with smaller differences expected between acquisitions and stagings than between stagings and replicates.
+The results were visualized as scatter plots.
 @fig-rep_staging_acquisition shows the scatter plots and intervals extending two standard deviations above and below the mean.
 Higher orange mean lines indicate an increase in the mean CCF, and narrower shaded intervals indicate a decrease in the standard deviation.
-The detailed numerical results, including means, standard deviations, and differences between means, are shown in @tbl-CCF-replicate-staging-acquisition and confirm our expectations.
+The detailed numerical results, including means, standard deviations, and differences between means, are shown in @tbl-CCF-replicate-staging-acquisition and confirm the expected pattern.
 
 
 ```{r}
@@ -600,8 +590,8 @@ D & 0.797 & 0.011 & 0.966 & 0.017 & 0.169 & 0.986 & --- & 0.020 \\
 :::
 
 
-Our variability assessment does not include variation in CCF values caused by differences in the manual extraction of profiles from scans.
-To support reproduction of the results reported here, we have included the extraction locations and values for each scan.
+The variability assessment does not include variation in CCF values caused by differences in the manual extraction of profiles from scans.
+To support reproduction of the results reported here, the extraction locations and values for each scan have been included.
 
 
 # Usage Notes {#sec-usage-notes .unnumbered}
@@ -624,7 +614,7 @@ Because each supplied signal is based on a manually selected profile, users asse
 # Code Availability {#sec-code-availability .unnumbered}
 
 
-We used custom R code to inspect raw scans, extract profiles, derive signals, align signals, and generate the validation outputs.
+Custom R code was used to inspect raw scans, extract profiles, derive signals, align signals, and generate the validation outputs.
 The code is available in the \texttt{assessment/code} folder at \url{https://github.com/heike/wirecuts-data}.
 \agentformat{For permanent access, archive the exact code release in a DOI-providing repository and cite it if feasible; Scientific Data recommends combining GitHub with a DOI archive.}
 The files and their roles are described in @tbl-code-overview.
