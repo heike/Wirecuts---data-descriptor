@@ -119,6 +119,10 @@ for (pt in ignore) {
 rbbt::bbt_write_bib(keys = keys, path = "references.bib", overwrite = TRUE, library_id = rbbt::bbt_library_id("CSAFE"), translator = "bibtex")
 ```
 
+\agentformat{Remove the table of contents before preparing the clean Scientific Data submission. The journal's Data Descriptor outline does not include a table of contents; this one is included only as an internal review aid.}
+
+\tableofcontents
+
 
 # Background \& Summary {#sec-background-summary .unnumbered}
 
@@ -181,13 +185,13 @@ Pure aluminum has a Brinell hardness of approximately 15 HB, which places it bet
 
 ## Scan acquisition {#sec-cutting-wires .unnumbered}
 
-The blades for each of the five wire cutters were labeled A, B, C, and D (see @fig-cut-tent-scan (a)).
+The blades of each of the five wire cutters were labeled A, B, C, and D (see @fig-cut-tent-scan (a)).
 B opposes A; the reverse sides are labeled D for A and C for B.
 Three locations on each blade were marked (inner, middle, and outer), as shown in @fig-cut-tent-scan (a).
 Each four-inch wire segment was cut in half, creating two cut sides, AB and CD.
-Note that the cut surface of the wire is not flat, but reveals under the microscope a roof-like structure with the ridge separating the markings from each blade, see @fig-cut-microscope.
-Each roof side was then scanned twice separately, yielding scans A and B from cut side AB and C and D from cut side CD.
-An example of the four scans resulting from cut 1 by tool 1 are shown in @fig-cut-tent-scan (c).
+The cut surface of the wire is not flat; under the microscope, it reveals a roof-like structure with a ridge separating the markings made by each blade (see @fig-cut-microscope).
+The two roof sides of each cut surface were then scanned separately, yielding scans A and B from cut side AB and scans C and D from cut side CD.
+As an example, the four scans resulting from cut 1 by tool 1 are shown in @fig-cut-tent-scan (c).
 
 We scanned the cut surfaces at 20$\times$ magnification using a Sensofar confocal microscope, shown in @fig-cut-tent-scan (b).
 The scans were exported in \texttt{x3p} format (ISO 25178-72:2017/Amd 1:2020) with a lateral resolution of 0.645 $\times$ 0.645 micrometers per pixel and a vertical resolution of 0.1 micrometer.
@@ -216,7 +220,7 @@ The complete design therefore consists of 5 tools $\times$ 3 locations $\times$ 
 Wire-cut sampling and scanning workflow.
 \(a) A Kaiweets KWS-105 wire cutter with inner, middle, and outer locations marked.
 (b) A confocal microscope used to scan wire-cut surfaces.
-(c) Four scans of cutting marks labeled corresponding to cutting edges A, B, C, and D.
+(c) Four scans of cutting marks labeled according to the corresponding cutting edges A, B, C, and D.
 
 ::::
 
@@ -242,8 +246,10 @@ One team member then scanned the wire cuts and assigned names to the scans as de
 
 ## Signal extraction {#sec-extract-profiles .unnumbered}
 
-Signals are extracted from each surface scan using a two-step procedure. First, a representative profile is identified along a line across the surface perpendicular to the dominant striation direction. This line is chosen manually such that it avoids artifacts from the scanning (e.g. holes) and cutting (e.g. rips from rolling wires).
-Along this line surface values are assigned at equi-spaced positions corresponding to the observed value at the closest position on the surface grid.
+Signals were extracted from each surface scan using a two-step procedure.
+First, a representative profile was identified along a line across the surface perpendicular to the dominant striation direction.
+This line was chosen manually to avoid scanning artifacts (e.g., holes) and cutting artifacts (e.g., rips caused by rolling the wire).
+Along this line, surface values were assigned at equally spaced positions using the observed surface value at the nearest position on the surface grid.
 
 <!-- (see sketch at images/extract-profile-line.png).  -->
 
@@ -276,12 +282,16 @@ Profile and signal extraction.
 ::::
 
 
-In a second step, we extract the scan's signal by removing trends and outliers from the surface values of the profile with the help of two LOWESS filters with bandwidths of 400 $\mu m$ and 40 $\mu m$, respectively [@clevelandLocalRegressionModels1992].
-All smoothers are susceptible to boundary issues, particularly, when outliers are present.
-Steep changes at the end of a signal have a high potential to attract another signal causing mis-alignments.
-To avoid the potential of artificial 'hooks' at either end of a signal, we use a two-sample $t$-test over the surface values for the two outermost intervals of 2.5\% along the horizontal axis, ie we create summary statistics (sample size, mean, and standard deviation) of the signals within the intervals $[0, 2.5)%, [2.5, 5)%$ and $(95, 97.5]%, (97.5, 100]%$ and only keep the signal of the outermost  intervals if the corresponding $t$-statistics stays above a $p$-value of 0.01, ie does not indicate a significant shift.
+In the second step, we extracted each scan's signal by removing trends and outliers from the profile's surface values using two LOWESS filters with bandwidths of 400 $\mu m$ and 40 $\mu m$, respectively [@clevelandLocalRegressionModels1992].
+All smoothers are susceptible to boundary issues, particularly when outliers are present.
+Steep changes at the end of a signal have a high potential to attract another signal during alignment, causing misalignments.
+To avoid potential artificial ``hooks'' at either end of a signal, we used two-sample $t$-tests on the surface values in the outermost 2.5\% intervals along the horizontal axis.
+Specifically, we calculated the summary statistics (sample size, mean, and standard deviation) of the signal values within the intervals $[0, 2.5)\%$, $[2.5, 5)\%$, $(95, 97.5]\%$, and $(97.5, 100]\%$.
+At each end, the test compared the outermost 2.5\% interval with the adjacent interval.
+We retained the signal values in the outermost interval only when the corresponding $p$-value was above 0.01, indicating no significant shift.
 
-The widths of these intervals correspond to the choice of bandwidths and the length of the signal and were determined using cross-validation. 
+The widths of these intervals correspond to the choice of bandwidths and the length of the signal.
+We determined the interval widths using cross-validation.
 
 <!-- the diameter of a 16-gauge wire corresponds to 1.2 $mm$ or 1200 $\mu m$. At a lateral resolution of 0.645 $\mu m$ per pixel, 2.5% of the signal correspond to a length of about 20-30 $\mu m$. Since this is well within the number of values used for the outlier filter, trend removal and outlier filter can create artificial hooks.    -->
 
@@ -307,10 +317,11 @@ An example profile line is shown in dark blue in @fig-T1AW-LI-R1-profiles-signal
 <!-- After processing, each profile became a signal representing one scan and was used for subsequent comparisons. -->
 
 \hh{do we have a code file? we should refer to that instead of the functions in R we used}
+\tom{Yes, but I believe I just call the function on that specific x3p/signal file to get this picture.}
 
 Using `x3ptools::x3p_extract_profile`, we manually drew one line across each scan, perpendicular to the dominant striation direction, and exported the surface-height values and extraction coordinates.
 
-One profile for each scan is included as a csv file in the repository using the same naming convention as the scans, with the precursor of `profiles-`. 
+One profile for each scan is included as a CSV file in the repository using the same naming convention as the scans, with the prefix \texttt{profiles-}.
 \hh{More details on the exact format of these files are provided below.}
 
 \hh{Code to create signals from profiles is available in \\ code/4-create\_signals\_from\_profiles.R}
