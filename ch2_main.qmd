@@ -289,8 +289,6 @@ Specifically, the summary statistics (sample size, mean, and standard deviation)
 At each end, the test compared the outermost 2.5\% interval with the adjacent interval.
 The signal values in the outermost interval were retained only when the corresponding $p$-value was above 0.01, indicating no significant shift.
 
->>>>>>> 0faaa91f091132480283ae9bd3cdaea62529efc7
-
 The widths of these intervals correspond to the choice of bandwidths and the length of the signal.
 The interval widths were determined using cross-validation.
 
