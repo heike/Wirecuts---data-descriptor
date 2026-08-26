@@ -320,8 +320,9 @@ available as `data-derived/wire-signals.csv.zip`.
 
 ## Pairwise alignment of signals {#sec-align-signals .unnumbered}
 
-Before signals from different scans can be compared, they need to be aligned. 
-For each pair of signals, we calculate the value of the cross-correlation function (CCF) across relative shifts. We retain the shift corresponding to the maximum CCF as the alignment position while the maximized cross-correlation function, $CCF_{max}$, gives a measure of the similarity of the signals, with 1 being completely similar (apart from linear scaling) and 0 being (statistically) independent.
+Before signals from different scans can be compared, they need to be aligned.
+For each pair of signals, the value of the cross-correlation function (CCF) is calculated across relative shifts.
+The shift corresponding to the maximum CCF is retained as the alignment position, while the maximized cross-correlation function, $CCF_{max}$, gives a measure of the similarity of the signals, with a value of 1 indicating complete similarity (apart from linear scaling) and a value of 0 indicating (statistical) independence.
 
 ```{r}
 #| echo: false
@@ -335,11 +336,13 @@ For each pair of signals, we calculate the value of the cross-correlation functi
 knitr::include_graphics("images/signals_pair_alignment.png")
 ```
 
-@fig-signals-pair-alignment shows all signals corresponding to cuts 1 and 2 with tool 1 closest to the pivot area (inner location). 
-Each of the four edges correspond to one row in the figure. The lines in the first two columns correspond to the extracted signals for cuts 1 and 2, respectively. The third column shows the two signals aligned in the location of the maximal CCF. The cross-correlation value for each pair is included as part of the title of the chart.
+@fig-signals-pair-alignment shows all signals corresponding to cuts 1 and 2 made with tool 1 at the location closest to the pivot area (inner location).
+Each of the four edges corresponds to one row in the figure.
+The lines in the first two columns correspond to the extracted signals for cuts 1 and 2, respectively.
+The third column shows the two signals aligned at the location of the maximal CCF.
+The cross-correlation value for each pair is included as part of the title of the chart.
 
-The code to align signals pairwise is available in
-`code/6-align-pairwise.R` and `data-derived/wire_pairwise_ccf.csv` is the file with the CCF similarity scores of all pairwise aligned signals.
+The code to align signals pairwise is available in `code/6-align-pairwise.R`, and `data-derived/wire_pairwise_ccf.csv` contains the CCF similarity scores of all pairwise aligned signals.
 
 <!-- The first two columns of @fig-signals-pair-alignment show the extracted signals, and the rightmost column shows their alignment and CCF value. -->
 
