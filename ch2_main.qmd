@@ -420,6 +420,71 @@ The dataset is available under the [license] license.}
 \agentformat{Verify Table 1 against the deposited record and replace the documentation-path and data-license placeholders.
 For this non-sensitive original dataset, use CC0 or CC BY rather than a license containing NC or SA restrictions.}
 
+\hh{We need to include a descriptor table for each of the csv files; I started with meta.csv - the formatting is still horrific}
+
+The draft variable descriptions for `meta.csv` are listed in @tbl-meta-structure.
+
+| Variable | Type | Description |
+|:---------|:-----|:------------|
+| x3p_path | text | We need to change those paths to scans/T....x3p |
+| tool | integer | Tool used, one of 1 through 5 |
+| edge | character | Cutting edge, one of A, B, C, or D |
+| cut | delete | HH: cut number - we don't need that column anymore |
+| scan_no | delete | HH: scan number - remove this column |
+| location | text | Cutting location, one of Inner, Middle, or Outer |
+| replicate | integer | Replicate, one of 1 or 2 for the general study, higher values are used for validation |
+| ID | text | identifier for each of the cuts as specified in ... |
+| height | integer | height of the scan in pixels |
+| width | integer | width of the scan in pixels |
+
+: Structure of `meta.csv`. {#tbl-meta-structure tbl-colwidths="20,16,64"}
+
+The draft variable descriptions for the profile CSV files are listed in @tbl-profile-structure.
+
+| Variable | Type | Description |
+|:---------|:-----|:------------|
+| x | numeric | horizontal coordinate in micrometers, multiple of 0.645 |
+| value | numeric | observed surface height |
+| y | numeric | y coordinate, constant, set to zero |
+| src | text | source cut |
+
+: Structure of any of the `profile-....csv` files. {#tbl-profile-structure tbl-colwidths="20,16,64"}
+
+The draft variable descriptions for `wire-signals.csv` are listed in @tbl-signal-structure.
+
+| Variable | Type | Description |
+|:---------|:-----|:------------|
+| extrct_profiles | delete | NA |
+| id | text | identifier |
+| tooledge | text | combination of tool and edge |
+| location | text | cut location, one of Inner, Middle, or Outer |
+| rep | integer | Replicate, either 1 or 2 for the regular study, higher values are used for variance assessment |
+| tool | integer | Cutting tool, between 1 and 5 |
+| edge | character | Cutting edge, one of A, B, C, or D |
+| x | numeric | Horizontal location in micrometers |
+| value | numeric | Observed surface location in micrometers |
+| y | numeric | y location; constant |
+| n | delete | NA |
+| detrend | numeric | Detrended surface location |
+| raw_sig | numeric | HH: hook processed? |
+| sig | numeric | Processed signal value |
+
+: Structure of the `wire-signals.csv` file. {#tbl-signal-structure tbl-colwidths="20,16,64"}
+
+The draft descriptor for `wire_pairwise_ccf.csv` is reproduced in @tbl-pairwise-structure.
+
+| Variable | Description |
+|:---------|:------------|
+| x | horizontal coordinate in micrometers, multiple of 0.645 |
+| value | observed surface height |
+| y | y coordinate, constant, set to zero |
+| src | source cut |
+
+: Structure of the `wire_pairwise_ccf.csv` file. {#tbl-pairwise-structure tbl-colwidths="20,80"}
+
+\agentreview{The recovered draft table for \texttt{wire\_pairwise\_ccf.csv} repeats the profile fields rather than describing pair identifiers and CCF scores.
+Confirm the columns and their definitions for the pairwise-CCF file before replacing these draft rows.}
+
 
 # Data Overview {#sec-data-overview .unnumbered}
 

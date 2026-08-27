@@ -8,6 +8,7 @@
 \usepackage{longtable}
 \usepackage{colortbl}
 \usepackage{array}
+\usepackage{calc} % Width calculations in Pandoc-generated descriptor tables.
 \usepackage{anyfontsize}
 \usepackage{multirow}
 \usepackage{float}
@@ -512,6 +513,172 @@ Data type & Description & Section \\
 The dataset is available under the [license] license.}
 \agentformat{Verify Table 1 against the deposited record and replace the documentation-path and data-license placeholders.
 For this non-sensitive original dataset, use CC0 or CC BY rather than a license containing NC or SA restrictions.}
+
+\hh{We need to include a descriptor table for each of the csv files; I started with meta.csv - the formatting is still horrific}
+
+The draft variable descriptions for \texttt{meta.csv} are listed in
+Table~\ref{tbl-meta-structure}.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.1600}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.6400}}@{}}
+\caption{Structure of
+\protect\texttt{meta.csv}.}\label{tbl-meta-structure}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Variable
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Type
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Variable
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Type
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+x3p\_path & text & We need to change those paths to scans/T\ldots.x3p \\
+tool & integer & Tool used, one of 1 through 5 \\
+edge & character & Cutting edge, one of A, B, C, or D \\
+cut & delete & HH: cut number - we don't need that column anymore \\
+scan\_no & delete & HH: scan number - remove this column \\
+location & text & Cutting location, one of Inner, Middle, or Outer \\
+replicate & integer & Replicate, one of 1 or 2 for the general study,
+higher values are used for validation \\
+ID & text & identifier for each of the cuts as specified in \ldots{} \\
+height & integer & height of the scan in pixels \\
+width & integer & width of the scan in pixels \\
+\end{longtable}
+
+The draft variable descriptions for the profile CSV files are listed in
+Table~\ref{tbl-profile-structure}.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.1600}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.6400}}@{}}
+\caption{Structure of any of the \protect\texttt{profile-....csv}
+files.}\label{tbl-profile-structure}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Variable
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Type
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Variable
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Type
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+x & numeric & horizontal coordinate in micrometers, multiple of 0.645 \\
+value & numeric & observed surface height \\
+y & numeric & y coordinate, constant, set to zero \\
+src & text & source cut \\
+\end{longtable}
+
+The draft variable descriptions for \texttt{wire-signals.csv} are listed
+in Table~\ref{tbl-signal-structure}.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.1600}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.6400}}@{}}
+\caption{Structure of the \protect\texttt{wire-signals.csv}
+file.}\label{tbl-signal-structure}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Variable
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Type
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Variable
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Type
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+extrct\_profiles & delete & NA \\
+id & text & identifier \\
+tooledge & text & combination of tool and edge \\
+location & text & cut location, one of Inner, Middle, or Outer \\
+rep & integer & Replicate, either 1 or 2 for the regular study, higher
+values are used for variance assessment \\
+tool & integer & Cutting tool, between 1 and 5 \\
+edge & character & Cutting edge, one of A, B, C, or D \\
+x & numeric & Horizontal location in micrometers \\
+value & numeric & Observed surface location in micrometers \\
+y & numeric & y location; constant \\
+n & delete & NA \\
+detrend & numeric & Detrended surface location \\
+raw\_sig & numeric & HH: hook processed? \\
+sig & numeric & Processed signal value \\
+\end{longtable}
+
+The draft descriptor for \texttt{wire\_pairwise\_ccf.csv} is reproduced
+in Table~\ref{tbl-pairwise-structure}.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.8000}}@{}}
+\caption{Structure of the \protect\texttt{wire\_pairwise\_ccf.csv}
+file.}\label{tbl-pairwise-structure}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Variable
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Variable
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+x & horizontal coordinate in micrometers, multiple of 0.645 \\
+value & observed surface height \\
+y & y coordinate, constant, set to zero \\
+src & source cut \\
+\end{longtable}
+
+\agentreview{The recovered draft table for \texttt{wire\_pairwise\_ccf.csv} repeats the profile fields rather than describing pair identifiers and CCF scores.
+Confirm the columns and their definitions for the pairwise-CCF file before replacing these draft rows.}
 
 \section*{Data Overview}\label{sec-data-overview}
 \addcontentsline{toc}{section}{Data Overview}
