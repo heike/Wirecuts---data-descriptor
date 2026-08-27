@@ -365,7 +365,7 @@ The code to align signals pairwise is available in `code/6-align-pairwise.R`, an
 # Data Records {#sec-data-records .unnumbered}
 
 
-\agentrevision{The complete dataset, including the \texttt{x3p} scans, metadata, extracted profiles, processed signals, pairwise CCF values, and derived images, is available from Iowa State University DataShare [DATASET CITATION] at \url{https://doi.org/[DOI]}.}
+\agentrevision{The repository record on Iowa State University DataShare [DATASET CITATION] at \url{https://doi.org/[DOI]} contains the \texttt{x3p} scans, metadata, extracted profiles, processed signals, pairwise CCF values, and derived images.}
 \agentformat{Replace the dataset citation and DOI placeholders.
 For first-round review, the destination must permit anonymous download; from the second round onward, it must be a public formal repository record.
 Add the full dataset reference to References.}
