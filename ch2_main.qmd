@@ -156,8 +156,8 @@ Foundational research on forensic toolmarks has also emphasized data collection 
 #| fig-pos: hbt
 #| fig-cap: >-
 #|   Microscopic wire-cut striations.
-#|   Close-up of striations left by a blade on the cut end of a wire.
-knitr::include_graphics("images/IMG_72116.jpg")
+#|   Close-up of striations left by a blade on the cut end of a wire; the schematic identifies the ridge separating the two roof-like surfaces scanned separately as scans A and B.
+knitr::include_graphics("images/kaiweet-sketch.png")
 ```
 
 Data collected at crime scenes lack the known ground truth needed to estimate error rates; therefore, controlled studies are needed.
