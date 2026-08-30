@@ -368,9 +368,9 @@ grid.
 \end{minipage}%
 
 \caption{\label{fig-T1AW-LI-R1-profiles-signals}Profile and signal
-extraction. (a) A dark-blue profile line drawn across the scan
-striations. (b) The profile function extracted along the line in (a).
-(c) Raw and filtered signals obtained from the profile function in (b).}
+extraction. (a) A yellow profile line drawn across the scan striations.
+(b) The profile function extracted along the line in (a). (c) Raw and
+filtered signals obtained from the profile function in (b).}
 
 \end{figure}%
 
@@ -695,15 +695,18 @@ and C were categorized as long, edges B and D as short, and comparisons
 pairing one long edge with one short edge as mixed. The resulting CCFs
 for all pairwise comparisons were also summarized using boxplots and
 receiver operating characteristic (ROC) curves.
-Figure~\ref{fig-ccf-boxplot} and Figure~\ref{fig-ccf-ROC} show these
-summaries. The ROC curves plot sensitivity, or the true positive rate,
-against the false positive rate (FPR; 1 - specificity). The curves are
-close to the upper-left corner, indicating strong classification
-performance. For the combined comparison set, a threshold of 0.589
-controls the FPR below 0.05 with a false negative rate (FNR) of 0,
-whereas a threshold of 0.658 controls the FPR below 0.01 with an FNR of
-0.02. These results are consistent with the expected pattern and
-validate the pipeline for processing and aligning signals.
+Figure~\ref{fig-ccf-boxplot} groups CCF distributions by different edge,
+different location, different tool, and same source, with the paired
+edges identified on the horizontal axis. Figure~\ref{fig-ccf-ROC} shows
+classification performance separately for long and short edge classes.
+The ROC curves plot sensitivity, or the true positive rate, against the
+false positive rate (FPR; 1 - specificity). The curves are close to the
+upper-left corner, indicating strong classification performance. For the
+combined comparison set, a threshold of 0.589 controls the FPR below
+0.05 with a false negative rate (FNR) of 0, whereas a threshold of 0.658
+controls the FPR below 0.01 with an FNR of 0.02. These results are
+consistent with the expected pattern and validate the pipeline for
+processing and aligning signals.
 
 \begin{figure}[hbt]
 
@@ -764,7 +767,7 @@ T2AW-LI-R1.}
 \caption{\label{fig-ccf-boxplot}CCF distributions across comparison
 classes. Gray boxplots show different-source comparisons grouped by
 different edge, location, or tool; orange boxplots show same-source
-comparisons. Rows distinguish long, mixed, and short edge comparisons.}
+comparisons. Horizontal-axis labels identify the paired edges.}
 
 \end{figure}%
 

@@ -275,7 +275,7 @@ Along this line, surface values were assigned at equally spaced positions using 
 :::
 
 Profile and signal extraction.
-\(a) A dark-blue profile line drawn across the scan striations.
+\(a) A yellow profile line drawn across the scan striations.
 (b) The profile function extracted along the line in (a).
 (c) Raw and filtered signals obtained from the profile function in (b).
 
@@ -558,7 +558,8 @@ As an example of a different-source comparison, T1AW-LI-R1 and T2AW-LI-R1 were s
 Their signal alignment, shown in @fig-T1AW-LI-R1-T2AW-LI-R1-alignment (c), has a CCF value of 0.2, which is as low as expected.
 For the following summaries, edges A and C were categorized as long, edges B and D as short, and comparisons pairing one long edge with one short edge as mixed.
 The resulting CCFs for all pairwise comparisons were also summarized using boxplots and receiver operating characteristic (ROC) curves.
-@fig-ccf-boxplot and @fig-ccf-ROC show these summaries.
+@fig-ccf-boxplot groups CCF distributions by different edge, different location, different tool, and same source, with the paired edges identified on the horizontal axis.
+@fig-ccf-ROC shows classification performance separately for long and short edge classes.
 The ROC curves plot sensitivity, or the true positive rate, against the false positive rate (FPR; 1 - specificity).
 The curves are close to the upper-left corner, indicating strong classification performance.
 For the combined comparison set, a threshold of 0.589 controls the FPR below 0.05 with a false negative rate (FNR) of 0, whereas a threshold of 0.658 controls the FPR below 0.01 with an FNR of 0.02.
@@ -589,7 +590,7 @@ Different-source scan and signal comparison.
 #| fig-cap: >-
 #|   CCF distributions across comparison classes.
 #|   Gray boxplots show different-source comparisons grouped by different edge, location, or tool; orange boxplots show same-source comparisons.
-#|   Rows distinguish long, mixed, and short edge comparisons.
+#|   Horizontal-axis labels identify the paired edges.
 knitr::include_graphics("images/ccf_boxplot.png")
 ```
 
