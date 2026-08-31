@@ -382,7 +382,7 @@ The repository contents, formats, and folder organization are summarized in @tbl
 gt_table <- tibble(
   group_type = c(rep("Raw data", 2), rep("Manual derivatives", 1), rep("Computational derivatives in the folder 'data-derived/'", 2), rep("Image files", 2), "Visual inventory in the folder 'assessment/analysis-manual/'", "Technical validation"),
   data_type = c("`scans/`", "`meta.csv`", "`profiles/`", "`wire-signals`", "`wire_pairwise_ccf`", "`pngs/`", "`profile-images/`", "`processing-wires`", "`variability-`\n`assessment/`"),
-  Description = c("folder containing 120 topographic 3D scans corresponding to 30 aluminum wire cuts (`x3p` format)", "metadata for each scan: file path, tool, edge, location, replicate, identifier, and pixel dimensions (CSV format)", "folder containing manually extracted profiles (CSV format)", "signals processed from the corresponding profiles (zipped CSV format)", "CCF values for all pairwise aligned signals (zipped CSV format)", "folder containing images of 3D wire-cut scans (PNG format)", "folder containing images of profiles extracted from wire cuts (PNG format)", "display of pairwise aligned signals from the same sources (HTML format)", "folder containing technical-validation documents, with an internal structure that mirrors the main folder"),
+  Description = c("folder containing 120 topographic 3D scans corresponding to 30 aluminum wire cuts (`x3p` format)", "metadata for each scan: identifier, file path, tool, edge, location, replicate, and pixel dimensions (CSV format)", "folder containing one manually extracted profile per scan (CSV format)", "signals processed from the corresponding profiles (zipped CSV format)", "CCF values for all pairwise aligned signals (zipped CSV format)", "folder containing images of 3D wire-cut scans (PNG format)", "folder containing images of profiles extracted from wire cuts (PNG format)", "display of pairwise aligned signals from the same sources (HTML format)", "folder containing technical-validation documents, with an internal structure that mirrors the main folder"),
   Section = c("Scan acquisition", "Scan acquisition", "Signal Extraction", "Signal Extraction", "Signal Alignment", "Scan acquisition", "Signal Extraction", "Signal Alignment", "Technical Validation")
 ) %>%
   group_by(group_type) %>%
@@ -424,7 +424,7 @@ For this non-sensitive original dataset, use CC0 or CC BY rather than a license 
 \hh{We need to include a descriptor table for each of the csv files; I started with meta.csv - the formatting is still horrific}
 
 The \texttt{meta.csv} file contains one record for each of the 120 scans, with eight variables described in @tbl-meta-structure.
-Each record links a scan's relative file path and unique identifier to its tool, cutting edge, blade location, replicate, and dimensions in pixels.
+Each record links a scan's unique identifier and relative file path to its tool, cutting edge, blade location, replicate, and dimensions in pixels.
 
 ::: {#tbl-meta-structure tbl-cap="Structure of `meta.csv`." tbl-pos="hbt"}
 
@@ -445,18 +445,20 @@ Variable & Type & Description \\
 
 :::
 
-The draft variable descriptions for the profile CSV files are listed in @tbl-profile-structure.
+The \texttt{profiles/} folder contains 120 CSV files, one manually extracted profile per scan, with one sampled point per row.
+The four variables are described in @tbl-profile-structure in the same order as the CSV columns.
+Each file is named \texttt{profiles-} followed by the scan identifier and the \texttt{.csv} extension, for example, \texttt{profiles-T1AW-LI-R1.csv}.
 
-::: {#tbl-profile-structure tbl-cap="Structure of any of the `profile-....csv` files." tbl-pos="hbt"}
+::: {#tbl-profile-structure tbl-cap="Structure of the `profiles-*.csv` files." tbl-pos="hbt"}
 
 \begin{tabularx}{\linewidth}{llX}
 \toprule
 Variable & Type & Description \\
 \midrule
-\texttt{x} & numeric & horizontal coordinate in micrometers, multiple of 0.645 \\
-\texttt{value} & numeric & observed surface height \\
-\texttt{y} & numeric & y coordinate, constant, set to zero \\
-\texttt{src} & text & source cut \\
+\texttt{id} & text & Source scan identifier, matching \texttt{id} in \texttt{meta.csv}; constant within each file \\
+\texttt{x} & numeric & Horizontal coordinate along the profile in micrometers, starting at zero in increments of 0.645 \\
+\texttt{y} & numeric & \texttt{y} coordinate, constant and set to zero \\
+\texttt{value} & numeric & Observed surface height; \texttt{NA} denotes a missing value \\
 \bottomrule
 \end{tabularx}
 
@@ -693,6 +695,7 @@ To inspect or process these files in R, use the \texttt{x3ptools} package and it
 The \texttt{meta.csv} file links each scan to its tool, edge, blade location, and replicate identifiers and records its dimensions in pixels.
 Resolve \texttt{x3p\_path} relative to the data repository root; \texttt{id} matches the scan filename without the \texttt{.x3p} extension.
 The supplied profiles and processed signals provide a starting point for users who do not wish to repeat manual profile extraction.
+The \texttt{id} column in each profile CSV links it to the corresponding record in \texttt{meta.csv}.
 The supplied extraction coordinates allow these derived files to be related back to the corresponding scans.
 Because each supplied signal is based on a manually selected profile, users assessing sensitivity to profile placement should re-extract profiles from the raw \texttt{x3p} scans using alternative documented locations.
 
