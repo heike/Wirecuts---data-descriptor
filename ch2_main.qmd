@@ -382,7 +382,7 @@ The repository contents, formats, and folder organization are summarized in @tbl
 gt_table <- tibble(
   group_type = c(rep("Raw data", 2), rep("Manual derivatives", 1), rep("Computational derivatives in the folder 'data-derived/'", 2), rep("Image files", 2), "Visual inventory in the folder 'assessment/analysis-manual/'", "Technical validation"),
   data_type = c("`scans/`", "`meta.csv`", "`profiles/`", "`wire-signals`", "`wire_pairwise_ccf`", "`pngs/`", "`profile-images/`", "`processing-wires`", "`variability-`\n`assessment/`"),
-  Description = c("folder containing 120 topographic 3D scans corresponding to 30 aluminum wire cuts (`x3p` format)", "metadata for each cut, including tool, blade, and location information (CSV format)", "folder containing manually extracted profiles (CSV format)", "signals processed from the corresponding profiles (zipped CSV format)", "CCF values for all pairwise aligned signals (zipped CSV format)", "folder containing images of 3D wire-cut scans (PNG format)", "folder containing images of profiles extracted from wire cuts (PNG format)", "display of pairwise aligned signals from the same sources (HTML format)", "folder containing technical-validation documents, with an internal structure that mirrors the main folder"),
+  Description = c("folder containing 120 topographic 3D scans corresponding to 30 aluminum wire cuts (`x3p` format)", "metadata for each scan: file path, tool, edge, location, replicate, identifier, and pixel dimensions (CSV format)", "folder containing manually extracted profiles (CSV format)", "signals processed from the corresponding profiles (zipped CSV format)", "CCF values for all pairwise aligned signals (zipped CSV format)", "folder containing images of 3D wire-cut scans (PNG format)", "folder containing images of profiles extracted from wire cuts (PNG format)", "display of pairwise aligned signals from the same sources (HTML format)", "folder containing technical-validation documents, with an internal structure that mirrors the main folder"),
   Section = c("Scan acquisition", "Scan acquisition", "Signal Extraction", "Signal Extraction", "Signal Alignment", "Scan acquisition", "Signal Extraction", "Signal Alignment", "Technical Validation")
 ) %>%
   group_by(group_type) %>%
@@ -423,7 +423,8 @@ For this non-sensitive original dataset, use CC0 or CC BY rather than a license 
 
 \hh{We need to include a descriptor table for each of the csv files; I started with meta.csv - the formatting is still horrific}
 
-The draft variable descriptions for `meta.csv` are listed in @tbl-meta-structure.
+The \texttt{meta.csv} file contains one record for each of the 120 scans, with eight variables described in @tbl-meta-structure.
+Each record links a scan's relative file path and unique identifier to its tool, cutting edge, blade location, replicate, and dimensions in pixels.
 
 ::: {#tbl-meta-structure tbl-cap="Structure of `meta.csv`." tbl-pos="hbt"}
 
@@ -431,16 +432,14 @@ The draft variable descriptions for `meta.csv` are listed in @tbl-meta-structure
 \toprule
 Variable & Type & Description \\
 \midrule
-\texttt{x3p\_path} & text & We need to change those paths to scans/T....x3p \\
-\texttt{tool} & integer & Tool used, one of 1 through 5 \\
+\texttt{x3p\_path} & text & Path to the \texttt{x3p} scan relative to the data repository root, for example, \texttt{scans/T1AW-LI-R1.x3p} \\
+\texttt{tool} & integer & Cutting tool, one of 1 through 5 \\
 \texttt{edge} & character & Cutting edge, one of A, B, C, or D \\
-\texttt{cut} & delete & HH: cut number - we don't need that column anymore \\
-\texttt{scan\_no} & delete & HH: scan number - remove this column \\
-\texttt{location} & text & Cutting location, one of Inner, Middle, or Outer \\
-\texttt{replicate} & integer & Replicate, one of 1 or 2 for the general study, higher values are used for validation \\
-\texttt{ID} & text & identifier for each of the cuts as specified in ... \\
-\texttt{height} & integer & height of the scan in pixels \\
-\texttt{width} & integer & width of the scan in pixels \\
+\texttt{location} & character & Cutting location: I (inner), M (middle), or O (outer) \\
+\texttt{replicate} & integer & Replicate cut, either 1 or 2 \\
+\texttt{id} & text & Unique scan identifier following the naming convention in Scan acquisition, for example, \texttt{T1AW-LI-R1} \\
+\texttt{height} & integer & Height of the scan in pixels \\
+\texttt{width} & integer & Width of the scan in pixels \\
 \bottomrule
 \end{tabularx}
 
@@ -691,7 +690,8 @@ To support reproduction of the results reported here, the extraction locations a
 
 The raw surface scans are provided in \texttt{x3p} format.
 To inspect or process these files in R, use the \texttt{x3ptools} package and its reference manual, available from CRAN [@hofmannX3ptoolsToolsWorking2018].
-The \texttt{meta.csv} file links each scan to its tool, edge, blade location, and replicate identifiers.
+The \texttt{meta.csv} file links each scan to its tool, edge, blade location, and replicate identifiers and records its dimensions in pixels.
+Resolve \texttt{x3p\_path} relative to the data repository root; \texttt{id} matches the scan filename without the \texttt{.x3p} extension.
 The supplied profiles and processed signals provide a starting point for users who do not wish to repeat manual profile extraction.
 The supplied extraction coordinates allow these derived files to be related back to the corresponding scans.
 Because each supplied signal is based on a manually selected profile, users assessing sensitivity to profile placement should re-extract profiles from the raw \texttt{x3p} scans using alternative documented locations.
