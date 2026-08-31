@@ -432,12 +432,12 @@ Each record links a scan's relative file path and unique identifier to its tool,
 \toprule
 Variable & Type & Description \\
 \midrule
+\texttt{id} & text & Unique scan identifier following the naming convention in Scan acquisition, for example, \texttt{T1AW-LI-R1} \\
 \texttt{x3p\_path} & text & Path to the \texttt{x3p} scan relative to the data repository root, for example, \texttt{scans/T1AW-LI-R1.x3p} \\
 \texttt{tool} & integer & Cutting tool, one of 1 through 5 \\
 \texttt{edge} & character & Cutting edge, one of A, B, C, or D \\
 \texttt{location} & character & Cutting location: I (inner), M (middle), or O (outer) \\
 \texttt{replicate} & integer & Replicate cut, either 1 or 2 \\
-\texttt{id} & text & Unique scan identifier following the naming convention in Scan acquisition, for example, \texttt{T1AW-LI-R1} \\
 \texttt{height} & integer & Height of the scan in pixels \\
 \texttt{width} & integer & Width of the scan in pixels \\
 \bottomrule
