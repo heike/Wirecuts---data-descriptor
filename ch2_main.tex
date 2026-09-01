@@ -408,9 +408,7 @@ csv file in the repository using the same naming convention as the
 scans, with the precursor of \texttt{profiles-}. More details on the
 exact format of these files are provided below.
 
-The code to create signals from profiles is available in
-\texttt{code/4-create\_signals\_from\_profiles.R} and a single file
-containing all 120 signals is available as
+A single file containing all 120 signals is available in
 \texttt{data-derived/wire-signals.csv.zip}.
 
 \subsection*{Pairwise alignment of signals}\label{sec-align-signals}
@@ -450,9 +448,7 @@ the two signals aligned at the location of the maximal CCF. The
 cross-correlation value for each pair is included as part of the title
 of the chart.
 
-The code to align signals pairwise is available in
-\texttt{code/6-align-pairwise.R}, and
-\texttt{data-derived/wire\_pairwise\_ccf.csv} contains the CCF
+The file \texttt{data-derived/wire\_pairwise\_ccf.csv} contains the CCF
 similarity scores of all pairwise aligned signals.
 
 \section*{Data Records}\label{sec-data-records}
@@ -465,6 +461,8 @@ Add the full dataset reference to References.}
 
 The repository contents, formats, and folder organization are summarized
 in Table~\ref{tbl-data-overview}.
+\agentreview{The \texttt{variability-assessment/} files have not yet been updated to the current naming conventions.
+Recheck the corresponding inventory entry and manuscript descriptions after those files are revised.}
 
 \begin{table}[hbt]
 
@@ -473,7 +471,7 @@ files.}
 
 \centering{
 
-\begin{tabular*}{0.97\linewidth}{@{\extracolsep{\fill}}>{\raggedright\arraybackslash}p{\dimexpr 0.26\linewidth -2\tabcolsep-1.5\arrayrulewidth}|>{\raggedright\arraybackslash}p{\dimexpr 0.56\linewidth -2\tabcolsep-1.5\arrayrulewidth}>{\raggedright\arraybackslash}p{\dimexpr 0.18\linewidth -2\tabcolsep-1.5\arrayrulewidth}}
+\begin{tabular*}{0.97\linewidth}{@{\extracolsep{\fill}}>{\raggedright\arraybackslash}p{\dimexpr 0.32\linewidth -2\tabcolsep-1.5\arrayrulewidth}|>{\raggedright\arraybackslash}p{\dimexpr 0.5\linewidth -2\tabcolsep-1.5\arrayrulewidth}>{\raggedright\arraybackslash}p{\dimexpr 0.18\linewidth -2\tabcolsep-1.5\arrayrulewidth}}
 \toprule
 Data type & Description & Section \\ 
 \midrule\addlinespace[2.5pt]
@@ -484,26 +482,22 @@ Data type & Description & Section \\
 \midrule\addlinespace[2.5pt]
 \multicolumn{3}{>{\raggedright\arraybackslash}m{0.97\linewidth}}{\parbox{\linewidth}{Manual derivatives}} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
-\texttt{profiles/} & folder containing one manually extracted profile per scan (CSV format) & Signal Extraction \\ 
+\texttt{profiles/} & folder containing one manually extracted profile per scan (CSV format) & Signal extraction \\ 
 \midrule\addlinespace[2.5pt]
 \multicolumn{3}{>{\raggedright\arraybackslash}m{0.97\linewidth}}{\parbox{\linewidth}{Computational derivatives in the folder 'data-derived/'}} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
-\texttt{wire-signals} & signals processed from the corresponding profiles (zipped CSV format) & Signal Extraction \\ 
-\texttt{wire\_pairwise\_ccf} & CCF values for all pairwise aligned signals (zipped CSV format) & Signal Alignment \\ 
+\texttt{wire-signals.csv.zip} & profile values and derived signals for all 120 scans (CSV format, in \texttt{wire-signals.csv.zip}) & Signal extraction \\ 
+\texttt{wire\_pairwise\_ccf.csv} & CCF values for all pairwise aligned signals (CSV format) & Pairwise alignment of signals \\ 
 \midrule\addlinespace[2.5pt]
 \multicolumn{3}{>{\raggedright\arraybackslash}m{0.97\linewidth}}{\parbox{\linewidth}{Image files}} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
 \texttt{pngs/} & folder containing images of 3D wire-cut scans (PNG format) & Scan acquisition \\ 
-\texttt{profile-images/} & folder containing images of profiles extracted from wire cuts (PNG format) & Signal Extraction \\ 
-\midrule\addlinespace[2.5pt]
-\multicolumn{3}{>{\raggedright\arraybackslash}m{0.97\linewidth}}{\parbox{\linewidth}{Visual inventory in the folder 'assessment/analysis-manual/'}} \\[2.5pt] 
-\midrule\addlinespace[2.5pt]
-\texttt{processing-wires} & display of pairwise aligned signals from the same sources (HTML format) & Signal Alignment \\ 
+\texttt{profile-images/} & folder containing images of profiles extracted from wire cuts (PNG format) & Signal extraction \\ 
 \midrule\addlinespace[2.5pt]
 \multicolumn{3}{>{\raggedright\arraybackslash}m{0.97\linewidth}}{\parbox{\linewidth}{Technical validation}} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
 \texttt{variability-}
-\texttt{assessment/} & folder containing technical-validation documents, with an internal structure that mirrors the main folder & Technical Validation \\ 
+\texttt{assessment/} & folder containing technical-validation documents, pending an update to the current naming conventions & Technical Validation \\ 
 \bottomrule
 \end{tabular*}
 
@@ -520,9 +514,6 @@ For this non-sensitive original dataset, use CC0 or CC BY rather than a license 
 
 The \texttt{meta.csv} file contains one record for each of the 120
 scans, with eight variables described in Table~\ref{tbl-meta-structure}.
-Each record links a scan's unique identifier and relative file path to
-its tool, cutting edge, blade location, replicate, and dimensions in
-pixels.
 
 \begin{table}[hbt]
 
@@ -534,8 +525,8 @@ pixels.
 \toprule
 Variable & Type & Description \\
 \midrule
-\texttt{id} & text & Unique scan identifier following the naming convention in Scan acquisition, for example, \texttt{T1AW-LI-R1} \\
-\texttt{x3p\_path} & text & Path to the \texttt{x3p} scan relative to the data repository root, for example, \texttt{scans/T1AW-LI-R1.x3p} \\
+\texttt{ID} & text & Unique scan identifier defined by the naming convention in Scan acquisition \\
+\texttt{x3p\_path} & text & Path to the \texttt{x3p} scan relative to the data repository root \\
 \texttt{tool} & integer & Cutting tool, one of 1 through 5 \\
 \texttt{edge} & character & Cutting edge, one of A, B, C, or D \\
 \texttt{location} & character & Cutting location: I (inner), M (middle), or O (outer) \\
@@ -550,11 +541,9 @@ Variable & Type & Description \\
 \end{table}%
 
 The \texttt{profiles/} folder contains 120 CSV files, one manually
-extracted profile per scan, with one sampled point per row. The four
-variables are described in Table~\ref{tbl-profile-structure} in the same
-order as the CSV columns. Each file is named \texttt{profiles-} followed
-by the scan identifier and the \texttt{.csv} extension, for example,
-\texttt{profiles-T1AW-LI-R1.csv}.
+extracted profile per scan, with one sampled point per row. Their four
+variables are described in Table~\ref{tbl-profile-structure} in CSV
+column order.
 
 \begin{table}[hbt]
 
@@ -567,10 +556,10 @@ by the scan identifier and the \texttt{.csv} extension, for example,
 \toprule
 Variable & Type & Description \\
 \midrule
-\texttt{id} & text & Source scan identifier, matching \texttt{id} in \texttt{meta.csv}; constant within each file \\
+\texttt{ID} & text & Source scan identifier, matching \texttt{ID} in \texttt{meta.csv}; constant within each file \\
 \texttt{x} & numeric & Horizontal coordinate along the profile in micrometers, starting at zero in increments of 0.645 \\
 \texttt{y} & numeric & \texttt{y} coordinate, constant and set to zero \\
-\texttt{value} & numeric & Observed surface height; \texttt{NA} denotes a missing value \\
+\texttt{value} & numeric & Observed surface height in micrometers; \texttt{NA} denotes a missing value \\
 \bottomrule
 \end{tabularx}
 
@@ -578,13 +567,15 @@ Variable & Type & Description \\
 
 \end{table}%
 
-The draft variable descriptions for \texttt{wire-signals.csv} are listed
-in Table~\ref{tbl-signal-structure}.
+The \texttt{data-derived/wire-signals.csv.zip} archive contains
+\texttt{data-derived/wire-signals.csv}, with one sampled profile point
+per row for all 120 scans. Its 12 variables are described in
+Table~\ref{tbl-signal-structure} in CSV column order.
 
 \begin{table}[hbt]
 
-\caption{\label{tbl-signal-structure}Structure of the
-\texttt{wire-signals.csv} file.}
+\caption{\label{tbl-signal-structure}Structure of the signal CSV in
+\texttt{wire-signals.csv.zip}.}
 
 \centering{
 
@@ -592,29 +583,32 @@ in Table~\ref{tbl-signal-structure}.
 \toprule
 Variable & Type & Description \\
 \midrule
-\texttt{extrct\_profiles} & delete & NA \\
-\texttt{id} & text & identifier \\
-\texttt{tooledge} & text & combination of tool and edge \\
-\texttt{location} & text & cut location, one of Inner, Middle, or Outer \\
-\texttt{rep} & integer & Replicate, either 1 or 2 for the regular study, higher values are used for variance assessment \\
-\texttt{tool} & integer & Cutting tool, between 1 and 5 \\
+\texttt{ID} & text & Source scan identifier, matching \texttt{ID} in \texttt{meta.csv} and the profile files \\
+\texttt{tool} & integer & Cutting tool, one of 1 through 5 \\
 \texttt{edge} & character & Cutting edge, one of A, B, C, or D \\
-\texttt{x} & numeric & Horizontal location in micrometers \\
-\texttt{value} & numeric & Observed surface location in micrometers \\
-\texttt{y} & numeric & y location; constant \\
-\texttt{n} & delete & NA \\
-\texttt{detrend} & numeric & Detrended surface location \\
-\texttt{raw\_sig} & numeric & HH: hook processed? \\
-\texttt{sig} & numeric & Processed signal value \\
+\texttt{tooledge} & text & Combined tool and edge label, for example, \texttt{T1AW} \\
+\texttt{location} & text & Cutting location: LI (inner), LM (middle), or LO (outer) \\
+\texttt{replicate} & integer & Replicate cut, either 1 or 2 \\
+\texttt{x} & numeric & Horizontal coordinate along the profile in micrometers, starting at zero in increments of 0.645 \\
+\texttt{y} & numeric & \texttt{y} coordinate, constant and set to zero \\
+\texttt{value} & numeric & Observed surface height in micrometers \\
+\texttt{detrend} & numeric & Surface height after subtracting the fitted linear trend in \texttt{value} versus \texttt{x}, in micrometers \\
+\texttt{raw\_sig} & numeric & Residual in micrometers after removing the 400-micrometer LOWESS trend from \texttt{detrend}, before final smoothing and boundary exclusion \\
+\texttt{sig} & numeric & Signal after 40-micrometer smoothing of \texttt{raw\_sig} and boundary exclusion, in micrometers \\
 \bottomrule
 \end{tabularx}
+
+\agentreview{Confirm whether location values should be standardized across \texttt{meta.csv} (I, M, O) and the signal and pairwise-CCF files (LI, LM, LO).}
 
 }
 
 \end{table}%
 
-The draft descriptor for \texttt{wire\_pairwise\_ccf.csv} is reproduced
-in Table~\ref{tbl-pairwise-structure}.
+The \texttt{data-derived/wire\_pairwise\_ccf.csv} file contains one row
+for each ordered pair of the 120 signals, for 14,400 rows in total. Its
+19 variables are described in Table~\ref{tbl-pairwise-structure} in the
+same order as the file columns. Prefixes \texttt{ID1\_} and
+\texttt{ID2\_} identify the first and second signal in each comparison.
 
 \begin{table}[hbt]
 
@@ -623,19 +617,33 @@ in Table~\ref{tbl-pairwise-structure}.
 
 \centering{
 
-\begin{tabularx}{\linewidth}{lX}
+\begin{tabularx}{\linewidth}{llX}
 \toprule
-Variable & Description \\
+Variable & Type & Description \\
 \midrule
-\texttt{x} & horizontal coordinate in micrometers, multiple of 0.645 \\
-\texttt{value} & observed surface height \\
-\texttt{y} & y coordinate, constant, set to zero \\
-\texttt{src} & source cut \\
+\texttt{ID1\_tool} & text & Tool label for the first signal, one of T1 through T5 \\
+\texttt{ID1\_edge} & character & Cutting edge for the first signal, one of A, B, C, or D \\
+\texttt{ID1\_location} & text & Cutting location for the first signal: LI, LM, or LO \\
+\texttt{ID1\_rep} & integer & Replicate for the first signal, either 1 or 2 \\
+\texttt{ID1\_ID1} & text & Scan identifier for the first signal \\
+\texttt{ID2\_tool} & text & Tool label for the second signal, one of T1 through T5 \\
+\texttt{ID2\_edge} & character & Cutting edge for the second signal, one of A, B, C, or D \\
+\texttt{ID2\_location} & text & Cutting location for the second signal: LI, LM, or LO \\
+\texttt{ID2\_rep} & integer & Replicate for the second signal, either 1 or 2 \\
+\texttt{ID2\_ID2} & text & Scan identifier for the second signal \\
+\texttt{ccf} & numeric & Maximized cross-correlation function value for the aligned signals \\
+\texttt{lag} & integer & Relative shift at which \texttt{ccf} is maximized, in profile-sample increments \\
+\texttt{same\_tool} & logical & Whether both signals were produced by the same tool \\
+\texttt{same\_edge} & logical & Whether both signals were produced by the same tool and edge \\
+\texttt{same\_location} & logical & Whether both signals were produced by the same tool, edge, and location \\
+\texttt{same\_source} & logical & Whether \texttt{same\_location} is true; replicates may differ \\
+\texttt{ID1\_edge\_long} & logical & Whether the first edge is a long edge, A or C \\
+\texttt{ID2\_edge\_long} & logical & Whether the second edge is a long edge, A or C \\
+\texttt{edge\_type} & text & Edge-length pairing: Long, Short, or Mixed \\
 \bottomrule
 \end{tabularx}
 
-\agentreview{The recovered draft table for \texttt{wire\_pairwise\_ccf.csv} repeats the profile fields rather than describing pair identifiers and CCF scores.
-Confirm the columns and their definitions for the pairwise-CCF file before replacing these draft rows.}
+\agentreview{Confirm whether the current pairwise column names, including \texttt{ID1\_ID1}, \texttt{ID2\_ID2}, \texttt{ID1\_rep}, and \texttt{ID2\_rep}, should be retained.}
 
 }
 
@@ -689,9 +697,10 @@ and alignment and (2) variability assessment.
 Scan processing and signal alignment were validated as follows. High CCF
 values were expected between signals from the same source and low values
 between signals from different sources.
-Figure~\ref{fig-signals-pair-alignment}, shown earlier in Align signals,
-meets the expected pattern for same-source signals. As an example of a
-different-source comparison, T1AW-LI-R1 and T2AW-LI-R1 were selected.
+Figure~\ref{fig-signals-pair-alignment}, shown earlier in Pairwise
+alignment of signals, meets the expected pattern for same-source
+signals. As an example of a different-source comparison, T1AW-LI-R1 and
+T2AW-LI-R1 were selected.
 Figure~\ref{fig-T1AW-LI-R1-T2AW-LI-R1-alignment} (a) and (b) show the
 selected scans. Their signal alignment, shown in
 Figure~\ref{fig-T1AW-LI-R1-T2AW-LI-R1-alignment} (c), has a CCF value of
@@ -794,14 +803,14 @@ The second validation assessed variability in the pipeline across
 replicates, stagings, and acquisitions. Scans from tool 2 at the middle
 location were selected for this assessment. Replicate variability was
 assessed using two different cuts at the same edge and position. The
-comparison in Figure~\ref{fig-signals-pair-alignment} in Align signals
-illustrates this assessment. To assess staging variability, replicate 2
-was rescanned under the confocal microscope, and the staging label S was
-introduced into the naming protocol. The S1 designation is omitted from
-labels, so R2 is equivalent to R2-S1. For all four edges of tool 2 at
-the middle location, three stagings (R2, R2-S2, and R2-S3) were created,
-pairwise CCFs between stagings were computed, and their mean and
-standard deviation (SD) were calculated.
+comparison in Figure~\ref{fig-signals-pair-alignment} in Pairwise
+alignment of signals illustrates this assessment. To assess staging
+variability, replicate 2 was rescanned under the confocal microscope,
+and the staging label S was introduced into the naming protocol. The S1
+designation is omitted from labels, so R2 is equivalent to R2-S1. For
+all four edges of tool 2 at the middle location, three stagings (R2,
+R2-S2, and R2-S3) were created, pairwise CCFs between stagings were
+computed, and their mean and standard deviation (SD) were calculated.
 
 Within each staging, the effect of different acquisitions was further
 examined by keeping the samples on the confocal microscope while varying
@@ -899,16 +908,10 @@ locations and values for each scan have been included.
 The raw surface scans are provided in \texttt{x3p} format. To inspect or
 process these files in R, use the \texttt{x3ptools} package and its
 reference manual, available from CRAN
-\citep{hofmannX3ptoolsToolsWorking2018}. The \texttt{meta.csv} file
-links each scan to its tool, edge, blade location, and replicate
-identifiers and records its dimensions in pixels. Resolve
-\texttt{x3p\_path} relative to the data repository root; \texttt{id}
-matches the scan filename without the \texttt{.x3p} extension. The
-supplied profiles and processed signals provide a starting point for
-users who do not wish to repeat manual profile extraction. The
-\texttt{id} column in each profile CSV links it to the corresponding
-record in \texttt{meta.csv}. The supplied extraction coordinates allow
-these derived files to be related back to the corresponding scans.
+\citep{hofmannX3ptoolsToolsWorking2018}. The supplied profiles and
+processed signals provide a starting point for users who do not wish to
+repeat manual profile extraction. The supplied extraction coordinates
+allow these derived files to be related back to the corresponding scans.
 Because each supplied signal is based on a manually selected profile,
 users assessing sensitivity to profile placement should re-extract
 profiles from the raw \texttt{x3p} scans using alternative documented
@@ -943,22 +946,22 @@ Code & Description & Section \\
 \midrule\addlinespace[2.5pt]
 \multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{\parbox{\linewidth}{Inspect raw scans}} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
-\path{1-create_pngs_from_x3p.R} & obtain images of \texttt{x3p} files in \texttt{scans/} & Cutting wires \\ 
+\path{1-create_pngs_from_x3p.R} & obtain images of \texttt{x3p} files in \texttt{scans/} & Scan acquisition \\ 
 \midrule\addlinespace[2.5pt]
 \multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{\parbox{\linewidth}{Extract profiles}} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
-\path{2-create_profiles_from_x3p.R} & manually extract profiles from each scan & Extract profiles \\ 
-\path{3-create-single-profile-file.R} & create meta profile information & Extract profiles \\ 
+\path{2-create_profiles_from_x3p.R} & manually extract profiles from each scan & Signal extraction \\ 
+\path{3-create-single-profile-file.R} & combine profile information & Signal extraction \\ 
 \midrule\addlinespace[2.5pt]
 \multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{\parbox{\linewidth}{Derive signals}} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
-\path{4-create_signals_from_profiles.R} & derive signals from each profile & Filtered signals \\ 
+\path{4-create_signals_from_profiles.R} & derive signals from each profile & Signal extraction \\ 
 \midrule\addlinespace[2.5pt]
-\multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{\parbox{\linewidth}{Align signals}} \\[2.5pt] 
+\multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{\parbox{\linewidth}{Compare signals}} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
-\path{5-create-images.R} & create images for pairwise alignment & Align signals \\ 
-\path{6-align-pairwise.R} & compute pairwise alignment CCF values & Align signals \\ 
-\path{7-all-comparison-results.R} & visualize comparison results & Align signals \\ 
+\path{5-create-images.R} & create images for pairwise alignment & Pairwise alignment of signals \\ 
+\path{6-align-pairwise.R} & compute pairwise alignment CCF values & Pairwise alignment of signals \\ 
+\path{7-all-comparison-results.R} & visualize comparison results & Data Overview and Technical Validation \\ 
 \bottomrule
 \end{tabular*}
 
@@ -973,7 +976,7 @@ Technical Validation.
 Versions of additional R packages are recorded in [environment file or repository documentation path].}
 \agentformat{Replace the R, \texttt{x3ptools}, and environment-record placeholders after checking the analysis environment.}
 
-\addcontentsline{toc}{section}{References}
+\renewcommand{\bibsection}{\section*{\refname}\addcontentsline{toc}{section}{\refname}}
 \bibliographystyle{naturemag-doi}
 \bibliography{references}
 

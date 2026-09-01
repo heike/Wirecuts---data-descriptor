@@ -78,7 +78,7 @@ $abstract$
 
 $body$
 
-\addcontentsline{toc}{section}{References}
+\renewcommand{\bibsection}{\section*{\refname}\addcontentsline{toc}{section}{\refname}}
 \bibliographystyle{naturemag-doi}
 \bibliography{references}
 

@@ -303,8 +303,7 @@ The resulting signals are used for subsequent comparisons with other signals.
 One profile for each scan is included in folder `profiles/` as a csv file in the repository using the same naming convention as the scans, with the precursor of `profiles-`. 
 More details on the exact format of these files are provided below.
 
-The code to create signals from profiles is available in `code/4-create_signals_from_profiles.R` and a single file containing all 120 signals is 
-available as `data-derived/wire-signals.csv.zip`.
+A single file containing all 120 signals is available in `data-derived/wire-signals.csv.zip`.
 
 <!-- ## Filtered signals {#sec-filtered-signals .unnumbered} -->
 
@@ -342,7 +341,7 @@ The lines in the first two columns correspond to the extracted signals for cuts 
 The third column shows the two signals aligned at the location of the maximal CCF.
 The cross-correlation value for each pair is included as part of the title of the chart.
 
-The code to align signals pairwise is available in `code/6-align-pairwise.R`, and `data-derived/wire_pairwise_ccf.csv` contains the CCF similarity scores of all pairwise aligned signals.
+The file `data-derived/wire_pairwise_ccf.csv` contains the CCF similarity scores of all pairwise aligned signals.
 
 <!-- The first two columns of @fig-signals-pair-alignment show the extracted signals, and the rightmost column shows their alignment and CCF value. -->
 
@@ -370,6 +369,8 @@ The code to align signals pairwise is available in `code/6-align-pairwise.R`, an
 For first-round review, the destination must permit anonymous download; from the second round onward, it must be a public formal repository record.
 Add the full dataset reference to References.}
 The repository contents, formats, and folder organization are summarized in @tbl-data-overview.
+\agentreview{The \texttt{variability-assessment/} files have not yet been updated to the current naming conventions.
+Recheck the corresponding inventory entry and manuscript descriptions after those files are revised.}
 
 
 ```{r}
@@ -380,10 +381,10 @@ The repository contents, formats, and folder organization are summarized in @tbl
 #| results: asis
 
 gt_table <- tibble(
-  group_type = c(rep("Raw data", 2), rep("Manual derivatives", 1), rep("Computational derivatives in the folder 'data-derived/'", 2), rep("Image files", 2), "Visual inventory in the folder 'assessment/analysis-manual/'", "Technical validation"),
-  data_type = c("`scans/`", "`meta.csv`", "`profiles/`", "`wire-signals`", "`wire_pairwise_ccf`", "`pngs/`", "`profile-images/`", "`processing-wires`", "`variability-`\n`assessment/`"),
-  Description = c("folder containing 120 topographic 3D scans corresponding to 30 aluminum wire cuts (`x3p` format)", "metadata for each scan: identifier, file path, tool, edge, location, replicate, and pixel dimensions (CSV format)", "folder containing one manually extracted profile per scan (CSV format)", "signals processed from the corresponding profiles (zipped CSV format)", "CCF values for all pairwise aligned signals (zipped CSV format)", "folder containing images of 3D wire-cut scans (PNG format)", "folder containing images of profiles extracted from wire cuts (PNG format)", "display of pairwise aligned signals from the same sources (HTML format)", "folder containing technical-validation documents, with an internal structure that mirrors the main folder"),
-  Section = c("Scan acquisition", "Scan acquisition", "Signal Extraction", "Signal Extraction", "Signal Alignment", "Scan acquisition", "Signal Extraction", "Signal Alignment", "Technical Validation")
+  group_type = c(rep("Raw data", 2), "Manual derivatives", rep("Computational derivatives in the folder 'data-derived/'", 2), rep("Image files", 2), "Technical validation"),
+  data_type = c("`scans/`", "`meta.csv`", "`profiles/`", "`wire-signals.csv.zip`", "`wire_pairwise_ccf.csv`", "`pngs/`", "`profile-images/`", "`variability-`\n`assessment/`"),
+  Description = c("folder containing 120 topographic 3D scans corresponding to 30 aluminum wire cuts (`x3p` format)", "metadata for each scan: identifier, file path, tool, edge, location, replicate, and pixel dimensions (CSV format)", "folder containing one manually extracted profile per scan (CSV format)", "profile values and derived signals for all 120 scans (CSV format, in `wire-signals.csv.zip`)", "CCF values for all pairwise aligned signals (CSV format)", "folder containing images of 3D wire-cut scans (PNG format)", "folder containing images of profiles extracted from wire cuts (PNG format)", "folder containing technical-validation documents, pending an update to the current naming conventions"),
+  Section = c("Scan acquisition", "Scan acquisition", "Signal extraction", "Signal extraction", "Pairwise alignment of signals", "Scan acquisition", "Signal extraction", "Technical Validation")
 ) %>%
   group_by(group_type) %>%
   gt(rowname_col = "data_type") %>%
@@ -405,7 +406,7 @@ dimexprs <- str_extract_all(pattern = "dimexpr 0.[0-9]+", string[1])[[1]]
 # the dimension expressions have now changed to
 # "dimexpr 0.19" "dimexpr 0.24" "dimexpr 0.58"
 # replace these with
-replacement <- paste("dimexpr", c(0.26, 0.56, 0.18))
+replacement <- paste("dimexpr", c(0.32, 0.50, 0.18))
 string[1] <- str_replace_all(pattern = "dimexpr 0.[0-9]+", replacement = "dimexpr FIX", string[1])
 # replace one by one
 for (i in seq_along(dimexprs)) {
@@ -424,7 +425,6 @@ For this non-sensitive original dataset, use CC0 or CC BY rather than a license 
 \hh{We need to include a descriptor table for each of the csv files; I started with meta.csv - the formatting is still horrific}
 
 The \texttt{meta.csv} file contains one record for each of the 120 scans, with eight variables described in @tbl-meta-structure.
-Each record links a scan's unique identifier and relative file path to its tool, cutting edge, blade location, replicate, and dimensions in pixels.
 
 ::: {#tbl-meta-structure tbl-cap="Structure of `meta.csv`." tbl-pos="hbt"}
 
@@ -432,8 +432,8 @@ Each record links a scan's unique identifier and relative file path to its tool,
 \toprule
 Variable & Type & Description \\
 \midrule
-\texttt{id} & text & Unique scan identifier following the naming convention in Scan acquisition, for example, \texttt{T1AW-LI-R1} \\
-\texttt{x3p\_path} & text & Path to the \texttt{x3p} scan relative to the data repository root, for example, \texttt{scans/T1AW-LI-R1.x3p} \\
+\texttt{ID} & text & Unique scan identifier defined by the naming convention in Scan acquisition \\
+\texttt{x3p\_path} & text & Path to the \texttt{x3p} scan relative to the data repository root \\
 \texttt{tool} & integer & Cutting tool, one of 1 through 5 \\
 \texttt{edge} & character & Cutting edge, one of A, B, C, or D \\
 \texttt{location} & character & Cutting location: I (inner), M (middle), or O (outer) \\
@@ -446,8 +446,7 @@ Variable & Type & Description \\
 :::
 
 The \texttt{profiles/} folder contains 120 CSV files, one manually extracted profile per scan, with one sampled point per row.
-The four variables are described in @tbl-profile-structure in the same order as the CSV columns.
-Each file is named \texttt{profiles-} followed by the scan identifier and the \texttt{.csv} extension, for example, \texttt{profiles-T1AW-LI-R1.csv}.
+Their four variables are described in @tbl-profile-structure in CSV column order.
 
 ::: {#tbl-profile-structure tbl-cap="Structure of the `profiles-*.csv` files." tbl-pos="hbt"}
 
@@ -455,59 +454,76 @@ Each file is named \texttt{profiles-} followed by the scan identifier and the \t
 \toprule
 Variable & Type & Description \\
 \midrule
-\texttt{id} & text & Source scan identifier, matching \texttt{id} in \texttt{meta.csv}; constant within each file \\
+\texttt{ID} & text & Source scan identifier, matching \texttt{ID} in \texttt{meta.csv}; constant within each file \\
 \texttt{x} & numeric & Horizontal coordinate along the profile in micrometers, starting at zero in increments of 0.645 \\
 \texttt{y} & numeric & \texttt{y} coordinate, constant and set to zero \\
-\texttt{value} & numeric & Observed surface height; \texttt{NA} denotes a missing value \\
+\texttt{value} & numeric & Observed surface height in micrometers; \texttt{NA} denotes a missing value \\
 \bottomrule
 \end{tabularx}
 
 :::
 
-The draft variable descriptions for `wire-signals.csv` are listed in @tbl-signal-structure.
+The \texttt{data-derived/wire-signals.csv.zip} archive contains \texttt{data-derived/wire-signals.csv}, with one sampled profile point per row for all 120 scans.
+Its 12 variables are described in @tbl-signal-structure in CSV column order.
 
-::: {#tbl-signal-structure tbl-cap="Structure of the `wire-signals.csv` file." tbl-pos="hbt"}
+::: {#tbl-signal-structure tbl-cap="Structure of the signal CSV in `wire-signals.csv.zip`." tbl-pos="hbt"}
 
 \begin{tabularx}{\linewidth}{llX}
 \toprule
 Variable & Type & Description \\
 \midrule
-\texttt{extrct\_profiles} & delete & NA \\
-\texttt{id} & text & identifier \\
-\texttt{tooledge} & text & combination of tool and edge \\
-\texttt{location} & text & cut location, one of Inner, Middle, or Outer \\
-\texttt{rep} & integer & Replicate, either 1 or 2 for the regular study, higher values are used for variance assessment \\
-\texttt{tool} & integer & Cutting tool, between 1 and 5 \\
+\texttt{ID} & text & Source scan identifier, matching \texttt{ID} in \texttt{meta.csv} and the profile files \\
+\texttt{tool} & integer & Cutting tool, one of 1 through 5 \\
 \texttt{edge} & character & Cutting edge, one of A, B, C, or D \\
-\texttt{x} & numeric & Horizontal location in micrometers \\
-\texttt{value} & numeric & Observed surface location in micrometers \\
-\texttt{y} & numeric & y location; constant \\
-\texttt{n} & delete & NA \\
-\texttt{detrend} & numeric & Detrended surface location \\
-\texttt{raw\_sig} & numeric & HH: hook processed? \\
-\texttt{sig} & numeric & Processed signal value \\
+\texttt{tooledge} & text & Combined tool and edge label, for example, \texttt{T1AW} \\
+\texttt{location} & text & Cutting location: LI (inner), LM (middle), or LO (outer) \\
+\texttt{replicate} & integer & Replicate cut, either 1 or 2 \\
+\texttt{x} & numeric & Horizontal coordinate along the profile in micrometers, starting at zero in increments of 0.645 \\
+\texttt{y} & numeric & \texttt{y} coordinate, constant and set to zero \\
+\texttt{value} & numeric & Observed surface height in micrometers \\
+\texttt{detrend} & numeric & Surface height after subtracting the fitted linear trend in \texttt{value} versus \texttt{x}, in micrometers \\
+\texttt{raw\_sig} & numeric & Residual in micrometers after removing the 400-micrometer LOWESS trend from \texttt{detrend}, before final smoothing and boundary exclusion \\
+\texttt{sig} & numeric & Signal after 40-micrometer smoothing of \texttt{raw\_sig} and boundary exclusion, in micrometers \\
 \bottomrule
 \end{tabularx}
+
+\agentreview{Confirm whether location values should be standardized across \texttt{meta.csv} (I, M, O) and the signal and pairwise-CCF files (LI, LM, LO).}
 
 :::
 
-The draft descriptor for `wire_pairwise_ccf.csv` is reproduced in @tbl-pairwise-structure.
+The \texttt{data-derived/wire\_pairwise\_ccf.csv} file contains one row for each ordered pair of the 120 signals, for 14,400 rows in total.
+Its 19 variables are described in @tbl-pairwise-structure in the same order as the file columns.
+Prefixes \texttt{ID1\_} and \texttt{ID2\_} identify the first and second signal in each comparison.
 
 ::: {#tbl-pairwise-structure tbl-cap="Structure of the `wire_pairwise_ccf.csv` file." tbl-pos="hbt"}
 
-\begin{tabularx}{\linewidth}{lX}
+\begin{tabularx}{\linewidth}{llX}
 \toprule
-Variable & Description \\
+Variable & Type & Description \\
 \midrule
-\texttt{x} & horizontal coordinate in micrometers, multiple of 0.645 \\
-\texttt{value} & observed surface height \\
-\texttt{y} & y coordinate, constant, set to zero \\
-\texttt{src} & source cut \\
+\texttt{ID1\_tool} & text & Tool label for the first signal, one of T1 through T5 \\
+\texttt{ID1\_edge} & character & Cutting edge for the first signal, one of A, B, C, or D \\
+\texttt{ID1\_location} & text & Cutting location for the first signal: LI, LM, or LO \\
+\texttt{ID1\_rep} & integer & Replicate for the first signal, either 1 or 2 \\
+\texttt{ID1\_ID1} & text & Scan identifier for the first signal \\
+\texttt{ID2\_tool} & text & Tool label for the second signal, one of T1 through T5 \\
+\texttt{ID2\_edge} & character & Cutting edge for the second signal, one of A, B, C, or D \\
+\texttt{ID2\_location} & text & Cutting location for the second signal: LI, LM, or LO \\
+\texttt{ID2\_rep} & integer & Replicate for the second signal, either 1 or 2 \\
+\texttt{ID2\_ID2} & text & Scan identifier for the second signal \\
+\texttt{ccf} & numeric & Maximized cross-correlation function value for the aligned signals \\
+\texttt{lag} & integer & Relative shift at which \texttt{ccf} is maximized, in profile-sample increments \\
+\texttt{same\_tool} & logical & Whether both signals were produced by the same tool \\
+\texttt{same\_edge} & logical & Whether both signals were produced by the same tool and edge \\
+\texttt{same\_location} & logical & Whether both signals were produced by the same tool, edge, and location \\
+\texttt{same\_source} & logical & Whether \texttt{same\_location} is true; replicates may differ \\
+\texttt{ID1\_edge\_long} & logical & Whether the first edge is a long edge, A or C \\
+\texttt{ID2\_edge\_long} & logical & Whether the second edge is a long edge, A or C \\
+\texttt{edge\_type} & text & Edge-length pairing: Long, Short, or Mixed \\
 \bottomrule
 \end{tabularx}
 
-\agentreview{The recovered draft table for \texttt{wire\_pairwise\_ccf.csv} repeats the profile fields rather than describing pair identifiers and CCF scores.
-Confirm the columns and their definitions for the pairwise-CCF file before replacing these draft rows.}
+\agentreview{Confirm whether the current pairwise column names, including \texttt{ID1\_ID1}, \texttt{ID2\_ID2}, \texttt{ID1\_rep}, and \texttt{ID2\_rep}, should be retained.}
 
 :::
 
@@ -553,7 +569,7 @@ Technical validation was conducted in two areas: (1) signal processing and align
 
 Scan processing and signal alignment were validated as follows.
 High CCF values were expected between signals from the same source and low values between signals from different sources.
-@fig-signals-pair-alignment, shown earlier in Align signals, meets the expected pattern for same-source signals.
+@fig-signals-pair-alignment, shown earlier in Pairwise alignment of signals, meets the expected pattern for same-source signals.
 As an example of a different-source comparison, T1AW-LI-R1 and T2AW-LI-R1 were selected.
 @fig-T1AW-LI-R1-T2AW-LI-R1-alignment (a) and (b) show the selected scans.
 Their signal alignment, shown in @fig-T1AW-LI-R1-T2AW-LI-R1-alignment (c), has a CCF value of 0.2, which is as low as expected.
@@ -611,7 +627,7 @@ knitr::include_graphics("images/ccf_ROC.png")
 The second validation assessed variability in the pipeline across replicates, stagings, and acquisitions.
 Scans from tool 2 at the middle location were selected for this assessment.
 Replicate variability was assessed using two different cuts at the same edge and position.
-The comparison in @fig-signals-pair-alignment in Align signals illustrates this assessment.
+The comparison in @fig-signals-pair-alignment in Pairwise alignment of signals illustrates this assessment.
 To assess staging variability, replicate 2 was rescanned under the confocal microscope, and the staging label S was introduced into the naming protocol.
 The S1 designation is omitted from labels, so R2 is equivalent to R2-S1.
 For all four edges of tool 2 at the middle location, three stagings (R2, R2-S2, and R2-S3) were created, pairwise CCFs between stagings were computed, and their mean and standard deviation (SD) were calculated.
@@ -692,10 +708,7 @@ To support reproduction of the results reported here, the extraction locations a
 
 The raw surface scans are provided in \texttt{x3p} format.
 To inspect or process these files in R, use the \texttt{x3ptools} package and its reference manual, available from CRAN [@hofmannX3ptoolsToolsWorking2018].
-The \texttt{meta.csv} file links each scan to its tool, edge, blade location, and replicate identifiers and records its dimensions in pixels.
-Resolve \texttt{x3p\_path} relative to the data repository root; \texttt{id} matches the scan filename without the \texttt{.x3p} extension.
 The supplied profiles and processed signals provide a starting point for users who do not wish to repeat manual profile extraction.
-The \texttt{id} column in each profile CSV links it to the corresponding record in \texttt{meta.csv}.
 The supplied extraction coordinates allow these derived files to be related back to the corresponding scans.
 Because each supplied signal is based on a manually selected profile, users assessing sensitivity to profile placement should re-extract profiles from the raw \texttt{x3p} scans using alternative documented locations.
 
@@ -731,10 +744,10 @@ code_files <- c(
 )
 
 string <- tibble(
-  group_type = c(rep("Inspect raw scans", 1), rep("Extract profiles", 2), rep("Derive signals", 1), rep("Align signals", 3)),
+  group_type = c("Inspect raw scans", rep("Extract profiles", 2), "Derive signals", rep("Compare signals", 3)),
   code_type = paste0("`", code_files, "`"),
-  Description = c("obtain images of `x3p` files in `scans/`", "manually extract profiles from each scan", "create meta profile information", "derive signals from each profile", "create images for pairwise alignment", "compute pairwise alignment CCF values", "visualize comparison results"),
-  Section = c("Cutting wires", "Extract profiles", "Extract profiles", "Filtered signals", "Align signals", "Align signals", "Align signals")
+  Description = c("obtain images of `x3p` files in `scans/`", "manually extract profiles from each scan", "combine profile information", "derive signals from each profile", "create images for pairwise alignment", "compute pairwise alignment CCF values", "visualize comparison results"),
+  Section = c("Scan acquisition", "Signal extraction", "Signal extraction", "Signal extraction", "Pairwise alignment of signals", "Pairwise alignment of signals", "Data Overview and Technical Validation")
 ) %>%
   gt(rowname_col = "code_type", groupname_col = "group_type") %>%
   tab_stubhead(label = "Code") %>%
