@@ -568,9 +568,9 @@ Variable & Type & Description \\
 \end{table}%
 
 The \texttt{data-derived/wire-signals.csv.zip} archive contains
-\texttt{data-derived/wire-signals.csv}, with one sampled profile point
-per row for all 120 scans. Its 12 variables are described in
-Table~\ref{tbl-signal-structure} in CSV column order.
+\texttt{data-derived/wire-signals.csv}, containing signals for all 120
+scans. Table~\ref{tbl-signal-structure} describes its 12 variables in
+CSV column order.
 
 \begin{table}[hbt]
 
@@ -587,7 +587,7 @@ Variable & Type & Description \\
 \texttt{tool} & integer & Cutting tool, one of 1 through 5 \\
 \texttt{edge} & character & Cutting edge, one of A, B, C, or D \\
 \texttt{tooledge} & text & Combined tool and edge label, for example, \texttt{T1AW} \\
-\texttt{location} & text & Cutting location: LI (inner), LM (middle), or LO (outer) \\
+\texttt{location} & text & Cutting location: I (inner), M (middle), or O (outer) \\
 \texttt{replicate} & integer & Replicate cut, either 1 or 2 \\
 \texttt{x} & numeric & Horizontal coordinate along the profile in micrometers, starting at zero in increments of 0.645 \\
 \texttt{y} & numeric & \texttt{y} coordinate, constant and set to zero \\
@@ -598,17 +598,14 @@ Variable & Type & Description \\
 \bottomrule
 \end{tabularx}
 
-\agentreview{Confirm whether location values should be standardized across \texttt{meta.csv} (I, M, O) and the signal and pairwise-CCF files (LI, LM, LO).}
-
 }
 
 \end{table}%
 
-The \texttt{data-derived/wire\_pairwise\_ccf.csv} file contains one row
-for each ordered pair of the 120 signals, for 14,400 rows in total. Its
-19 variables are described in Table~\ref{tbl-pairwise-structure} in the
-same order as the file columns. Prefixes \texttt{ID1\_} and
-\texttt{ID2\_} identify the first and second signal in each comparison.
+The \texttt{data-derived/wire\_pairwise\_ccf.csv} file contains all
+14,400 ordered pairs of the 120 signals.
+Table~\ref{tbl-pairwise-structure} describes its 9 variables in CSV
+column order.
 
 \begin{table}[hbt]
 
@@ -621,29 +618,17 @@ same order as the file columns. Prefixes \texttt{ID1\_} and
 \toprule
 Variable & Type & Description \\
 \midrule
-\texttt{ID1\_tool} & text & Tool label for the first signal, one of T1 through T5 \\
-\texttt{ID1\_edge} & character & Cutting edge for the first signal, one of A, B, C, or D \\
-\texttt{ID1\_location} & text & Cutting location for the first signal: LI, LM, or LO \\
-\texttt{ID1\_rep} & integer & Replicate for the first signal, either 1 or 2 \\
-\texttt{ID1\_ID1} & text & Scan identifier for the first signal \\
-\texttt{ID2\_tool} & text & Tool label for the second signal, one of T1 through T5 \\
-\texttt{ID2\_edge} & character & Cutting edge for the second signal, one of A, B, C, or D \\
-\texttt{ID2\_location} & text & Cutting location for the second signal: LI, LM, or LO \\
-\texttt{ID2\_rep} & integer & Replicate for the second signal, either 1 or 2 \\
-\texttt{ID2\_ID2} & text & Scan identifier for the second signal \\
+\texttt{ID1} & text & Scan identifier for the first signal, matching \texttt{ID} in \texttt{meta.csv} \\
+\texttt{ID2} & text & Scan identifier for the second signal, matching \texttt{ID} in \texttt{meta.csv} \\
 \texttt{ccf} & numeric & Maximized cross-correlation function value for the aligned signals \\
 \texttt{lag} & integer & Relative shift at which \texttt{ccf} is maximized, in profile-sample increments \\
 \texttt{same\_tool} & logical & Whether both signals were produced by the same tool \\
 \texttt{same\_edge} & logical & Whether both signals were produced by the same tool and edge \\
 \texttt{same\_location} & logical & Whether both signals were produced by the same tool, edge, and location \\
 \texttt{same\_source} & logical & Whether \texttt{same\_location} is true; replicates may differ \\
-\texttt{ID1\_edge\_long} & logical & Whether the first edge is a long edge, A or C \\
-\texttt{ID2\_edge\_long} & logical & Whether the second edge is a long edge, A or C \\
 \texttt{edge\_type} & text & Edge-length pairing: Long, Short, or Mixed \\
 \bottomrule
 \end{tabularx}
-
-\agentreview{Confirm whether the current pairwise column names, including \texttt{ID1\_ID1}, \texttt{ID2\_ID2}, \texttt{ID1\_rep}, and \texttt{ID2\_rep}, should be retained.}
 
 }
 
