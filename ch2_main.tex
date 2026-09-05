@@ -694,9 +694,10 @@ and C were categorized as long, edges B and D as short, and comparisons
 pairing one long edge with one short edge as mixed. The resulting CCFs
 for all pairwise comparisons were also summarized using boxplots and
 receiver operating characteristic (ROC) curves.
-Figure~\ref{fig-ccf-boxplot} groups CCF distributions by different edge,
-different location, different tool, and same source, with the paired
-edges identified on the horizontal axis. Figure~\ref{fig-ccf-ROC} shows
+Figure~\ref{fig-ccf-boxplot} groups CCF distributions from left to right
+by same source, different location, different edge, and different tool,
+in order of decreasing expected similarity, with the paired edges
+identified on the horizontal axis. Figure~\ref{fig-ccf-ROC} shows
 classification performance separately for long and short edge classes.
 The ROC curves plot sensitivity, or the true positive rate, against the
 false positive rate (FPR; 1 - specificity). The curves are close to the
@@ -764,9 +765,11 @@ T2AW-LI-R1.}
 }
 
 \caption{\label{fig-ccf-boxplot}CCF distributions across comparison
-classes. Gray boxplots show different-source comparisons grouped by
-different edge, location, or tool; orange boxplots show same-source
-comparisons. Horizontal-axis labels identify the paired edges.}
+classes. Facets are ordered from left to right by decreasing expected
+similarity: same source, different location, different edge, and
+different tool. Orange boxplots show same-source comparisons; gray
+boxplots show different-source comparisons. Horizontal-axis labels
+identify the paired edges.}
 
 \end{figure}%
 
