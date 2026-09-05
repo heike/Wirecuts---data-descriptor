@@ -600,7 +600,7 @@ knitr::include_graphics("images/ccf_boxplot.png")
 
 ```{r}
 #| echo: false
-#| out.width: "500px"
+#| out.width: "350px"
 #| label: fig-ccf-ROC
 #| fig-pos: hbt
 #| fig-cap: >-
