@@ -369,6 +369,7 @@ The file `data-derived/wire_pairwise_ccf.csv` contains the CCF similarity scores
 For first-round review, the destination must permit anonymous download; from the second round onward, it must be a public formal repository record.
 Add the full dataset reference to References.}
 The repository contents, formats, and folder organization are summarized in @tbl-data-overview.
+The \texttt{variability-assessment/} folder follows the same folder organization and data-file structure as the main repository for the additional scans collected under different staging and acquisition conditions.
 \agentreview{The \texttt{variability-assessment/} files have not yet been updated to the current naming conventions.
 Recheck the corresponding inventory entry and manuscript descriptions after those files are revised.}
 
