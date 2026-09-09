@@ -518,7 +518,7 @@ Variable & Type & Description \\
 
 
 As descriptive summaries of comparison behavior across the dataset, @fig-ccf-tilemap displays pairwise CCF values organized by tool, cut surface, blade location, and replicate.
-The main diagonal contains self-comparisons, whereas the off-diagonal cells compare distinct signals.
+The diagonal running from the lower left to the upper right contains self-comparisons, whereas the off-diagonal cells compare distinct signals.
 @fig-ccf-density displays the CCF distributions for same-source and different-source comparisons.
 
 
@@ -529,7 +529,7 @@ The main diagonal contains self-comparisons, whereas the off-diagonal cells comp
 #| fig-cap: >-
 #|   Pairwise CCF tile map.
 #|   Rows and columns group scans by tool, cut surface, blade location, and replicate.
-#|   Orange cells indicate larger CCF values and gray cells indicate smaller values; the inset enlarges the boxed edge-to-edge comparison block.
+#|   Orange cells indicate larger CCF values and gray cells indicate smaller values; the inset schematically shows the location and replicate arrangement within the boxed edge-to-edge comparison block, without encoding CCF values.
 #| fig-pos: hbt
 knitr::include_graphics("images/ccf_tilemap.png")
 ```
@@ -562,7 +562,7 @@ Their signal alignment, shown in @fig-T1AW-LI-R1-T2AW-LI-R1-alignment (c), has a
 For the following summaries, edges A and C were categorized as long, edges B and D as short, and comparisons pairing one long edge with one short edge as mixed.
 The resulting CCFs for all pairwise comparisons were also summarized using boxplots and receiver operating characteristic (ROC) curves.
 @fig-ccf-boxplot groups CCF distributions from left to right by same source, different location, different edge, and different tool, in order of decreasing expected similarity, with the paired edges identified on the horizontal axis.
-@fig-ccf-ROC shows classification performance separately for long and short edge classes.
+@fig-ccf-ROC shows classification performance separately for long and short edge classes, comparing same-source pairs with different-tool pairs.
 The ROC curves plot sensitivity, or the true positive rate, against the false positive rate (FPR; 1 - specificity).
 The curves are close to the upper-left corner, indicating strong classification performance.
 For the combined comparison set, a threshold of 0.589 controls the FPR below 0.05 with a false negative rate (FNR) of 0, whereas a threshold of 0.658 controls the FPR below 0.01 with an FNR of 0.02.
@@ -606,7 +606,8 @@ knitr::include_graphics("images/ccf_boxplot.png")
 #| fig-pos: hbt
 #| fig-cap: >-
 #|   ROC curves for CCF-based classification.
-#|   Curves are shown separately for long and short edge classes; the dotted diagonal indicates chance-level classification.
+#|   Curves compare same-source pairs with different-tool pairs separately for long and short edge classes; same-tool different-source pairs are excluded.
+#|   The dotted diagonal indicates chance-level classification.
 knitr::include_graphics("images/ccf_ROC.png")
 ```
 
