@@ -924,7 +924,7 @@ locations.
 
 Custom R code was used to inspect raw scans, extract profiles, derive
 signals, align signals, and generate the validation outputs. The code is
-available in the \texttt{assessment/code} folder at
+available in the root-level \texttt{code/} folder at
 \url{https://github.com/heike/wirecuts-data}.
 \agentformat{For permanent access, archive the exact code release in a DOI-providing repository and cite it if feasible; Scientific Data recommends combining GitHub with a DOI archive.}
 The files and their roles are described in
@@ -955,9 +955,8 @@ Code & Description & Section \\
 \midrule\addlinespace[2.5pt]
 \multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{\parbox{\linewidth}{Compare signals}} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
-\path{5-create-images.R} & create images for pairwise alignment & Pairwise alignment of signals \\ 
-\path{6-align-pairwise.R} & compute pairwise alignment CCF values & Pairwise alignment of signals \\ 
-\path{7-all-comparison-results.R} & visualize comparison results & Data Overview and Technical Validation \\ 
+\path{5-align-pairwise.R} & compute pairwise alignment CCF values & Pairwise alignment of signals \\ 
+\path{6-all-comparison-results.R} & visualize comparison results & Data Overview and Technical Validation \\ 
 \bottomrule
 \end{tabular*}
 

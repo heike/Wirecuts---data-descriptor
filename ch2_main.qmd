@@ -711,7 +711,7 @@ Because each supplied signal is based on a manually selected profile, users asse
 
 
 Custom R code was used to inspect raw scans, extract profiles, derive signals, align signals, and generate the validation outputs.
-The code is available in the \texttt{assessment/code} folder at \url{https://github.com/heike/wirecuts-data}.
+The code is available in the root-level \texttt{code/} folder at \url{https://github.com/heike/wirecuts-data}.
 \agentformat{For permanent access, archive the exact code release in a DOI-providing repository and cite it if feasible; Scientific Data recommends combining GitHub with a DOI archive.}
 The files and their roles are described in @tbl-code-overview.
 
@@ -726,16 +726,15 @@ code_files <- c(
   "2-create_profiles_from_x3p.R",
   "3-create-single-profile-file.R",
   "4-create_signals_from_profiles.R",
-  "5-create-images.R",
-  "6-align-pairwise.R",
-  "7-all-comparison-results.R"
+  "5-align-pairwise.R",
+  "6-all-comparison-results.R"
 )
 
 string <- tibble(
-  group_type = c("Inspect raw scans", rep("Extract profiles", 2), "Derive signals", rep("Compare signals", 3)),
+  group_type = c("Inspect raw scans", rep("Extract profiles", 2), "Derive signals", rep("Compare signals", 2)),
   code_type = paste0("`", code_files, "`"),
-  Description = c("obtain images of `x3p` files in `scans/`", "manually extract profiles from each scan", "combine profile information", "derive signals from each profile", "create images for pairwise alignment", "compute pairwise alignment CCF values", "visualize comparison results"),
-  Section = c("Scan acquisition", "Signal extraction", "Signal extraction", "Signal extraction", "Pairwise alignment of signals", "Pairwise alignment of signals", "Data Overview and Technical Validation")
+  Description = c("obtain images of `x3p` files in `scans/`", "manually extract profiles from each scan", "combine profile information", "derive signals from each profile", "compute pairwise alignment CCF values", "visualize comparison results"),
+  Section = c("Scan acquisition", "Signal extraction", "Signal extraction", "Signal extraction", "Pairwise alignment of signals", "Data Overview and Technical Validation")
 ) %>%
   gt(rowname_col = "code_type", groupname_col = "group_type") %>%
   tab_stubhead(label = "Code") %>%
