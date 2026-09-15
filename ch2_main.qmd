@@ -562,6 +562,7 @@ Their signal alignment, shown in @fig-T1AW-LI-R1-T2AW-LI-R1-alignment (c), has a
 For the following summaries, edges A and C were categorized as long, edges B and D as short, and comparisons pairing one long edge with one short edge as mixed.
 The resulting CCFs for all pairwise comparisons were also summarized using boxplots and receiver operating characteristic (ROC) curves.
 @fig-ccf-boxplot groups CCF distributions from left to right by same source, different location, different edge, and different tool, in order of decreasing expected similarity, with the paired edges identified on the horizontal axis.
+Comparisons between different edges remain difficult to interpret, even when CCF values are high, because edges A and C, or B and D, of some tools may produce similar striations that are difficult to distinguish.
 @fig-ccf-ROC shows classification performance separately for long and short edge classes, comparing same-source pairs with different-tool pairs.
 The ROC curves plot sensitivity, or the true positive rate, against the false positive rate (FPR; 1 - specificity).
 The curves are close to the upper-left corner, indicating strong classification performance.
