@@ -228,15 +228,19 @@ The naming of each piece included the specific tool, its edge, location, and rep
 
 \begin{samepage}
 \begin{verbatim}
-T__W-L_-R_
- ||   |  |
- ||   |  +-- Replicate: 1 or 2
- ||   +----- Location: I (inner), M (middle), or O (outer)
- |+--------- Edge: A, B, C, or D
- +---------- Tool: 1, 2, 3, 4, or 5
+T__W-L_-R_[-S_[-A_]]
+ ||   |  |   |   |
+ ||   |  |   |   +-- Acquisition: 2, 3, or 4
+ ||   |  |   +------ Staging: 2 or 3
+ ||   |  +---------- Replicate: 1 or 2
+ ||   +------------- Location: I (inner), M (middle), or O (outer)
+ |+----------------- Edge: A, B, C, or D
+ +------------------ Tool: 1, 2, 3, 4, or 5
 \end{verbatim}
 \end{samepage}
 
+Staging and acquisition are omitted when their corresponding value is 1.
+Acquisition is included only when staging is present.
 For example, T1AW-LI-R1 denotes the first replicate of a piece cut with edge A of tool 1 at the inner location.
 
 To minimize errors during data collection, two team members cut and labeled the wire pieces together.
