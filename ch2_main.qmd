@@ -66,8 +66,9 @@ affiliations:
     country: USA
 abstract: |
  Wire-cut striation marks provide evidence for forensic source identification, but publicly available datasets and reproducible quantitative workflows for analyzing these marks are limited.
- We present a dataset of 120 three-dimensional topographic scans in \texttt{x3p} format from aluminum wires cut with five KWS-105 wire cutters.
- The study contains six scans---two replicates at each of three cutting locations---for each of the 20 tool-edge combinations.
+ We present a dataset of 134 three-dimensional topographic scans in \texttt{x3p} format from aluminum wires cut with five KWS-105 wire cutters.
+ The main experiment contains 120 scans: two replicates at each of three cutting locations for each of the 20 tool-edge combinations.
+ Fourteen additional scans assess staging and acquisition variability for a randomly selected tool and location.
  We provide additional scan metadata, manually extracted profiles, processed signals, cross-correlation function (CCF) values for pairwise aligned signals, images, and analysis code.
  The accompanying workflow covers scan inspection, profile and signal extraction, alignment, pairwise similarity visualization, CCF distributions for same-source and different-source comparisons, and variability assessment across replicates, stagings, and acquisitions.
  The dataset and workflow support the development, evaluation, and reproducible comparison of quantitative methods for wire-cut evidence.
@@ -196,7 +197,10 @@ As an example, the four scans resulting from cut 1 by tool 1 are shown in @fig-c
 The cut surfaces were scanned at 20$\times$ magnification using a Sensofar confocal microscope, shown in @fig-cut-tent-scan (b).
 The scans were exported in \texttt{x3p} format (ISO 25178-72:2017/Amd 1:2020) with a lateral resolution of 0.645 $\times$ 0.645 micrometers per pixel and a vertical resolution of 0.1 micrometer.
 
-The complete design therefore consists of 5 tools $\times$ 3 locations $\times$ 2 replicates $\times$ 4 cut surfaces = 120 scans.
+The main experiment therefore consists of 5 tools $\times$ 3 locations $\times$ 2 replicates $\times$ 4 cut surfaces = 120 scans from 30 cuts.
+Tool 2 and the middle cutting location were randomly selected for variability assessment.
+Fourteen additional scans of the second replicate at this tool and location were collected across repeated stagings and acquisitions, giving 134 scans in total.
+These repeated scans do not represent additional cuts; their acquisition design is described in Technical Validation later.
 
 :::: {#fig-cut-tent-scan layout="[29, -2, 69]" fig-pos="hbt"}
 
@@ -224,7 +228,7 @@ Wire-cut sampling and scanning workflow.
 
 ::::
 
-The naming of each piece included the specific tool, its edge, location, and replicate according to the following convention:
+Each scan identifier specifies the tool, edge, cutting location, replicate, and, where applicable, staging and acquisition according to the following convention:
 
 \begin{samepage}
 \begin{verbatim}
@@ -239,9 +243,11 @@ T__W-L_-R_[-S_[-A_]]
 \end{verbatim}
 \end{samepage}
 
-Staging and acquisition are omitted when their corresponding value is 1.
-Acquisition is included only when staging is present.
-For example, T1AW-LI-R1 denotes the first replicate of a piece cut with edge A of tool 1 at the inner location.
+Square brackets denote optional suffixes and are not part of the identifiers.
+Staging and acquisition suffixes are omitted when their corresponding value is 1; these values are recorded explicitly in the metadata and signal files.
+In our scans, acquisition suffixes occur only at staging 3.
+For example, T1AW-LI-R1 denotes the first replicate of a piece cut with edge A of tool 1 at the inner location, at staging 1 and acquisition 1.
+T2AW-LM-R2-S3-A2 denotes the second acquisition at the third staging of replicate 2, cut with edge A of tool 2 at the middle location.
 
 To minimize errors during data collection, two team members cut and labeled the wire pieces together.
 One team member scanned the wire cuts and assigned names to the scans as described.
@@ -307,7 +313,7 @@ The resulting signals are used for subsequent comparisons with other signals.
 One profile for each scan is included in folder `profiles/` as a csv file in the repository using the same naming convention as the scans, with the precursor of `profiles-`. 
 More details on the exact format of these files are provided below.
 
-A single file containing all 120 signals is available in `data-derived/wire-signals.csv.zip`.
+A single file containing signals for all 134 scans is available in `data-derived/wire-signals.csv.zip`.
 
 <!-- ## Filtered signals {#sec-filtered-signals .unnumbered} -->
 
@@ -373,9 +379,10 @@ The file `data-derived/wire_pairwise_ccf.csv` contains the CCF similarity scores
 For first-round review, the destination must permit anonymous download; from the second round onward, it must be a public formal repository record.
 Add the full dataset reference to References.}
 The repository contents, formats, and folder organization are summarized in @tbl-data-overview.
-The \texttt{variability-assessment/} folder follows the same folder organization and data-file structure as the main repository for the additional scans collected under different staging and acquisition conditions.
-\agentreview{The \texttt{variability-assessment/} files have not yet been updated to the current naming conventions.
-Recheck the corresponding inventory entry and manuscript descriptions after those files are revised.}
+All 134 scans share the root-level \texttt{scans/}, \texttt{profiles/}, \texttt{pngs/}, and \texttt{profile-images/} folders, a single \texttt{meta.csv}, and the derived files in \texttt{data-derived/}.
+The same file structures describe both the main experiment and the repeated scans used for variability assessment.
+The 120 main-experiment scans have \texttt{staging = 1} and \texttt{acquisition = 1}; the 14 additional scans have staging 2 or 3.
+Scan identifiers link the metadata, profiles, signals, and images, and both identifier columns in the pairwise file refer to this shared set.
 
 
 ```{r}
@@ -386,10 +393,10 @@ Recheck the corresponding inventory entry and manuscript descriptions after thos
 #| results: asis
 
 gt_table <- tibble(
-  group_type = c(rep("Raw data", 2), "Manual derivatives", rep("Computational derivatives in the folder 'data-derived/'", 2), rep("Image files", 2), "Technical validation"),
-  data_type = c("`scans/`", "`meta.csv`", "`profiles/`", "`wire-signals.csv.zip`", "`wire_pairwise_ccf.csv`", "`pngs/`", "`profile-images/`", "`variability-`\n`assessment/`"),
-  Description = c("folder containing 120 topographic 3D scans corresponding to 30 aluminum wire cuts (`x3p` format)", "metadata for each scan: identifier, file path, tool, edge, location, replicate, and pixel dimensions (CSV format)", "folder containing one manually extracted profile per scan (CSV format)", "profile values and derived signals for all 120 scans (CSV format, in `wire-signals.csv.zip`)", "CCF values for all pairwise aligned signals (CSV format)", "folder containing images of 3D wire-cut scans (PNG format)", "folder containing images of profiles extracted from wire cuts (PNG format)", "folder containing technical-validation documents, pending an update to the current naming conventions"),
-  Section = c("Scan acquisition", "Scan acquisition", "Signal extraction", "Signal extraction", "Pairwise alignment of signals", "Scan acquisition", "Signal extraction", "Technical Validation")
+  group_type = c(rep("Raw data", 2), "Manual derivatives", rep("Computational derivatives in the folder 'data-derived/'", 2), rep("Image files", 2)),
+  data_type = c("`scans/`", "`meta.csv`", "`profiles/`", "`wire-signals.csv.zip`", "`wire_pairwise_ccf.csv`", "`pngs/`", "`profile-images/`"),
+  Description = c("134 topographic 3D scans from 30 aluminum wire cuts, including 14 repeat scans (`x3p` format)", "scan identifiers, paths, tool, edge, location, replicate, staging, acquisition, and pixel dimensions (CSV format)", "134 manually extracted profiles, one per scan (CSV format)", "profile values and derived signals for all 134 scans (compressed CSV format)", "17,956 ordered pairwise CCF values for all 134 signals (CSV format)", "134 images of 3D wire-cut scans (PNG format)", "134 scan images showing the manually selected profile lines (PNG format)"),
+  Section = c("Scan acquisition", "Scan acquisition", "Signal extraction", "Signal extraction", "Pairwise alignment of signals", "Scan acquisition", "Signal extraction")
 ) %>%
   group_by(group_type) %>%
   gt(rowname_col = "data_type") %>%
@@ -429,7 +436,7 @@ For this non-sensitive original dataset, use CC0 or CC BY rather than a license 
 
 \hh{We need to include a descriptor table for each of the csv files; I started with meta.csv - the formatting is still horrific}
 
-The \texttt{meta.csv} file contains one record for each of the 120 scans, with eight variables described in @tbl-meta-structure.
+The \texttt{meta.csv} file contains one record for each of the 134 scans, with ten variables described in @tbl-meta-structure.
 
 ::: {#tbl-meta-structure tbl-cap="Structure of `meta.csv`." tbl-pos="hbt"}
 
@@ -443,6 +450,8 @@ Variable & Type & Description \\
 \texttt{edge} & character & Cutting edge, one of A, B, C, or D \\
 \texttt{location} & character & Cutting location: I (inner), M (middle), or O (outer) \\
 \texttt{replicate} & integer & Replicate cut, either 1 or 2 \\
+\texttt{staging} & integer & Staging of the same cut surface under the microscope: 1, 2, or 3; 1 is omitted from the scan identifier \\
+\texttt{acquisition} & integer & Acquisition within a staging: 1 through 4; 1 is omitted from the scan identifier \\
 \texttt{height} & integer & Height of the scan in pixels \\
 \texttt{width} & integer & Width of the scan in pixels \\
 \bottomrule
@@ -450,7 +459,7 @@ Variable & Type & Description \\
 
 :::
 
-The \texttt{profiles/} folder contains 120 CSV files, one manually extracted profile per scan, with one sampled point per row.
+The \texttt{profiles/} folder contains 134 CSV files, one manually extracted profile per scan, with one sampled point per row and 266,394 rows in total.
 Their four variables are described in @tbl-profile-structure in CSV column order.
 
 ::: {#tbl-profile-structure tbl-cap="Structure of the `profiles-*.csv` files." tbl-pos="hbt"}
@@ -468,8 +477,8 @@ Variable & Type & Description \\
 
 :::
 
-The \texttt{data-derived/wire-signals.csv.zip} archive contains \texttt{data-derived/wire-signals.csv}, containing signals for all 120 scans.
-@tbl-signal-structure describes its 12 variables in CSV column order.
+The \texttt{data-derived/wire-signals.csv.zip} archive contains \texttt{data-derived/wire-signals.csv}, with 266,394 rows containing profile values and signals for all 134 scans.
+@tbl-signal-structure describes its 13 variables in CSV column order.
 
 ::: {#tbl-signal-structure tbl-cap="Structure of the signal CSV in `wire-signals.csv.zip`." tbl-pos="hbt"}
 
@@ -480,9 +489,10 @@ Variable & Type & Description \\
 \texttt{ID} & text & Source scan identifier, matching \texttt{ID} in \texttt{meta.csv} and the profile files \\
 \texttt{tool} & integer & Cutting tool, one of 1 through 5 \\
 \texttt{edge} & character & Cutting edge, one of A, B, C, or D \\
-\texttt{tooledge} & text & Combined tool and edge label, for example, \texttt{T1AW} \\
 \texttt{location} & text & Cutting location: I (inner), M (middle), or O (outer) \\
 \texttt{replicate} & integer & Replicate cut, either 1 or 2 \\
+\texttt{staging} & integer & Staging of the cut surface: 1, 2, or 3, matching \texttt{meta.csv} \\
+\texttt{acquisition} & integer & Acquisition within a staging: 1 through 4, matching \texttt{meta.csv} \\
 \texttt{x} & numeric & Horizontal coordinate along the profile in micrometers, starting at zero in increments of 0.645 \\
 \texttt{y} & numeric & \texttt{y} coordinate, constant and set to zero \\
 \texttt{value} & numeric & Observed surface height in micrometers \\
@@ -494,8 +504,9 @@ Variable & Type & Description \\
 
 :::
 
-The \texttt{data-derived/wire\_pairwise\_ccf.csv} file contains all 14,400 ordered pairs of the 120 signals.
-@tbl-pairwise-structure describes its 9 variables in CSV column order.
+The \texttt{data-derived/wire\_pairwise\_ccf.csv} file contains all 17,956 ordered pairs of the 134 signals, including self-comparisons and both orders of each distinct pair.
+The main-experiment subset contains 14,400 ordered pairs of the 120 signals at staging 1 and acquisition 1.
+@tbl-pairwise-structure describes the file's 12 variables in CSV column order.
 
 ::: {#tbl-pairwise-structure tbl-cap="Structure of the `wire_pairwise_ccf.csv` file." tbl-pos="hbt"}
 
@@ -510,7 +521,10 @@ Variable & Type & Description \\
 \texttt{same\_tool} & logical & Whether both signals were produced by the same tool \\
 \texttt{same\_edge} & logical & Whether both signals were produced by the same tool and edge \\
 \texttt{same\_location} & logical & Whether both signals were produced by the same tool, edge, and location \\
-\texttt{same\_source} & logical & Whether \texttt{same\_location} is true; replicates may differ \\
+\texttt{same\_replicate} & logical & Whether \texttt{same\_location} is true and the replicate cut is the same \\
+\texttt{same\_staging} & logical & Whether \texttt{same\_replicate} is true and the staging is the same \\
+\texttt{same\_acquisition} & logical & Whether \texttt{same\_staging} is true and the acquisition is the same \\
+\texttt{same\_source} & logical & Whether \texttt{same\_location} is true; replicate, staging, and acquisition may differ \\
 \texttt{edge\_type} & text & Edge-length pairing: Long, Short, or Mixed \\
 \bottomrule
 \end{tabularx}
@@ -521,9 +535,10 @@ Variable & Type & Description \\
 # Data Overview {#sec-data-overview .unnumbered}
 
 
-As descriptive summaries of comparison behavior across the dataset, @fig-ccf-tilemap displays pairwise CCF values organized by tool, cut surface, blade location, and replicate.
+As descriptive summaries of the 120 main-experiment scans at staging 1 and acquisition 1, @fig-ccf-tilemap displays pairwise CCF values organized by tool, cut surface, blade location, and replicate.
 The diagonal running from the lower left to the upper right contains self-comparisons, whereas the off-diagonal cells compare distinct signals.
 @fig-ccf-density displays the CCF distributions for same-source and different-source comparisons.
+The density summary counts each distinct unordered pair once and excludes self-comparisons.
 
 
 ```{r}
@@ -532,6 +547,7 @@ The diagonal running from the lower left to the upper right contains self-compar
 #| label: fig-ccf-tilemap
 #| fig-cap: >-
 #|   Pairwise CCF tile map.
+#|   The matrix contains the 14,400 ordered comparisons of the 120 main-experiment scans at staging 1 and acquisition 1.
 #|   Rows and columns group scans by tool, cut surface, blade location, and replicate.
 #|   Orange cells indicate larger CCF values and gray cells indicate smaller values; the inset schematically shows the location and replicate arrangement within the boxed edge-to-edge comparison block, without encoding CCF values.
 #| fig-pos: hbt
@@ -545,7 +561,9 @@ knitr::include_graphics("images/ccf_tilemap.png")
 #| label: fig-ccf-density
 #| fig-cap: >-
 #|   CCF density distributions.
+#|   Comparisons use the 120 main-experiment scans at staging 1 and acquisition 1.
 #|   Kernel density estimates are shown for different-source comparisons in gray and same-source comparisons in orange.
+#|   Each distinct unordered pair is counted once, excluding self-comparisons.
 #| fig-pos: hbt
 knitr::include_graphics("images/ccf_density.png")
 ```
@@ -557,7 +575,7 @@ knitr::include_graphics("images/ccf_density.png")
 Technical validation was conducted in two areas: (1) signal processing and alignment and (2) variability assessment.
 
 
-Scan processing and signal alignment were validated as follows.
+Scan processing and signal alignment were validated using the 120 main-experiment scans at staging 1 and acquisition 1 as follows.
 High CCF values were expected between signals from the same source and low values between signals from different sources.
 @fig-signals-pair-alignment, shown earlier in Pairwise alignment of signals, meets the expected pattern for same-source signals.
 As an example of a different-source comparison, T1AW-LI-R1 and T2AW-LI-R1 were selected.
@@ -565,6 +583,7 @@ As an example of a different-source comparison, T1AW-LI-R1 and T2AW-LI-R1 were s
 Their signal alignment, shown in @fig-T1AW-LI-R1-T2AW-LI-R1-alignment (c), has a CCF value of 0.2, which is as low as expected.
 For the following summaries, edges A and C were categorized as long, edges B and D as short, and comparisons pairing one long edge with one short edge as mixed.
 The resulting CCFs for all pairwise comparisons were also summarized using boxplots and receiver operating characteristic (ROC) curves.
+These summaries count each distinct unordered pair once and exclude self-comparisons.
 @fig-ccf-boxplot groups CCF distributions from left to right by same source, different location, different edge, and different tool, in order of decreasing expected similarity, with the paired edges identified on the horizontal axis.
 Comparisons between different edges remain difficult to interpret, even when CCF values are high, because edges A and C, or B and D, of some tools may produce similar striations that are difficult to distinguish.
 @fig-ccf-ROC shows classification performance separately for long and short edge classes, comparing same-source pairs with different-tool pairs.
@@ -597,6 +616,7 @@ Different-source scan and signal comparison.
 #| fig-pos: hbt
 #| fig-cap: >-
 #|   CCF distributions across comparison classes.
+#|   Comparisons use the 120 main-experiment scans at staging 1 and acquisition 1.
 #|   Facets are ordered from left to right by decreasing expected similarity: same source, different location, different edge, and different tool.
 #|   Orange boxplots show same-source comparisons; gray boxplots show different-source comparisons.
 #|   Horizontal-axis labels identify the paired edges.
@@ -611,6 +631,7 @@ knitr::include_graphics("images/ccf_boxplot.png")
 #| fig-pos: hbt
 #| fig-cap: >-
 #|   ROC curves for CCF-based classification.
+#|   Comparisons use the 120 main-experiment scans at staging 1 and acquisition 1.
 #|   Curves compare same-source pairs with different-tool pairs separately for long and short edge classes; same-tool different-source pairs are excluded.
 #|   The dotted diagonal indicates chance-level classification.
 knitr::include_graphics("images/ccf_ROC.png")
@@ -618,16 +639,18 @@ knitr::include_graphics("images/ccf_ROC.png")
 
 
 The second validation assessed variability in the pipeline across replicates, stagings, and acquisitions.
-Scans from tool 2 at the middle location were selected for this assessment.
+Tool 2 and the middle location were the randomly selected tool and cutting location for this assessment.
+The 22 scans from tool 2 at the middle location were selected from the shared files for this assessment: eight main-experiment scans and 14 additional scans of replicate 2.
 Replicate variability was assessed using two different cuts at the same edge and position.
 The comparison in @fig-signals-pair-alignment in Pairwise alignment of signals illustrates this assessment.
-To assess staging variability, replicate 2 was rescanned under the confocal microscope, and the staging label S was introduced into the naming protocol.
+To assess staging variability, replicate 2 was rescanned under the confocal microscope; the staging label S identifies these repeated stagings in the naming convention.
 The S1 designation is omitted from labels, so R2 is equivalent to R2-S1.
-For all four edges of tool 2 at the middle location, three stagings (R2, R2-S2, and R2-S3) were created, pairwise CCFs between stagings were computed, and their mean and standard deviation (SD) were calculated.
+For all four edges of tool 2 at the middle location, three stagings (R2, R2-S2, and R2-S3) were created.
+Their pairwise CCFs were summarized by the mean and standard deviation (SD) using the comparison categories defined below.
 
 
 Within each staging, the effect of different acquisitions was further examined by keeping the samples on the confocal microscope while varying the lighting conditions.
-A was introduced as the acquisition label.
+The suffix A identifies the acquisition within a staging.
 For edge A at staging 3, four acquisitions were performed, and the A1 designation was omitted from the first acquisition label.
 Therefore, R2-S3 is equivalent to R2-S3-A1.
 For the other three edges, two acquisitions were conducted at staging 3.
@@ -635,14 +658,25 @@ These acquisitions are denoted by R2-S3 and R2-S3-A2.
 Within staging 3, pairwise CCFs between acquisitions were computed, and their mean and standard deviation were calculated.
 Variability between distinct stagings was assessed separately through the staging comparisons described above.
 
+Each distinct unordered pair from the same edge was counted once, excluding self-comparisons.
+Replicate comparisons pair the scan of replicate 1 with every scan of replicate 2, including its repeated stagings and acquisitions.
+Staging comparisons pair scans of replicate 2 from different stagings, including all acquisitions within those stagings.
+Acquisition comparisons pair scans from the same replicate and staging but different acquisitions.
+These categories contain, respectively, 6, 9, and 6 comparisons for edge A and 4, 5, and 1 for each of edges B, C, and D.
+
 
 With this setup, CCF values were expected to become more consistent from replicate to staging to acquisition as the scanning conditions became progressively more stable.
 Consequently, variability was expected to decrease along this sequence.
 Replicates, stagings, and acquisitions were also compared, with smaller differences expected between acquisitions and stagings than between stagings and replicates.
 The results were visualized as scatter plots.
-@fig-rep_staging_acquisition shows the scatter plots and intervals extending two standard deviations above and below the mean.
-Higher orange mean lines indicate an increase in the mean CCF, and narrower shaded intervals indicate a decrease in the standard deviation.
-The detailed numerical results, including means, standard deviations, and differences between means, are shown in @tbl-CCF-replicate-staging-acquisition and confirm the expected pattern.
+@fig-rep_staging_acquisition shows the scatter plots and intervals extending two standard errors (SEs) above and below the mean.
+For each comparison category and edge, the plotted SE is calculated as $\mathrm{SD}/\sqrt{n}$, where $n$ is the number of distinct pairwise CCF values.
+Higher orange mean lines indicate an increase in the mean CCF; interval widths depend on both the SD and the number of comparisons.
+Because comparisons share scans, these intervals are descriptive summaries rather than confidence intervals based on independent observations.
+The detailed numerical results, including means, standard deviations, and differences between means, are shown in @tbl-CCF-replicate-staging-acquisition.
+Mean CCF increases from replicate to staging to acquisition comparisons for every edge, and the acquisition-to-staging mean differences are smaller than the staging-to-replicate differences.
+The SDs do not decrease uniformly: edge B has a higher staging SD than replicate SD, whereas edges A, C, and D have lower staging SDs.
+For acquisition comparisons, SD is defined only for edge A, which has six pairs; the single pair for each other edge does not permit an estimate of dispersion.
 
 
 ```{r}
@@ -652,12 +686,14 @@ The detailed numerical results, including means, standard deviations, and differ
 #| fig-pos: hbt
 #| fig-cap: >-
 #|   Variability across scanning conditions.
-#|   Panels A, B, C, and D correspond to the four cut surfaces.
-#|   Gray points show pairwise CCF values, orange horizontal lines show means, and shaded intervals extend two standard deviations above and below each mean.
+#|   Panels A, B, C, and D correspond to the four cut surfaces of tool 2 at the middle location, using 22 scans from the shared dataset.
+#|   Gray points show pairwise CCF values, orange horizontal lines show means, and shaded intervals extend two standard errors above and below each mean, with SE calculated as SD divided by the square root of the number of comparisons.
+#|   Each distinct unordered pair is counted once within the replicate, staging, or acquisition category; no interval is shown for a category with only one pair.
+
 knitr::include_graphics("images/rep_staging_acquisition.png")
 ```
 
-\agentformat{The manuscript contains 11 figures.
+\agentformat{The manuscript contains 10 figures.
 Scientific Data recommends no more than eight but does not mandate this limit.
 Confirm with the coauthors or professor whether any logically connected pairs should be combined for revised submission; do not remove a figure or its discussion without an author decision.}
 
@@ -703,6 +739,8 @@ The raw surface scans are provided in \texttt{x3p} format.
 To inspect or process these files in R, use the \texttt{x3ptools} package and its reference manual, available from CRAN [@hofmannX3ptoolsToolsWorking2018].
 The supplied profiles and processed signals provide a starting point for users who do not wish to repeat manual profile extraction.
 The supplied extraction coordinates allow these derived files to be related back to the corresponding scans.
+To reproduce the main-experiment summaries, select identifiers with \texttt{staging = 1} and \texttt{acquisition = 1} in \texttt{meta.csv}, and retain pairwise rows only when both identifiers are in that set.
+For variability assessment, select tool 2 at the middle location and use the hierarchical comparison flags to distinguish replicate, staging, and acquisition comparisons as described in Technical Validation.
 Because each supplied signal is based on a manually selected profile, users assessing sensitivity to profile placement should re-extract profiles from the raw \texttt{x3p} scans using alternative documented locations.
 
 
@@ -732,14 +770,15 @@ code_files <- c(
   "3-create-single-profile-file.R",
   "4-create_signals_from_profiles.R",
   "5-align-pairwise.R",
-  "6-all-comparison-results.R"
+  "6-all-comparison-results.R",
+  "7-variability-assessment.R"
 )
 
 string <- tibble(
-  group_type = c("Inspect raw scans", rep("Extract profiles", 2), "Derive signals", rep("Compare signals", 2)),
+  group_type = c("Inspect raw scans", rep("Extract profiles", 2), "Derive signals", rep("Compare signals", 2), "Assess variability"),
   code_type = paste0("`", code_files, "`"),
-  Description = c("obtain images of `x3p` files in `scans/`", "manually extract profiles from each scan", "combine profile information", "derive signals from each profile", "compute pairwise alignment CCF values", "visualize comparison results"),
-  Section = c("Scan acquisition", "Signal extraction", "Signal extraction", "Signal extraction", "Pairwise alignment of signals", "Data Overview and Technical Validation")
+  Description = c("obtain images of `x3p` files in `scans/`", "manually extract profiles from each scan", "combine profile information", "derive signals from each profile", "compute pairwise alignment CCF values", "visualize main-experiment comparisons", "compare replicates, stagings, and acquisitions"),
+  Section = c("Scan acquisition", "Signal extraction", "Signal extraction", "Signal extraction", "Pairwise alignment of signals", "Data Overview and Technical Validation", "Technical Validation")
 ) %>%
   gt(rowname_col = "code_type", groupname_col = "group_type") %>%
   tab_stubhead(label = "Code") %>%
@@ -775,7 +814,6 @@ for (code_file in code_files) {
 string
 ```
 
-The provided code reproduces the processing, comparison, validation, and visualization outputs described in Data Acquisition and Processing and Technical Validation.
-\agentrevision{The workflow was run using R [version] and \texttt{x3ptools} [version].
-Versions of additional R packages are recorded in [environment file or repository documentation path].}
-\agentformat{Replace the R, \texttt{x3ptools}, and environment-record placeholders after checking the analysis environment.}
+The provided code implements the processing, comparison, validation, and visualization workflow described in Data Acquisition and Processing and Technical Validation.
+The supplied \texttt{renv.lock} records R 4.6.1, \texttt{x3ptools} 0.0.4, and the versions of the other R packages in the repository environment.
+The \texttt{renv/} folder and project startup file support restoration of this environment.
