@@ -374,11 +374,8 @@ The file `data-derived/wire_pairwise_ccf.csv` contains the CCF similarity scores
 # Data Records {#sec-data-records .unnumbered}
 
 
-\agentrevision{The repository record on Iowa State University DataShare [DATASET CITATION] at \url{https://doi.org/[DOI]} contains the \texttt{x3p} scans, metadata, extracted profiles, processed signals, pairwise CCF values, and derived images.}
-\agentformat{Replace the dataset citation and DOI placeholders.
-For first-round review, the destination must permit anonymous download; from the second round onward, it must be a public formal repository record.
-Add the full dataset reference to References.}
-The repository contents, formats, and folder organization are summarized in @tbl-data-overview.
+The repository record on Iowa State University DataShare [@ThreedimensionalDataWirecut] at \url{https://doi.org/10.25380/iastate.34025028} contains the \texttt{x3p} scans, metadata, extracted profiles, processed signals, pairwise CCF values, derived images, analysis code, and supporting documentation and environment files.
+The data files, formats, and folder organization are summarized in @tbl-data-overview.
 All 134 scans share the root-level \texttt{scans/}, \texttt{profiles/}, \texttt{pngs/}, and \texttt{profile-images/} folders, a single \texttt{meta.csv}, and the derived files in \texttt{data-derived/}.
 The same file structures describe both the main experiment and the repeated scans used for variability assessment.
 The 120 main-experiment scans have \texttt{staging = 1} and \texttt{acquisition = 1}; the 14 additional scans have staging 2 or 3.
@@ -429,12 +426,7 @@ for (i in seq_along(dimexprs)) {
 string
 ```
 
-\agentrevision{A data dictionary defining non-obvious columns in \texttt{meta.csv}, the profile and signal files, and the pairwise-CCF file is provided in [repository documentation path].
-The dataset is available under the [license] license.}
-\agentformat{Verify Table 1 against the deposited record and replace the documentation-path and data-license placeholders.
-For this non-sensitive original dataset, use CC0 or CC BY rather than a license containing NC or SA restrictions.}
-
-\hh{We need to include a descriptor table for each of the csv files; I started with meta.csv - the formatting is still horrific}
+The dataset is licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) license.
 
 The \texttt{meta.csv} file contains one record for each of the 134 scans, with ten variables described in @tbl-meta-structure.
 
@@ -746,16 +738,14 @@ Because each supplied signal is based on a manually selected profile, users asse
 
 # Data Availability {#sec-data-availability .unnumbered}
 
-\agentrevision{The data described in this Data Descriptor are available from Iowa State University DataShare [DATASET CITATION] at \url{https://doi.org/[DOI]}.}
-\agentformat{Replace the dataset citation and DOI placeholders with the same record used in Data Records.}
+The data and accompanying code described in this Data Descriptor are publicly available from Iowa State University DataShare [@ThreedimensionalDataWirecut] at \url{https://doi.org/10.25380/iastate.34025028}.
 
 
 # Code Availability {#sec-code-availability .unnumbered}
 
 
 Custom R code was used to inspect raw scans, extract profiles, derive signals, align signals, and generate the validation outputs.
-The code is available in the root-level \texttt{code/} folder at \url{https://github.com/heike/wirecuts-data}.
-\agentformat{For permanent access, archive the exact code release in a DOI-providing repository and cite it if feasible; Scientific Data recommends combining GitHub with a DOI archive.}
+The code is archived in the root-level \texttt{code/} folder of the Iowa State University DataShare deposit [@ThreedimensionalDataWirecut] at \url{https://doi.org/10.25380/iastate.34025028}.
 The files and their roles are described in @tbl-code-overview.
 
 ```{r}
@@ -816,4 +806,4 @@ string
 
 The provided code implements the processing, comparison, validation, and visualization workflow described in Data Acquisition and Processing and Technical Validation.
 The supplied \texttt{renv.lock} records R 4.6.1, \texttt{x3ptools} 0.0.4, and the versions of the other R packages in the repository environment.
-The \texttt{renv/} folder and project startup file support restoration of this environment.
+The archived \texttt{renv/} folder and \texttt{.Rprofile} project startup file support restoration of this environment.

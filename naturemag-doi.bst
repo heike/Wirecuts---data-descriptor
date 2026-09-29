@@ -1410,7 +1410,16 @@ FUNCTION {misc}
   format.title output
   howpublished new.block.checka
   howpublished "howpublished" bibinfo.check output
-  format.doi output
+  % Better BibTeX exports datasets as misc with the repository in publisher.
+  % Identify repository records by a publisher and a matching DOI URL.
+  publisher empty$ not
+  doi empty$ not and
+  url field.or.null "https://doi.org/" doi field.or.null * = and
+    { publisher "publisher" bibinfo.check output
+      "\url{" url * "}" * output
+    }
+    { format.doi output }
+  if$
   format.date output
   new.block
 %  format.doi output
