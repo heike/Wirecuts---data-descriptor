@@ -374,7 +374,7 @@ The file `data-derived/wire_pairwise_ccf.csv` contains the CCF similarity scores
 # Data Records {#sec-data-records .unnumbered}
 
 
-The repository record on Iowa State University DataShare [@ThreedimensionalDataWirecut] at \url{https://doi.org/10.25380/iastate.34025028} contains the \texttt{x3p} scans, metadata, extracted profiles, processed signals, pairwise CCF values, derived images, analysis code, and supporting documentation and environment files.
+The repository record on Iowa State University DataShare [@DatasetCodeThreedimensionalDataWirecut] at \url{https://doi.org/10.25380/iastate.34025028} contains the \texttt{x3p} scans, metadata, extracted profiles, processed signals, pairwise CCF values, derived images, analysis code, and supporting documentation and environment files.
 The data files, formats, and folder organization are summarized in @tbl-data-overview.
 All 134 scans share the root-level \texttt{scans/}, \texttt{profiles/}, \texttt{pngs/}, and \texttt{profile-images/} folders, a single \texttt{meta.csv}, and the derived files in \texttt{data-derived/}.
 The same file structures describe both the main experiment and the repeated scans used for variability assessment.
@@ -738,14 +738,14 @@ Because each supplied signal is based on a manually selected profile, users asse
 
 # Data Availability {#sec-data-availability .unnumbered}
 
-The data and accompanying code described in this Data Descriptor are publicly available from Iowa State University DataShare [@ThreedimensionalDataWirecut] at \url{https://doi.org/10.25380/iastate.34025028}.
+The data and accompanying code described in this Data Descriptor are publicly available from Iowa State University DataShare [@DatasetCodeThreedimensionalDataWirecut] at \url{https://doi.org/10.25380/iastate.34025028}.
 
 
 # Code Availability {#sec-code-availability .unnumbered}
 
 
 Custom R code was used to inspect raw scans, extract profiles, derive signals, align signals, and generate the validation outputs.
-The code is archived in the root-level \texttt{code/} folder of the Iowa State University DataShare deposit [@ThreedimensionalDataWirecut] at \url{https://doi.org/10.25380/iastate.34025028}.
+The code is archived in the root-level \texttt{code/} folder of the Iowa State University DataShare deposit [@DatasetCodeThreedimensionalDataWirecut] at \url{https://doi.org/10.25380/iastate.34025028}.
 The files and their roles are described in @tbl-code-overview.
 
 ```{r}
