@@ -806,4 +806,5 @@ string
 
 The provided code implements the processing, comparison, validation, and visualization workflow described in Data Acquisition and Processing and Technical Validation.
 The supplied \texttt{renv.lock} records R 4.6.1, \texttt{x3ptools} 0.0.4, and the versions of the other R packages in the repository environment.
+For GitHub packages, it also records the source repositories and commit hashes.
 The archived \texttt{renv/} folder and \texttt{.Rprofile} project startup file support restoration of this environment.
