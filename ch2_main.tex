@@ -199,16 +199,16 @@ workflow. The shared materials include raw scans, metadata, manually
 extracted profiles, processed signals, pairwise cross-correlation
 function (CCF) values, derived images, and analysis code.
 
-The Methods section describes sample collection, scanning, profile
-extraction, signal processing, and CCF-based alignment. Data Records
-describes the shared files and repository organization. Data Overview
-presents descriptive summaries of pairwise CCF values. Technical
-Validation assesses signal-processing and alignment behavior and
-variability across replicates, stagings, and acquisitions. Usage Notes
-provides practical guidance for working with the shared files, and Code
-Availability identifies the custom processing and validation code. The
-dataset and workflow may support future quantitative research on
-wire-cut evidence.
+Data Acquisition and Processing describes sample collection, scanning,
+profile extraction, signal processing, and CCF-based alignment. Data
+Records describes the shared files and repository organization.
+Technical Validation examines the relationship between similarity scores
+and source, presents descriptive summaries of pairwise CCF values, and
+assesses variability across replicates, stagings, and acquisitions.
+Usage Notes provides practical guidance for working with the shared
+files, and Code Availability identifies the custom processing and
+validation code. The dataset and workflow may support future
+quantitative research on wire-cut evidence.
 
 \section*{Data Acquisition and Processing}\label{sec-methods}
 \addcontentsline{toc}{section}{Data Acquisition and Processing}
@@ -420,10 +420,10 @@ Figure~\ref{fig-T1AW-LI-R1-profiles-signals} shows a scan on the left
 (a) with the location of the manually chosen profile line in yellow. The
 corresponding profile and signal are plotted in (b) and (c).
 
-One profile for each scan is included in folder \texttt{profiles/} as a
-csv file in the repository using the same naming convention as the
-scans, with the precursor of \texttt{profiles-}. More details on the
-exact format of these files are provided below.
+One profile for each scan is included in the \texttt{profiles/} folder
+as a CSV file in the repository using the same naming convention as the
+scans, with the prefix \texttt{profiles-}. More details on the exact
+format of these files are provided below.
 
 A single file containing signals for all 134 scans is available in
 \texttt{data-derived/wire-signals.csv.zip}.
@@ -658,36 +658,17 @@ Variable & Type & Description \\
 
 \end{table}%
 
-\section*{Data Overview}\label{sec-data-overview}
-\addcontentsline{toc}{section}{Data Overview}
-
-As a descriptive summary of the 120 main-experiment scans at staging 1
-and acquisition 1, Figure~\ref{fig-ccf-density} displays the CCF
-distributions for same-source and different-source comparisons. The
-density summary counts each distinct unordered pair once and excludes
-self-comparisons.
-
-\begin{figure}[hbt]
-
-\centering{
-
-\includegraphics[width=5.20833in,height=\textheight,keepaspectratio]{images/ccf_density.png}
-
-}
-
-\caption{\label{fig-ccf-density}CCF density distributions. Comparisons
-use the 120 main-experiment scans at staging 1 and acquisition 1. Kernel
-density estimates are shown for different-source comparisons in gray and
-same-source comparisons in orange. Each distinct unordered pair is
-counted once, excluding self-comparisons.}
-
-\end{figure}%
-
 \section*{Technical Validation}\label{sec-technical-validation}
 \addcontentsline{toc}{section}{Technical Validation}
 
-Technical validation was conducted in two areas: (1) signal processing
-and alignment and (2) variability assessment.
+Technical validation was conducted in two areas: (1) the relationship
+between similarity scores and source, including validation of signal
+processing and alignment, and (2) variability in scores along the
+processing pipeline.
+
+\subsection*{Similarity score and
+source}\label{sec-similarity-score-and-source}
+\addcontentsline{toc}{subsection}{Similarity score and source}
 
 Scan processing and signal alignment were validated using the 120
 main-experiment scans at staging 1 and acquisition 1 as follows. High
@@ -807,22 +788,50 @@ chance-level classification.}
 
 \end{figure}%
 
-The second validation assessed variability in the pipeline across
-replicates, stagings, and acquisitions. Tool 2 and the middle location
-were the randomly selected tool and cutting location for this
-assessment. The 22 scans from tool 2 at the middle location were
-selected from the shared files for this assessment: eight
-main-experiment scans and 14 additional scans of replicate 2. Replicate
-variability was assessed using two different cuts at the same edge and
-position. The comparison in Figure~\ref{fig-signals-pair-alignment} in
-Pairwise alignment of signals illustrates this assessment. To assess
-staging variability, replicate 2 was rescanned under the confocal
-microscope; the staging label S identifies these repeated stagings in
-the naming convention. The S1 designation is omitted from labels, so R2
-is equivalent to R2-S1. For all four edges of tool 2 at the middle
-location, three stagings (R2, R2-S2, and R2-S3) were created. Their
-pairwise CCFs were summarized by the mean and standard deviation (SD)
-using the comparison categories defined below.
+\subsection*{Variability assessment of score along the processing
+pipeline}\label{sec-variability-of-score-along-the-processing-pipeline}
+\addcontentsline{toc}{subsection}{Variability assessment of score along
+the processing pipeline}
+
+As an overview of score variation in the main experiment,
+Figure~\ref{fig-ccf-density} displays the CCF distributions for
+same-source and different-source comparisons using the 120 scans at
+staging 1 and acquisition 1. The density summary counts each distinct
+unordered pair once and excludes self-comparisons.
+
+\begin{figure}[hbt]
+
+\centering{
+
+\includegraphics[width=5.20833in,height=\textheight,keepaspectratio]{images/ccf_density.png}
+
+}
+
+\caption{\label{fig-ccf-density}CCF density distributions. Comparisons
+use the 120 main-experiment scans at staging 1 and acquisition 1. Kernel
+density estimates are shown for different-source comparisons in gray and
+same-source comparisons in orange. Each distinct unordered pair is
+counted once, excluding self-comparisons.}
+
+\end{figure}%
+
+To assess variability in scores along the processing pipeline, the
+second validation examined replicates, stagings, and acquisitions
+separately. Tool 2 and the middle location were the randomly selected
+tool and cutting location for this assessment. The 22 scans from tool 2
+at the middle location were selected from the shared files for this
+assessment: eight main-experiment scans and 14 additional scans of
+replicate 2. Replicate variability was assessed using two different cuts
+at the same edge and position. The comparison in
+Figure~\ref{fig-signals-pair-alignment} in Pairwise alignment of signals
+illustrates this assessment. To assess staging variability, replicate 2
+was rescanned under the confocal microscope. The staging label S
+identifies these repeated stagings in the naming convention. The S1
+designation is omitted from labels, so R2 is equivalent to R2-S1. For
+all four edges of tool 2 at the middle location, three stagings (R2,
+R2-S2, and R2-S3) were created. Their pairwise CCFs were summarized by
+the mean and standard deviation (SD) using the comparison categories
+defined below.
 
 Within each staging, the effect of different acquisitions was further
 examined by keeping the samples on the confocal microscope while varying
@@ -1003,7 +1012,7 @@ Code & Description & Section \\
 \multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{\parbox{\linewidth}{Compare signals}} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
 \path{5-align-pairwise.R} & compute pairwise alignment CCF values & Pairwise alignment of signals \\ 
-\path{6-all-comparison-results.R} & visualize main-experiment comparisons & Data Overview and Technical Validation \\ 
+\path{6-all-comparison-results.R} & visualize main-experiment comparisons & Technical Validation \\ 
 \midrule\addlinespace[2.5pt]
 \multicolumn{3}{>{\raggedright\arraybackslash}m{0.95\linewidth}}{\parbox{\linewidth}{Assess variability}} \\[2.5pt] 
 \midrule\addlinespace[2.5pt]
