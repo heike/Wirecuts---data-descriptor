@@ -34,23 +34,42 @@ signals %>%
   theme(legend.position = "bottom")
 ggsave(here::here(sprintf("images/%s-signals-plot.png", reference_x3p)), width = 6, height = 2.5)
 
-signal1 <- signals %>%
-  filter(ID == reference_x3p) %>%
-  pull(sig)
-signal2 <- signals %>%
-  filter(ID == same_source_x3p) %>%
-  pull(sig)
 
-align_same_source <- wire::vec_align_sigs_list(sig1 = signal1, sig2 = signal2, legendname = "replicate", ifplot = TRUE, min.overlap = 1000)
-ggsave(here::here(sprintf("images/%s-%s.png", reference_x3p, same_source_x3p)), width = 6, height = 2)
+align_same_source <-
+  wire::vec_align_sigs_list(
+    sig1 = signals %>%
+      filter(ID == reference_x3p) %>%
+      pull(sig),
+    sig2 = signals %>%
+      filter(ID == same_source_x3p) %>%
+      pull(sig),
+    legendname = "replicate", ifplot = TRUE, min.overlap = 1000
+  )
+
+align_different_source <-
+  wire::vec_align_sigs_list(
+    sig1 = signals %>%
+      filter(ID == reference_x3p) %>%
+      pull(sig),
+    sig2 = signals %>%
+      filter(ID == different_source_x3p) %>%
+      pull(sig),
+    legendname = "tool", ifplot = TRUE, min.overlap = 1000
+  )
 
 
-signal1 <- signals %>%
-  filter(ID == reference_x3p) %>%
-  pull(sig)
-signal2 <- signals %>%
-  filter(ID == different_source_x3p) %>%
-  pull(sig)
+aligned_plots <- cowplot::align_plots(
+  attr(align_same_source, "sig_align_plot"), attr(align_different_source, "sig_align_plot"),
+  align = "hv"
+)
 
-align_different_source <- wire::vec_align_sigs_list(sig1 = signal1, sig2 = signal2, legendname = "tool", ifplot = TRUE, min.overlap = 1000)
-ggsave(here::here(sprintf("images/%s-%s.png", reference_x3p, different_source_x3p)), width = 6, height = 2)
+ggsave(
+  plot = cowplot::ggdraw(aligned_plots[[1]]),
+  here::here(sprintf("images/%s-%s.png", reference_x3p, same_source_x3p)),
+  width = 6, height = 2
+)
+ggsave(
+  plot = cowplot::ggdraw(aligned_plots[[2]]),
+  here::here(sprintf("images/%s-%s.png", reference_x3p, different_source_x3p)),
+  width = 6, height = 2
+)
