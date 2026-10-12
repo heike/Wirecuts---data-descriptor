@@ -341,10 +341,8 @@ Signals were extracted from each surface scan using a two-step
 procedure. First, a representative profile was identified along a line
 across the surface perpendicular to the dominant striation direction.
 This line was chosen manually to avoid scanning artifacts (e.g., holes)
-and cutting artifacts (e.g., rips caused by rolling the wire). Along
-this line, surface values were assigned at equally spaced positions
-using the observed surface value at the nearest position on the surface
-grid.
+and cutting artifacts (e.g., rips caused by rolling the wire).
+\agentrevision{Along this line, surface values were assigned at equally spaced positions by taking the median of nearby observed surface values grouped at each position.}
 
 \begin{figure}[hbt]
 
@@ -1005,17 +1003,18 @@ process these files in R, use the \texttt{x3ptools} package and its
 reference manual, available from CRAN
 \citep{hofmannX3ptoolsToolsWorking2018}. The supplied profiles and
 processed signals provide a starting point for users who do not wish to
-repeat manual profile extraction. The supplied extraction coordinates
-allow these derived files to be related back to the corresponding scans.
-To reproduce the main-experiment summaries, select identifiers with
-\texttt{staging = 1} and \texttt{acquisition = 1} in \texttt{meta.csv},
-and retain pairwise rows only when both identifiers are in that set. For
-variability assessment, select tool 2 at the middle location and use the
-hierarchical comparison flags to distinguish replicate, staging, and
-acquisition comparisons as described in Technical Validation. Because
-each supplied signal is based on a manually selected profile, users
-assessing sensitivity to profile placement should re-extract profiles
-from the raw \texttt{x3p} scans using alternative documented locations.
+repeat manual profile extraction. The shared scan identifiers and
+profile-line images allow these derived files to be related back to the
+corresponding scans. To reproduce the main-experiment summaries, select
+identifiers with \texttt{staging = 1} and \texttt{acquisition = 1} in
+\texttt{meta.csv}, and retain pairwise rows only when both identifiers
+are in that set. For variability assessment, select tool 2 at the middle
+location and use the hierarchical comparison flags to distinguish
+replicate, staging, and acquisition comparisons as described in
+Technical Validation. Because each supplied signal is based on a
+manually selected profile, users assessing sensitivity to profile
+placement should re-extract profiles from the raw \texttt{x3p} scans
+using alternative documented locations.
 
 \section*{Data Availability}\label{sec-data-availability}
 \addcontentsline{toc}{section}{Data Availability}
