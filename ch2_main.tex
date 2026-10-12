@@ -911,9 +911,12 @@ decrease along this sequence. Replicates, stagings, and acquisitions
 were also compared, with smaller differences expected between
 acquisitions and stagings than between stagings and replicates. The
 results were visualized as scatter plots.
-Figure~\ref{fig-rep_staging_acquisition} shows the scatter plots and
-intervals extending two standard errors (SEs) above and below the mean.
-For each comparison category and edge, the plotted SE is calculated as
+Figure~\ref{fig-rep_staging_acquisition} shows the CCF values in three
+facets ordered from left to right as acquisition, staging, and replicate
+comparisons, with edges A, B, C, and D on the horizontal axis of each
+facet. Orange horizontal lines show the means, and shaded intervals
+extend two standard errors (SEs) above and below each mean. For each
+comparison category and edge, the plotted SE is calculated as
 \(\mathrm{SD}/\sqrt{n}\), where \(n\) is the number of distinct pairwise
 CCF values. Higher orange mean lines indicate an increase in the mean
 CCF; interval widths depend on both the SD and the number of
@@ -939,12 +942,14 @@ edge does not permit an estimate of dispersion.
 }
 
 \caption{\label{fig-rep_staging_acquisition}Variability across scanning
-conditions. Panels A, B, C, and D correspond to the four cut surfaces of
-tool 2 at the middle location, using 22 scans from the shared dataset.
-Gray points show pairwise CCF values, orange horizontal lines show
-means, and shaded intervals extend two standard errors above and below
-each mean, with SE calculated as SD divided by the square root of the
-number of comparisons. Each distinct unordered pair is counted once
+conditions. Comparisons use the 22 scans of the four cut surfaces of
+tool 2 at the middle location from the shared dataset. Facets are
+ordered from left to right as acquisition, staging, and replicate
+comparisons, with edges A, B, C, and D on the horizontal axis of each
+facet. Gray points show pairwise CCF values, orange horizontal lines
+show means, and shaded intervals extend two standard errors above and
+below each mean, with SE calculated as SD divided by the square root of
+the number of comparisons. Each distinct unordered pair is counted once
 within the replicate, staging, or acquisition category; no interval is
 shown for a category with only one pair.}
 
