@@ -537,9 +537,10 @@ Technical validation was conducted in two areas: (1) the relationship between si
 Scan processing and signal alignment were validated using the 120 main-experiment scans at staging 1 and acquisition 1 as follows.
 High CCF values were expected between signals from the same source and low values between signals from different sources.
 @fig-signals-pair-alignment, shown earlier in Pairwise alignment of signals, meets the expected pattern for same-source signals.
-As an example of a different-source comparison, T1AW-LI-R1 and T2AW-LI-R1 were selected.
-@fig-T1AW-LI-R1-T2AW-LI-R1-alignment (a) and (b) show the selected scans.
-Their signal alignment, shown in @fig-T1AW-LI-R1-T2AW-LI-R1-alignment (c), has a CCF value of 0.2, which is as low as expected.
+To illustrate same-source and different-source comparisons, T1AW-LI-R1 was selected as the reference scan, with T1AW-LI-R2 as the same-source scan and T2AW-LI-R1 as the different-source scan.
+@fig-same-different-source-alignment (a), (b), and (c) show the reference, same-source, and different-source scans, respectively.
+The same-source signal alignment, shown in @fig-same-different-source-alignment (d), has a CCF value of 0.957, consistent with the expected high similarity.
+The different-source signal alignment, shown in @fig-same-different-source-alignment (e), has a CCF value of 0.632, lower than that of the same-source comparison and consistent with the expected lower similarity.
 For the following summaries, edges A and C were categorized as long, edges B and D as short, and comparisons pairing one long edge with one short edge as mixed.
 The resulting CCFs for all pairwise comparisons were also summarized using boxplots and receiver operating characteristic (ROC) curves.
 These summaries count each distinct unordered pair once and exclude self-comparisons.
@@ -552,18 +553,27 @@ For the combined comparison set, a threshold of 0.589 controls the FPR below 0.0
 These results are consistent with the expected pattern and validate the pipeline for processing and aligning signals.
 
 
-::: {#fig-T1AW-LI-R1-T2AW-LI-R1-alignment layout="[[1, 1], [-0.5, 9, 0.5]]" fig-pos="hbt"}
+::: {#fig-same-different-source-alignment layout="[[32, -2, 32, -2, 32], [100], [100]]" layout-valign="top" fig-pos="hbt"}
 
-![](images/T1AW-LI-R1.png){#fig-T1AW-LI-R1 height=5.5cm}
+![](images/T1AW-LI-R1.png){#fig-T1AW-LI-R1 width=100%}
 
-![](images/T2AW-LI-R1.png){#fig-T2AW-LI-R1 height=5.5cm}
+![](images/T1AW-LI-R2.png){#fig-T1AW-LI-R2 width=100%}
 
-![](images/T1AW-LI-R1-T2AW-LI-R1.png){#fig-T1AW-LI-R1-T2AW-LI-R1 height=5cm}
+![](images/T2AW-LI-R1.png){#fig-T2AW-LI-R1 width=100%}
 
-Different-source scan and signal comparison.
-\(a) Scan T1AW-LI-R1 cut by tool 1.
-(b) Scan T2AW-LI-R1 cut by tool 2.
-(c) Alignment of signals from T1AW-LI-R1 and T2AW-LI-R1.
+![](images/T1AW-LI-R1-T1AW-LI-R2.png){#fig-T1AW-LI-R1-T1AW-LI-R2 width=100%}
+
+![](images/T1AW-LI-R1-T2AW-LI-R1.png){#fig-T1AW-LI-R1-T2AW-LI-R1 width=100%}
+
+Same-source and different-source scan and signal comparisons.
+\(a) Reference scan T1AW-LI-R1 cut by tool 1.
+(b) Same-source scan T1AW-LI-R2 from a second cut by tool 1 at the same edge and location.
+(c) Different-source scan T2AW-LI-R1 cut by tool 2.
+(d) Alignment of signals from T1AW-LI-R1 and T1AW-LI-R2.
+Light and dark blue lines identify replicates 1 and 2, respectively.
+(e) Alignment of signals from T1AW-LI-R1 and T2AW-LI-R1.
+Light and dark blue lines identify tools 1 and 2, respectively.
+Both alignment panels report the maximized CCF and the corresponding lag.
 
 :::
 
