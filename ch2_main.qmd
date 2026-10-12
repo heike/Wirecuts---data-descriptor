@@ -570,9 +570,9 @@ Same-source and different-source scan and signal comparisons.
 (b) Same-source scan T1AW-LI-R2 from a second cut by tool 1 at the same edge and location.
 (c) Different-source scan T2AW-LI-R1 cut by tool 2.
 (d) Alignment of signals from T1AW-LI-R1 and T1AW-LI-R2.
-Light and dark blue lines identify replicates 1 and 2, respectively.
+Light and dark blue lines identify the reference signal (replicate 1) and the same-source signal (replicate 2), respectively.
 (e) Alignment of signals from T1AW-LI-R1 and T2AW-LI-R1.
-Light and dark blue lines identify tools 1 and 2, respectively.
+Light blue and green lines identify the reference signal (tool 1) and the different-source signal (tool 2), respectively.
 Both alignment panels report the maximized CCF and the corresponding lag.
 
 :::

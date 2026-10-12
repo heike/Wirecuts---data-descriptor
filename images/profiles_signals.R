@@ -59,7 +59,12 @@ align_different_source <-
 
 
 aligned_plots <- cowplot::align_plots(
-  attr(align_same_source, "sig_align_plot"), attr(align_different_source, "sig_align_plot"),
+  attr(align_same_source, "sig_align_plot"),
+  attr(align_different_source, "sig_align_plot") +
+    scale_color_manual(values = c(
+      "1" = RColorBrewer::brewer.pal(3, "Paired")[1],
+      "2" = "#2D8632"
+    )),
   align = "hv"
 )
 
