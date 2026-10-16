@@ -578,7 +578,7 @@ Both alignment panels report the maximized CCF and the corresponding lag.
 :::
 
 
-::: {#fig-ccf-comparison layout="[64, -4, 32]" layout-valign="top" fig-pos="hbt"}
+::: {#fig-ccf-comparison layout="[66.93, -2, 31.07]" layout-valign="top" fig-pos="hbt"}
 
 ![](images/ccf_boxplot.png){#fig-ccf-boxplot width=100%}
 
