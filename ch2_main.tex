@@ -35,9 +35,6 @@
 \newcommand{\hh}[1]{{\textcolor{ForestGreen}{\textbf{[Heike: #1]}}}}
 \newcommand{\heike}[1]{\hh{#1}}
 \newcommand{\agentformat}[1]{{\textcolor{Purple}{\textbf{[Agent: #1]}}}}
-\newcommand{\agentreview}[1]{{\textcolor{RoyalBlue}{\textbf{[Agent: #1]}}}}
-\newcommand{\agentremovedreview}[1]{{\textcolor{BrickRed}{\textbf{[Agent: #1]}}}}
-\newcommand{\agentrevision}[1]{{\textcolor{TealBlue}{\textbf{#1}}}}
 
 % Scientific Data asks authors not to supply internal hyperlink markup.
 \newcommand{\href}[2]{#2}
@@ -341,8 +338,10 @@ Signals were extracted from each surface scan using a two-step
 procedure. First, a representative profile was identified along a line
 across the surface perpendicular to the dominant striation direction.
 This line was chosen manually to avoid scanning artifacts (e.g., holes)
-and cutting artifacts (e.g., rips caused by rolling the wire).
-\agentrevision{Along this line, surface values were assigned at equally spaced positions by taking the median of nearby observed surface values grouped at each position.}
+and cutting artifacts (e.g., rips caused by rolling the wire). Along
+this line, surface values were assigned at equally spaced positions by
+taking the median of nearby observed surface values grouped at each
+position.
 
 \begin{figure}[hbt]
 
@@ -871,36 +870,45 @@ assessment: eight main-experiment scans and 14 additional scans of
 replicate 2. Replicate variability was assessed using two different cuts
 at the same edge and position. The comparison in
 Figure~\ref{fig-signals-pair-alignment} in Pairwise alignment of signals
-illustrates this assessment. To assess staging variability, replicate 2
-was rescanned under the confocal microscope. The staging label S
-identifies these repeated stagings in the naming convention. The S1
-designation is omitted from labels, so R2 is equivalent to R2-S1. For
-all four edges of tool 2 at the middle location, three stagings (R2,
-R2-S2, and R2-S3) were created. Their pairwise CCFs were summarized by
-the mean and standard deviation (SD) using the comparison categories
-defined below.
+illustrates this assessment. Staging comparisons were identified from
+scan pairs that shared the same replicate and acquisition number but had
+different staging numbers. In the available data, these pairs involve
+replicate 2, which was rescanned under the confocal microscope. The
+staging label S identifies these repeated stagings in the naming
+convention. The S1 designation is omitted from labels, so R2 is
+equivalent to R2-S1. For all four edges of tool 2 at the middle
+location, three stagings (R2, R2-S2, and R2-S3) were created. Their
+pairwise CCFs were summarized by the mean and standard deviation (SD)
+using the comparison categories defined below.
 
-Within each staging, the effect of different acquisitions was further
-examined by keeping the samples on the confocal microscope while varying
-the lighting conditions. The suffix A identifies the acquisition within
-a staging. For edge A at staging 3, four acquisitions were performed,
-and the A1 designation was omitted from the first acquisition label.
-Therefore, R2-S3 is equivalent to R2-S3-A1. For the other three edges,
-two acquisitions were conducted at staging 3. These acquisitions are
-denoted by R2-S3 and R2-S3-A2. Within staging 3, pairwise CCFs between
-acquisitions were computed, and their mean and standard deviation were
-calculated. Variability between distinct stagings was assessed
-separately through the staging comparisons described above.
+Acquisition comparisons were identified from scan pairs that shared the
+same replicate and staging but had different acquisition numbers. In the
+available data, these pairs all involve staging 3 of replicate 2. The
+repeated acquisitions were obtained by keeping the samples on the
+confocal microscope while varying the lighting conditions. The suffix A
+identifies the acquisition within a staging. For edge A at staging 3,
+four acquisitions were performed, and the A1 designation was omitted
+from the first acquisition label. Therefore, R2-S3 is equivalent to
+R2-S3-A1. For the other three edges, two acquisitions were conducted at
+staging 3. These acquisitions are denoted by R2-S3 and R2-S3-A2.
+Pairwise CCFs for the qualifying acquisition pairs were computed and
+summarized by their mean and, where more than one pair was available,
+sample SD. Variability between distinct stagings was assessed separately
+through the staging comparisons described above.
 
 Each distinct unordered pair from the same edge was counted once,
-excluding self-comparisons. Replicate comparisons pair the scan of
-replicate 1 with every scan of replicate 2, including its repeated
-stagings and acquisitions. Staging comparisons pair scans of replicate 2
-from different stagings, including all acquisitions within those
-stagings. Acquisition comparisons pair scans from the same replicate and
-staging but different acquisitions. These categories contain,
-respectively, 6, 9, and 6 comparisons for edge A and 4, 5, and 1 for
-each of edges B, C, and D.
+excluding self-comparisons. Pairs were selected to compare one factor at
+a time: different replicates with matching staging and acquisition
+numbers, different stagings within the same replicate with matching
+acquisition numbers, or different acquisitions within the same replicate
+and staging. Pairs differing in more than one of these settings were
+excluded. Applying these pairing rules to the available scans yields
+replicate comparisons between R1 and R2 at staging 1 and acquisition 1,
+staging comparisons among S1, S2, and S3 within replicate 2 at
+acquisition 1, and acquisition comparisons within replicate 2 at staging
+3. These categories contain, respectively, 1, 3, and 6 comparisons for
+edge A and 1, 3, and 1 for each of edges B, C, and D, giving 25
+comparisons in total.
 
 With this setup, CCF values were expected to become more consistent from
 replicate to staging to acquisition as the scanning conditions became
@@ -908,57 +916,27 @@ progressively more stable. Consequently, variability was expected to
 decrease along this sequence. Replicates, stagings, and acquisitions
 were also compared, with smaller differences expected between
 acquisitions and stagings than between stagings and replicates. The
-results were visualized as scatter plots.
-Figure~\ref{fig-rep_staging_acquisition} shows the CCF values in three
-facets ordered from left to right as acquisition, staging, and replicate
-comparisons, with edges A, B, C, and D on the horizontal axis of each
-facet. Orange horizontal lines show the means, and shaded intervals
-extend two standard errors (SEs) above and below each mean. For each
-comparison category and edge, the plotted SE is calculated as
-\(\mathrm{SD}/\sqrt{n}\), where \(n\) is the number of distinct pairwise
-CCF values. Higher orange mean lines indicate an increase in the mean
-CCF; interval widths depend on both the SD and the number of
-comparisons. Because comparisons share scans, these intervals are
-descriptive summaries rather than confidence intervals based on
-independent observations. The detailed numerical results, including
-means, standard deviations, and differences between means, are shown in
+detailed numerical results, including means, standard deviations, and
+differences between means, are shown in
 Table~\ref{tbl-CCF-replicate-staging-acquisition}. Mean CCF increases
-from replicate to staging to acquisition comparisons for every edge, and
-the acquisition-to-staging mean differences are smaller than the
-staging-to-replicate differences. The SDs do not decrease uniformly:
-edge B has a higher staging SD than replicate SD, whereas edges A, C,
-and D have lower staging SDs. For acquisition comparisons, SD is defined
-only for edge A, which has six pairs; the single pair for each other
-edge does not permit an estimate of dispersion.
-
-\begin{figure}[hbt]
-
-\centering{
-
-\includegraphics[width=4.6875in,height=\textheight,keepaspectratio]{images/rep_staging_acquisition.png}
-
-}
-
-\caption{\label{fig-rep_staging_acquisition}Variability across scanning
-conditions. Comparisons use the 22 scans of the four cut surfaces of
-tool 2 at the middle location from the shared dataset. Facets are
-ordered from left to right as acquisition, staging, and replicate
-comparisons, with edges A, B, C, and D on the horizontal axis of each
-facet. Gray points show pairwise CCF values, orange horizontal lines
-show means, and shaded intervals extend two standard errors above and
-below each mean, with SE calculated as SD divided by the square root of
-the number of comparisons. Each distinct unordered pair is counted once
-within the replicate, staging, or acquisition category; no interval is
-shown for a category with only one pair.}
-
-\end{figure}%
+from replicate to staging to acquisition comparisons for every edge,
+and, before rounding, the acquisition-to-staging mean differences are
+smaller than the staging-to-replicate differences. Replicate SD is
+undefined for every edge because each has only one pair, so the
+assessment does not establish whether dispersion decreases across all
+three comparison categories. Staging SD is defined for every edge from
+three pairs; acquisition SD is defined only for edge A, where it is
+lower than staging SD, because the other edges each have only one
+acquisition pair. Because comparisons share scans, the numerical
+summaries are descriptive and do not assume independent observations.
 
 \begin{table}
 
 \caption{\label{tbl-CCF-replicate-staging-acquisition}Comparison of CCF
 means and standard deviations across different replicates, stagings, and
 acquisition settings. Dashes indicate that the standard deviation is
-undefined because only one CCF value is available.}
+undefined because only one CCF value is available. Differences between
+means were calculated before rounding to three decimal places.}
 
 \centering{
 
@@ -979,10 +957,10 @@ undefined because only one CCF value is available.}
  & \textbf{SD$_A$}
  & \textbf{Avg$_A$ - Avg$_S$} \\
 \midrule
-A & 0.818 & 0.015 & 0.961 & 0.012 & 0.143 & 0.992 & 0.003 & 0.031 \\
-B & 0.879 & 0.031 & 0.922 & 0.042 & 0.043 & 0.939 & --- & 0.017 \\
-C & 0.841 & 0.022 & 0.952 & 0.021 & 0.111 & 0.959 & --- & 0.007 \\
-D & 0.797 & 0.011 & 0.966 & 0.017 & 0.169 & 0.986 & --- & 0.020 \\
+A & 0.836 & --- & 0.965 & 0.013 & 0.128 & 0.992 & 0.003 & 0.027 \\
+B & 0.893 & --- & 0.917 & 0.040 & 0.023 & 0.939 & --- & 0.023 \\
+C & 0.821 & --- & 0.938 & 0.010 & 0.116 & 0.959 & --- & 0.021 \\
+D & 0.792 & --- & 0.963 & 0.023 & 0.171 & 0.986 & --- & 0.023 \\
 \bottomrule
 \end{tabular*}
 
@@ -1009,12 +987,13 @@ corresponding scans. To reproduce the main-experiment summaries, select
 identifiers with \texttt{staging = 1} and \texttt{acquisition = 1} in
 \texttt{meta.csv}, and retain pairwise rows only when both identifiers
 are in that set. For variability assessment, select tool 2 at the middle
-location and use the hierarchical comparison flags to distinguish
-replicate, staging, and acquisition comparisons as described in
-Technical Validation. Because each supplied signal is based on a
-manually selected profile, users assessing sensitivity to profile
-placement should re-extract profiles from the raw \texttt{x3p} scans
-using alternative documented locations.
+location, exclude self-comparisons, and count each distinct unordered
+same-edge pair once. Use the hierarchical comparison flags together with
+matching staging and acquisition numbers to select pairs that differ in
+only one factor, as described in Technical Validation. Because each
+supplied signal is based on a manually selected profile, users assessing
+sensitivity to profile placement should re-extract profiles from the raw
+\texttt{x3p} scans using alternative documented locations.
 
 \section*{Data Availability}\label{sec-data-availability}
 \addcontentsline{toc}{section}{Data Availability}
