@@ -335,6 +335,14 @@ knitr::include_graphics("images/signals_pair_alignment.png")
 The file `data-derived/wire_pairwise_ccf.csv` contains the CCF similarity scores of all pairwise aligned signals.
 
 
+## AI-assisted manuscript preparation {.unnumbered}
+
+The authors wrote the complete initial manuscript and analysis code before AI-assisted review.
+The experimental work and data collection had been completed, and the main results had been obtained, before this review.
+Codex (OpenAI) was subsequently used to review and edit the existing manuscript for organization, formatting, compliance with journal requirements, grammar, clarity, and logical consistency.
+All scientific decisions remain with the authors, who retain responsibility for verifying AI-assisted revisions and for the accuracy and integrity of the final manuscript.
+
+
 # Data Records {#sec-data-records .unnumbered}
 
 
