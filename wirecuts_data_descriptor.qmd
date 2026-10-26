@@ -81,7 +81,6 @@ format:
 embed-resources: true
 bibliography: "`r rbbt::bbt_write_bib('references.bib', ignore = stringr::str_subset(rbbt::bbt_detect_citations(), '(^fig-|^tbl-|^eq-|^sec-|^lst-|^thm-|^lem-|^cor-|^prp-|^cnj-|^def-|^exm-|^exr-)'), overwrite = TRUE, library_id=rbbt::bbt_library_id('CSAFE'), translator='bibtex')`"
 contributions: |
- \agentformat{Confirm all authors approve the contribution statement below.}
  Y.L.: Methodology, Coding, Validation, Data Curation, Writing: Draft;
  H.H.: Conceptualization, Methodology, Coding, Validation, Writing: Review and Editing; 
  C.M.: Laboratory Supervision;
