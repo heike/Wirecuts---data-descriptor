@@ -685,7 +685,8 @@ Automated workflows can be compared against these results using the same scan su
 
 # Data Availability {#sec-data-availability .unnumbered}
 
-The data and accompanying code described in this Data Descriptor are publicly available from Iowa State University DataShare [@DatasetCodeThreedimensionalDataWirecut] at \url{https://doi.org/10.25380/iastate.34025028}.
+The data and code are deposited with Iowa State University DataShare [@DatasetCodeThreedimensionalDataWirecut] under the reserved DOI \url{https://doi.org/10.25380/iastate.34025028}, which becomes active on dataset publication.
+Private peer-review access is available at \url{https://figshare.com/s/2e44a3f30d770a6a513f}.
 
 
 # Code Availability {#sec-code-availability .unnumbered}
