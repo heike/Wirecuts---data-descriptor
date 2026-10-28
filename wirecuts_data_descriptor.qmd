@@ -90,10 +90,7 @@ contributions: |
  J.S.: Forensic Advice;
  A.C.: Funding Acquisition.
 competing: |
- H.H. is a technical advisor to the Association of Firearm and Toolmark Examiners (AFTE), a fellow of the American Statistical Association (ASA), and a member of the ASA Forensic Science Committee.
- H.H. has testified as a court witness on behalf of Judge April Neubauer in the New York State Supreme Court, Criminal Term, in New York City.
- The authors declare the following competing interests:
- \agentformat{Confirm that the declaration covers every author and replace Alicia's declaration, if any.}
+ The authors declare no competing interests.
 funding-statement: |
  This work was partially funded by the Center for Statistics and Applications in Forensic Evidence (CSAFE) through Cooperative Agreement 70NANB20H019 between NIST and Iowa State University.
  The agreement includes activities carried out at Carnegie Mellon University, Duke University, the University of California, Irvine, the University of Virginia, West Virginia University, the University of Pennsylvania, Swarthmore College, and the University of Nebraska-Lincoln.
