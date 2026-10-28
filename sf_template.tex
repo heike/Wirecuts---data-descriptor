@@ -50,7 +50,7 @@ $endif$
 \linenumbers
 
 \begin{center}
-{\LARGE\bfseries $title$\par}
+{\LARGE\bfseries $title$$if(title-note)$\begingroup\renewcommand{\thefootnote}{\fnsymbol{footnote}}\footnotemark[2]\endgroup$endif$\par}
 \vspace{1em}
 {\large
 $for(by-author)$
@@ -67,6 +67,12 @@ $if(it.attributes.corresponding)$
 $endif$
 $endfor$\par}
 \end{center}
+$if(title-note)$
+\begingroup
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\footnotetext[2]{$title-note$}
+\endgroup
+$endif$
 \vspace{1em}
 
 \begin{abstract}

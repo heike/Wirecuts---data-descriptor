@@ -1,5 +1,7 @@
 ---
 title: "Three-dimensional data of wire-cut surface scans under the confocal microscope"
+title-note: |
+ An earlier version of this Data Descriptor was included as Chapter 2 of Yuhang Lin's doctoral dissertation at Iowa State University [@linStatisticalApproachMatching2026].
 authors: 
   - name: Yuhang Lin
     affiliations:
@@ -164,9 +166,6 @@ knitr::include_graphics("images/kaiweet-sketch.png")
 Data collected at crime scenes lack the known ground truth needed to estimate error rates; therefore, controlled studies are needed.
 In this study, we provide a publicly available dataset of wire-cut scans together with a systematic quantitative processing and comparison workflow.
 The shared materials include raw scans, metadata, manually extracted profiles, processed signals, pairwise cross-correlation function (CCF) values, derived images, and analysis code.
-
-An earlier version of this Data Descriptor was included as Chapter 2 of Yuhang Lin's doctoral dissertation at Iowa State University [@linStatisticalApproachMatching2026].
-
 
 Methods describes sample collection, scanning, profile extraction, signal processing, and CCF-based alignment.
 Data Records describes the shared files and repository organization.
