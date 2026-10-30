@@ -12,8 +12,8 @@ authors:
     corresponding: true
   - name: Heike Hofmann
     affiliations:
-      - ref: 2
       - ref: 3
+      - ref: 2
     orcid: 0000-0001-6216-5183
     email: hhofmann4@unl.edu
     corresponding: false
