@@ -344,6 +344,9 @@ The authors reviewed and verified the revisions and retain full responsibility f
 
 
 The repository record on Iowa State University DataShare [@DatasetCodeThreedimensionalDataWirecut] at \url{https://doi.org/10.25380/iastate.34025028} contains the \texttt{x3p} scans, metadata, extracted profiles, processed signals, pairwise CCF values, derived images, analysis code, and supporting documentation and environment files.
+
+Private peer-review access is available at \url{https://figshare.com/s/2e44a3f30d770a6a513f}.
+
 The data files, formats, and folder organization are summarized in @tbl-data-overview.
 All 134 scans share the root-level \texttt{scans/}, \texttt{profiles/}, \texttt{pngs/}, and \texttt{profile-images/} folders, a single \texttt{meta.csv}, and the derived files in \texttt{data-derived/}.
 The same file structures describe both the main experiment and the repeated scans used for variability assessment.
