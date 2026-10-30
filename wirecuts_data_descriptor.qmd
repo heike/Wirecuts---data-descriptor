@@ -20,6 +20,7 @@ authors:
   - name: Curtis Mosher
     affiliations:
       - ref: 4
+    orcid: 0009-0001-2647-6088
     email: cmosher@iastate.edu
     corresponding: false
   - name: Eden Amin
